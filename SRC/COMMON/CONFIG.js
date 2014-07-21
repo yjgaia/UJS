@@ -1,0 +1,5 @@
+/**
+ * Configuration
+ */
+global.CONFIG = CONFIG = {
+};

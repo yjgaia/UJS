@@ -1,0 +1,415 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<title>UPPERCASE.JS TESTCASE</title>
+		<style>
+			div {
+				margin-left: 20px;
+			}
+			footer {
+				margin-top: 20px;
+				padding: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>UPPERCASE.JS TESTCASE</h1>
+		<p>
+			Check JavaScript Console.
+		</p>
+		<div>
+			<h3>COMMON</h3>
+			<button onclick="test('COMMON/TO_DELETE');">
+				TO_DELETE TEST
+			</button>
+			<div>
+				<h5>OOP</h5>
+				<button onclick="test('COMMON/OOP/METHOD');">
+					METHOD TEST
+				</button>
+				<button onclick="test('COMMON/OOP/CLASS');">
+					CLASS TEST
+				</button>
+				<button onclick="test('COMMON/OOP/OBJECT');">
+					OBJECT TEST
+				</button>
+			</div>
+			<div>
+				<h3>UTIL</h3>
+				<button onclick="test('COMMON/UTIL/OVERRIDE');">
+					OVERRIDE TEST
+				</button>
+				<button onclick="test('COMMON/UTIL/NEXT');">
+					NEXT TEST
+				</button>
+				<div>
+					<h5>NUMBER</h5>
+					<button onclick="test('COMMON/UTIL/NUMBER/INTEGER');">
+						INTEGER TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/NUMBER/REAL');">
+						REAL TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/NUMBER/RANDOM');">
+						RANDOM TEST
+					</button>
+				</div>
+				<div>
+					<h5>DATE</h5>
+					<button onclick="test('COMMON/UTIL/DATE/CALENDAR');">
+						CALENDAR TEST
+					</button>
+				</div>
+				<div>
+					<h5>DATA</h5>
+					<button onclick="test('COMMON/UTIL/DATA/CHECK_IS_DATA');">
+						CHECK_IS_DATA TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/CHECK_IS_EMPTY_DATA');">
+						CHECK_IS_EMPTY_DATA TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/CHECK_ARE_SAME_DATA_SET');">
+						CHECK_ARE_SAME_DATA_SET TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/COPY_DATA');">
+						COPY_DATA TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/EXTEND_DATA');">
+						EXTEND_DATA TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/COMBINE_DATA');">
+						COMBINE_DATA TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/PACK_DATA');">
+						PACK_DATA TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/UNPACK_DATA');">
+						UNPACK_DATA TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/STRINGIFY_DATA');">
+						STRINGIFY_DATA TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA/PARSE_DATA_STR');">
+						PARSE_DATA_STR TEST
+					</button>
+				</div>
+				<div>
+					<h5>ARRAY</h5>
+					<button onclick="test('COMMON/UTIL/ARRAY/CHECK_IS_ARRAY');">
+						CHECK_IS_ARRAY TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/ARRAY/CHECK_ARE_SAME_ARRAYS');">
+						CHECK_ARE_SAME_ARRAYS TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/ARRAY/COPY_ARRAY');">
+						COPY_ARRAY TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/ARRAY/EXTEND_ARRAY');">
+						EXTEND_ARRAY TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/ARRAY/COMBINE_ARRAY');">
+						COMBINE_ARRAY TEST
+					</button>
+				</div>
+				<div>
+					<h5>DATA AND ARRAY</h5>
+					<button onclick="test('COMMON/UTIL/DATA_AND_ARRAY/FIND_KEY');">
+						FIND_KEY TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA_AND_ARRAY/REMOVE');">
+						REMOVE TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DATA_AND_ARRAY/REMOVE_TO_DELETE');">
+						REMOVE_TO_DELETE TEST
+					</button>
+				</div>
+				<div>
+					<h5>ARGUMENTS</h5>
+					<button onclick="test('COMMON/UTIL/ARGUMENTS/CHECK_IS_ARGUMENTS');">
+						CHECK_IS_ARGUMENTS TEST
+					</button>
+				</div>
+				<div>
+					<h5>FUNCTION</h5>
+					<button onclick="test('COMMON/UTIL/FUNCTION/RUN');">
+						RUN TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/FUNCTION/RAR');">
+						RAR TEST
+					</button>
+				</div>
+				<div>
+					<h5>REPEAT</h5>
+					<button onclick="test('COMMON/UTIL/REPEAT/REPEAT');">
+						REPEAT TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/REPEAT/FOR');">
+						FOR TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/REPEAT/EACH');">
+						EACH TEST
+					</button>
+				</div>
+				<div>
+					<h5>DELAY</h5>
+					<button onclick="test('COMMON/UTIL/DELAY/DELAY');">
+						DELAY TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DELAY/INTERVAL');">
+						INTERVAL TEST
+					</button>
+					<button onclick="test('COMMON/UTIL/DELAY/LOOP');">
+						LOOP TEST
+					</button>
+				</div>
+				<button onclick="test('COMMON/UTIL/VALID');">
+					VALID TEST
+				</button>
+			</div>
+		</div>
+		<div>
+			<h3>BROWSER</h3>
+			<div>
+				<h5>INFO</h5>
+				<button onclick="test('BROWSER/INFO');">
+					INFO TEST
+				</button>
+			</div>
+			<div>
+				<h5>WINDOW</h5>
+				<button onclick="test('BROWSER/WINDOW/TITLE');">
+					TITLE TEST
+				</button>
+				<button onclick="test('BROWSER/WINDOW/WIN_WIDTH');">
+					WIN_WIDTH TEST
+				</button>
+				<button onclick="test('BROWSER/WINDOW/WIN_HEIGHT');">
+					WIN_HEIGHT TEST
+				</button>
+				<button onclick="test('BROWSER/WINDOW/SCROLL_LEFT');">
+					SCROLL_LEFT TEST
+				</button>
+				<button onclick="test('BROWSER/WINDOW/SCROLL_TOP');">
+					SCROLL_TOP TEST
+				</button>
+				<button onclick="test('BROWSER/WINDOW/CLOSE_WIN');">
+					CLOSE_WIN TEST
+				</button>
+			</div>
+			<div>
+				<h5>STORE</h5>
+				<button onclick="test('BROWSER/STORE');">
+					STORE TEST
+				</button>
+			</div>
+			<div>
+				<h5>I18N</h5>
+				<button onclick="test('BROWSER/I18N/MSG');">
+					MSG TEST
+				</button>
+			</div>
+			<div>
+				<h5>DOM</h5>
+				<button onclick="test('BROWSER/DOM/DOM');">
+					DOM TEST
+				</button>
+				<button onclick="test('BROWSER/DOM/NODE');">
+					NODE TEST
+				</button>
+				<div>
+					<h6>DOM/STYLE</h6>
+					<button onclick="test('BROWSER/DOM/STYLE/ADD_STYLE');">
+						ADD_STYLE TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/STYLE/RGBA');">
+						RGBA TEST
+					</button>
+				</div>
+				<div>
+					<h6>DOM/ANIMATION</h6>
+					<button onclick="test('BROWSER/DOM/ANIMATION/ANIMATE');">
+						ANIMATE TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/ANIMATION/KEYFRAMES');">
+						KEYFRAMES TEST
+					</button>
+				</div>
+				<div>
+					<h6>DOM/EVENT</h6>
+					<button onclick="test('BROWSER/DOM/EVENT/EVENT');">
+						EVENT TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/EVENT/E');">
+						E TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/EVENT/FIRE_ALL');">
+						FIRE_ALL TEST
+					</button>
+				</div>
+				<div>
+					<h6>DOM/TAG</h6>
+					<button onclick="test('BROWSER/DOM/TAG/BODY');">
+						BODY TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/DIV');">
+						DIV TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/SPAN');">
+						SPAN TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/H1');">
+						H1, H2, H3, H4, H5, H6 TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/P');">
+						P TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/BR');">
+						BR TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/UL');">
+						UL, LI TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/A');">
+						A TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/IMG');">
+						IMG TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/TABLE');">
+						TABLE, TR, TH, TD TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/FORM');">
+						FORM TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/INPUT');">
+						INPUT, TEXTAREA, SELECT, OPTION TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/IFRAME');">
+						IFRAME TEST
+					</button>
+					<button onclick="test('BROWSER/DOM/TAG/CANVAS');">
+						CANVAS TEST
+					</button>
+				</div>
+				<button onclick="test('BROWSER/DOM/CLEAR_BOTH');" style="margin-top:20px;">
+					CLEAR_BOTH TEST
+				</button>
+			</div>
+			<div>
+				<h5>GRAPHIC</h5>
+				<button onclick="test('BROWSER/GRAPHIC/CONTEXT');">
+					CONTEXT TEST
+				</button>
+				<button onclick="test('BROWSER/GRAPHIC/EXPORT_IMG_DATA');">
+					EXPORT_IMG_DATA TEST
+				</button>
+				<button onclick="test('BROWSER/GRAPHIC/EXPORT_IMG_TYPE');">
+					EXPORT_IMG_TYPE TEST
+				</button>
+				<button onclick="test('BROWSER/GRAPHIC/CHECK_IS_BLANK_PIXEL');">
+					CHECK_IS_BLANK_PIXEL TEST
+				</button>
+				<button onclick="test('BROWSER/GRAPHIC/X2');">
+					X2 TEST
+				</button>
+				<p>
+					This is not X2 image. (blured)
+					<br>
+					<img src="TEST/BROWSER/GRAPHIC/text.png">
+				</p>
+			</div>
+			<div>
+				<h5>SOUND</h5>
+				<button onclick="test('BROWSER/SOUND');">
+					SOUND TEST
+				</button>
+			</div>
+			<div>
+				<h5>VIEW</h5>
+				<button onclick="test('BROWSER/VIEW/HREF');">
+					HREF TEST
+				</button>
+				<button onclick="test('BROWSER/VIEW/VIEW');">
+					VIEW TEST
+				</button>
+				<button onclick="test('BROWSER/VIEW/VIEW');">
+					MATCH_VIEW TEST
+				</button>
+				<button onclick="test('BROWSER/VIEW/GO');">
+					GO, GO_NEW_WIN TEST
+				</button>
+				<button onclick="test('BROWSER/VIEW/REFRESH');">
+					REFRESH TEST
+				</button>
+			</div>
+			<div>
+				<h5>REQUEST</h5>
+				<button onclick="test('BROWSER/REQUEST/REQUEST');">
+					REQUEST TEST
+				</button>
+				<button onclick="test('BROWSER/REQUEST/GET');">
+					GET TEST
+				</button>
+				<button onclick="test('BROWSER/REQUEST/POST');">
+					POST TEST
+				</button>
+				<button onclick="test('BROWSER/REQUEST/PUT');">
+					PUT TEST
+				</button>
+				<button onclick="test('BROWSER/REQUEST/DELETE');">
+					DELETE TEST
+				</button>
+			</div>
+		</div>
+		<div>
+			<h3>BROWSER-FIX</h3>
+			<button onclick="test('BROWSER-FIX/String.trim');">
+				String.trim TEST
+			</button>
+			<button onclick="test('BROWSER-FIX/Date.now');">
+				Date.now TEST
+			</button>
+			<button onclick="test('BROWSER-FIX/JSON');">
+				JSON TEST
+			</button>
+		</div>
+		<footer>
+			<div>
+				UPPERCASE.JS TEST CASE by <a href="http://hanul.me" target="_blank">YOUNG JAE SIM</a> @ <a href="http://www.btncafe.com" target="_blank">BTNcafe Co</a>.
+			</div>
+			<div>
+				<a href="https://bitbucket.org/uppercaseio/uppercase.js" target="_blank">UPPERCASE.JS @ Bitbucket</a>
+			</div>
+		</footer>
+		<pre id="source"></pre>
+		<!-- JS WORLD -->
+		<script>
+			global = window;
+		</script>
+		<script src="UPPERCASE.JS-COMMON.js"></script>
+		<script src="UPPERCASE.JS-BROWSER.js"></script>
+		<script src="UPPERCASE.JS-BROWSER-FIX/FIX.js"></script>
+		<script>
+			global.onload = function() {
+
+				// init all singleton classes.
+				INIT_OBJECTS();
+
+				var
+				// source element
+				sourceEl = document.getElementById('source');
+
+				global.test = function(path) {
+					GET({
+						uri : 'TEST/' + path + '.js'
+					}, function(source) {
+						sourceEl.innerText = source;
+						eval(source);
+					});
+				};
+			};
+		</script>
+	</body>
+</html>

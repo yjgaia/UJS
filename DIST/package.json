@@ -1,0 +1,16 @@
+{
+	"name": "uppercase.js",
+	"version": "1.4.2",
+	"description": "UPPERCASE.js is easy, clear, and powerful JavaScript library.",
+	"main": "package.js",
+	"repository": {
+		"type": "git",
+		"url": "https://bitbucket.org/uppercaseio/uppercase.js"
+	},
+	"keywords": ["UPPERCASE.JS", "JavaScript", "library", "Hanul", "BTNcafe"],
+	"author": "hanul",
+	"license": "https://bitbucket.org/uppercaseio/uppercase.js/src/master/LICENSE.md",
+	"bugs": {
+		"email": "contact@btncafe.com"
+	}
+}

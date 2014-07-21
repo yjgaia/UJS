@@ -1,0 +1,174 @@
+/**
+ * Fix for Internet Explorer.
+ */
+RUN(function() {'use strict';
+
+	var
+	// load fix script.
+	loadFixScript = function(name) {
+		LOAD(BROWSER_CONFIG.fixScriptsFolderPath + '/IE/' + name + '.js');
+	};
+
+	global.IE = {};
+
+	// IE <= 10
+	if (navigator.appName === 'Microsoft Internet Explorer') {
+
+		// get IE version.
+		/MSIE ([0-9]{1,}[\.0-9]{0,})/.exec(navigator.userAgent);
+
+		IE.version = INTEGER(RegExp.$1);
+	}
+
+	// IE >= 11
+	else if (navigator.appName === 'Netscape') {
+
+		// get IE version.
+		/Trident\/.*rv:([0-9]{1,}[\.0-9]{0,})/.exec(navigator.userAgent);
+
+		IE.version = INTEGER(RegExp.$1);
+	}
+
+	// fix get selection.
+	if (global.getSelection === undefined) {
+		global.getSelection = function() {
+			return {
+				removeAllRanges : function() {
+					document.selection.empty();
+				}
+			};
+		};
+	}
+
+	/**
+	 * fix COMMON.
+	 */
+
+	/**
+	 * fix COMMON/UTIL.
+	 */
+
+	// fix stack overflow bug at COPY_DATA, PACK_DATA, UNPACK_DATA, COPY_ARRAY, REMOVE_TO_DELETE.
+	if (IE.version <= 8) {
+		loadFixScript('COMMON/UTIL/DATA/COPY_DATA');
+		loadFixScript('COMMON/UTIL/DATA/PACK_DATA');
+		loadFixScript('COMMON/UTIL/DATA/UNPACK_DATA');
+		loadFixScript('COMMON/UTIL/ARRAY/COPY_ARRAY');
+		loadFixScript('COMMON/UTIL/DATA_AND_ARRAY/REMOVE_TO_DELETE');
+	}
+
+	/**
+	 * fix BROWSER.
+	 */
+
+	// fix INFO.
+	loadFixScript('BROWSER/INFO');
+
+	/**
+	 * fix BROWSER/WINDOW.
+	 */
+
+	// fix WIN_WIDTH.
+	if (global.innerWidth === undefined) {
+		loadFixScript('BROWSER/WINDOW/WIN_WIDTH');
+	}
+
+	// fix WIN_HEIGHT.
+	if (global.innerHeight === undefined) {
+		loadFixScript('BROWSER/WINDOW/WIN_HEIGHT');
+	}
+
+	// fix CLOSE_WIN.
+	if (IE.version <= 7) {
+		loadFixScript('BROWSER/WINDOW/CLOSE_WIN');
+	}
+
+	/**
+	 * fix BROWSER/DOM.
+	 */
+
+	// fix png.
+	if (IE.version <= 6) {
+		loadFixScript('BROWSER/LIB/iepngfix/iepngfix_tilebg');
+	}
+
+	// fix ADD_STYLE.
+	loadFixScript('BROWSER/DOM/STYLE/ADD_STYLE');
+
+	// fix ANIMATION.
+	if (IE.version <= 9) {
+		loadFixScript('BROWSER/DOM/ANIMATION/ANIMATE');
+		loadFixScript('BROWSER/DOM/ANIMATION/KEYFRAME');
+	}
+
+	// fix E.
+	loadFixScript('BROWSER/DOM/EVENT/E');
+
+	// fix EVENT_LOW.
+	loadFixScript('BROWSER/DOM/EVENT/EVENT_LOW');
+
+	// fix IMG.
+	if (IE.version <= 10) {
+		loadFixScript('BROWSER/DOM/TAG/IMG');
+	}
+
+	// fix TABLE.
+	if (IE.version <= 7) {
+		loadFixScript('BROWSER/DOM/TAG/TABLE');
+	}
+
+	// fix TD.
+	if (IE.version <= 8) {
+		loadFixScript('BROWSER/DOM/TAG/TD');
+	}
+
+	// fix IFRAME.
+	loadFixScript('BROWSER/DOM/TAG/IFRAME');
+
+	// load flash canvas and fix CANVAS.
+	if (RUN(function() {
+
+		var
+		// canvas
+		canvas = document.createElement('canvas');
+
+		return canvas.getContext === undefined || canvas.getContext('2d') === undefined;
+
+	}) === true) {
+
+		global.FlashCanvasOptions = {
+			swfPath : BROWSER_CONFIG.fixScriptsFolderPath + '/IE/BROWSER/LIB/' + (BROWSER_CONFIG.isUsingFlashCanvasPro === true ? 'flashcanvaspro' : 'flashcanvas') + '/'
+		};
+
+		loadFixScript('BROWSER/LIB/' + (BROWSER_CONFIG.isUsingFlashCanvasPro === true ? 'flashcanvaspro' : 'flashcanvas') + '/flashcanvas');
+
+		// fix CANVAS.
+		loadFixScript('BROWSER/DOM/TAG/CANVAS');
+
+		// fix EXPORT_IMG_DATA.
+		loadFixScript('BROWSER/GRAPHIC/EXPORT_IMG_DATA');
+	}
+
+	// fix CLEAR_BOTH.
+	if (IE.version <= 7) {
+		loadFixScript('BROWSER/DOM/CLEAR_BOTH');
+	}
+
+	/**
+	 * fix BROWSER/GRAPHIC.
+	 */
+
+	// fix EXPORT_IMG_TYPE.
+	if (IE.version <= 6) {
+		loadFixScript('BROWSER/GRAPHIC/EXPORT_IMG_TYPE');
+	}
+
+	/**
+	 * fix BROWSER/VIEW.
+	 */
+
+	// fix REFRESH.
+	if (IE.version <= 8) {
+		loadFixScript('BROWSER/VIEW/REFRESH');
+	}
+});
