@@ -15,7 +15,7 @@ http://UPPERCASE.IO/#UDOC/UPPERCASE.JS
 http://test.uppercase.js.uppercase.io
 
 ##### Version
-1.4.6
+1.4.7
 
 ##### License
 UPPERCASE.JS의 License는 이하 문서를 따릅니다.<br>
@@ -126,6 +126,8 @@ PhantomJS 기반 프로젝트에서 사용 가능한 다양한 기능들을 제�
 http://UPPERCASE.IO/#UDOC/UPPERCASE.JS/PHANTOM
 - UPPERCASE.JS-COMMON.js가 필요합니다.
 
+License
+-------
+[MIT License](https://github.com/UPPERCASEIO/UPPERCASE.JS/blob/master/LICENSE)
 
-
-작성자: Young Jae Sim (http://hanul.me)
+Author: Young Jae Sim (http://hanul.me)
