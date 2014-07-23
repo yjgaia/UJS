@@ -21,6 +21,7 @@ global.METHOD = METHOD = function(define) {'use strict';
 		}
 	};
 
+	// set type.
 	m.type = METHOD;
 
 	// when define is function

@@ -47,8 +47,30 @@ global.CLASS = CLASS = METHOD(function(m) {'use strict';
 				// self (like Java's public.)
 				self = {};
 
+				// set type.
 				self.type = cls;
 
+				// check is instance of.
+				self.checkIsInstanceOf = function(checkCls) {
+
+					var
+					// target cls
+					targetCls = cls;
+
+					// check moms.
+					while (targetCls !== undefined) {
+
+						if (targetCls === checkCls) {
+							return true;
+						}
+
+						targetCls = targetCls.mom;
+					}
+
+					return false;
+				};
+
+				// set id.
 				self.id = getInstanceId();
 
 				// run inner init.
@@ -60,6 +82,7 @@ global.CLASS = CLASS = METHOD(function(m) {'use strict';
 			// inner init.
 			innerInit;
 
+			// set type.
 			cls.type = CLASS;
 
 			cls.innerInit = innerInit = function(inner, self, params, funcs) {

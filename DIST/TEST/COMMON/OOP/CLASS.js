@@ -157,6 +157,9 @@ RUN(function() {
 
 	// static text
 	console.log(Animal.getStaticText(), Horse.mom.getStaticText());
+	
+	// check is instance of
+	console.log(sam.type === Snake, sam.type === Animal, sam.checkIsInstanceOf(Snake), sam.checkIsInstanceOf(Animal));
 
 	// singleton class
 	Singleton = CLASS(function(cls) {

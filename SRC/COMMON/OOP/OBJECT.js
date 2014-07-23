@@ -45,7 +45,28 @@ global.OBJECT = OBJECT = METHOD(function(m) {'use strict';
 			// self
 			self = {};
 
+			// set type.
 			self.type = cls;
+
+			// check is instance of.
+			self.checkIsInstanceOf = function(checkCls) {
+
+				var
+				// target cls
+				targetCls = cls;
+
+				// check moms.
+				while (targetCls !== undefined) {
+
+					if (targetCls === checkCls) {
+						return true;
+					}
+
+					targetCls = targetCls.mom;
+				}
+
+				return false;
+			};
 
 			addReady(function() {
 
@@ -53,6 +74,7 @@ global.OBJECT = OBJECT = METHOD(function(m) {'use strict';
 				// inner (like Java's protected.)
 				inner = {};
 
+				// set id.
 				self.id = CLASS.getInstanceId();
 
 				cls.innerInit(inner, self);
