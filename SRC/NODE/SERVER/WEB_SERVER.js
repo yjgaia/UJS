@@ -4,6 +4,12 @@
 global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 
 	var
+	//IMPORT: http
+	http = require('http'),
+
+	//IMPORT: querystring
+	querystring = require('querystring'),
+
 	// get encoding from content type.
 	getEncodingFromContentType;
 
@@ -60,12 +66,6 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 			//REQUIRED: requestListener
 
 			var
-			//IMPORT: http
-			http = require('http'),
-
-			//IMPORT: querystring
-			querystring = require('querystring'),
-
 			// port
 			port,
 

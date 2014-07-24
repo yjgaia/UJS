@@ -7,7 +7,7 @@ global.LOAD = LOAD = METHOD({
 		//REQUIRED: path
 
 		return SCRIPT({
-			src : (path.indexOf('?') === -1 ? path + '?' : path + '&') + (CONFIG.version !== undefined ? CONFIG.version : Date.now())
+			src : (path.indexOf('?') === -1 ? path + '?' : path + '&') + (CONFIG.version !== undefined ? 'version=' + CONFIG.version : '')
 		}).appendTo(DOM({
 			tag : 'body'
 		}));

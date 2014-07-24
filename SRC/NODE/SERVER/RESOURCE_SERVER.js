@@ -7,6 +7,9 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 	//IMPORT: path
 	path = require('path'),
 
+	//IMPORT: querystring
+	querystring = require('querystring'),
+
 	// get content type from uri.
 	getContentTypeFromURI;
 
@@ -130,10 +133,16 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 				isGoingOn,
 
 				// uri
-				uri,
+				uri = requestInfo.uri,
 
 				// method
-				method,
+				method = requestInfo.method,
+
+				// params
+				params = requestInfo.params,
+
+				// headers
+				headers = requestInfo.headers,
 
 				// response not found.
 				responseNotFound,
@@ -141,86 +150,121 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 				// response error.
 				responseError;
 
-				if (requestListener !== undefined) {
-					isGoingOn = requestListener(requestInfo, response, onDisconnected, function(newRootPath) {
-						rootPath = newRootPath;
+				// check ETag.
+				if (version !== undefined && headers['if-none-match'] === version) {
+
+					// response cached.
+					response({
+						statusCode : 304
 					});
 				}
 
-				// init properties.
-				uri = requestInfo.uri;
-				method = requestInfo.method;
+				// redirect correct version uri.
+				else if (version !== undefined && uri !== '' && params.version !== version) {
 
-				if (isGoingOn !== false && requestInfo.isResponsed !== true && method === 'GET') {
-
-					responseNotFound = function(path) {
-
-						if (notExistsHandler !== undefined) {
-							notExistsHandler(path, requestInfo, response);
+					response({
+						statusCode : 302,
+						headers : {
+							'Location' : uri + '?' + querystring.stringify(COMBINE_DATA({
+								origin : params,
+								extend : {
+									version : version
+								}
+							}))
 						}
+					});
+				}
 
-						if (requestInfo.isResponsed !== true) {
+				// response resource file.
+				else {
 
-							response({
-								statusCode : 404
-							});
-						}
-					};
+					if (requestListener !== undefined) {
 
-					responseError = function(errorMsg) {
-
-						console.log(CONSOLE_RED('[UPPERCASE.JS-RESOURCE_SERVER] ERROR: ' + errorMsg));
-
-						if (errorHandler !== undefined) {
-							errorHandler(errorMsg, requestInfo, response);
-						}
-
-						if (requestInfo.isResponsed !== true) {
-
-							response({
-								statusCode : 500
-							});
-						}
-					};
-
-					NEXT([
-					function(next) {
-
-						// serve file.
-						READ_FILE(rootPath + '/' + uri, {
-
-							notExists : function() {
-
-								// not found file, so serve index.
-								READ_FILE(rootPath + (uri === '' ? '' : ('/' + uri)) + '/index.html', {
-
-									notExists : responseNotFound,
-									error : responseError,
-
-									success : function(content) {
-										next(content, 'text/html');
-									}
-								});
-							},
-
-							error : responseError,
-							success : next
+						isGoingOn = requestListener(requestInfo, response, onDisconnected, function(newRootPath) {
+							rootPath = newRootPath;
 						});
-					},
 
-					function() {
-						return function(content, contentType) {
+						// init properties again.
+						uri = requestInfo.uri;
+						method = requestInfo.method;
+						params = requestInfo.params;
+						headers = requestInfo.headers;
+					}
 
-							if (contentType === undefined) {
-								contentType = getContentTypeFromURI(uri);
+					if (isGoingOn !== false && requestInfo.isResponsed !== true && method === 'GET') {
+
+						responseNotFound = function(path) {
+
+							if (notExistsHandler !== undefined) {
+								notExistsHandler(path, requestInfo, response);
 							}
 
-							response({
-								content : content,
-								contentType : contentType
-							});
+							if (requestInfo.isResponsed !== true) {
+
+								response({
+									statusCode : 404
+								});
+							}
 						};
-					}]);
+
+						responseError = function(errorMsg) {
+
+							console.log(CONSOLE_RED('[UPPERCASE.JS-RESOURCE_SERVER] ERROR: ' + errorMsg));
+
+							if (errorHandler !== undefined) {
+								errorHandler(errorMsg, requestInfo, response);
+							}
+
+							if (requestInfo.isResponsed !== true) {
+
+								response({
+									statusCode : 500
+								});
+							}
+						};
+
+						NEXT([
+						function(next) {
+
+							// serve file.
+							READ_FILE(rootPath + '/' + uri, {
+
+								notExists : function() {
+
+									// not found file, so serve index.
+									READ_FILE(rootPath + (uri === '' ? '' : ('/' + uri)) + '/index.html', {
+
+										notExists : responseNotFound,
+										error : responseError,
+
+										success : function(content) {
+											next(content, 'text/html');
+										}
+									});
+								},
+
+								error : responseError,
+								success : next
+							});
+						},
+
+						function() {
+							return function(content, contentType) {
+
+								if (contentType === undefined) {
+									contentType = getContentTypeFromURI(uri);
+								}
+
+								response({
+									content : content,
+									contentType : contentType,
+									headers : {
+										'ETag' : version
+									}
+								});
+							};
+						}]);
+					}
 				}
 			});
 
