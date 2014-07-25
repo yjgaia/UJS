@@ -46,7 +46,7 @@ global.NODE = NODE = CLASS({
 			//REQUIRED: node
 
 			self.getDom().appendTo(node);
-			
+
 			return self;
 		};
 
@@ -62,7 +62,7 @@ global.NODE = NODE = CLASS({
 			//REQUIRED: node
 
 			self.getDom().prependTo(node);
-			
+
 			return self;
 		};
 
@@ -78,7 +78,7 @@ global.NODE = NODE = CLASS({
 			//REQUIRED: node
 
 			self.getDom().insertAfter(node);
-			
+
 			return self;
 		};
 
@@ -94,7 +94,7 @@ global.NODE = NODE = CLASS({
 			//REQUIRED: node
 
 			self.getDom().insertBefore(node);
-			
+
 			return self;
 		};
 
@@ -123,6 +123,14 @@ global.NODE = NODE = CLASS({
 		// get children.
 		self.getChildren = function() {
 			return self.getDom().getChildren();
+		};
+
+		// on.
+		self.on = function(eventName, eventHandler) {
+			//REQUIRED: eventName
+			//REQUIRED: eventHandler
+
+			self.getDom().on(eventName, eventHandler);
 		};
 
 		// add style.

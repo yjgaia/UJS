@@ -1,7 +1,7 @@
 {
 	"name": "uppercase.js",
 	"version": "1.4.8",
-	"description": "UPPERCASE.JS is easy, clear, and powerful JavaScript library.",
+	"description": "UPPERCASE.JS is a easy, clear, and powerful JavaScript library.",
 	"main": "package.js",
 	"repository": {
 		"type": "git",

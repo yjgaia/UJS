@@ -83,10 +83,10 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			//OPTIONAL: params.securedCertFilePath
 			//REQUIRED: params.rootPath
 			//OPTIONAL: params.version
-			//OPTIONAL: params.requestListenerOrHandlers
-			//OPTIONAL: params.requestListenerOrHandlers.requestListener
-			//OPTIONAL: params.requestListenerOrHandlers.error
-			//OPTIONAL: params.requestListenerOrHandlers.notExists
+			//OPTIONAL: requestListenerOrHandlers
+			//OPTIONAL: requestListenerOrHandlers.requestListener
+			//OPTIONAL: requestListenerOrHandlers.error
+			//OPTIONAL: requestListenerOrHandlers.notExistsResource
 
 			var
 			//IMPORT: path
@@ -110,8 +110,8 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			// error handler.
 			errorHandler,
 
-			// not exists handler.
-			notExistsHandler;
+			// not exists resource handler.
+			notExistsResourceHandler;
 
 			if (requestListenerOrHandlers !== undefined) {
 				if (CHECK_IS_DATA(requestListenerOrHandlers) !== true) {
@@ -119,7 +119,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 				} else {
 					requestListener = requestListenerOrHandlers.requestListener;
 					errorHandler = requestListenerOrHandlers.error;
-					notExistsHandler = requestListenerOrHandlers.notExists;
+					notExistsResourceHandler = requestListenerOrHandlers.notExistsResource;
 				}
 			}
 
@@ -193,10 +193,10 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 
 					if (isGoingOn !== false && requestInfo.isResponsed !== true && method === 'GET') {
 
-						responseNotFound = function(path) {
+						responseNotFound = function(resourcePath) {
 
-							if (notExistsHandler !== undefined) {
-								notExistsHandler(path, requestInfo, response);
+							if (notExistsResourceHandler !== undefined) {
+								notExistsResourceHandler(resourcePath, requestInfo, response);
 							}
 
 							if (requestInfo.isResponsed !== true) {

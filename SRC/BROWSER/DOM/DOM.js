@@ -25,8 +25,8 @@ global.DOM = DOM = CLASS({
 		// children
 		children = params.c === undefined || CHECK_IS_ARRAY(params.c) === true ? params.c : [params.c],
 
-		// on
-		on = params.on,
+		// _on
+		_on = params.on,
 
 		// __TEXT
 		__TEXT = params.__TEXT,
@@ -117,6 +117,9 @@ global.DOM = DOM = CLASS({
 
 		// get children
 		getChildren,
+
+		// on.
+		on,
 
 		// add style.
 		addStyle,
@@ -501,6 +504,16 @@ global.DOM = DOM = CLASS({
 			return childDoms;
 		};
 
+		self.on = on = function(eventName, eventHandler) {
+			//REQUIRED: eventName
+			//REQUIRED: eventHandler
+
+			EVENT({
+				node : self,
+				name : eventName
+			}, eventHandler);
+		};
+
 		self.addStyle = addStyle = function(style) {
 			//REQUIRED: style
 
@@ -593,12 +606,9 @@ global.DOM = DOM = CLASS({
 			return getStyle('display') !== 'none';
 		};
 
-		if (on !== undefined) {
-			EACH(on, function(func, name) {
-				EVENT({
-					node : self,
-					name : name
-				}, func);
+		if (_on !== undefined) {
+			EACH(_on, function(func, name) {
+				on(name, func);
 			});
 		}
 	}
