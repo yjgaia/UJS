@@ -83,6 +83,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			//OPTIONAL: params.securedCertFilePath
 			//REQUIRED: params.rootPath
 			//OPTIONAL: params.version
+			//OPTIONAL: params.isNotParsingNativeReq
 			//OPTIONAL: requestListenerOrHandlers
 			//OPTIONAL: requestListenerOrHandlers.requestListener
 			//OPTIONAL: requestListenerOrHandlers.error
@@ -144,6 +145,12 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 				// headers
 				headers = requestInfo.headers,
 
+				// default content type
+				defaultContentType,
+
+				// response headers
+				responseHeaders,
+
 				// response not found.
 				responseNotFound,
 
@@ -178,10 +185,16 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 				// response resource file.
 				else {
 
+					responseHeaders = {};
+
 					if (requestListener !== undefined) {
 
 						isGoingOn = requestListener(requestInfo, response, onDisconnected, function(newRootPath) {
 							rootPath = newRootPath;
+						}, function(contentType) {
+							defaultContentType = contentType;
+						}, function(headerName, value) {
+							responseHeaders[headerName] = value;
 						});
 
 						// init properties again.
@@ -252,15 +265,17 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 							return function(content, contentType) {
 
 								if (contentType === undefined) {
-									contentType = getContentTypeFromURI(uri);
+									if (defaultContentType !== undefined) {
+										contentType = defaultContentType;
+									} else {
+										contentType = getContentTypeFromURI(uri);
+									}
 								}
 
 								response({
 									content : content,
 									contentType : contentType,
-									headers : {
-										'ETag' : version
-									}
+									version : version
 								});
 							};
 						}]);

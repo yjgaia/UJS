@@ -63,6 +63,7 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 			//OPTIONAL: portOrParams.securedPort
 			//OPTIONAL: portOrParams.securedKeyFilePath
 			//OPTIONAL: portOrParams.securedCertFilePath
+			//OPTIONAL: portOrParams.isNotParsingNativeReq
 			//REQUIRED: requestListener
 
 			var
@@ -78,6 +79,9 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 			// secured cert file path
 			securedCertFilePath,
 
+			// is not parsing native req
+			isNotParsingNativeReq,
+
 			// serve.
 			serve;
 
@@ -91,6 +95,7 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 				securedPort = portOrParams.securedPort;
 				securedKeyFilePath = portOrParams.securedKeyFilePath;
 				securedCertFilePath = portOrParams.securedCertFilePath;
+				isNotParsingNativeReq = portOrParams.isNotParsingNativeReq;
 			}
 
 			serve = function(nativeReq, nativeRes) {
@@ -131,7 +136,7 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 				NEXT([
 				function(next) {
 
-					if (method === 'GET') {
+					if (method === 'GET' || isNotParsingNativeReq === true) {
 						next();
 					} else {
 
@@ -169,14 +174,14 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 						},
 
 						// response.
-						function(params) {
-							//REQUIRED: params
-							//OPTIONAL: params.statusCode
-							//OPTIONAL: params.headers
-							//OPTIONAL: params.contentType
-							//REQUIRED: params.content
-							//OPTIONAL: params.encoding
-							//OPTIONAL: params.cacheTime
+						function(contentOrParams) {
+							//REQUIRED: contentOrParams
+							//OPTIONAL: contentOrParams.statusCode
+							//OPTIONAL: contentOrParams.headers
+							//OPTIONAL: contentOrParams.contentType
+							//REQUIRED: contentOrParams.content
+							//OPTIONAL: contentOrParams.encoding
+							//OPTIONAL: contentOrParams.version
 
 							var
 							// status code
@@ -194,19 +199,20 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 							// encoding
 							encoding,
 
-							// cache time
-							cacheTime;
+							// version
+							version;
 
 							if (requestInfo.isResponsed !== true) {
 
-								if (params !== undefined) {
-
-									statusCode = params.statusCode;
-									headers = params.headers;
-									contentType = params.contentType;
-									content = params.content;
-									encoding = params.encoding;
-									cacheTime = params.cacheTime;
+								if (CHECK_IS_DATA(contentOrParams) !== true) {
+									content = contentOrParams;
+								} else {
+									statusCode = contentOrParams.statusCode;
+									headers = contentOrParams.headers;
+									contentType = contentOrParams.contentType;
+									content = contentOrParams.content;
+									encoding = contentOrParams.encoding;
+									version = contentOrParams.version;
 								}
 
 								if (statusCode === undefined) {
@@ -225,9 +231,8 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 									}
 								}
 
-								if (cacheTime !== undefined) {
-									headers['ETag'] = cacheTime;
-									headers['Last-Modified'] = new Date(cacheTime).toUTCString();
+								if (version !== undefined) {
+									headers['ETag'] = version;
 								}
 
 								nativeRes.writeHead(statusCode, headers);
@@ -244,11 +249,14 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 					};
 				}]);
 
-				nativeReq.on('close', function() {
-					EACH(disconnectedMethods, function(method) {
-						method();
+				if (isNotParsingNativeReq !== true) {
+
+					nativeReq.on('close', function() {
+						EACH(disconnectedMethods, function(method) {
+							method();
+						});
 					});
-				});
+				}
 			};
 
 			// init sever.

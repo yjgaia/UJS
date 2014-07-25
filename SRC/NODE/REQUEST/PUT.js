@@ -3,17 +3,19 @@
  */
 global.PUT = PUT = METHOD({
 
-	run : function(params, responseListenerOrListeners) {'use strict';
-		//REQUIRED: params
-		//OPTIONAL: params.host
-		//OPTIONAL: params.port
-		//OPTIONAL: params.uri
-		//OPTIONAL: params.paramStr
-		//OPTIONAL: params.data
+	run : function(uriOrParams, responseListenerOrListeners) {'use strict';
+		//REQUIRED: uriOrParams
+		//OPTIONAL: uriOrParams.host
+		//OPTIONAL: uriOrParams.port
+		//OPTIONAL: uriOrParams.uri
+		//OPTIONAL: uriOrParams.paramStr
+		//OPTIONAL: uriOrParams.data
 		//REQUIRED: responseListenerOrListeners
 
 		REQUEST(COMBINE_DATA({
-			origin : params,
+			origin : CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
+				uri : uriOrParams
+			},
 			extend : {
 				method : 'PUT'
 			}
