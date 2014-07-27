@@ -1,7 +1,7 @@
 /*
- * distribute UPPERCASE.JS.
+ * build UPPERCASE.JS.
  */
-global.DIST = function() {'use strict';
+global.BUILD = function() {'use strict';
 
 	var
 	//IMPORT: fs
@@ -12,7 +12,7 @@ global.DIST = function() {'use strict';
 
 	// log.
 	log = function(msg) {
-		console.log('UPPERCASE.JS DIST: ' + msg);
+		console.log('UPPERCASE.JS BUILD: ' + msg);
 	},
 
 	// scan folder.
@@ -68,7 +68,7 @@ global.DIST = function() {'use strict';
 
 	// save.
 	save = function(script, path) {
-		fs.writeFileSync('../DIST/' + path, script);
+		fs.writeFileSync('../' + path, script);
 	},
 
 	// dist folder.
@@ -78,7 +78,7 @@ global.DIST = function() {'use strict';
 		// script
 		script = '';
 
-		log('DISTRIBUTE [' + name + ']');
+		log('BUILD [' + name + ']');
 
 		scanFolder(name, function(content) {
 			script += content;
@@ -91,8 +91,8 @@ global.DIST = function() {'use strict';
 	copyFolder = function(from, to) {
 
 		if (fs.statSync(from).isDirectory() === true) {
-			if (fs.existsSync('../DIST/' + to) !== true || fs.statSync('../DIST/' + to).isDirectory() !== true) {
-				fs.mkdirSync('../DIST/' + to);
+			if (fs.existsSync('../' + to) !== true || fs.statSync('../' + to).isDirectory() !== true) {
+				fs.mkdirSync('../' + to);
 			}
 			fs.readdirSync(from).forEach(function(name) {
 				if (name[0] !== '.') {
@@ -102,7 +102,7 @@ global.DIST = function() {'use strict';
 		} else if (path.extname(from) === '.js') {
 			save(minify(fs.readFileSync(from)), to);
 		} else {
-			fs.createReadStream(from).pipe(fs.createWriteStream('../DIST/' + to));
+			fs.createReadStream(from).pipe(fs.createWriteStream('../' + to));
 		}
 	};
 
@@ -112,7 +112,7 @@ global.DIST = function() {'use strict';
 		// script
 		script = '';
 
-		log('DISTRIBUTE [COMMON]');
+		log('BUILD [COMMON]');
 
 		script += fs.readFileSync('COMMON/TO_DELETE.js');
 		script += fs.readFileSync('COMMON/CONFIG.js');
@@ -133,7 +133,7 @@ global.DIST = function() {'use strict';
 
 	(function() {
 
-		log('DISTRIBUTE [BROWSER-FIX]');
+		log('BUILD [BROWSER-FIX]');
 
 		copyFolder('BROWSER-FIX', 'UPPERCASE.JS-BROWSER-FIX');
 	})();
@@ -143,4 +143,4 @@ global.DIST = function() {'use strict';
 
 	log('DONE.');
 };
-DIST();
+BUILD();
