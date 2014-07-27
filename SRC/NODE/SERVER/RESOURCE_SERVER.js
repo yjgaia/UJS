@@ -84,6 +84,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			//REQUIRED: params.rootPath
 			//OPTIONAL: params.version
 			//OPTIONAL: params.isNotParsingNativeReq
+			//OPTIONAL: params.isNotUsingResourceCache
 			//OPTIONAL: requestListenerOrHandlers
 			//OPTIONAL: requestListenerOrHandlers.requestListener
 			//OPTIONAL: requestListenerOrHandlers.error
@@ -105,6 +106,9 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			// version
 			version = params.version,
 
+			// is not using resource cache
+			isNotUsingResourceCache = params.isNotUsingResourceCache,
+
 			// request listener.
 			requestListener,
 
@@ -112,7 +116,10 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			errorHandler,
 
 			// not exists resource handler.
-			notExistsResourceHandler;
+			notExistsResourceHandler,
+
+			// resource caches
+			resourceCaches = {};
 
 			if (requestListenerOrHandlers !== undefined) {
 				if (CHECK_IS_DATA(requestListenerOrHandlers) !== true) {
@@ -239,26 +246,35 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 						NEXT([
 						function(next) {
 
-							// serve file.
-							READ_FILE(rootPath + '/' + uri, {
+							var
+							// resource cache
+							resourceCache = resourceCaches[uri];
 
-								notExists : function() {
+							if (resourceCache !== undefined) {
+								next(resourceCache.content, resourceCache.contentType);
+							} else {
 
-									// not found file, so serve index.
-									READ_FILE(rootPath + (uri === '' ? '' : ('/' + uri)) + '/index.html', {
+								// serve file.
+								READ_FILE(rootPath + '/' + uri, {
 
-										notExists : responseNotFound,
-										error : responseError,
+									notExists : function() {
 
-										success : function(content) {
-											next(content, 'text/html');
-										}
-									});
-								},
+										// not found file, so serve index.
+										READ_FILE(rootPath + (uri === '' ? '' : ('/' + uri)) + '/index.html', {
 
-								error : responseError,
-								success : next
-							});
+											notExists : responseNotFound,
+											error : responseError,
+
+											success : function(content) {
+												next(content, 'text/html');
+											}
+										});
+									},
+
+									error : responseError,
+									success : next
+								});
+							}
 						},
 
 						function() {
@@ -270,6 +286,13 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 									} else {
 										contentType = getContentTypeFromURI(uri);
 									}
+								}
+
+								if (isNotUsingResourceCache !== true && resourceCaches[uri] === undefined) {
+									resourceCaches[uri] = {
+										content : content,
+										contentType : contentType
+									};
 								}
 
 								response({
