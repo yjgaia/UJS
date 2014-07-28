@@ -24,10 +24,7 @@ global.EXPORT_IMG_DATA = EXPORT_IMG_DATA = METHOD(function(m) {'use strict';
 			exportedImgData = exportedImgDataSet[uri],
 
 			// exporting callbacks
-			exportingCallbacks = exportingCallbackMap[uri],
-
-			// load event
-			loadEvent;
+			exportingCallbacks = exportingCallbackMap[uri];
 
 			// if aleady exported.
 			if (exportedImgData !== undefined) {
@@ -44,7 +41,7 @@ global.EXPORT_IMG_DATA = EXPORT_IMG_DATA = METHOD(function(m) {'use strict';
 
 				exportingCallbacks = exportingCallbackMap[uri] = [callback];
 
-				loadEvent = EVENT({
+				EVENT_ONCE({
 					node : IMG({
 						src : uri
 					}),
@@ -88,9 +85,6 @@ global.EXPORT_IMG_DATA = EXPORT_IMG_DATA = METHOD(function(m) {'use strict';
 
 					// clear exporting callbacks.
 					delete exportingCallbackMap[uri];
-
-					// remove load event.
-					loadEvent.remove();
 				});
 			}
 		}

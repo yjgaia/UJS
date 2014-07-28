@@ -32,10 +32,7 @@ OVERRIDE(EXPORT_IMG_DATA, function(origin) {'use strict';
 				exportingCallbacks = exportingCallbackMap[uri],
 
 				// img
-				img,
-
-				// load event
-				loadEvent;
+				img;
 
 				if (tempWrapper === undefined) {
 					tempWrapper = DIV({
@@ -62,7 +59,7 @@ OVERRIDE(EXPORT_IMG_DATA, function(origin) {'use strict';
 
 					exportingCallbacks = exportingCallbackMap[uri] = [callback];
 
-					loadEvent = EVENT({
+					EVENT_ONCE({
 						node : IMG({
 							src : uri
 						}),
@@ -112,9 +109,6 @@ OVERRIDE(EXPORT_IMG_DATA, function(origin) {'use strict';
 							// clear cache for memory.
 							delete exportingCallbackMap[uri];
 						});
-
-						// remove load event.
-						loadEvent.remove();
 					});
 				}
 			}

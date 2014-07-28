@@ -4,30 +4,57 @@
 global.OBJECT = OBJECT = METHOD(function(m) {'use strict';
 
 	var
-	// readys
-	readys = [],
+	// ready objects
+	readyObjects = [],
 
 	// is inited
 	isInited = false,
 
-	// add ready.
-	addReady = function(func) {
-		//REQUIRED: func
+	// init object.
+	initObject,
 
-		if (isInited === true) {
-			func();
-		} else {
-			readys.push(func);
-		}
-	},
+	// add ready object.
+	addReadyObject,
+
+	// remove ready object.
+	removeReadyObject,
 
 	// init objects.
 	initObjects;
 
+	initObject = function(object) {
+
+		var
+		// inner (like Java's protected.)
+		inner = {};
+
+		// set id.
+		object.id = CLASS.getInstanceId();
+
+		object.type.innerInit(inner, object, {}, {});
+	};
+
+	addReadyObject = function(object) {
+		//REQUIRED: object
+
+		if (isInited === true) {
+			initObject(object);
+		} else {
+			readyObjects.push(object);
+		}
+	};
+
+	m.removeReadyObject = removeReadyObject = function(object) {
+		REMOVE({
+			data : readyObjects,
+			value : object
+		});
+	};
+
 	m.initObjects = initObjects = function() {
 
-		EACH(readys, function(ready, i) {
-			ready();
+		EACH(readyObjects, function(object) {
+			initObject(object);
 		});
 
 		isInited = true;
@@ -68,17 +95,7 @@ global.OBJECT = OBJECT = METHOD(function(m) {'use strict';
 				return false;
 			};
 
-			addReady(function() {
-
-				var
-				// inner (like Java's protected.)
-				inner = {};
-
-				// set id.
-				self.id = CLASS.getInstanceId();
-
-				cls.innerInit(inner, self);
-			});
+			addReadyObject(self);
 
 			return self;
 		}

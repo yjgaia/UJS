@@ -177,9 +177,9 @@ global.NODE = NODE = CLASS({
 			self.getDom().show();
 		};
 
-		// check is show.
-		self.checkIsShow = function() {
-			return self.getDom().checkIsShow();
+		// check is showing.
+		self.checkIsShowing = function() {
+			return self.getDom().checkIsShowing();
 		};
 	}
 });

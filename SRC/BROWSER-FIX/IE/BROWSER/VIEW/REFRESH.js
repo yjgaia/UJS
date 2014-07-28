@@ -9,18 +9,14 @@ OVERRIDE(REFRESH, function(origin) {'use strict';
 
 			var
 			// saved hash
-			savedHash = location.hash,
+			savedHash = location.hash;
 
-			// hashchange event
-			hashchangeEvent = EVENT({
+			EVENT_ONCE({
 				name : 'hashchange'
 			}, function() {
-
 				DELAY(function() {
 					location.href = savedHash === '' ? '#' : savedHash;
 				});
-
-				hashchangeEvent.remove();
 			});
 
 			location.href = '#__REFRESING';

@@ -145,8 +145,8 @@ global.DOM = DOM = CLASS({
 		// show.
 		show,
 
-		// check is show.
-		checkIsShow;
+		// check is showing.
+		checkIsShowing;
 
 		if (tag === 'body') {
 			el = document.body;
@@ -234,8 +234,10 @@ global.DOM = DOM = CLASS({
 			if (CHECK_IS_DATA(node) === true) {
 
 				el.appendChild(node.getDom().getEl());
+				
 				childDoms.push(node.getDom());
 				node.setParent(self);
+				
 				node.getDom().runShowHandlers();
 
 			} else if (tag === 'textarea') {
@@ -295,6 +297,7 @@ global.DOM = DOM = CLASS({
 
 				childDoms.push(node.getDom());
 				node.setParent(self);
+				
 				node.getDom().runShowHandlers();
 
 			} else if (tag === 'textarea') {
@@ -602,7 +605,7 @@ global.DOM = DOM = CLASS({
 			});
 		};
 
-		self.checkIsShow = checkIsShow = function() {
+		self.checkIsShowing = checkIsShowing = function() {
 			return getStyle('display') !== 'none';
 		};
 

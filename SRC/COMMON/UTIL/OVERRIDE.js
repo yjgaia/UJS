@@ -7,6 +7,11 @@ global.OVERRIDE = OVERRIDE = METHOD({
 		//REQUIRED: origin
 		//REQUIRED: func
 
+		// check is OBJECT.
+		if (origin.type !== undefined && origin.type.type === CLASS) {
+			OBJECT.removeReadyObject(origin);
+		}
+
 		func(origin);
 	}
 });

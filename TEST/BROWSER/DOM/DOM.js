@@ -81,7 +81,7 @@ console.log(dom.getLeft(), dom.getTop());
 // blink dom.
 blinkInterval = INTERVAL(1, function() {
 
-	if (dom.checkIsShow() === true) {
+	if (dom.checkIsShowing() === true) {
 		dom.hide();
 	} else {
 		dom.show();

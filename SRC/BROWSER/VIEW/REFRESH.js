@@ -8,16 +8,12 @@ global.REFRESH = REFRESH = METHOD({
 
 		var
 		// saved hash
-		savedHash = uri !== undefined ? '#' + uri : location.hash,
+		savedHash = uri !== undefined ? '#' + uri : location.hash;
 
-		// hashchange event
-		hashchangeEvent = EVENT({
+		EVENT_ONCE({
 			name : 'hashchange'
 		}, function() {
-
 			location.href = savedHash === '' ? '#' : savedHash;
-
-			hashchangeEvent.remove();
 		});
 
 		location.href = '#__REFRESING';
