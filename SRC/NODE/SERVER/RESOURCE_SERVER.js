@@ -83,6 +83,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			//OPTIONAL: params.securedCertFilePath
 			//REQUIRED: params.rootPath
 			//OPTIONAL: params.version
+			//OPTIONAL: params.isFinalResource
 			//OPTIONAL: params.isNotParsingNativeReq
 			//OPTIONAL: params.isNotUsingResourceCache
 			//OPTIONAL: requestListenerOrHandlers
@@ -105,6 +106,9 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 
 			// version
 			version = params.version,
+
+			// is final resource
+			isFinalResource = params.isFinalResource,
 
 			// is not using resource cache
 			isNotUsingResourceCache = params.isNotUsingResourceCache,
@@ -165,7 +169,13 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 				responseError;
 
 				// check ETag.
-				if (version !== undefined && headers['if-none-match'] === version) {
+				if (isFinalResource !== true ?
+
+				// check version.
+				(version !== undefined && headers['if-none-match'] === version) :
+
+				// check exists.
+				headers['if-none-match'] !== undefined) {
 
 					// response cached.
 					response({
@@ -174,7 +184,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 				}
 
 				// redirect correct version uri.
-				else if (version !== undefined && uri !== '' && params.version !== version) {
+				else if (isFinalResource !== true && version !== undefined && uri !== '' && params.version !== version) {
 
 					response({
 						statusCode : 302,
@@ -298,7 +308,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 								response({
 									content : content,
 									contentType : contentType,
-									version : version
+									version : isFinalResource !== true ? version : 'FINAL'
 								});
 							};
 						}]);

@@ -288,9 +288,7 @@ global.VALID = VALID = CLASS(function(cls) {'use strict';
 
 		return EACH(array, function(value) {
 			if (valid.check({
-				data : {
-					_ : value
-				}
+				_ : value
 			}).checkHasError() === true) {
 				return false;
 			}
@@ -313,9 +311,7 @@ global.VALID = VALID = CLASS(function(cls) {'use strict';
 
 		return EACH(data, function(value) {
 			if (valid.check({
-				data : {
-					_ : value
-				}
+				_ : value
 			}).checkHasError() === true) {
 				return false;
 			}
@@ -334,9 +330,7 @@ global.VALID = VALID = CLASS(function(cls) {'use strict';
 		// valid
 		valid = VALID(params.validDataSet);
 
-		return valid.check({
-			data : data
-		}).checkHasError() !== true;
+		return valid.check(data).checkHasError() !== true;
 	};
 
 	cls.equal = equal = function(params) {
@@ -366,10 +360,8 @@ global.VALID = VALID = CLASS(function(cls) {'use strict';
 			//REQUIRED: validDataSet
 
 			var
-			// check.
-			check;
-
-			self.check = check = CLASS({
+			// Check class
+			Check = CLASS({
 
 				init : function(inner, self, params) {
 					//REQUIRED: params
@@ -651,7 +643,26 @@ global.VALID = VALID = CLASS(function(cls) {'use strict';
 						return errors;
 					};
 				}
-			});
+			}),
+
+			// check.
+			check,
+
+			// check except undefined.
+			checkExceptUndefined;
+
+			self.check = check = function(data) {
+				return Check({
+					data : data
+				});
+			};
+
+			self.checkExceptUndefined = checkExceptUndefined = function(data) {
+				return Check({
+					data : data,
+					isExceptUndefined : true
+				});
+			};
 		}
 	};
 });

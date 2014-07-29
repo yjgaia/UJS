@@ -34,6 +34,9 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 		// method map
 		methodMap = {},
 
+		// send key
+		sendKey = 0,
+
 		// received string
 		receivedStr = '',
 
@@ -59,7 +62,7 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 			errorListener = connectionListenerOrListeners.error;
 		}
 
-		runMethods = function(methodName, data) {
+		runMethods = function(methodName, data, sendKey) {
 
 			var
 			// methods
@@ -75,10 +78,10 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 					// ret.
 					function(retData) {
 
-						if (send !== undefined) {
+						if (send !== undefined && sendKey !== undefined) {
 
 							send({
-								methodName : '__CALLBACK_' + methodName,
+								methodName : '__CALLBACK_' + sendKey,
 								data : retData
 							});
 						}
@@ -144,21 +147,25 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 				//OPTIONAL: callback
 
 				var
-				// method name
-				methodName = params.methodName;
+				// callback name
+				callbackName = '__CALLBACK_' + sendKey;
+
+				params.sendKey = sendKey;
+
+				sendKey += 1;
 
 				conn.write(STRINGIFY(params) + '\n');
 
 				if (callback !== undefined) {
 
 					// on callback.
-					on('__CALLBACK_' + methodName, function(data) {
+					on('__CALLBACK_' + sendKey, function(data) {
 
 						// run callback.
 						callback(data);
 
 						// off callback.
-						off('__CALLBACK_' + methodName);
+						off('__CALLBACK_' + sendKey);
 					});
 				}
 			},
@@ -194,7 +201,7 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 				params = PARSE_STR(str);
 
 				if (params !== undefined) {
-					runMethods(params.methodName, params.data);
+					runMethods(params.methodName, params.data, params.sendKey);
 				}
 
 				receivedStr = receivedStr.substring(index + 1);
