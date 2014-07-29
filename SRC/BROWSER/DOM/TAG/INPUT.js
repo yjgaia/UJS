@@ -114,7 +114,11 @@ global.INPUT = INPUT = CLASS(function(cls) {'use strict';
 				};
 
 				self.select = select = function() {
-					self.getEl().select();
+					if (type === 'file') {
+						self.getEl().click();
+					} else {
+						self.getEl().select();
+					}
 				};
 
 				self.focus = focus = function() {

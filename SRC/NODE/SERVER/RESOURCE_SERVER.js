@@ -179,7 +179,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 					response({
 						statusCode : 302,
 						headers : {
-							'Location' : uri + '?' + querystring.stringify(COMBINE_DATA({
+							'Location' : '/' + uri + '?' + querystring.stringify(COMBINE_DATA({
 								origin : params,
 								extend : {
 									version : version

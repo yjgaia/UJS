@@ -40,70 +40,29 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {'use strict';
 				errorHandler = callbackOrHandlers.error;
 			}
 
-			NEXT([
-			function(next) {
+			CREATE_FOLDER(_path.dirname(path), function() {
 
-				var
-				// f.
-				f = function(path, next) {
+				fs.writeFile(path, content, function(error) {
 
-					fs.exists(path, function(isExists) {
+					var
+					// error msg
+					errorMsg;
 
-						var
-						// folder path
-						folderPath;
+					if (error !== TO_DELETE) {
 
-						if (isExists === true) {
-							next();
-						} else {
+						errorMsg = error.toString();
 
-							folderPath = _path.dirname(path);
+						console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR:' + errorMsg));
 
-							fs.exists(folderPath, function(isExists) {
-
-								if (isExists === true) {
-									fs.mkdir(path, next);
-								} else {
-
-									f(folderPath, function() {
-
-										// retry.
-										f(path, next);
-									});
-								}
-							});
+						if (errorHandler !== undefined) {
+							errorHandler(errorMsg);
 						}
-					});
-				};
 
-				f(_path.dirname(path), next);
-			},
-
-			function() {
-				return function(t) {
-
-					fs.writeFile(path, content, function(error) {
-
-						var
-						// error msg
-						errorMsg;
-
-						if (error !== TO_DELETE) {
-
-							errorMsg = error.toString();
-
-							console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR:' + errorMsg));
-
-							if (errorHandler !== undefined) {
-								errorHandler(errorMsg);
-							}
-
-						} else {
-							callback();
-						}
-					});
-				};
-			}]);
+					} else {
+						callback();
+					}
+				});
+			});
 		}
 	};
 });
