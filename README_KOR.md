@@ -15,7 +15,7 @@ http://UPPERCASE.IO/#UDOC/UPPERCASE.JS
 http://test.uppercase.js.uppercase.io
 
 ##### Version
-1.4.7
+1.4.9
 
 ##### License
 UPPERCASE.JS의 License는 이하 문서를 따릅니다.<br>

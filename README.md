@@ -15,7 +15,7 @@ http://UPPERCASE.IO/#UDOC/UPPERCASE.JS
 http://test.uppercase.js.uppercase.io
 
 ##### Version
-1.4.6
+1.4.9
 
 ##### License
 UPPERCASE.JS is licensed as below documents.<br>

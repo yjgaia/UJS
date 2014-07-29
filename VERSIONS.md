@@ -1,5 +1,8 @@
 VERSIONS
 ========
+1.4.9 (2014. 7. 29)
+- Add REMOVE_FILE, COPY_FILE, MOVE_FILE, CREATE_FOLDER.
+
 1.4.8 (2014. 7. 24)
 - Added caching to RESOURCE_SERVER
 
