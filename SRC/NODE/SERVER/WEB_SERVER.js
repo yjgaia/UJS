@@ -1,7 +1,7 @@
 /*
  * create web server.
  */
-global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
+global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 
 	var
 	//IMPORT: http
@@ -13,7 +13,7 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 	// get encoding from content type.
 	getEncodingFromContentType;
 
-	m.getEncodingFromContentType = getEncodingFromContentType = function(contentType) {
+	cls.getEncodingFromContentType = getEncodingFromContentType = function(contentType) {
 		//REQUIRED: contentType
 
 		if (contentType === 'text/javascript') {
@@ -57,7 +57,7 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 
 	return {
 
-		run : function(portOrParams, requestListener) {'use strict';
+		init : function(inner, self, portOrParams, requestListener) {'use strict';
 			//REQUIRED: portOrParams
 			//OPTIONAL: portOrParams.port
 			//OPTIONAL: portOrParams.securedPort
@@ -82,8 +82,14 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 			// is not parsing native req
 			isNotParsingNativeReq,
 
+			// server
+			nativeHTTPServer,
+
 			// serve.
-			serve;
+			serve,
+
+			// get native http server.
+			getNativeHTTPServer;
 
 			if (CHECK_IS_DATA(portOrParams) !== true) {
 
@@ -261,19 +267,23 @@ global.WEB_SERVER = WEB_SERVER = METHOD(function(m) {'use strict';
 
 			// init sever.
 			if (port !== undefined) {
-				http.createServer(serve).listen(port);
+				nativeHTTPServer = http.createServer(serve).listen(port);
 			}
 
 			// init secured sever.
 			if (securedPort !== undefined) {
 
-				https.createServer({
+				nativeHTTPServer = https.createServer({
 					key : fs.readFileSync(securedKeyFilePath),
 					cert : fs.readFileSync(securedCertFilePath)
 				}, serve).listen(securedPort);
 			}
 
 			console.log('[UPPERCASE.JS-WEB_SERVER] RUNNING WEB SERVER...' + (port === undefined ? '' : (' (PORT:' + port + ')')) + (securedPort === undefined ? '' : (' (SECURED PORT:' + securedPort + ')')));
+
+			self.getNativeHTTPServer = getNativeHTTPServer = function() {
+				return nativeHTTPServer;
+			};
 		}
 	};
 });

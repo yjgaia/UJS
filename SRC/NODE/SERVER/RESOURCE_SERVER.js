@@ -1,7 +1,7 @@
 /*
  * resourec server.
  */
-global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
+global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
 
 	var
 	//IMPORT: path
@@ -13,7 +13,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 	// get content type from uri.
 	getContentTypeFromURI;
 
-	m.getContentTypeFromURI = getContentTypeFromURI = function(uri) {
+	cls.getContentTypeFromURI = getContentTypeFromURI = function(uri) {
 		//REQUIRED: uri
 
 		var
@@ -75,7 +75,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 
 	return {
 
-		run : function(params, requestListenerOrHandlers) {
+		init : function(inner, self, params, requestListenerOrHandlers) {
 			//REQUIRED: params
 			//OPTIONAL: params.port
 			//OPTIONAL: params.securedPort
@@ -123,7 +123,13 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			notExistsResourceHandler,
 
 			// resource caches
-			resourceCaches = {};
+			resourceCaches = {},
+
+			// web server
+			webServer,
+
+			// get native http server.
+			getNativeHTTPServer;
 
 			if (requestListenerOrHandlers !== undefined) {
 				if (CHECK_IS_DATA(requestListenerOrHandlers) !== true) {
@@ -135,7 +141,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 				}
 			}
 
-			WEB_SERVER(params, function(requestInfo, response, onDisconnected) {
+			webServer = WEB_SERVER(params, function(requestInfo, response, onDisconnected) {
 
 				var
 				// root path
@@ -317,6 +323,10 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = METHOD(function(m) {'use strict';
 			});
 
 			console.log('[UPPERCASE.JS-RESOURCE_SERVER] RUNNING RESOURCE SERVER...' + (port === undefined ? '' : (' (PORT:' + port + ')')) + (securedPort === undefined ? '' : (' (SECURED PORT:' + securedPort + ')')));
+
+			self.getNativeHTTPServer = getNativeHTTPServer = function() {
+				return webServer.getNativeHTTPServer();
+			};
 		}
 	};
 });
