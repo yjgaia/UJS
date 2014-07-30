@@ -12,8 +12,8 @@ TestView = CLASS({
 	init : function(inner, self) {'use strict';
 
 		var
-		// on change params.
-		onChangeParams,
+		// on params change.
+		onParamsChange,
 
 		// close.
 		close;
@@ -21,7 +21,7 @@ TestView = CLASS({
 		// on view.
 		console.log('View Opened!');
 
-		self.onChangeParams = onChangeParams = function(params) {
+		self.onParamsChange = onParamsChange = function(params) {
 			// when change params.
 			console.log(params);
 		};

@@ -6,13 +6,13 @@ global.VIEW = VIEW = CLASS({
 	init : function(inner, self) {'use strict';
 
 		var
-		// on change params.
-		onChangeParams,
+		// on params change.
+		onParamsChange,
 
 		// close.
 		close;
 
-		self.onChangeParams = onChangeParams = function(params) {
+		self.onParamsChange = onParamsChange = function(params) {
 			//REQUIRED: params
 
 			// to implement.

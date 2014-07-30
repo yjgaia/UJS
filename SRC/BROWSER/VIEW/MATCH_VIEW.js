@@ -78,7 +78,7 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 							if (view === undefined) {
 
 								view = target();
-								view.onChangeParams(params);
+								view.onParamsChange(params);
 								target.lastView = view;
 
 								preParams = params;
@@ -88,7 +88,7 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 								data2 : params
 							}) !== true) {
 
-								view.onChangeParams(params);
+								view.onParamsChange(params);
 								preParams = params;
 							}
 						});
