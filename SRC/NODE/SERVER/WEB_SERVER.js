@@ -63,7 +63,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 			//OPTIONAL: portOrParams.securedPort
 			//OPTIONAL: portOrParams.securedKeyFilePath
 			//OPTIONAL: portOrParams.securedCertFilePath
-			//OPTIONAL: portOrParams.isNotParsingNativeReq
+			//OPTIONAL: portOrParams.notParsingNativeReqURIs
 			//REQUIRED: requestListener
 
 			var
@@ -79,8 +79,8 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 			// secured cert file path
 			securedCertFilePath,
 
-			// is not parsing native req
-			isNotParsingNativeReq,
+			// not parsing native req uris
+			notParsingNativeReqURIs,
 
 			// server
 			nativeHTTPServer,
@@ -101,7 +101,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 				securedPort = portOrParams.securedPort;
 				securedKeyFilePath = portOrParams.securedKeyFilePath;
 				securedCertFilePath = portOrParams.securedCertFilePath;
-				isNotParsingNativeReq = portOrParams.isNotParsingNativeReq;
+				notParsingNativeReqURIs = portOrParams.notParsingNativeReqURIs;
 			}
 
 			serve = function(nativeReq, nativeRes) {
@@ -142,7 +142,10 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 				NEXT([
 				function(next) {
 
-					if (method === 'GET' || isNotParsingNativeReq === true) {
+					if (method === 'GET' || CHECK_IS_EXISTS({
+						data : notParsingNativeReqURIs,
+						value : uri
+					}) === true) {
 						next();
 					} else {
 
@@ -188,6 +191,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 							//REQUIRED: contentOrParams.content
 							//OPTIONAL: contentOrParams.encoding
 							//OPTIONAL: contentOrParams.version
+							//OPTIONAL: contentOrParams.isFinal
 
 							var
 							// status code
@@ -206,7 +210,10 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 							encoding,
 
 							// version
-							version;
+							version,
+
+							// is final
+							isFinal;
 
 							if (requestInfo.isResponsed !== true) {
 
@@ -219,6 +226,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 									content = contentOrParams.content;
 									encoding = contentOrParams.encoding;
 									version = contentOrParams.version;
+									isFinal = contentOrParams.isFinal;
 								}
 
 								if (statusCode === undefined) {
@@ -237,8 +245,12 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 									}
 								}
 
-								if (version !== undefined) {
-									headers['ETag'] = version;
+								if (CONFIG.isDevMode !== true) {
+									if (isFinal === true) {
+										headers['ETag'] = 'FINAL';
+									} else if (version !== undefined) {
+										headers['ETag'] = version;
+									}
 								}
 
 								nativeRes.writeHead(statusCode, headers);
@@ -255,7 +267,10 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 					};
 				}]);
 
-				if (isNotParsingNativeReq !== true) {
+				if (CHECK_IS_EXISTS({
+					data : notParsingNativeReqURIs,
+					value : uri
+				}) !== true) {
 
 					nativeReq.on('close', function() {
 						EACH(disconnectedMethods, function(method) {

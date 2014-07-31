@@ -81,11 +81,9 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
 			//OPTIONAL: params.securedPort
 			//OPTIONAL: params.securedKeyFilePath
 			//OPTIONAL: params.securedCertFilePath
+			//OPTIONAL: params.notParsingNativeReqURIs
 			//REQUIRED: params.rootPath
 			//OPTIONAL: params.version
-			//OPTIONAL: params.isFinalResource
-			//OPTIONAL: params.isNotParsingNativeReq
-			//OPTIONAL: params.isNotUsingResourceCache
 			//OPTIONAL: requestListenerOrHandlers
 			//OPTIONAL: requestListenerOrHandlers.requestListener
 			//OPTIONAL: requestListenerOrHandlers.error
@@ -106,12 +104,6 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
 
 			// version
 			version = params.version,
-
-			// is final resource
-			isFinalResource = params.isFinalResource,
-
-			// is not using resource cache
-			isNotUsingResourceCache = params.isNotUsingResourceCache,
 
 			// request listener.
 			requestListener,
@@ -162,11 +154,8 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
 				// headers
 				headers = requestInfo.headers,
 
-				// default content type
-				defaultContentType,
-
-				// response headers
-				responseHeaders,
+				// overriding response info
+				overrideResponseInfo = {},
 
 				// response not found.
 				responseNotFound,
@@ -174,47 +163,16 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
 				// response error.
 				responseError;
 
-				// check ETag.
-				if (isFinalResource !== true ?
-
-				// check version.
-				(version !== undefined && headers['if-none-match'] === version) :
-
-				// check exists.
-				headers['if-none-match'] !== undefined) {
-
-					// response cached.
-					response({
-						statusCode : 304
-					});
-				}
-
-				// redirect correct version uri.
-				else if (isFinalResource !== true && version !== undefined && uri !== '' && params.version !== version) {
-
-					response({
-						statusCode : 302,
-						headers : {
-							'Location' : '/' + uri + '?' + querystring.stringify(COMBINE([params, {
-								version : version
-							}]))
-						}
-					});
-				}
-
-				// response resource file.
-				else {
-
-					responseHeaders = {};
+				NEXT([
+				function(next) {
 
 					if (requestListener !== undefined) {
 
 						isGoingOn = requestListener(requestInfo, response, onDisconnected, function(newRootPath) {
 							rootPath = newRootPath;
-						}, function(contentType) {
-							defaultContentType = contentType;
-						}, function(headerName, value) {
-							responseHeaders[headerName] = value;
+						}, function(_overrideResponseInfo) {
+							overrideResponseInfo = _overrideResponseInfo;
+							next();
 						});
 
 						// init properties again.
@@ -224,99 +182,136 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
 						headers = requestInfo.headers;
 					}
 
-					if (isGoingOn !== false && requestInfo.isResponsed !== true && method === 'GET') {
+					if (isGoingOn !== false && requestInfo.isResponsed !== true) {
+						next();
+					}
+				},
 
-						responseNotFound = function(resourcePath) {
+				function() {
+					return function() {
 
-							if (notExistsResourceHandler !== undefined) {
-								notExistsResourceHandler(resourcePath, requestInfo, response);
-							}
+						// check ETag.
+						if (CONFIG.isDevMode !== true && (overrideResponseInfo.isFinal !== true ?
 
-							if (requestInfo.isResponsed !== true) {
+						// check version.
+						(version !== undefined && headers['if-none-match'] === version) :
 
-								response({
-									statusCode : 404
-								});
-							}
-						};
+						// check exists.
+						headers['if-none-match'] !== undefined)) {
 
-						responseError = function(errorMsg) {
+							// response cached.
+							response({
+								statusCode : 304
+							});
+						}
 
-							console.log(CONSOLE_RED('[UPPERCASE.JS-RESOURCE_SERVER] ERROR: ' + errorMsg));
+						// redirect correct version uri.
+						else if (CONFIG.isDevMode !== true && overrideResponseInfo.isFinal !== true && version !== undefined && uri !== '' && params.version !== version) {
 
-							if (errorHandler !== undefined) {
-								errorHandler(errorMsg, requestInfo, response);
-							}
+							response({
+								statusCode : 302,
+								headers : {
+									'Location' : '/' + uri + '?' + querystring.stringify(COMBINE([params, {
+										version : version
+									}]))
+								}
+							});
+						}
 
-							if (requestInfo.isResponsed !== true) {
+						// response resource file.
+						else if (method === 'GET') {
 
-								response({
-									statusCode : 500
-								});
-							}
-						};
+							responseNotFound = function(resourcePath) {
 
-						NEXT([
-						function(next) {
+								if (notExistsResourceHandler !== undefined) {
+									notExistsResourceHandler(resourcePath, requestInfo, response);
+								}
 
-							var
-							// resource cache
-							resourceCache = resourceCaches[uri];
+								if (requestInfo.isResponsed !== true) {
 
-							if (resourceCache !== undefined) {
-								next(resourceCache.content, resourceCache.contentType);
-							} else {
+									response({
+										statusCode : 404
+									});
+								}
+							};
 
-								// serve file.
-								READ_FILE(rootPath + '/' + uri, {
+							responseError = function(errorMsg) {
 
-									notExists : function() {
+								console.log(CONSOLE_RED('[UPPERCASE.JS-RESOURCE_SERVER] ERROR: ' + errorMsg));
 
-										// not found file, so serve index.
-										READ_FILE(rootPath + (uri === '' ? '' : ('/' + uri)) + '/index.html', {
+								if (errorHandler !== undefined) {
+									errorHandler(errorMsg, requestInfo, response);
+								}
 
-											notExists : responseNotFound,
-											error : responseError,
+								if (requestInfo.isResponsed !== true) {
 
-											success : function(content) {
-												next(content, 'text/html');
-											}
-										});
-									},
+									response({
+										statusCode : 500
+									});
+								}
+							};
 
-									error : responseError,
-									success : next
-								});
-							}
-						},
+							NEXT([
+							function(next) {
 
-						function() {
-							return function(content, contentType) {
+								var
+								// resource cache
+								resourceCache = resourceCaches[uri];
 
-								if (contentType === undefined) {
-									if (defaultContentType !== undefined) {
-										contentType = defaultContentType;
-									} else {
+								if (resourceCache !== undefined) {
+									next(resourceCache.content, resourceCache.contentType);
+								} else {
+
+									// serve file.
+									READ_FILE(rootPath + '/' + uri, {
+
+										notExists : function() {
+
+											// not found file, so serve index.
+											READ_FILE(rootPath + (uri === '' ? '' : ('/' + uri)) + '/index.html', {
+
+												notExists : responseNotFound,
+												error : responseError,
+
+												success : function(content) {
+													next(content, 'text/html');
+												}
+											});
+										},
+
+										error : responseError,
+										success : next
+									});
+								}
+							},
+
+							function() {
+								return function(content, contentType) {
+
+									if (contentType === undefined) {
 										contentType = getContentTypeFromURI(uri);
 									}
-								}
 
-								if (isNotUsingResourceCache !== true && resourceCaches[uri] === undefined) {
-									resourceCaches[uri] = {
-										content : content,
-										contentType : contentType
-									};
-								}
+									if (overrideResponseInfo.isFinal !== true && resourceCaches[uri] === undefined) {
+										resourceCaches[uri] = {
+											content : content,
+											contentType : contentType
+										};
+									}
 
-								response({
-									content : content,
-									contentType : contentType,
-									version : isFinalResource !== true ? version : 'FINAL'
-								});
-							};
-						}]);
-					}
-				}
+									response(EXTEND({
+										origin : {
+											content : content,
+											contentType : contentType,
+											version : version
+										},
+										extend : overrideResponseInfo
+									}));
+								};
+							}]);
+						}
+					};
+				}]);
 			});
 
 			console.log('[UPPERCASE.JS-RESOURCE_SERVER] RUNNING RESOURCE SERVER...' + (port === undefined ? '' : (' (PORT:' + port + ')')) + (securedPort === undefined ? '' : (' (SECURED PORT:' + securedPort + ')')));

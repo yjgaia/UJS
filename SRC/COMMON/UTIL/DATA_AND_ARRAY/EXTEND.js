@@ -44,5 +44,7 @@ global.EXTEND = EXTEND = METHOD({
 				}
 			});
 		}
+
+		return origin;
 	}
 });
