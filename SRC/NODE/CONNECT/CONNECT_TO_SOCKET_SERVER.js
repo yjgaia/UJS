@@ -159,13 +159,13 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 				if (callback !== undefined) {
 
 					// on callback.
-					on('__CALLBACK_' + sendKey, function(data) {
+					on(callbackName, function(data) {
 
 						// run callback.
 						callback(data);
 
 						// off callback.
-						off('__CALLBACK_' + sendKey);
+						off(callbackName);
 					});
 				}
 			},
