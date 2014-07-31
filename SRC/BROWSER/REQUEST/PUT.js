@@ -13,13 +13,10 @@ global.PUT = PUT = METHOD({
 		//OPTIONAL: uriOrParams.data
 		//REQUIRED: responseListenerOrListeners
 
-		REQUEST(COMBINE_DATA({
-			origin : CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
-				uri : uriOrParams
-			},
-			extend : {
-				method : 'PUT'
-			}
-		}), responseListenerOrListeners);
+		REQUEST(COMBINE([CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
+			uri : uriOrParams
+		}, {
+			method : 'PUT'
+		}]), responseListenerOrListeners);
 	}
 });

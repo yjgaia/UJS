@@ -8,21 +8,8 @@ UPPERCASE.JS is a JavaScript library, in which all APIs are written in uppercase
 - Titanium
 - Unity3d
 
-##### Document
-http://UPPERCASE.IO/#UDOC/UPPERCASE.JS
-
-##### Testcase
-http://test.uppercase.js.uppercase.io
-
 ##### Version
-1.4.9
-
-##### License
-UPPERCASE.JS is licensed as below documents.<br>
-https://bitbucket.org/uppercaseio/uppercase.js/src/master/LICENSE.md
-
-- In short, feel free to use UPPERCASE.JS library, while any code modification is stringly prohibited. UPPERCASE.JS's source code is managed by BTNcafe Co..
-
+1.4.10
 
 ### To use it on node.js
 

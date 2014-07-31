@@ -495,20 +495,14 @@ global.VALID = VALID = CLASS(function(cls) {'use strict';
 							// need params
 							else if (name === 'size') {
 
-								if (cls[name](CHECK_IS_DATA(validParams) === true ? COMBINE_DATA({
-									origin : validParams,
-									extend : {
-										value : value
-									}
-								}) : COMBINE_DATA({
-									origin : {
-										min : validParams,
-										max : validParams
-									},
-									extend : {
-										value : value
-									}
-								})) === false) {
+								if (cls[name](CHECK_IS_DATA(validParams) === true ? COMBINE([validParams, {
+									value : value
+								}]) : COMBINE([{
+									min : validParams,
+									max : validParams
+								}, {
+									value : value
+								}])) === false) {
 
 									hasError = true;
 									errors[attr] = {

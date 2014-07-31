@@ -1,5 +1,11 @@
 VERSIONS
 ========
+1.4.10 (2014. 7. 31)
+- COPY_ARRAY와 COPY_DATA를 COPY로 통일
+- COMBINE_ARRAY와 COMBINE_DATA를 COMBINE으로 통일, 파라미터는 { data1, data2 }와 같은 형식에서 여러개의 data를 결합 할 수 있도록 array로 넘김
+- EXTEND_ARRAY와 EXTEND_DATA를 EXTEND로 통일
+- CHECK_ARE_SAME_ARRAYS와 CHECK_ARE_SAME_DATA_SET를 CHECK_ARE_SAME으로 통일, 파라미터는 { data1, data2 }와 같은 형식에서 여러개의 data를 비교 할 수 있도록 array로 넘김
+
 1.4.9 (2014. 7. 29)
 - Add REMOVE_FILE, COPY_FILE, MOVE_FILE, CREATE_FOLDER.
 

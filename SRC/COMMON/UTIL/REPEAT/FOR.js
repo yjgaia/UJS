@@ -20,7 +20,7 @@ global.FOR = FOR = METHOD({
 
 		// limit
 		limit = INTEGER(params.limit === undefined ? end + 1 : params.limit),
-		
+
 		// step
 		step = INTEGER(params.step === undefined ? 1 : params.step),
 
@@ -30,14 +30,20 @@ global.FOR = FOR = METHOD({
 		if (end !== undefined && start > end) {
 
 			for ( i = start; i >= end; i -= step) {
-				func(i);
+				if (func(i) === false) {
+					return false;
+				}
 			}
 
 		} else {
 
 			for ( i = start; i < limit; i += step) {
-				func(i);
+				if (func(i) === false) {
+					return false;
+				}
 			}
 		}
+
+		return true;
 	}
 });

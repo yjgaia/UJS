@@ -9,13 +9,13 @@ data = {
 // array
 array = [3, 2, 1];
 
-REMOVE_AT({
+REMOVE({
 	data : data,
 	key : 'b'
 });
 console.log('data after remove at b:', data);
 
-REMOVE_AT({
+REMOVE({
 	data : array,
 	key : 1
 });

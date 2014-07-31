@@ -8,21 +8,8 @@ UPPERCASE.JS는 API가 대문자로 이루어진 JavaScript 라이브러입니�
 - Titanium
 - Unity3d
 
-##### Document
-http://UPPERCASE.IO/#UDOC/UPPERCASE.JS
-
-##### Testcase
-http://test.uppercase.js.uppercase.io
-
 ##### Version
-1.4.9
-
-##### License
-UPPERCASE.JS의 License는 이하 문서를 따릅니다.<br>
-https://bitbucket.org/uppercaseio/uppercase.js/src/master/LICENSE_KOR.md
-
-- 간단히 말해 라이브러리 사용은 자유, 코드 수정은 금지입니다. UPPERCASE.JS의 소스 코드는 BTNcafe Co.에서 관리하고 있습니다.
-
+1.4.10
 
 ### node.js에서 사용하기
 

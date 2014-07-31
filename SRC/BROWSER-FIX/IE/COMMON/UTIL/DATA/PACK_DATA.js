@@ -12,7 +12,7 @@ OVERRIDE(PACK_DATA, function(origin) {'use strict';
 
 				var
 				// result
-				result = COPY_DATA(data),
+				result = COPY(data),
 
 				// date attribute names
 				dateAttrNames = [];

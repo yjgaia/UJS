@@ -113,7 +113,7 @@ global.CLASS = CLASS = METHOD(function(m) {'use strict';
 
 						if (tempParams !== undefined) {
 
-							EXTEND_DATA({
+							EXTEND({
 								origin : params,
 								extend : tempParams
 							});

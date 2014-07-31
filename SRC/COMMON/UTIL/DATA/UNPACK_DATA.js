@@ -8,7 +8,7 @@ global.UNPACK_DATA = UNPACK_DATA = METHOD({
 
 		var
 		// result
-		result = COPY_DATA(data);
+		result = COPY(data);
 
 		if (result.__DATE_ATTR_NAMES !== undefined) {
 			EACH(result.__DATE_ATTR_NAMES, function(dateAttrName, i) {

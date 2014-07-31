@@ -23,7 +23,4 @@ console.log(data);
 console.log(packedData);
 console.log(unpackedData);
 
-console.log(CHECK_ARE_SAME_DATA_SET({
-	data1 : data,
-	data2 : unpackedData
-}));
+console.log(CHECK_ARE_SAME([data, unpackedData]));

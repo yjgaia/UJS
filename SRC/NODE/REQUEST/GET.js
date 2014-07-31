@@ -12,13 +12,10 @@ global.GET = GET = METHOD({
 		//OPTIONAL: uriOrParams.data
 		//REQUIRED: responseListenerOrListeners
 
-		REQUEST(COMBINE_DATA({
-			origin : CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
-				uri : uriOrParams
-			},
-			extend : {
-				method : 'GET'
-			}
-		}), responseListenerOrListeners);
+		REQUEST(COMBINE([CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
+			uri : uriOrParams
+		}, {
+			method : 'GET'
+		}]), responseListenerOrListeners);
 	}
 });

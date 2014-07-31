@@ -13,8 +13,10 @@ global.REPEAT = REPEAT = METHOD({
 
 		for ( i = 0; i < parseInt(count, 10); i += 1) {
 			if (func(i) === false) {
-				break;
+				return false;
 			}
 		}
+
+		return true;
 	}
 });

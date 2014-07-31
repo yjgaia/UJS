@@ -195,12 +195,9 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
 					response({
 						statusCode : 302,
 						headers : {
-							'Location' : '/' + uri + '?' + querystring.stringify(COMBINE_DATA({
-								origin : params,
-								extend : {
-									version : version
-								}
-							}))
+							'Location' : '/' + uri + '?' + querystring.stringify(COMBINE([params, {
+								version : version
+							}]))
 						}
 					});
 				}

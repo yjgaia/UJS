@@ -48,12 +48,11 @@ RUN(function() {'use strict';
 	 * fix COMMON/UTIL.
 	 */
 
-	// fix stack overflow bug at COPY_DATA, PACK_DATA, UNPACK_DATA, COPY_ARRAY, REMOVE_TO_DELETE.
+	// fix stack overflow bug at PACK_DATA, UNPACK_DATA, COPY, REMOVE_TO_DELETE.
 	if (IE.version <= 8) {
-		loadFixScript('COMMON/UTIL/DATA/COPY_DATA');
 		loadFixScript('COMMON/UTIL/DATA/PACK_DATA');
 		loadFixScript('COMMON/UTIL/DATA/UNPACK_DATA');
-		loadFixScript('COMMON/UTIL/ARRAY/COPY_ARRAY');
+		loadFixScript('COMMON/UTIL/DATA_AND_ARRAY/COPY');
 		loadFixScript('COMMON/UTIL/DATA_AND_ARRAY/REMOVE_TO_DELETE');
 	}
 

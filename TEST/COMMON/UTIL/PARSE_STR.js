@@ -23,7 +23,4 @@ console.log(data);
 console.log(dataStr);
 console.log(parsedData);
 
-console.log(CHECK_ARE_SAME_DATA_SET({
-	data1 : data,
-	data2 : parsedData
-}));
+console.log(CHECK_ARE_SAME([data, parsedData]));

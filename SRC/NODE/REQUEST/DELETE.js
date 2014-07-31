@@ -12,13 +12,10 @@ global.DELETE = DELETE = METHOD({
 		//OPTIONAL: uriOrParams.data
 		//REQUIRED: responseListenerOrListeners
 
-		REQUEST(COMBINE_DATA({
-			origin : CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
-				uri : uriOrParams
-			},
-			extend : {
-				method : 'DELETE'
-			}
-		}), responseListenerOrListeners);
+		REQUEST(COMBINE([CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
+			uri : uriOrParams
+		}, {
+			method : 'DELETE'
+		}]), responseListenerOrListeners);
 	}
 });

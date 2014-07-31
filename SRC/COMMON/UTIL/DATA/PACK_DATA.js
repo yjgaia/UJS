@@ -8,7 +8,7 @@ global.PACK_DATA = PACK_DATA = METHOD({
 
 		var
 		// result
-		result = COPY_DATA(data),
+		result = COPY(data),
 
 		// date attribute names
 		dateAttrNames = [];

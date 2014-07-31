@@ -12,13 +12,10 @@ global.POST = POST = METHOD({
 		//OPTIONAL: uriOrParams.data
 		//REQUIRED: responseListenerOrListeners
 
-		REQUEST(COMBINE_DATA({
-			origin : CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
-				uri : uriOrParams
-			},
-			extend : {
-				method : 'POST'
-			}
-		}), responseListenerOrListeners);
+		REQUEST(COMBINE([CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
+			uri : uriOrParams
+		}, {
+			method : 'POST'
+		}]), responseListenerOrListeners);
 	}
 });

@@ -1,12 +1,12 @@
-OVERRIDE(COPY_ARRAY, function(origin) {'use strict';
+OVERRIDE(COPY, function(origin) {'use strict';
 
 	/**
-	 * Copy array. (fix for IE.)
+	 * copy data or array. (fix for IE.)
 	 */
-	global.COPY_ARRAY = COPY_ARRAY = METHOD({
+	global.COPY = COPY = METHOD({
 
-		run : function(array) {
-			//REQUIRED: array
+		run : function(data) {
+			//REQUIRED: data
 
 			var
 			// copy.
@@ -32,9 +32,7 @@ OVERRIDE(COPY_ARRAY, function(origin) {'use strict';
 
 							if ( value instanceof Date === true) {
 								copy[i] = new Date(value.getTime());
-							} else if (CHECK_IS_DATA(value) === true) {
-								copy[i] = f(value);
-							} else if (CHECK_IS_ARRAY(value) === true) {
+							} else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
 								copy[i] = f(value);
 							} else {
 								copy[i] = value;
@@ -51,9 +49,7 @@ OVERRIDE(COPY_ARRAY, function(origin) {'use strict';
 
 						if ( value instanceof Date === true) {
 							copy.push(new Date(value.getTime()));
-						} else if (CHECK_IS_DATA(value) === true) {
-							copy.push(f(value));
-						} else if (CHECK_IS_ARRAY(value) === true) {
+						} else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
 							copy.push(f(value));
 						} else {
 							copy.push(value);
@@ -64,7 +60,7 @@ OVERRIDE(COPY_ARRAY, function(origin) {'use strict';
 				return copy;
 			};
 
-			return f(array);
+			return f(data);
 		}
 	});
 });

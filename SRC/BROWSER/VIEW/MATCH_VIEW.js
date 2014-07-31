@@ -83,10 +83,7 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 
 								preParams = params;
 
-							} else if (CHECK_ARE_SAME_DATA_SET({
-								data1 : preParams,
-								data2 : params
-							}) !== true) {
+							} else if (CHECK_ARE_SAME([preParams, params]) !== true) {
 
 								view.onParamsChange(params);
 								preParams = params;
