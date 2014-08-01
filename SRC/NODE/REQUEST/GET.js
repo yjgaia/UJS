@@ -7,6 +7,7 @@ global.GET = GET = METHOD({
 		//REQUIRED: uriOrParams
 		//OPTIONAL: uriOrParams.host
 		//OPTIONAL: uriOrParams.port
+		//OPTIONAL: uriOrParams.isSecure
 		//REQUIRED: uriOrParams.uri
 		//OPTIONAL: uriOrParams.paramStr
 		//OPTIONAL: uriOrParams.data
