@@ -1,7 +1,8 @@
 /*
  * resourec server.
  */
-global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
+global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
+	'use strict';
 
 	var
 	//IMPORT: path
@@ -292,7 +293,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {'use strict';
 										contentType = getContentTypeFromURI(uri);
 									}
 
-									if (overrideResponseInfo.isFinal !== true && resourceCaches[uri] === undefined) {
+									if (CONFIG.isDevMode !== true && overrideResponseInfo.isFinal !== true && resourceCaches[uri] === undefined) {
 										resourceCaches[uri] = {
 											content : content,
 											contentType : contentType
