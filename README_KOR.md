@@ -1,4 +1,4 @@
-# ![ScreenShot](https://bytebucket.org/uppercaseio/uppercase.js/raw/master/logo.png)
+# ![ScreenShot](https://raw.githubusercontent.com/UPPERCASEIO/UPPERCASE.JS/master/LOGO.png)
 UPPERCASE.JS는 API가 대문자로 이루어진 JavaScript 라이브러입니다. [UPPERCASE.IO](http://UPPERCASE.IO) 등 다양한 프로젝트에서 사용됩니다.
 
 ##### Supported System

@@ -1,4 +1,4 @@
-# ![ScreenShot](https://bytebucket.org/uppercaseio/uppercase.js/raw/master/logo.png)
+# ![ScreenShot](https://raw.githubusercontent.com/UPPERCASEIO/UPPERCASE.JS/master/LOGO.png)
 UPPERCASE.JS is a JavaScript library, in which all APIs are written in uppercase. It can be used for various projects including [UPPERCASE.IO](http://UPPERCASE.IO).
 
 ##### Supported System
