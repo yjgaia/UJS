@@ -1,7 +1,8 @@
 /**
  * Create class.
  */
-global.CLASS = CLASS = METHOD(function(m) {'use strict';
+global.CLASS = CLASS = METHOD(function(m) {
+	'use strict';
 
 	var
 	// instance count
@@ -34,6 +35,9 @@ global.CLASS = CLASS = METHOD(function(m) {'use strict';
 
 			// params.
 			_params,
+
+			// after init.
+			afterInit,
 
 			// cls.
 			cls = function(params, funcs) {
@@ -76,11 +80,17 @@ global.CLASS = CLASS = METHOD(function(m) {'use strict';
 				// run inner init.
 				innerInit(inner, self, params, funcs);
 
+				// run inner after init.
+				innerAfterInit(inner, self, params, funcs);
+
 				return self;
 			},
 
 			// inner init.
-			innerInit;
+			innerInit,
+
+			// inner after init.
+			innerAfterInit;
 
 			// set type.
 			cls.type = CLASS;
@@ -113,12 +123,12 @@ global.CLASS = CLASS = METHOD(function(m) {'use strict';
 
 						if (tempParams !== undefined) {
 
-							EXTEND({
-								origin : tempParams,
-								extend : params
-							});
+							EACH(tempParams, function(value, name) {
 
-							params = tempParams;
+								if (params[name] === undefined) {
+									params[name] = value;
+								}
+							});
 						}
 					}
 
@@ -169,7 +179,25 @@ global.CLASS = CLASS = METHOD(function(m) {'use strict';
 				preset = funcs.preset;
 				init = funcs.init;
 				_params = funcs.params;
+				afterInit = funcs.afterInit;
 			}
+
+			cls.innerAfterInit = innerAfterInit = function(inner, self, params, funcs) {
+				//OPTIONAL: params
+				//OPTIONAL: funcs
+
+				var
+				// mom
+				mom = cls.mom;
+
+				if (afterInit !== undefined) {
+					afterInit(inner, self, params, funcs);
+				}
+
+				if (mom !== undefined) {
+					mom.innerAfterInit(inner, self, params, funcs);
+				}
+			};
 
 			return cls;
 		}

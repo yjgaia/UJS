@@ -1,7 +1,8 @@
 /**
  * Input class
  */
-global.INPUT = INPUT = CLASS(function(cls) {'use strict';
+global.INPUT = INPUT = CLASS(function(cls) {
+	'use strict';
 
 	var
 	// focusing input ids
@@ -221,7 +222,34 @@ global.INPUT = INPUT = CLASS(function(cls) {'use strict';
 			};
 
 			if (value !== undefined) {
-				setValue(value);
+
+				if (type === 'checkbox') {
+
+					if (value === true) {
+
+						if (self.getEl().checked !== true) {
+							self.getEl().checked = true;
+						} else {
+							self.getEl().checked = true;
+						}
+
+					} else {
+
+						if (self.getEl().checked === true) {
+							self.getEl().checked = false;
+						} else {
+							self.getEl().checked = false;
+						}
+					}
+
+				} else {
+
+					if (self.getEl().value !== value) {
+						self.getEl().value = value;
+					} else {
+						self.getEl().value = value;
+					}
+				}
 			}
 
 			EVENT({

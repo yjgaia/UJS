@@ -1,7 +1,8 @@
 /**
  * Create object.
  */
-global.OBJECT = OBJECT = METHOD(function(m) {'use strict';
+global.OBJECT = OBJECT = METHOD(function(m) {
+	'use strict';
 
 	var
 	// ready objects
@@ -25,13 +26,23 @@ global.OBJECT = OBJECT = METHOD(function(m) {'use strict';
 	initObject = function(object) {
 
 		var
+		// cls
+		cls = object.type,
+
 		// inner (like Java's protected.)
-		inner = {};
+		inner = {},
+
+		// params
+		params = {};
 
 		// set id.
 		object.id = CLASS.getInstanceId();
 
-		object.type.innerInit(inner, object, {}, {});
+		// run inner init.
+		cls.innerInit(inner, object, params);
+
+		// run inner after init.
+		cls.innerAfterInit(inner, object, params);
 	};
 
 	addReadyObject = function(object) {

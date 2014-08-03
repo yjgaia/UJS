@@ -1,7 +1,7 @@
 /**
  * test.
  */
-global.NEXT = NEXT = METHOD({
+global.TEST = TEST = METHOD({
 
 	run : function() {
 		'use strict';

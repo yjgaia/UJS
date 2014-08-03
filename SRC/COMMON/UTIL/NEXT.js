@@ -3,7 +3,8 @@
  */
 global.NEXT = NEXT = METHOD({
 
-	run : function(countOrArray, funcs) {'use strict';
+	run : function(countOrArray, funcs) {
+		'use strict';
 		//OPTIONAL: countOrArray
 		//REQUIRED: funcs
 
@@ -92,24 +93,27 @@ global.NEXT = NEXT = METHOD({
 						// i
 						i = 0;
 
-						RUN(function(self) {
+						if (length > 0) {
 
-							if (i + 1 < length) {
+							RUN(function(self) {
 
-								// if shrink
-								if (array.length === length - 1) {
-									i -= 1;
-									length -= 1;
+								if (i + 1 < length) {
+
+									// if shrink
+									if (array.length === length - 1) {
+										i -= 1;
+										length -= 1;
+									}
+
+									f(array[i], self);
+
+								} else {
+									f(array[i], next);
 								}
 
-								f(array[i], self);
-
-							} else {
-								f(array[i], next);
-							}
-
-							i += 1;
-						});
+								i += 1;
+							});
+						}
 					});
 
 				} else {

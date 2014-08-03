@@ -143,6 +143,9 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 				// is going on
 				isGoingOn,
 
+				// original uri
+				originalURI = requestInfo.uri,
+
 				// uri
 				uri = requestInfo.uri,
 
@@ -207,12 +210,12 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 						}
 
 						// redirect correct version uri.
-						else if (CONFIG.isDevMode !== true && overrideResponseInfo.isFinal !== true && version !== undefined && uri !== '' && params.version !== version) {
+						else if (CONFIG.isDevMode !== true && overrideResponseInfo.isFinal !== true && version !== undefined && originalURI !== '' && params.version !== version) {
 
 							response({
 								statusCode : 302,
 								headers : {
-									'Location' : '/' + uri + '?' + querystring.stringify(COMBINE([params, {
+									'Location' : '/' + originalURI + '?' + querystring.stringify(COMBINE([params, {
 										version : version
 									}]))
 								}
