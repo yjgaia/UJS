@@ -195,7 +195,16 @@ global.CLASS = CLASS = METHOD(function(m) {
 				}
 
 				if (mom !== undefined) {
-					mom.innerAfterInit(inner, self, params, funcs);
+
+					// when mom's type is CLASS
+					if (mom.type === CLASS) {
+						mom.innerAfterInit(inner, self, params, funcs);
+					}
+
+					// when mon's type is OBJECT
+					else {
+						mom.type.innerAfterInit(inner, self, params, funcs);
+					}
 				}
 			};
 

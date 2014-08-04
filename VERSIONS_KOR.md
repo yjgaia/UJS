@@ -1,5 +1,8 @@
 VERSIONS
 ========
+1.4.11
+- CLASS 선언 시 초기화 직후 실행할 수 있는 afterInit 기능 추가
+
 1.4.10 (2014. 7. 31)
 - COPY_ARRAY와 COPY_DATA를 COPY로 통일
 - COMBINE_ARRAY와 COMBINE_DATA를 COMBINE으로 통일, 파라미터는 { data1, data2 }와 같은 형식에서 여러개의 data를 결합 할 수 있도록 array로 넘김
