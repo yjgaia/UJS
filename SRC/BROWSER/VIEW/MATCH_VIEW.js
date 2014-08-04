@@ -3,7 +3,8 @@
  */
 global.MATCH_VIEW = MATCH_VIEW = METHOD({
 
-	run : function(params) {'use strict';
+	run : function(params) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.uris
 		//REQUIRED: params.target
@@ -78,14 +79,14 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 							if (view === undefined) {
 
 								view = target();
-								view.onParamsChange(params);
+								view.changeParams(params);
 								target.lastView = view;
 
 								preParams = params;
 
 							} else if (CHECK_ARE_SAME([preParams, params]) !== true) {
 
-								view.onParamsChange(params);
+								view.changeParams(params);
 								preParams = params;
 							}
 						});
@@ -96,7 +97,9 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 			}
 
 			if (isNotFound === true && view !== undefined) {
+
 				view.close();
+
 				view = undefined;
 				target.lastView = undefined;
 			}

@@ -3,23 +3,63 @@
  */
 global.VIEW = VIEW = CLASS({
 
-	init : function(inner, self) {'use strict';
+	init : function(inner, self) {
+		'use strict';
 
 		var
-		// on params change.
-		onParamsChange,
+		// is closed
+		isClosed,
+
+		// params change handlers
+		paramsChangeHandlers = [],
+
+		// close handlers
+		closeHandlers = [],
+
+		// on.
+		on,
+
+		// change params.
+		changeParams,
 
 		// close.
-		close;
+		close,
 
-		self.onParamsChange = onParamsChange = function(params) {
-			//REQUIRED: params
+		// check is closed.
+		checkIsClosed;
 
-			// to implement.
+		inner.on = on = function(methodName, handler) {
+			//REQUIRED: methodName
+
+			// when change params
+			if (methodName === 'paramsChange') {
+				paramsChangeHandlers.push(handler);
+			}
+
+			// when close
+			else if (methodName === 'close') {
+				closeHandlers.push(handler);
+			}
+		};
+
+		self.changeParams = changeParams = function(params) {
+
+			EACH(paramsChangeHandlers, function(handler) {
+				handler(params);
+			});
 		};
 
 		self.close = close = function() {
-			// to implement.
+
+			EACH(closeHandlers, function(handler) {
+				handler();
+			});
+
+			isClosed = true;
+		};
+
+		inner.checkIsClosed = checkIsClosed = function() {
+			return isClosed;
 		};
 	}
 });
