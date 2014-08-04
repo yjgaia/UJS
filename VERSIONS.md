@@ -1,5 +1,7 @@
 VERSIONS
 ========
+1.4.11 (working)
+
 1.4.10 (2014. 7. 31)
 - COPY_ARRAY and COPY_DATA are integrated into COPY
 - COMBINE_ARRAY and COMBINE_DATA are also integrated into COMBINE, of which parameter is an array to support combination of any kind of data such as { data1, data2 }

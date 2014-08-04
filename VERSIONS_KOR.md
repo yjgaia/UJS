@@ -1,7 +1,8 @@
 VERSIONS
 ========
-1.4.11
+1.4.11 (working)
 - CLASS 선언 시 초기화 직후 실행할 수 있는 afterInit 기능 추가
+- VIEW/close와 onParamsChange를 override해서 쓰는 방식에서 on('paramsChange', function(params) {...}) on('close', function() {...}) 와 같은 방식으로 변경
 
 1.4.10 (2014. 7. 31)
 - COPY_ARRAY와 COPY_DATA를 COPY로 통일

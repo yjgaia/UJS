@@ -9,7 +9,7 @@ UPPERCASE.JS는 API가 대문자로 이루어진 JavaScript 라이브러입니�
 - Unity3d
 
 ##### Version
-1.4.10
+1.4.11
 
 ### node.js에서 사용하기
 

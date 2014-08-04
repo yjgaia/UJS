@@ -9,7 +9,7 @@ UPPERCASE.JS is a JavaScript library, in which all APIs are written in uppercase
 - Unity3d
 
 ##### Version
-1.4.10
+1.4.11
 
 ### To use it on node.js
 
