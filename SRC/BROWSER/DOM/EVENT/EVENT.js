@@ -123,7 +123,7 @@ global.EVENT = EVENT = CLASS(function(cls) {'use strict';
 
 							e.stopDefault();
 
-							if (startLeft - 10 <= left && left <= startLeft + 10 && startTop - 10 <= top && top <= startTop + 10) {
+							if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
 								return func(e, node);
 							}
 						}
@@ -182,7 +182,7 @@ global.EVENT = EVENT = CLASS(function(cls) {'use strict';
 
 							e.stopDefault();
 
-							if (startLeft - 10 <= left && left <= startLeft + 10 && startTop - 10 <= top && top <= startTop + 10) {
+							if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
 								return func(e, node);
 							}
 						}
