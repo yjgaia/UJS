@@ -93,7 +93,9 @@ global.NEXT = NEXT = METHOD({
 						// i
 						i = 0;
 
-						if (length > 0) {
+						if (length === 0) {
+							next();
+						} else {
 
 							RUN(function(self) {
 
