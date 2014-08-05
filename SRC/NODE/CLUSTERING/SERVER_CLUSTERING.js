@@ -83,7 +83,7 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {'use strict';
 
 						thisServerHosts.push(host);
 
-						if (CHECK_IS_EXISTS({
+						if (CHECK_IS_IN({
 							data : hosts,
 							value : host
 						}) === true) {

@@ -44,7 +44,7 @@ SOCKET_SERVER(8124, function(clientInfo, on, off, send, disconnect) {
 
 	on('checkRole', function(role) {
 
-		if (CHECK_IS_EXISTS({
+		if (CHECK_IS_IN({
 			data : roles,
 			value : role
 		}) === true) {

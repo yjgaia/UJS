@@ -1,9 +1,10 @@
 /**
  * check is exists value in data.
  */
-global.CHECK_IS_EXISTS = CHECK_IS_EXISTS = METHOD({
+global.CHECK_IS_IN = CHECK_IS_IN = METHOD({
 
-	run : function(params) {'use strict';
+	run : function(params) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.data
 		//REQUIRED: params.value
