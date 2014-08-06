@@ -270,6 +270,13 @@ global.INPUT = INPUT = CLASS(function(cls) {
 				});
 			});
 
+			EVENT({
+				node : self,
+				name : 'tap'
+			}, function() {
+				focus();
+			});
+
 			self.addRemoveHandler(function() {
 
 				REMOVE({
