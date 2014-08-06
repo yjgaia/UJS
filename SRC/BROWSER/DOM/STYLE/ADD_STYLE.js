@@ -1,7 +1,8 @@
 /**
  * Add style.
  */
-global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {'use strict';
+global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
+	'use strict';
 
 	var
 	// is support fixed
@@ -44,7 +45,8 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {'use strict';
 
 	return {
 
-		run : function(params) {'use strict';
+		run : function(params) {
+			'use strict';
 			//REQUIRED: params
 			//REQUIRED: params.node
 			//REQUIRED: params.style
@@ -221,7 +223,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {'use strict';
 							el.style[name] = 'url(' + value + ')';
 
 							// X2 support.
-							if (BROWSER_CONFIG.isSupportingX2 === true &&
+							if (BROWSER_CONFIG.isNotSupportingX2 !== true &&
 
 							// after INIT_OBJECTS(), check is hd display.
 							INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {
@@ -237,7 +239,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {'use strict';
 							el.style[name] = value;
 
 							// X2 support.
-							if (BROWSER_CONFIG.isSupportingX2 === true &&
+							if (BROWSER_CONFIG.isNotSupportingX2 !== true &&
 
 							// after INIT_OBJECTS(), check is hd display.
 							INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true
