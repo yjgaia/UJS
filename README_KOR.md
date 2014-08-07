@@ -90,26 +90,30 @@ UPPERCASE.JS는 API가 대문자로 이루어진 JavaScript 라이브러입니�
 
 ## COMMON
 객체지향 프로그래밍 지원 및 다양한 기능을 제공하는 JavaScript 라이브러리입니다.<br>
+JavaScript 유틸리티를 찾고 계신다면 UPPERCASE.JS-COMMON을 사용해보세요.<br>
 http://UPPERCASE.IO/#UDOC/UPPERCASE.JS/COMMON
 
 ## BROWSER
 웹 브라우저에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.<br>
+모든 브라우저와 호환되는 브라우저용 유틸리티와 훌륭한 템플릿 엔진을 찾으신다면 UPPERCASE.JS-BROWSER를 사용해보세요.<br>
 http://UPPERCASE.IO/#UDOC/UPPERCASE.JS/BROWSER
 - UPPERCASE.JS-COMMON.js가 필요합니다.
 
 ## BROWSER-FIX
-COMMON, BROWSER의 구버젼 브라우저(IE6, Android 2.1 Browser 등)를 지원하는 라이브러리입니다.<br>
+COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1 Browser 등)를 지원하는 라이브러리입니다.<br>
 http://UPPERCASE.IO/#UDOC/UPPERCASE.JS/BROWSER-FIX
 - UPPERCASE.JS-COMMON.js가 필요합니다.
 - UPPERCASE.JS-BROWSER.js가 필요합니다.
 
 ## NODE
 node.js 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.<br>
+node.js를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-NODE를 사용해보세요.<br>
 http://UPPERCASE.IO/#UDOC/UPPERCASE.JS/NODE
 - UPPERCASE.JS-COMMON.js가 필요합니다.
 
 ## PHANTOM
 PhantomJS 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.<br>
+PhantomJS를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-NODE를 사용해보세요.<br>
 http://UPPERCASE.IO/#UDOC/UPPERCASE.JS/PHANTOM
 - UPPERCASE.JS-COMMON.js가 필요합니다.
 
