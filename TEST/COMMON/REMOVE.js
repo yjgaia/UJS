@@ -11,12 +11,12 @@ array = [3, 2, 1];
 
 REMOVE({
 	data : data,
-	key : 'b'
+	name : 'b'
 });
 console.log('data after remove at b:', data);
 
 REMOVE({
-	data : array,
+	array : array,
 	key : 1
 });
 console.log('array after remove at 1:', array);
@@ -28,7 +28,7 @@ REMOVE({
 console.log('data after remove 1:', data);
 
 REMOVE({
-	data : array,
+	array : array,
 	value : 1
 });
 console.log('array after remove 1:', array);

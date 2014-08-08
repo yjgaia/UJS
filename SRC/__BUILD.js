@@ -116,8 +116,7 @@ global.BUILD = function() {'use strict';
 
 		script += fs.readFileSync('COMMON/TO_DELETE.js');
 		script += fs.readFileSync('COMMON/CONFIG.js');
-
-		script += fs.readFileSync('COMMON/OOP/METHOD.js');
+		script += fs.readFileSync('COMMON/METHOD.js');
 		script += fs.readFileSync('COMMON/OOP/CLASS.js');
 		script += fs.readFileSync('COMMON/OOP/OBJECT.js');
 		script += fs.readFileSync('COMMON/OOP/INIT_OBJECTS.js');

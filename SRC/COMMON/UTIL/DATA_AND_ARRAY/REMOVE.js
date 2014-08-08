@@ -42,7 +42,7 @@ global.REMOVE = REMOVE = METHOD({
 
 						REMOVE({
 							data : dataOrArrayOrParams,
-							key : name
+							name : name
 						});
 					}
 				});
@@ -57,7 +57,7 @@ global.REMOVE = REMOVE = METHOD({
 					if (filter(value) === true) {
 
 						REMOVE({
-							data : dataOrArrayOrParams,
+							array : dataOrArrayOrParams,
 							key : key
 						});
 					}
@@ -77,7 +77,7 @@ global.REMOVE = REMOVE = METHOD({
 
 			// remove at name.
 			if (name !== undefined) {
-				delete data[key];
+				delete data[name];
 			}
 
 			// remove at key.
@@ -96,7 +96,7 @@ global.REMOVE = REMOVE = METHOD({
 
 							REMOVE({
 								data : data,
-								key : name
+								name : name
 							});
 						}
 					});
@@ -104,12 +104,12 @@ global.REMOVE = REMOVE = METHOD({
 
 				if (array !== undefined) {
 
-					EACH(data, function(_value, key) {
+					EACH(array, function(_value, key) {
 
 						if (_value === value) {
 
 							REMOVE({
-								data : data,
+								array : array,
 								key : key
 							});
 						}

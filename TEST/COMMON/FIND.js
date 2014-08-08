@@ -9,12 +9,12 @@ data = {
 // array
 array = [3, 2, 1];
 
-console.log('find 1 in data:', FIND_KEY({
+console.log('find 1 in data:', FIND({
 	data : data,
 	value : 1
 }));
 
-console.log('find 1 in array:', FIND_KEY({
-	data : array,
+console.log('find 1 in array:', FIND({
+	array : array,
 	value : 1
 }));

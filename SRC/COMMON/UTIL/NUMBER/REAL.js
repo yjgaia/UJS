@@ -6,6 +6,6 @@ global.REAL = REAL = METHOD({
 	run : function(realString) {'use strict';
 		//OPTIONAL: realString
 
-		return str === undefined ? undefined : parseFloat(str);
+		return realString === undefined ? undefined : parseFloat(realString);
 	}
 });
