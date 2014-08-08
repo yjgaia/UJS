@@ -1,15 +1,13 @@
 /**
- * check are same data set or arrays.
+ * check are same all elements in array.
  */
 global.CHECK_ARE_SAME = CHECK_ARE_SAME = METHOD({
 
-	run : function(dataSet) {'use strict';
-		//REQUIRED: dataSet
+	run : function(array) {
+		'use strict';
+		//REQUIRED: array
 
 		var
-		// first data
-		firstData,
-
 		// are same
 		areSame = false,
 
@@ -41,13 +39,13 @@ global.CHECK_ARE_SAME = CHECK_ARE_SAME = METHOD({
 			}
 		};
 
-		if (dataSet.length > 1) {
+		if (array.length > 1) {
 
-			areSame = REPEAT(dataSet.length, function(i) {
-				if (i < dataSet.length - 1) {
-					return checkTwoSame(dataSet[i], dataSet[i + 1]);
+			areSame = REPEAT(array.length, function(i) {
+				if (i < array.length - 1) {
+					return checkTwoSame(array[i], array[i + 1]);
 				} else {
-					return checkTwoSame(dataSet[i], dataSet[0]);
+					return checkTwoSame(array[i], array[0]);
 				}
 			});
 		}

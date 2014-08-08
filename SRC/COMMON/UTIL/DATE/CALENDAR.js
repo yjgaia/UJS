@@ -3,7 +3,8 @@
  */
 global.CALENDAR = CALENDAR = CLASS({
 
-	init : function(inner, self, date) {'use strict';
+	init : function(inner, self, date) {
+		'use strict';
 		//OPTIONAL: date
 
 		var

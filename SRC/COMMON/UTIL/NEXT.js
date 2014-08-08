@@ -1,5 +1,5 @@
 /**
- * An async control-flow method that makes stepping through logic easy.
+ * async control-flow method that makes stepping through logic easy.
  */
 global.NEXT = NEXT = METHOD({
 
@@ -31,7 +31,7 @@ global.NEXT = NEXT = METHOD({
 			}
 		}
 
-		FOR({
+		REPEAT({
 			start : funcs.length - 1,
 			end : 0
 		}, function(i) {

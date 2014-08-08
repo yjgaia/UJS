@@ -1,7 +1,7 @@
 /**
- * check is exists value in data or array.
+ * find name or key in data or array.
  */
-global.CHECK_IS_IN = CHECK_IS_IN = METHOD({
+global.FIND = FIND = METHOD({
 
 	run : function(params) {
 		'use strict';
@@ -18,22 +18,31 @@ global.CHECK_IS_IN = CHECK_IS_IN = METHOD({
 		array = params.array,
 
 		// value
-		value = params.value;
+		value = params.value,
+
+		// ret key
+		retKey;
 
 		if (data !== undefined) {
-			return EACH(data, function(_value, name) {
+
+			EACH(data, function(_value, name) {
 				if (_value === value) {
+					retKey = name;
 					return false;
 				}
-			}) !== true;
+			});
 		}
 
 		if (array !== undefined) {
-			return EACH(data, function(_value, key) {
+
+			EACH(array, function(_value, key) {
 				if (_value === value) {
+					retKey = key;
 					return false;
 				}
-			}) !== true;
+			});
 		}
+
+		return retKey;
 	}
 });

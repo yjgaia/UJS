@@ -1,12 +1,12 @@
 /**
- * check is data.
+ * check it is data.
  */
 global.CHECK_IS_DATA = CHECK_IS_DATA = METHOD({
 
-	run : function(data) {'use strict';
-		//OPTIONAL: data
+	run : function(it) {'use strict';
+		//OPTIONAL: it
 
-		if (data !== undefined && data !== TO_DELETE && CHECK_IS_ARGUMENTS(data) !== true && CHECK_IS_ARRAY(data) !== true && data instanceof Date !== true && typeof data === 'object') {
+		if (it !== undefined && it !== TO_DELETE && CHECK_IS_ARGUMENTS(it) !== true && CHECK_IS_ARRAY(it) !== true && it instanceof Date !== true && typeof it === 'object') {
 			return true;
 		}
 

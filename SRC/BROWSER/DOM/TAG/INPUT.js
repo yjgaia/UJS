@@ -265,7 +265,7 @@ global.INPUT = INPUT = CLASS(function(cls) {
 			}, function() {
 
 				REMOVE({
-					data : getFocusingInputIds(),
+					array : getFocusingInputIds(),
 					value : self.id
 				});
 			});
@@ -273,7 +273,7 @@ global.INPUT = INPUT = CLASS(function(cls) {
 			self.addRemoveHandler(function() {
 
 				REMOVE({
-					data : getFocusingInputIds(),
+					array : getFocusingInputIds(),
 					value : self.id
 				});
 			});

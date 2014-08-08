@@ -72,7 +72,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			removeFromMap = function() {
 
 				REMOVE({
-					data : eventMap[nodeId][name],
+					array : eventMap[nodeId][name],
 					value : self
 				});
 

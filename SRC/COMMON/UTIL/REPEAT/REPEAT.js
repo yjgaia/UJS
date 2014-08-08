@@ -1,19 +1,82 @@
 /**
- * repeat `count` time.
+ * run `func` repeat `count` time, or same as `for`.
  */
 global.REPEAT = REPEAT = METHOD({
 
-	run : function(count, func) {'use strict';
-		//REQUIRED: count
+	run : function(countOrParams, func) {
+		'use strict';
+		//REQUIRED: countOrParams
+		//REQUIRED: countOrParams.start
+		//OPTIONAL: countOrParams.end
+		//OPTIONAL: countOrParams.limit
+		//OPTIONAL: countOrParams.step
 		//REQUIRED: func
 
 		var
+		// count
+		count,
+
+		// start
+		start,
+
+		// end
+		end,
+
+		// limit
+		limit,
+
+		// step
+		step,
+
 		// extras
 		i;
 
-		for ( i = 0; i < parseInt(count, 10); i += 1) {
-			if (func(i) === false) {
-				return false;
+		// init maxOrParams.
+		if (CHECK_IS_DATA(countOrParams) !== true) {
+			count = countOrParams;
+		} else {
+			start = countOrParams.start;
+			end = countOrParams.end;
+			limit = countOrParams.limit;
+			step = countOrParams.step;
+		}
+
+		if (limit === undefined && end !== undefined) {
+			limit = end + 1;
+		}
+
+		if (step === undefined) {
+			step = 1;
+		}
+
+		// count mode
+		if (count !== undefined) {
+
+			for ( i = 0; i < parseInt(count, 10); i += 1) {
+				if (func(i) === false) {
+					return false;
+				}
+			}
+		}
+
+		// end mode
+		else if (end !== undefined && start > end) {
+
+			for ( i = start; i >= end; i -= step) {
+				if (func(i) === false) {
+					return false;
+				}
+			}
+
+		}
+
+		// limit mode
+		else {
+
+			for ( i = start; i < limit; i += step) {
+				if (func(i) === false) {
+					return false;
+				}
 			}
 		}
 

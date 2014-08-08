@@ -1,9 +1,10 @@
 /**
- * Delay class.
+ * Delay class
  */
 global.DELAY = DELAY = CLASS({
 
-	init : function(inner, self, seconds, func) {'use strict';
+	init : function(inner, self, seconds, func) {
+		'use strict';
 		//REQUIRED: seconds
 		//OPTIONAL: func
 

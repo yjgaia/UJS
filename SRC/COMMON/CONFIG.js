@@ -1,5 +1,4 @@
 /**
  * Configuration
  */
-global.CONFIG = CONFIG = {
-};
+global.CONFIG = CONFIG = {};

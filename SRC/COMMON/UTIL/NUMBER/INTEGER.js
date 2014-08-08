@@ -1,11 +1,12 @@
 /**
- * convert string to integer number.
+ * convert integer string to integer number.
  */
 global.INTEGER = INTEGER = METHOD({
 
-	run : function(str) {'use strict';
-		//OPTIONAL: str
+	run : function(integerString) {
+		'use strict';
+		//OPTIONAL: integerString
 
-		return str === undefined ? undefined : parseInt(str, 10);
+		return integerString === undefined ? undefined : parseInt(integerString, 10);
 	}
 });

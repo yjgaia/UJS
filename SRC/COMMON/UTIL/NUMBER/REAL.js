@@ -1,10 +1,10 @@
 /**
- * convert string to real number.
+ * convert real string to real number.
  */
 global.REAL = REAL = METHOD({
 
-	run : function(str) {'use strict';
-		//OPTIONAL: str
+	run : function(realString) {'use strict';
+		//OPTIONAL: realString
 
 		return str === undefined ? undefined : parseFloat(str);
 	}

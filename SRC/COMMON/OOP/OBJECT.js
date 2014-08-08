@@ -48,22 +48,27 @@ global.OBJECT = OBJECT = METHOD(function(m) {
 	addReadyObject = function(object) {
 		//REQUIRED: object
 
+		// when inited all
 		if (isInited === true) {
 			initObject(object);
-		} else {
+		}
+
+		// when not inited all
+		else {
 			readyObjects.push(object);
 		}
 	};
 
 	m.removeReadyObject = removeReadyObject = function(object) {
 		REMOVE({
-			data : readyObjects,
+			array : readyObjects,
 			value : object
 		});
 	};
 
 	m.initObjects = initObjects = function() {
 
+		// init all objects.
 		EACH(readyObjects, function(object) {
 			initObject(object);
 		});

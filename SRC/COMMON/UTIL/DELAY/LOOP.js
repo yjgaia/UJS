@@ -1,7 +1,8 @@
 /**
  * Loop class (for game etc.)
  */
-global.LOOP = LOOP = CLASS(function(cls) {'use strict';
+global.LOOP = LOOP = CLASS(function(cls) {
+	'use strict';
 
 	var
 	// before time
@@ -57,6 +58,7 @@ global.LOOP = LOOP = CLASS(function(cls) {'use strict';
 								loopInfo.countSigma = 0;
 							}
 
+							// calculate count.
 							count = parseInt(loopInfo.fps / (1000 / times) * (loopInfo.timeSigma / times + 1), 10) - loopInfo.countSigma;
 
 							// start.
@@ -107,12 +109,13 @@ global.LOOP = LOOP = CLASS(function(cls) {'use strict';
 
 	return {
 
-		init : function(inner, self, fps, funcs) {'use strict';
+		init : function(inner, self, fps, intervalOrFuncs) {
+			'use strict';
 			//OPTIONAL: fps
-			//OPTIONAL: funcs
-			//OPTIONAL: funcs.start
-			//REQUIRED: funcs.interval
-			//OPTIONAL: funcs.end
+			//OPTIONAL: intervalOrFuncs
+			//OPTIONAL: intervalOrFuncs.start
+			//REQUIRED: intervalOrFuncs.interval
+			//OPTIONAL: intervalOrFuncs.end
 
 			var
 			// run.
@@ -136,19 +139,16 @@ global.LOOP = LOOP = CLASS(function(cls) {'use strict';
 			// remove.
 			remove;
 
-			// when funcs exists
-			if (funcs !== undefined) {
+			// when intervalOrFuncs exists
+			if (intervalOrFuncs !== undefined) {
 
-				// when funcs is function set
-				if (CHECK_IS_DATA(funcs) === true) {
-					start = funcs.start;
-					interval = funcs.interval;
-					end = funcs.end;
-				}
-
-				// when funcs is interval
-				else {
-					interval = funcs;
+				// init intervalOrFuncs.
+				if (CHECK_IS_DATA(intervalOrFuncs) !== true) {
+					interval = intervalOrFuncs;
+				} else {
+					start = intervalOrFuncs.start;
+					interval = intervalOrFuncs.interval;
+					end = intervalOrFuncs.end;
 				}
 
 				loopInfos.push( info = {
@@ -167,7 +167,7 @@ global.LOOP = LOOP = CLASS(function(cls) {'use strict';
 				self.remove = remove = function() {
 
 					REMOVE({
-						data : loopInfos,
+						array : loopInfos,
 						value : info
 					});
 
@@ -183,7 +183,7 @@ global.LOOP = LOOP = CLASS(function(cls) {'use strict';
 				self.remove = remove = function() {
 
 					REMOVE({
-						data : runs,
+						array : runs,
 						value : run
 					});
 

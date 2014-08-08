@@ -1,5 +1,5 @@
 /**
- * Interval class.
+ * Interval class
  */
 global.INTERVAL = INTERVAL = CLASS({
 

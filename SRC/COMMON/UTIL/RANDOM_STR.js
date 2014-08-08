@@ -3,12 +3,13 @@
  */
 global.RANDOM_STR = RANDOM_STR = METHOD({
 
-	run : function(length) {'use strict';
+	run : function(length) {
+		'use strict';
 		//REQUIRED: length
 
 		var
-		// str
-		str = '',
+		// random string
+		randomString = '',
 
 		// characters
 		characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
@@ -16,13 +17,14 @@ global.RANDOM_STR = RANDOM_STR = METHOD({
 		// i
 		i;
 
-		for ( i = 0; i < length; i += 1) {
+		REPEAT(length, function() {
 
-			str += characters.charAt(RANDOM({
+			// add random character to random string.
+			randomString += characters.charAt(RANDOM({
 				limit : characters.length
 			}));
-		}
+		});
 
-		return str;
+		return randomString;
 	}
 });

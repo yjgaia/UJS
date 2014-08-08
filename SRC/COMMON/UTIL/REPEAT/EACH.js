@@ -3,8 +3,9 @@
  */
 global.EACH = EACH = METHOD({
 
-	run : function(data, func) {'use strict';
-		//OPTIONAL: data
+	run : function(dataOrArray, func) {
+		'use strict';
+		//OPTIONAL: dataOrArray
 		//REQUIRED: func
 
 		var
@@ -17,35 +18,38 @@ global.EACH = EACH = METHOD({
 		// extras
 		i;
 
-		if (data === undefined) {
+		// when dataOrArray is undefined
+		if (dataOrArray === undefined) {
 			return false;
 		}
 
-		// if array or arguments
-		if (CHECK_IS_ARRAY(data) === true || CHECK_IS_ARGUMENTS(data) === true) {
+		// when dataOrArray is data
+		else if (CHECK_IS_DATA(dataOrArray) === true) {
 
-			length = data.length;
+			for (name in dataOrArray) {
+				if (dataOrArray.hasOwnProperty(name) === true) {
+					if (func(dataOrArray[name], name) === false) {
+						return false;
+					}
+				}
+			}
+		}
+
+		// when dataOrArray is array or arguments
+		else if (CHECK_IS_ARRAY(dataOrArray) === true || CHECK_IS_ARGUMENTS(dataOrArray) === true) {
+
+			length = dataOrArray.length;
 
 			for ( i = 0; i < length; i += 1) {
 
-				if (func(data[i], i) === false) {
+				if (func(dataOrArray[i], i) === false) {
 					return false;
 				}
 
-				// if shrink
-				if (data.length === length - 1) {
+				// when shrink
+				if (dataOrArray.length === length - 1) {
 					i -= 1;
 					length -= 1;
-				}
-			}
-
-		} else {
-
-			for (name in data) {
-				if (data.hasOwnProperty(name) === true) {
-					if (func(data[name], name) === false) {
-						return false;
-					}
 				}
 			}
 		}

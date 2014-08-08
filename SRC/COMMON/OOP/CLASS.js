@@ -109,6 +109,7 @@ global.CLASS = CLASS = METHOD(function(m) {
 				// param value
 				paramValue;
 
+				// init params.
 				if (_params !== undefined) {
 
 					// when params is undefined
@@ -139,6 +140,7 @@ global.CLASS = CLASS = METHOD(function(m) {
 					}
 				}
 
+				// preset.
 				if (preset !== undefined) {
 
 					mom = preset(params, funcs);
@@ -159,6 +161,7 @@ global.CLASS = CLASS = METHOD(function(m) {
 					}
 				}
 
+				// init object.
 				if (init !== undefined) {
 					init(inner, self, paramValue === undefined ? params : paramValue, funcs);
 				}
@@ -190,10 +193,12 @@ global.CLASS = CLASS = METHOD(function(m) {
 				// mom
 				mom = cls.mom;
 
+				// run after init.
 				if (afterInit !== undefined) {
 					afterInit(inner, self, params, funcs);
 				}
 
+				// when mom exists, run mom's after init.
 				if (mom !== undefined) {
 
 					// when mom's type is CLASS

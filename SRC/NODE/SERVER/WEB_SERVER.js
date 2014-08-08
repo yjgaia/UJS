@@ -143,7 +143,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 				function(next) {
 
 					if (method === 'GET' || CHECK_IS_IN({
-						data : notParsingNativeReqURIs,
+						array : notParsingNativeReqURIs,
 						value : uri
 					}) === true) {
 						next();
@@ -268,7 +268,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 				}]);
 
 				if (CHECK_IS_IN({
-					data : notParsingNativeReqURIs,
+					array : notParsingNativeReqURIs,
 					value : uri
 				}) !== true) {
 

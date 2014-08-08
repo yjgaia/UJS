@@ -1,7 +1,8 @@
 /**
  * Create method.
  */
-global.METHOD = METHOD = function(define) {'use strict';
+global.METHOD = METHOD = function(define) {
+	'use strict';
 	//REQUIRED: define
 
 	var

@@ -146,7 +146,7 @@ global.TEXTAREA = TEXTAREA = CLASS({
 		}, function() {
 
 			REMOVE({
-				data : INPUT.getFocusingInputIds(),
+				array : INPUT.getFocusingInputIds(),
 				value : self.id
 			});
 		});
@@ -154,7 +154,7 @@ global.TEXTAREA = TEXTAREA = CLASS({
 		self.addRemoveHandler(function() {
 
 			REMOVE({
-				data : INPUT.getFocusingInputIds(),
+				array : INPUT.getFocusingInputIds(),
 				value : self.id
 			});
 		});

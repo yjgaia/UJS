@@ -1,5 +1,5 @@
 /**
- * init objects.
+ * init all objects.
  */
 global.INIT_OBJECTS = INIT_OBJECTS = METHOD({
 

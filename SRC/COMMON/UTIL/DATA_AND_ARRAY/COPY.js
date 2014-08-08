@@ -3,32 +3,33 @@
  */
 global.COPY = COPY = METHOD({
 
-	run : function(data) {'use strict';
-		//REQUIRED: data
+	run : function(dataOrArray) {
+		'use strict';
+		//REQUIRED: dataOrArray
 
 		var
 		// copy
 		copy;
 
-		// when data is data (JS object)
-		if (CHECK_IS_DATA(data) === true) {
+		// when dataOrArray is data (JS object)
+		if (CHECK_IS_DATA(dataOrArray) === true) {
 
 			copy = {};
 
 			EXTEND({
 				origin : copy,
-				extend : data
+				extend : dataOrArray
 			});
 		}
 
-		// when data is array
-		else if (CHECK_IS_ARRAY(data) === true) {
+		// when dataOrArray is array
+		else if (CHECK_IS_ARRAY(dataOrArray) === true) {
 
 			copy = [];
 
 			EXTEND({
 				origin : copy,
-				extend : data
+				extend : dataOrArray
 			});
 		}
 

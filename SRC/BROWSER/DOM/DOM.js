@@ -476,7 +476,7 @@ global.DOM = DOM = CLASS({
 				el.parentNode.removeChild(el);
 
 				REMOVE({
-					data : parentDom.getChildren(),
+					array : parentDom.getChildren(),
 					value : self
 				});
 				setParent(undefined);

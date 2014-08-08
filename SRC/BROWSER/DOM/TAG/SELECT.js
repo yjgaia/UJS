@@ -3,17 +3,20 @@
  */
 global.SELECT = SELECT = CLASS({
 
-	preset : function() {'use strict';
+	preset : function() {
+		'use strict';
 		return DOM;
 	},
 
-	params : function() {'use strict';
+	params : function() {
+		'use strict';
 		return {
 			tag : 'select'
 		};
 	},
 
-	init : function(inner, self, params) {'use strict';
+	init : function(inner, self, params) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.name
 		//OPTIONAL: params.value
@@ -135,7 +138,7 @@ global.SELECT = SELECT = CLASS({
 		}, function() {
 
 			REMOVE({
-				data : INPUT.getFocusingInputIds(),
+				array : INPUT.getFocusingInputIds(),
 				value : self.id
 			});
 		});
@@ -143,7 +146,7 @@ global.SELECT = SELECT = CLASS({
 		self.addRemoveHandler(function() {
 
 			REMOVE({
-				data : INPUT.getFocusingInputIds(),
+				array : INPUT.getFocusingInputIds(),
 				value : self.id
 			});
 		});

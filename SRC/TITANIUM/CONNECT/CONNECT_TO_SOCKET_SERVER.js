@@ -129,7 +129,7 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 					if (method !== undefined) {
 
 						REMOVE({
-							data : methods,
+							array : methods,
 							value : method
 						});
 

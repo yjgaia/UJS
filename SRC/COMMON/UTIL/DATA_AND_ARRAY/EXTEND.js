@@ -3,7 +3,8 @@
  */
 global.EXTEND = EXTEND = METHOD({
 
-	run : function(params) {'use strict';
+	run : function(params) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.origin
 		//REQUIRED: params.extend
@@ -15,7 +16,7 @@ global.EXTEND = EXTEND = METHOD({
 		// extend
 		extend = params.extend;
 
-		// when origin is data (JS object)
+		// when origin is data
 		if (CHECK_IS_DATA(origin) === true) {
 
 			EACH(extend, function(value, name) {

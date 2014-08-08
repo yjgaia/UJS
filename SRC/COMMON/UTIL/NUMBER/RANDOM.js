@@ -3,21 +3,35 @@
  */
 global.RANDOM = RANDOM = METHOD({
 
-	run : function(params) {'use strict';
-		//REQUIRED: params
-		//OPTIONAL: params.min
-		//OPTIONAL: params.max
-		//OPTIONAL: params.limit
+	run : function(maxOrParams) {
+		'use strict';
+		//REQUIRED: maxOrParams
+		//OPTIONAL: maxOrParams.min
+		//OPTIONAL: maxOrParams.max
+		//OPTIONAL: maxOrParams.limit
 
 		var
 		// min
-		min = params.min === undefined ? 0 : params.min,
+		min,
 
 		// max
-		max = params.max,
+		max,
 
 		// limit
-		limit = params.limit;
+		limit;
+
+		// init maxOrParams.
+		if (CHECK_IS_DATA(maxOrParams) !== true) {
+			max = maxOrParams;
+		} else {
+			min = maxOrParams.min;
+			max = maxOrParams.max;
+			limit = maxOrParams.limit;
+		}
+
+		if (min === undefined) {
+			min = 0;
+		}
 
 		if (limit !== undefined) {
 			max = limit - 1;

@@ -1,9 +1,10 @@
 /**
- * pack data.
+ * pack data with Date type.
  */
 global.PACK_DATA = PACK_DATA = METHOD({
 
-	run : function(data) {'use strict';
+	run : function(data) {
+		'use strict';
 		//REQUIRED: data
 
 		var
@@ -14,23 +15,29 @@ global.PACK_DATA = PACK_DATA = METHOD({
 		dateAttrNames = [];
 
 		EACH(result, function(value, name) {
+
+			// when value is Date type
 			if ( value instanceof Date === true) {
+
+				// change to timestamp integer.
 				result[name] = INTEGER(value.getTime());
 				dateAttrNames.push(name);
-			} else if (CHECK_IS_DATA(value) === true) {
+			}
+
+			// when value is data
+			else if (CHECK_IS_DATA(value) === true) {
 				result[name] = PACK_DATA(value);
-			} else if (CHECK_IS_ARRAY(value) === true) {
+			}
+
+			// when value is array
+			else if (CHECK_IS_ARRAY(value) === true) {
 
 				EACH(value, function(v, i) {
 
 					if (CHECK_IS_DATA(v) === true) {
 						value[i] = PACK_DATA(v);
-					} else {
-						// do nothing.
 					}
 				});
-			} else {
-				// do nothing.
 			}
 		});
 

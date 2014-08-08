@@ -3,7 +3,8 @@
  */
 global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 
-	run : function(port, connectionListener) {'use strict';
+	run : function(port, connectionListener) {
+		'use strict';
 		//REQUIRED: port
 		//REQUIRED: connectionListener
 
@@ -107,7 +108,14 @@ global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 
 			// when error
 			conn.on('error', function(error) {
-				runMethods('__ERROR', error);
+
+				var
+				// error msg
+				errorMsg = error.toString();
+
+				console.log('[UPPERCASE.JS-SOCEKT_SERVER] ERROR:', errorMsg);
+
+				runMethods('__ERROR', errorMsg);
 			});
 
 			connectionListener(
@@ -147,7 +155,7 @@ global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 					if (method !== undefined) {
 
 						REMOVE({
-							data : methods,
+							array : methods,
 							value : method
 						});
 

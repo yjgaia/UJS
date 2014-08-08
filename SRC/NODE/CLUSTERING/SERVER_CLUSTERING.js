@@ -84,7 +84,7 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {'use strict';
 						thisServerHosts.push(host);
 
 						if (CHECK_IS_IN({
-							data : hosts,
+							array : hosts,
 							value : host
 						}) === true) {
 
@@ -184,7 +184,7 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {'use strict';
 
 					socketServeOn('__DISCONNECTED', function() {
 						REMOVE({
-							data : socketServeOns,
+							array : socketServeOns,
 							value : socketServeOn
 						});
 					});

@@ -1,12 +1,13 @@
 /**
- * check is array.
+ * check it is array.
  */
 global.CHECK_IS_ARRAY = CHECK_IS_ARRAY = METHOD({
 
-	run : function(data) {'use strict';
-		//OPTIONAL: data
+	run : function(it) {
+		'use strict';
+		//OPTIONAL: it
 
-		if (data !== undefined && data !== TO_DELETE && typeof data === 'object' && Object.prototype.toString.call(data) === '[object Array]') {
+		if (it !== undefined && it !== TO_DELETE && typeof it === 'object' && Object.prototype.toString.call(it) === '[object Array]') {
 			return true;
 		}
 

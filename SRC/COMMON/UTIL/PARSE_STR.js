@@ -1,10 +1,11 @@
 /**
- * parse str.
+ * parse stringified object.
  */
 global.PARSE_STR = PARSE_STR = METHOD({
 
-	run : function(str) {'use strict';
-		//REQUIRED: str
+	run : function(objectString) {
+		'use strict';
+		//REQUIRED: objectString
 
 		var
 		// value
@@ -12,7 +13,7 @@ global.PARSE_STR = PARSE_STR = METHOD({
 
 		try {
 
-			value = JSON.parse(str);
+			value = JSON.parse(objectString);
 
 			return CHECK_IS_DATA(value) === true ? UNPACK_DATA(value) : value;
 

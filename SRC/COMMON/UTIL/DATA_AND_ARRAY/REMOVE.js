@@ -1,18 +1,27 @@
 /**
- * remove at some value in data.
+ * remove at name or key or some value in data or array.
  */
 global.REMOVE = REMOVE = METHOD({
 
-	run : function(paramsOrData, filter) {'use strict';
-		//REQUIRED: paramsOrData
-		//OPTIONAL: paramsOrData.data
-		//OPTIONAL: paramsOrData.key
-		//OPTIONAL: paramsOrData.value
+	run : function(dataOrArrayOrParams, filter) {
+		'use strict';
+		//REQUIRED: dataOrArrayOrParams
+		//OPTIONAL: dataOrArrayOrParams.data
+		//OPTIONAL: dataOrArrayOrParams.array
+		//OPTIONAL: dataOrArrayOrParams.name
+		//OPTIONAL: dataOrArrayOrParams.key
+		//OPTIONAL: dataOrArrayOrParams.value
 		//OPTIONAL: filter
 
 		var
 		// data
 		data,
+
+		// array
+		array,
+
+		// name
+		name,
 
 		// key
 		key,
@@ -23,52 +32,89 @@ global.REMOVE = REMOVE = METHOD({
 		// when filter exists
 		if (filter !== undefined) {
 
-			EACH(paramsOrData, function(value, key) {
+			// when dataOrArrayOrParams is data
+			if (CHECK_IS_DATA(dataOrArrayOrParams) === true) {
 
-				// remove value passed filter.
-				if (filter(value) === true) {
+				EACH(dataOrArrayOrParams, function(value, name) {
 
-					REMOVE({
-						data : paramsOrData,
-						key : key
-					});
-				}
-			});
-
-		} else {
-
-			// init properties.
-			data = paramsOrData.data;
-			key = paramsOrData.key;
-			value = paramsOrData.value;
-
-			// remove at {key}.
-			if (key !== undefined) {
-
-				// if array
-				if (CHECK_IS_ARRAY(data) === true) {
-					data.splice(key, 1);
-				}
-
-				// if data
-				else if (CHECK_IS_DATA(data) === true) {
-					delete data[key];
-				}
-			}
-
-			// remove {value}.
-			else {
-
-				EACH(data, function(_value, key) {
-
-					if (_value === value) {
+					// remove value passed filter.
+					if (filter(value) === true) {
 
 						REMOVE({
-							data : data,
+							data : dataOrArrayOrParams,
+							key : name
+						});
+					}
+				});
+			}
+
+			// when dataOrArrayOrParams is array
+			else if (CHECK_IS_ARRAY(dataOrArrayOrParams) === true) {
+
+				EACH(dataOrArrayOrParams, function(value, key) {
+
+					// remove value passed filter.
+					if (filter(value) === true) {
+
+						REMOVE({
+							data : dataOrArrayOrParams,
 							key : key
 						});
 					}
 				});
+			}
+		}
+
+		// when filter not exists
+		else {
+
+			// init properties.
+			data = dataOrArrayOrParams.data;
+			array = dataOrArrayOrParams.array;
+			name = dataOrArrayOrParams.name;
+			key = dataOrArrayOrParams.key;
+			value = dataOrArrayOrParams.value;
+
+			// remove at name.
+			if (name !== undefined) {
+				delete data[key];
+			}
+
+			// remove at key.
+			if (key !== undefined) {
+				array.splice(key, 1);
+			}
+
+			// remove value.
+			if (value !== undefined) {
+
+				if (data !== undefined) {
+
+					EACH(data, function(_value, name) {
+
+						if (_value === value) {
+
+							REMOVE({
+								data : data,
+								key : name
+							});
+						}
+					});
+				}
+
+				if (array !== undefined) {
+
+					EACH(data, function(_value, key) {
+
+						if (_value === value) {
+
+							REMOVE({
+								data : data,
+								key : key
+							});
+						}
+					});
+				}
 			}
 		}
 	}

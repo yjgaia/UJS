@@ -1,12 +1,12 @@
 /**
- * check is arguments.
+ * check it is arguments.
  */
 global.CHECK_IS_ARGUMENTS = CHECK_IS_ARGUMENTS = METHOD({
 
-	run : function(data) {'use strict';
-		//OPTIONAL: data
+	run : function(it) {'use strict';
+		//OPTIONAL: it
 
-		if (data !== undefined && data !== TO_DELETE && typeof data === 'object' && (Object.prototype.toString.call(data) === '[object Arguments]' || (data.callee !== undefined && typeof data.callee === 'function'))) {
+		if (it !== undefined && it !== TO_DELETE && typeof it === 'object' && (Object.prototype.toString.call(it) === '[object Arguments]' || (it.callee !== undefined && typeof it.callee === 'function'))) {
 			return true;
 		}
 

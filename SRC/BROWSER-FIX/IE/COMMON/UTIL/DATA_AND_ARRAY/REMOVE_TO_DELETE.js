@@ -1,31 +1,54 @@
-OVERRIDE(REMOVE_TO_DELETE, function(origin) {'use strict';
+OVERRIDE(REMOVE_TO_DELETE, function(origin) {
+	'use strict';
 
 	/**
 	 * Pack data. (fix for IE.)
 	 */
 	global.REMOVE_TO_DELETE = REMOVE_TO_DELETE = METHOD({
 
-		run : function(data) {
-			//REQUIRED: data
+		run : function(dataOrArray) {
+			//REQUIRED: dataOrArray
 
-			var f = function(data) {
+			var f = function(dataOrArray) {
 
-				EACH(data, function(value, key) {
+				// when dataOrArray is data
+				if (CHECK_IS_DATA(dataOrArray) === true) {
 
-					if (value === TO_DELETE) {
+					EACH(dataOrArray, function(value, name) {
 
-						REMOVE({
-							data : data,
-							key : key
-						});
+						if (value === TO_DELETE) {
 
-					} else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
-						f(value);
-					}
-				});
+							REMOVE({
+								data : dataOrArray,
+								name : name
+							});
+
+						} else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
+							f(value);
+						}
+					});
+				}
+
+				// when dataOrArray is array
+				else if (CHECK_IS_ARRAY(dataOrArray) === true) {
+
+					EACH(dataOrArray, function(value, key) {
+
+						if (value === TO_DELETE) {
+
+							REMOVE({
+								array : dataOrArray,
+								key : key
+							});
+
+						} else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
+							f(value);
+						}
+					});
+				}
 			};
 
-			return f(data);
+			return f(dataOrArray);
 		}
 	});
 });

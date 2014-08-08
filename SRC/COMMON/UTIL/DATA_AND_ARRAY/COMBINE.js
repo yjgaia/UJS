@@ -3,26 +3,27 @@
  */
 global.COMBINE = COMBINE = METHOD({
 
-	run : function(dataSet) {'use strict';
-		//REQUIRED: dataSet
+	run : function(dataSetOrArrays) {
+		'use strict';
+		//REQUIRED: dataSetOrArrays
 
 		var
-		// first data
-		firstData,
+		// first
+		first,
 
 		// result
 		result;
 
-		if (dataSet.length > 0) {
+		if (dataSetOrArrays.length > 0) {
 
-			firstData = dataSet[0];
+			first = dataSetOrArrays[0];
 
-			// when first data is data (JS object)
-			if (CHECK_IS_DATA(firstData) === true) {
+			// when first is data
+			if (CHECK_IS_DATA(first) === true) {
 
 				result = {};
 
-				EACH(dataSet, function(data) {
+				EACH(dataSetOrArrays, function(data) {
 					EXTEND({
 						origin : result,
 						extend : data
@@ -30,15 +31,15 @@ global.COMBINE = COMBINE = METHOD({
 				});
 			}
 
-			// when first data is array
-			else if (CHECK_IS_ARRAY(firstData) === true) {
+			// when first is array
+			else if (CHECK_IS_ARRAY(first) === true) {
 
 				result = [];
 
-				EACH(dataSet, function(data) {
+				EACH(dataSetOrArrays, function(array) {
 					EXTEND({
 						origin : result,
-						extend : data
+						extend : array
 					});
 				});
 			}

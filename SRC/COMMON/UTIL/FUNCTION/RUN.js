@@ -5,7 +5,8 @@
  */
 global.RUN = RUN = METHOD({
 
-	run : function(func) {'use strict';
+	run : function(func) {
+		'use strict';
 		//REQUIRED: func
 
 		var
