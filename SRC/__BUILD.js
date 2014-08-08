@@ -140,6 +140,7 @@ global.BUILD = function() {'use strict';
 
 	distFolder('NODE');
 	distFolder('PHANTOM');
+	distFolder('TITANIUM');
 
 	log('DONE.');
 };
