@@ -1,16 +1,6 @@
 # ![ScreenShot](https://raw.githubusercontent.com/UPPERCASEIO/UPPERCASE.JS/master/LOGO.png)
 UPPERCASE.JS is a JavaScript library, in which all APIs are written in uppercase. It can be used for various projects including [UPPERCASE.IO](http://UPPERCASE.IO).
 
-##### Supported System
-- node.js
-- Web Browsers
-- ActionScript 3
-- Titanium
-- Unity3d
-
-##### Version
-1.4.11
-
 ### To use it on node.js
 
 [![NPM](https://nodei.co/npm/uppercase.js.png)](https://nodei.co/npm/uppercase.js/)
@@ -115,6 +105,6 @@ http://UPPERCASE.IO/#UDOC/UPPERCASE.JS/PHANTOM
 
 License
 -------
-[MIT License](https://github.com/UPPERCASEIO/UPPERCASE.JS/blob/master/LICENSE)
+[MIT License](https://github.com/UPPERCASEIO/UPPERCASE.JS/blob/master/LICENSE.md)
 
 Author: Young Jae Sim (http://hanul.me)
