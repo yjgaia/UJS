@@ -1,20 +1,24 @@
-var
-// data
-data = {
-	a : 1,
-	b : 2,
-	c : 3
-},
+TEST('FIND', function(ok) {
+	'use strict';
 
-// array
-array = [3, 2, 1];
+	var
+	// data
+	data = {
+		a : 1,
+		b : 2,
+		c : 3
+	},
 
-console.log('find 1 in data:', FIND({
-	data : data,
-	value : 1
-}));
+	// array
+	array = [3, 2, 1];
 
-console.log('find 1 in array:', FIND({
-	array : array,
-	value : 1
-}));
+	ok(FIND({
+		data : data,
+		value : 1
+	}) === 'a');
+
+	ok(FIND({
+		array : array,
+		value : 1
+	}) === 2);
+});

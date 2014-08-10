@@ -1,1 +1,5 @@
-console.log(REAL('1.1') === 1.1);
+TEST('REAL', function(ok) {
+	'use strict';
+
+	ok(REAL('1.1') === 1.1);
+});

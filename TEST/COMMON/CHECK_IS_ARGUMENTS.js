@@ -1,26 +1,22 @@
-var
-// just value
-value = 1,
+TEST('CHECK_IS_ARGUMENTS', function(ok) {
+	'use strict';
 
-// data
-data = {
-	a : 1,
-	b : 2,
-	c : 3
-},
+	var
+	// just value
+	value = 1,
 
-// array
-array = [1, 2, 3],
+	// data
+	data = {
+		a : 1,
+		b : 2,
+		c : 3
+	},
 
-// function
-func;
+	// array
+	array = [1, 2, 3];
 
-console.log('value:', CHECK_IS_ARGUMENTS(value));
-console.log('data:', CHECK_IS_ARGUMENTS(data));
-console.log('array:', CHECK_IS_ARGUMENTS(array));
-
-func = function() {
-	console.log('arguments:', CHECK_IS_ARGUMENTS(arguments));
-};
-
-func();
+	ok(CHECK_IS_ARGUMENTS(value) === false);
+	ok(CHECK_IS_ARGUMENTS(data) === false);
+	ok(CHECK_IS_ARGUMENTS(array) === false);
+	ok(CHECK_IS_ARGUMENTS(arguments) === true);
+});

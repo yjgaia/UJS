@@ -1,36 +1,55 @@
-var
-// just value
-value = 1,
+TEST('EACH', function(ok) {
+	'use strict';
 
-// data
-data = {
-	a : 1,
-	b : 2,
-	c : 3
-},
+	var
+	// just value
+	value = 1,
 
-// array
-array = [1, 2, 3],
+	// data
+	data = {
+		a : 1,
+		b : 2,
+		c : 3
+	},
 
-// function
-func;
+	// array
+	array = [1, 2, 3],
 
-EACH(value, function(value, i) {
-	console.log('value each - ' + i + ': ' + value);
-});
+	// sum
+	sum = 0,
 
-EACH(data, function(value, name) {
-	console.log('data each - ' + name + ': ' + value);
-});
+	// function
+	func;
 
-EACH(array, function(value, i) {
-	console.log('array each - ' + i + ': ' + value);
-});
-
-func = function() {
-	EACH(arguments, function(value, i) {
-		console.log('arguments each - ' + i + ': ' + value);
+	EACH(value, function(value, i) {
+		console.log('value each - ' + i + ': ' + value);
+		sum += value;
 	});
-};
 
-func(3, 2, 1);
+	ok(sum === 0);
+
+	EACH(data, function(value, name) {
+		console.log('data each - ' + name + ': ' + value);
+		sum += value;
+	});
+
+	ok(sum === 6);
+
+	EACH(array, function(value, i) {
+		console.log('array each - ' + i + ': ' + value);
+		sum += value;
+	});
+
+	ok(sum === 12);
+
+	func = function() {
+		EACH(arguments, function(value, i) {
+			console.log('arguments each - ' + i + ': ' + value);
+			sum += value;
+		});
+	};
+
+	func(3, 2, 1);
+
+	ok(sum === 18);
+});

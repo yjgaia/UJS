@@ -1,6 +1,16 @@
-console.log('result:', RUN(function() {
+TEST('RUN', function(ok) {
+	'use strict';
 
-	console.log('just run!');
+	var
+	// result
+	result;
 
-	return 1;
-}));
+	result = RUN(function() {
+
+		console.log('just run!');
+
+		return 1;
+	});
+
+	ok(result === 1);
+});

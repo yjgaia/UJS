@@ -1,5 +1,9 @@
-var
-// empty data
-data = {};
+TEST('CHECK_IS_EMPTY_DATA', function(ok) {
+	'use strict';
 
-console.log(CHECK_IS_EMPTY_DATA(data));
+	var
+	// empty data
+	data = {};
+
+	ok(CHECK_IS_EMPTY_DATA(data) === true);
+});

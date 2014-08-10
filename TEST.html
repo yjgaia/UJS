@@ -21,138 +21,27 @@
 		</p>
 		<div>
 			<h3>COMMON</h3>
-			<button onclick="test('COMMON/TO_DELETE');">
-				TO_DELETE TEST
+			<button onclick="test('COMMON/CALENDAR');">
+				CALENDAR TEST
 			</button>
-			<div>
-				<h5>OOP</h5>
-				<button onclick="test('COMMON/METHOD');">
-					METHOD TEST
-				</button>
-				<button onclick="test('COMMON/CLASS');">
-					CLASS TEST
-				</button>
-				<button onclick="test('COMMON/OBJECT');">
-					OBJECT TEST
-				</button>
-			</div>
-			<div>
-				<h3>UTIL</h3>
-				<button onclick="test('COMMON/OVERRIDE');">
-					OVERRIDE TEST
-				</button>
-				<button onclick="test('COMMON/NEXT');">
-					NEXT TEST
-				</button>
-				<div>
-					<h5>NUMBER</h5>
-					<button onclick="test('COMMON/INTEGER');">
-						INTEGER TEST
-					</button>
-					<button onclick="test('COMMON/REAL');">
-						REAL TEST
-					</button>
-					<button onclick="test('COMMON/RANDOM');">
-						RANDOM TEST
-					</button>
-				</div>
-				<div>
-					<h5>DATE</h5>
-					<button onclick="test('COMMON/CALENDAR');">
-						CALENDAR TEST
-					</button>
-				</div>
-				<div>
-					<h5>DATA</h5>
-					<button onclick="test('COMMON/CHECK_IS_DATA');">
-						CHECK_IS_DATA TEST
-					</button>
-					<button onclick="test('COMMON/CHECK_IS_EMPTY_DATA');">
-						CHECK_IS_EMPTY_DATA TEST
-					</button>
-					<button onclick="test('COMMON/PACK_DATA');">
-						PACK_DATA TEST
-					</button>
-					<button onclick="test('COMMON/UNPACK_DATA');">
-						UNPACK_DATA TEST
-					</button>
-				</div>
-				<div>
-					<h5>ARRAY</h5>
-					<button onclick="test('COMMON/CHECK_IS_ARRAY');">
-						CHECK_IS_ARRAY TEST
-					</button>
-				</div>
-				<div>
-					<h5>DATA AND ARRAY</h5>
-					<button onclick="test('COMMON/COPY');">
-						COPY TEST
-					</button>
-					<button onclick="test('COMMON/EXTEND');">
-						EXTEND TEST
-					</button>
-					<button onclick="test('COMMON/COMBINE');">
-						COMBINE TEST
-					</button>
-					<button onclick="test('COMMON/FIND');">
-						FIND TEST
-					</button>
-					<button onclick="test('COMMON/REMOVE');">
-						REMOVE TEST
-					</button>
-					<button onclick="test('COMMON/REMOVE_TO_DELETE');">
-						REMOVE_TO_DELETE TEST
-					</button>
-				</div>
-				<div>
-					<h5>ARGUMENTS</h5>
-					<button onclick="test('COMMON/CHECK_IS_ARGUMENTS');">
-						CHECK_IS_ARGUMENTS TEST
-					</button>
-				</div>
-				<div>
-					<h5>FUNCTION</h5>
-					<button onclick="test('COMMON/RUN');">
-						RUN TEST
-					</button>
-					<button onclick="test('COMMON/RAR');">
-						RAR TEST
-					</button>
-				</div>
-				<div>
-					<h5>REPEAT</h5>
-					<button onclick="test('COMMON/REPEAT');">
-						REPEAT TEST
-					</button>
-					<button onclick="test('COMMON/EACH');">
-						EACH TEST
-					</button>
-				</div>
-				<div>
-					<h5>DELAY</h5>
-					<button onclick="test('COMMON/DELAY');">
-						DELAY TEST
-					</button>
-					<button onclick="test('COMMON/INTERVAL');">
-						INTERVAL TEST
-					</button>
-					<button onclick="test('COMMON/LOOP');">
-						LOOP TEST
-					</button>
-				</div>
-				<button onclick="test('COMMON/CHECK_ARE_SAME');">
-					CHECK_ARE_SAME TEST
-				</button>
-				<button onclick="test('COMMON/STRINGIFY');">
-					STRINGIFY TEST
-				</button>
-				<button onclick="test('COMMON/PARSE_STR');">
-					PARSE_STR TEST
-				</button>
-				<button onclick="test('COMMON/VALID');">
-					VALID TEST
-				</button>
-			</div>
+			<button onclick="test('COMMON/DELAY');">
+				DELAY TEST
+			</button>
+			<button onclick="test('COMMON/INTERVAL');">
+				INTERVAL TEST
+			</button>
+			<button onclick="test('COMMON/LOOP');">
+				LOOP TEST
+			</button>
+			<button onclick="test('COMMON/OVERRIDE');">
+				OVERRIDE TEST
+			</button>
+			<button onclick="test('COMMON/RANDOM');">
+				RANDOM TEST
+			</button>
+			<button onclick="test('COMMON/RAR');">
+				RAR TEST
+			</button>
 		</div>
 		<div>
 			<h3>BROWSER</h3>
@@ -365,7 +254,7 @@
 				UPPERCASE.JS TEST CASE by <a href="http://hanul.me" target="_blank">YOUNG JAE SIM</a> @ <a href="http://www.btncafe.com" target="_blank">BTNcafe Co</a>.
 			</div>
 			<div>
-				<a href="https://bitbucket.org/uppercaseio/uppercase.js" target="_blank">UPPERCASE.JS @ Bitbucket</a>
+				<a href="https://github.com/UPPERCASE-Series/UPPERCASE.JS" target="_blank">UPPERCASE.JS @ GitHub</a>
 			</div>
 		</footer>
 		<pre id="source"></pre>
@@ -383,17 +272,42 @@
 				INIT_OBJECTS();
 
 				var
-				// source element
-				sourceEl = document.getElementById('source');
+				// test.
+				test;
 
-				global.test = function(path) {
-					GET({
-						uri : 'TEST/' + path + '.js'
-					}, function(source) {
-						sourceEl.innerText = source;
-						eval(source);
-					});
+				global.test = test = function(path) {
+					LOAD('TEST/' + path + '.js');
 				};
+
+				console.log('[UPPERCASE.JS TEST START] BROWSER: ' + INFO.getBrowserInfo().name + ' ' + INFO.getBrowserInfo().version);
+
+				console.log('[COMMON TEST]');
+				test('COMMON/TO_DELETE');
+				test('COMMON/METHOD');
+				test('COMMON/CLASS');
+				test('COMMON/OBJECT');
+				test('COMMON/NEXT');
+				test('COMMON/INTEGER');
+				test('COMMON/REAL');
+				test('COMMON/CHECK_IS_DATA');
+				test('COMMON/CHECK_IS_EMPTY_DATA');
+				test('COMMON/PACK_DATA');
+				test('COMMON/UNPACK_DATA');
+				test('COMMON/CHECK_IS_ARRAY');
+				test('COMMON/COPY');
+				test('COMMON/EXTEND');
+				test('COMMON/COMBINE');
+				test('COMMON/FIND');
+				test('COMMON/REMOVE');
+				test('COMMON/REMOVE_TO_DELETE');
+				test('COMMON/CHECK_IS_ARGUMENTS');
+				test('COMMON/RUN');
+				test('COMMON/REPEAT');
+				test('COMMON/EACH');
+				test('COMMON/CHECK_ARE_SAME');
+				test('COMMON/STRINGIFY');
+				test('COMMON/PARSE_STR');
+				test('COMMON/VALID');
 			};
 		</script>
 	</body>

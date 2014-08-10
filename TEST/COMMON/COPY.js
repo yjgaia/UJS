@@ -1,29 +1,39 @@
-var
-// data
-data = {
-	a : 1,
-	b : ['a', 'b', 'c'],
-	c : {
+TEST('COPY', function(ok) {
+	'use strict';
+
+	var
+	// data
+	data = {
+		a : 1,
+		b : ['a', 'b', 'c'],
+		c : {
+			d : 1
+		}
+	},
+
+	// array
+	array = [1, ['a', 'b', 'c'], {
 		d : 1
-	}
-},
+	}],
 
-// array
-array = [1, ['a', 'b', 'c'], {
-	d : 1
-}],
+	// copy
+	copy = COPY(data);
 
-// copy
-copy = COPY(data);
+	copy.a = 2;
 
-copy.a = 2;
+	ok(CHECK_ARE_SAME([copy, {
+		a : 2,
+		b : ['a', 'b', 'c'],
+		c : {
+			d : 1
+		}
+	}]) === true);
 
-console.log('data:', data);
-console.log('copy:', copy);
+	copy = COPY(array);
 
-copy = COPY(array);
+	copy[0] = 2;
 
-copy[0] = 2;
-
-console.log('array:', array);
-console.log('copy:', copy);
+	ok(CHECK_ARE_SAME([copy, [2, ['a', 'b', 'c'], {
+		d : 1
+	}]]) === true);
+});

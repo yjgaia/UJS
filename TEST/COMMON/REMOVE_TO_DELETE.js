@@ -1,16 +1,25 @@
-var
-// data
-data = {
-	a : 1,
-	b : TO_DELETE,
-	c : 3
-},
+TEST('REMOVE_TO_DELETE', function(ok) {
+	'use strict';
 
-// array
-array = [3, TO_DELETE, 1];
+	var
+	// data
+	data = {
+		a : 1,
+		b : TO_DELETE,
+		c : 3
+	},
 
-REMOVE_TO_DELETE(data);
-console.log('data after remove TO_DELETE:', data);
+	// array
+	array = [3, TO_DELETE, 1];
 
-REMOVE_TO_DELETE(array);
-console.log('array after remove TO_DELETE:', array);
+	REMOVE_TO_DELETE(data);
+
+	ok(CHECK_ARE_SAME([data, {
+		a : 1,
+		c : 3
+	}]) === true);
+
+	REMOVE_TO_DELETE(array);
+
+	ok(CHECK_ARE_SAME([array, [3, 1]]) === true);
+});

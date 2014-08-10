@@ -1,15 +1,22 @@
-var
-// data
-data = {
-	a : 1,
-	b : 2,
-	c : 3
-};
+TEST('TO_DELETE', function(ok) {
+	'use strict';
 
-// b will be deleted.
-data.b = TO_DELETE;
+	var
+	// data
+	data = {
+		a : 1,
+		b : 2,
+		c : 3
+	};
 
-// delete b.
-delete data.b;
+	// b will be deleted.
+	data.b = TO_DELETE;
 
-console.log(data);
+	// delete b.
+	delete data.b;
+
+	ok(CHECK_ARE_SAME([data, {
+		a : 1,
+		c : 3
+	}]));
+});

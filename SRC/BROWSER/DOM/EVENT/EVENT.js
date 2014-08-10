@@ -85,26 +85,125 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				}
 			};
 
-			// tap event
+			// tap event (for remove click delay, simulate click event.)
 			if (name === 'tap') {
 
-				eventLow1 = EVENT_LOW({
-					node : node,
-					name : 'click'
-				}, func);
+				// if is touchable display.
+				if (INFO.checkIsTouchableDisplay() === true) {
 
-				self.remove = remove = function() {
+					eventLow1 = EVENT_LOW({
+						node : node,
+						name : 'touchstart'
+					}, function(e) {
 
-					eventLow1.remove();
+						if (e !== undefined) {
 
-					removeFromMap();
+							startLeft = e.getLeft();
+							startTop = e.getTop();
 
-					isRemoved = true;
-				};
+							e.stopBubbling();
+						}
+					});
 
-				self.fire = fire = function() {
-					eventLow1.fire();
-				};
+					eventLow2 = EVENT_LOW({
+						node : node,
+						name : 'touchend'
+					}, function(e, node) {
+
+						var
+						// left
+						left,
+
+						// top
+						top;
+
+						if (e !== undefined) {
+
+							left = e.getLeft();
+							top = e.getTop();
+
+							e.stopDefault();
+
+							if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
+								return func(e, node);
+							}
+						}
+					});
+
+					self.remove = remove = function() {
+
+						eventLow1.remove();
+						eventLow2.remove();
+
+						removeFromMap();
+
+						isRemoved = true;
+					};
+
+					self.fire = fire = function() {
+						eventLow1.fire();
+						eventLow2.fire();
+					};
+
+				}
+
+				// if is not touchable display.
+				else {
+
+					eventLow1 = EVENT_LOW({
+						node : node,
+						name : 'mousedown'
+					}, function(e) {
+
+						if (e !== undefined) {
+
+							startLeft = e.getLeft();
+							startTop = e.getTop();
+
+							e.stopBubbling();
+						}
+					});
+
+					eventLow2 = EVENT_LOW({
+						node : node,
+						name : 'mouseup'
+					}, function(e, node) {
+
+						var
+						// left
+						left,
+
+						// top
+						top;
+
+						if (e !== undefined) {
+
+							left = e.getLeft();
+							top = e.getTop();
+
+							e.stopDefault();
+
+							if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
+								return func(e, node);
+							}
+						}
+					});
+
+					self.remove = remove = function() {
+
+						eventLow1.remove();
+						eventLow2.remove();
+
+						removeFromMap();
+
+						isRemoved = true;
+					};
+
+					self.fire = fire = function() {
+						eventLow1.fire();
+						eventLow2.fire();
+					};
+				}
 			}
 
 			// double tap event (not exists, simulate.)

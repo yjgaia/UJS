@@ -1,15 +1,19 @@
-var
-// function
-func = function() {
-	console.log('a');
-};
+TEST('OVERRIDE', function(ok) {
+	'use strict';
 
-OVERRIDE(func, function(origin) {
-
+	var
+	// function
 	func = function() {
-		origin();
-		console.log('b');
+		console.log('a');
 	};
-});
 
-func();
+	OVERRIDE(func, function(origin) {
+
+		func = function() {
+			origin();
+			console.log('b');
+		};
+	});
+
+	func();
+});

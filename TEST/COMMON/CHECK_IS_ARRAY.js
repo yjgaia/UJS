@@ -1,26 +1,22 @@
-var
-// just value
-value = 1,
+TEST('CHECK_IS_ARRAY', function(ok) {
+	'use strict';
 
-// data
-data = {
-	a : 1,
-	b : 2,
-	c : 3
-},
+	var
+	// just value
+	value = 1,
 
-// array
-array = [1, 2, 3],
+	// data
+	data = {
+		a : 1,
+		b : 2,
+		c : 3
+	},
 
-// function
-func;
+	// array
+	array = [1, 2, 3];
 
-console.log('value:', CHECK_IS_ARRAY(value));
-console.log('data:', CHECK_IS_ARRAY(data));
-console.log('array:', CHECK_IS_ARRAY(array));
-
-func = function() {
-	console.log('arguments:', CHECK_IS_ARRAY(arguments));
-};
-
-func();
+	ok(CHECK_IS_ARRAY(value) === false);
+	ok(CHECK_IS_ARRAY(data) === false);
+	ok(CHECK_IS_ARRAY(array) === true);
+	ok(CHECK_IS_ARRAY(arguments) === false);
+});

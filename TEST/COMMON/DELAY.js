@@ -1,19 +1,23 @@
-var
-// delay
-delay;
+TEST('DELAY', function(ok) {
+	'use strict';
 
-DELAY(function() {
-	console.log('just delay!');
-});
+	var
+	// delay
+	delay;
 
-DELAY(2, function() {
-	console.log('delay 2 seconds!');
-});
+	DELAY(function() {
+		console.log('just delay!');
+	});
 
-delay = DELAY(3, function(delay) {
-	console.log('delay 3 seconds!');
-});
+	DELAY(2, function() {
+		console.log('delay 2 seconds!');
+	});
 
-DELAY(2, function() {
-	delay.remove();
+	delay = DELAY(3, function(delay) {
+		console.log('delay 3 seconds!');
+	});
+
+	DELAY(2, function() {
+		delay.remove();
+	});
 });

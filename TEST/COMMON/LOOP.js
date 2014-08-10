@@ -1,41 +1,45 @@
-var
-// loop
-loop,
+TEST('LOOP', function(ok) {
+	'use strict';
 
-// div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 100,
-		top : 100,
-		width : 100,
-		backgroundColor : 'red'
-	}
-}).appendTo(BODY),
+	var
+	// loop
+	loop,
 
-// height
-height = 0;
+	// div
+	div = DIV({
+		style : {
+			position : 'fixed',
+			left : 100,
+			top : 100,
+			width : 100,
+			backgroundColor : 'red'
+		}
+	}).appendTo(BODY),
 
-loop = LOOP(100, {
+	// height
+	height = 0;
 
-	start : function() {
-		// when start one cycle.
-	},
+	loop = LOOP(100, {
 
-	interval : function() {
-		div.addStyle({
-			height : height += 1
-		});
-	},
+		start : function() {
+			// when start one cycle.
+		},
 
-	end : function() {
-		// when end one cycle.
-	}
-});
+		interval : function() {
+			div.addStyle({
+				height : height += 1
+			});
+		},
 
-DELAY(3, function() {
+		end : function() {
+			// when end one cycle.
+		}
+	});
 
-	loop.remove();
+	DELAY(3, function() {
 
-	div.remove();
+		loop.remove();
+
+		div.remove();
+	});
 });

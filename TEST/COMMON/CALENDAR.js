@@ -1,14 +1,18 @@
-var
-// today calendar
-cal = CALENDAR(new Date());
+TEST('CALENDAR', function(ok) {
+	'use strict';
 
-console.log(cal.getYear());
-console.log(cal.getMonth());
-console.log(cal.getDate());
+	var
+	// today calendar
+	cal = CALENDAR(new Date());
 
-// 0 is sunday.
-console.log(cal.getDay());
+	console.log(cal.getYear());
+	console.log(cal.getMonth());
+	console.log(cal.getDate());
 
-console.log(cal.getHour());
-console.log(cal.getMinute());
-console.log(cal.getSecond());
+	// 0 is sunday.
+	console.log(cal.getDay());
+
+	console.log(cal.getHour());
+	console.log(cal.getMinute());
+	console.log(cal.getSecond());
+});

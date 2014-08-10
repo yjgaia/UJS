@@ -1,38 +1,42 @@
-var
-// data1
-data1 = {
-	a : 1,
-	b : 2,
-	c : [1, 2, 3]
-},
+TEST('CHECK_ARE_SAME', function(ok) {
+	'use strict';
 
-// data2
-data2 = {
-	a : 1,
-	b : 2,
-	c : [1, 2, 3]
-},
+	var
+	// data1
+	data1 = {
+		a : 1,
+		b : 2,
+		c : [1, 2, 3]
+	},
 
-// array1
-array1 = [1, 2, 3, 4, {
-	a : 1,
-	b : 2
-}, [5, 6]],
+	// data2
+	data2 = {
+		a : 1,
+		b : 2,
+		c : [1, 2, 3]
+	},
 
-// array2
-array2 = [1, 2, 3, 4, {
-	a : 1,
-	b : 2
-}, [5, 6]];
+	// array1
+	array1 = [1, 2, 3, 4, {
+		a : 1,
+		b : 2
+	}, [5, 6]],
 
-console.log(CHECK_ARE_SAME([data1, data2]));
+	// array2
+	array2 = [1, 2, 3, 4, {
+		a : 1,
+		b : 2
+	}, [5, 6]];
 
-data2.a = 0;
+	ok(CHECK_ARE_SAME([data1, data2]) === true);
 
-console.log(CHECK_ARE_SAME([data1, data2]));
+	data2.a = 0;
 
-console.log(CHECK_ARE_SAME([array1, array2]));
+	ok(CHECK_ARE_SAME([data1, data2]) === false);
 
-array2[0] = 0;
+	ok(CHECK_ARE_SAME([array1, array2]) === true);
 
-console.log(CHECK_ARE_SAME([array1, array2]));
+	array2[0] = 0;
+
+	ok(CHECK_ARE_SAME([array1, array2]) === false);
+});

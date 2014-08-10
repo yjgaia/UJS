@@ -1,34 +1,49 @@
-var
-// data1
-data1 = {
-	a : 1,
-	b : 2,
-	c : 3
-},
+TEST('COMBINE', function(ok) {
+	'use strict';
 
-// data2
-data2 = COMBINE([data1]),
+	var
+	// data1
+	data1 = {
+		a : 1,
+		b : 2,
+		c : 3
+	},
 
-// data3
-data3 = COMBINE([data1, {
-	d : 4
-}]),
+	// data2
+	data2 = COMBINE([data1]),
 
-// array1
-array1 = [1, 2, 3],
+	// data3
+	data3 = COMBINE([data1, {
+		d : 4
+	}]),
 
-// array2
-array2 = COMBINE([array1]),
+	// array1
+	array1 = [1, 2, 3],
 
-// array3
-array3 = COMBINE([array1, [5, 6]]);
+	// array2
+	array2 = COMBINE([array1]),
 
-data2.b = 4;
+	// array3
+	array3 = COMBINE([array1, [5, 6]]);
 
-console.log('data2:', data2);
-console.log('data3:', data3);
+	data2.b = 4;
 
-array2[1] = 4;
+	ok(CHECK_ARE_SAME([data2, {
+		a : 1,
+		b : 4,
+		c : 3
+	}]) === true);
 
-console.log('array2:', array2);
-console.log('array3:', array3);
+	ok(CHECK_ARE_SAME([data3, {
+		a : 1,
+		b : 2,
+		c : 3,
+		d : 4
+	}]) === true);
+
+	array2[1] = 4;
+
+	ok(CHECK_ARE_SAME([array2, [1, 4, 3]]) === true);
+
+	ok(CHECK_ARE_SAME([array3, [1, 2, 3, 5, 6]]) === true);
+});

@@ -1,1 +1,5 @@
-console.log(INTEGER('1') === 1);
+TEST('INTEGER', function(ok) {
+	'use strict';
+
+	ok(INTEGER('1') === 1);
+});

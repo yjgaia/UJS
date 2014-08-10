@@ -1,7 +1,11 @@
-var
-// function
-func = RAR(function() {
-	console.log('just run!');
-});
+TEST('RAR', function(ok) {
+	'use strict';
 
-func();
+	var
+	// function
+	func = RAR(function() {
+		console.log('just run!');
+	});
+
+	func();
+});

@@ -1,26 +1,26 @@
-var
-// data
-data,
+TEST('PARSE_STR', function(ok) {
+	'use strict';
 
-// data str
-dataStr,
+	var
+	// data
+	data,
 
-// parsed data
-parsedData;
+	// data str
+	dataStr,
 
-data = {
-	name : 'Yong Jae Sim',
-	age : 27,
-	country : 'Korea',
-	now : new Date()
-};
+	// parsed data
+	parsedData;
 
-dataStr = STRINGIFY(data);
+	data = {
+		name : 'Yong Jae Sim',
+		age : 27,
+		country : 'Korea',
+		now : new Date()
+	};
 
-parsedData = PARSE_STR(dataStr);
+	dataStr = STRINGIFY(data);
 
-console.log(data);
-console.log(dataStr);
-console.log(parsedData);
+	parsedData = PARSE_STR(dataStr);
 
-console.log(CHECK_ARE_SAME([data, parsedData]));
+	ok(CHECK_ARE_SAME([data, parsedData]) === true);
+});

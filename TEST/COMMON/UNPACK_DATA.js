@@ -1,26 +1,26 @@
-var
-// data
-data,
+TEST('UNPACK_DATA', function(ok) {
+	'use strict';
 
-// packed data
-packedData,
+	var
+	// data
+	data,
 
-// unpacked data
-unpackedData;
+	// packed data
+	packedData,
 
-data = {
-	now : new Date(),
-	o : {
-		d : new Date()
-	}
-};
+	// unpacked data
+	unpackedData;
 
-packedData = PACK_DATA(data);
+	data = {
+		now : new Date(),
+		o : {
+			d : new Date()
+		}
+	};
 
-unpackedData = UNPACK_DATA(packedData);
+	packedData = PACK_DATA(data);
 
-console.log(data);
-console.log(packedData);
-console.log(unpackedData);
+	unpackedData = UNPACK_DATA(packedData);
 
-console.log(CHECK_ARE_SAME([data, unpackedData]));
+	ok(CHECK_ARE_SAME([data, unpackedData]) === true);
+});
