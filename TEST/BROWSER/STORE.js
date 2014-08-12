@@ -1,16 +1,20 @@
-var
-// store
-store = STORE('testStore');
+TEST('STORE', function(ok) {
+	'use strict';
 
-console.log(store.get('msg'));
+	var
+	// store
+	store = STORE('TestStore');
 
-store.save({
-	key : 'msg',
-	value : 'This is test message!'
+	ok(store.get('msg') === undefined);
+
+	store.save({
+		name : 'msg',
+		value : 'This is test message!'
+	});
+
+	ok(store.get('msg') === 'This is test message!');
+
+	store.remove('msg');
+
+	ok(store.get('msg') === undefined);
 });
-
-console.log(store.get('msg'));
-
-store.remove('msg');
-
-console.log(store.get('msg'));

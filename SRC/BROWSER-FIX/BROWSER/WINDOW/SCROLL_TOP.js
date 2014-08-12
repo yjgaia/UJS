@@ -1,7 +1,8 @@
-OVERRIDE(SCROLL_TOP, function(origin) {'use strict';
+OVERRIDE(SCROLL_TOP, function(origin) {
+	'use strict';
 
 	/**
-	 * Get scroll top. (fix.)
+	 * Get scroll top. (fix)
 	 */
 	global.SCROLL_TOP = SCROLL_TOP = METHOD({
 

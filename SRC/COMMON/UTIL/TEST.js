@@ -40,9 +40,12 @@ global.TEST = TEST = METHOD(function(m) {
 					};
 
 					line = temp.__THROW_ERROR_$$$().stack;
-					line = line.substring(line.indexOf('__THROW_ERROR_$$$'));
-					line = line.split('\n')[2];
-					line = line.substring(line.indexOf('at '));
+
+					if (line !== undefined) {
+						line = line.substring(line.indexOf('__THROW_ERROR_$$$'));
+						line = line.split('\n')[2];
+						line = line.substring(line.indexOf('at '));
+					}
 
 					errorCount += 1;
 

@@ -1,5 +1,5 @@
 /**
- * Match view.
+ * match view.
  */
 global.MATCH_VIEW = MATCH_VIEW = METHOD({
 
@@ -28,12 +28,13 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 
 			var
 			// hash uri parts
-			hashURIParts,
+			hashURIParts = location.hash.substring(1).split('/'),
 
 			// is not found
-			isNotFound;
+			isNotFound,
 
-			hashURIParts = location.hash.substring(1).split('/');
+			// params
+			params = {};
 
 			if (location.hash === '#__REFRESING') {
 				isNotFound = true;
@@ -43,12 +44,9 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 
 					var
 					// uri parts
-					uriParts = uri.split('/'),
+					uriParts = uri.split('/');
 
-					// params
-					params = {};
-
-					if (EACH(hashURIParts, function(hashURIPart, i) {
+					return EACH(hashURIParts, function(hashURIPart, i) {
 
 						var
 						// uri part
@@ -63,6 +61,7 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 							return false;
 						}
 
+						// find params.
 						if (uriPart.charAt(0) === '{' && uriPart.charAt(uriPart.length - 1) === '}') {
 							params[uriPart.substring(1, uriPart.length - 1)] = hashURIPart;
 						} else if (uriParts[i] !== hashURIPart && uriPart !== '*') {
@@ -72,31 +71,34 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 						if (hashURIParts.length - 1 === i && uriParts.length - 1 > i && uriParts[uriParts.length - 1] !== '') {
 							return false;
 						}
-					}) === true) {
 
-						DELAY(function() {
-
-							if (view === undefined) {
-
-								view = target();
-								view.changeParams(params);
-								target.lastView = view;
-
-								preParams = params;
-
-							} else if (CHECK_ARE_SAME([preParams, params]) !== true) {
-
-								view.changeParams(params);
-								preParams = params;
-							}
-						});
-
-						return false;
-					}
+					}) !== true;
 				});
 			}
 
-			if (isNotFound === true && view !== undefined) {
+			// when view founded
+			if (isNotFound !== true) {
+
+				// when before view not exists, create view.
+				if (view === undefined) {
+
+					view = target();
+					view.changeParams(params);
+					target.lastView = view;
+
+					preParams = params;
+				}
+
+				// when before view exists, change params.
+				else if (CHECK_ARE_SAME([preParams, params]) !== true) {
+
+					view.changeParams(params);
+					preParams = params;
+				}
+			}
+
+			// when view not founded, close before view
+			else if (view !== undefined) {
 
 				view.close();
 

@@ -3,17 +3,22 @@
  */
 global.SCRIPT = SCRIPT = CLASS({
 
-	preset : function() {'use strict';
+	preset : function() {
+		'use strict';
+
 		return DOM;
 	},
 
-	params : function() {'use strict';
+	params : function() {
+		'use strict';
+
 		return {
 			tag : 'script'
 		};
 	},
 
-	init : function(inner, self, params) {'use strict';
+	init : function(inner, self, params) {
+		'use strict';
 		//REQUIRED: params
 		//OPTIONAL: params.src
 

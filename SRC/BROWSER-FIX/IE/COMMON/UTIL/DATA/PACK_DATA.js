@@ -1,7 +1,8 @@
-OVERRIDE(PACK_DATA, function(origin) {'use strict';
+OVERRIDE(PACK_DATA, function(origin) {
+	'use strict';
 
 	/**
-	 * Pack data. (fix for IE.)
+	 * Pack data. (fix for IE)
 	 */
 	global.PACK_DATA = PACK_DATA = METHOD({
 

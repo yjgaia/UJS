@@ -1,45 +1,59 @@
-/**
- * IE6 ~ IE8 need Flash Player.
- */
+TEST('EXPORT_IMG_TYPE', function(ok) {
+	'use strict';
 
-var
-// imgs
-img1, img2,
+	/**
+	 * IE6 ~ IE8 need Flash Player.
+	 */
 
-// test div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 40,
-		top : 40,
-		backgroundColor : 'red',
-		padding : 20,
-		margin : 0
+	var
+	// imgs
+	img1, img2,
+
+	// test div
+	div = DIV({
+		style : {
+			position : 'fixed',
+			left : 40,
+			top : 40,
+			backgroundColor : 'red',
+			padding : 20,
+			margin : 0
+		},
+		c : [
+
+		// img1
+		img1 = IMG({
+			src : 'TEST/BROWSER/GRAPHIC/tricoloring.png'
+		}), BR(),
+
+		// img2
+		img2 = IMG({
+			src : 'TEST/BROWSER/GRAPHIC/stonehenge.jpg'
+		})]
+	}).appendTo(BODY);
+
+	NEXT([
+	function(next) {
+
+		// export img1 type.
+		EXPORT_IMG_TYPE(img1, function(imgType) {
+
+			ok(imgType === 'png');
+
+			next();
+		});
 	},
-	c : [
 
-	// img1
-	img1 = IMG({
-		src : 'TEST/BROWSER/GRAPHIC/tricoloring.png'
-	}), BR(),
-	
-	// img2
-	img2 = IMG({
-		src : 'TEST/BROWSER/GRAPHIC/stonehenge.jpg'
-	})]
-}).appendTo(BODY);
+	function() {
+		return function() {
 
-// export img1 type.
-EXPORT_IMG_TYPE(img1, function(imgType) {
-	console.log(imgType);
-});
+			// export img2 type.
+			EXPORT_IMG_TYPE(img2, function(imgType) {
 
-// export img2 type.
-EXPORT_IMG_TYPE(img2, function(imgType) {
-	console.log(imgType);
-});
+				ok(imgType === 'jpeg');
 
-// remove div after 3 seconds.
-DELAY(3, function() {
-	div.remove();
+				div.remove();
+			});
+		};
+	}]);
 });

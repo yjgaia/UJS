@@ -1,72 +1,76 @@
-var
-// div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 50,
-		top : 50,
-		width : 100,
-		height : 100,
-		backgroundColor : 'red',
-		padding : 10
-	},
-	c : 'Tap(click) or Touch this!'
-}).appendTo(BODY);
+TEST('EVENT', function(ok) {
+	'use strict';
 
-// tap event
-EVENT({
-	node : div,
-	name : 'tap'
-}, function(e, div) {
+	var
+	// div
+	div = DIV({
+		style : {
+			position : 'fixed',
+			left : 50,
+			top : 50,
+			width : 100,
+			height : 100,
+			backgroundColor : 'red',
+			padding : 10
+		},
+		c : 'Tap(click) or Touch this!'
+	}).appendTo(BODY);
 
-	console.log('tap:', e.getLeft(), e.getTop());
+	// tap event
+	EVENT({
+		node : div,
+		name : 'tap'
+	}, function(e, div) {
 
-	// remove div after 1 second.
-	DELAY(1, function() {
-		div.remove();
+		console.log('tap:', e.getLeft(), e.getTop());
+
+		// remove div after 1 second.
+		DELAY(1, function() {
+			div.remove();
+		});
 	});
-});
 
-// touchstart event
-EVENT({
-	node : div,
-	name : 'touchstart'
-}, function(e) {
-	console.log('touchstart:', e.getLeft(), e.getTop());
-});
+	// touchstart event
+	EVENT({
+		node : div,
+		name : 'touchstart'
+	}, function(e) {
+		console.log('touchstart:', e.getLeft(), e.getTop());
+	});
 
-// touchmove event
-EVENT({
-	node : div,
-	name : 'touchmove'
-}, function(e) {
+	// touchmove event
+	EVENT({
+		node : div,
+		name : 'touchmove'
+	}, function(e) {
 
-	//console.log('touchmove:', e.getLeft(), e.getTop());
+		console.log('touchmove:', e.getLeft(), e.getTop());
 
-	// stop bubbling and browser default behavior.
-	e.stop();
-});
+		// stop bubbling and browser default behavior.
+		e.stop();
+	});
 
-// touchend event
-EVENT({
-	node : div,
-	name : 'touchend'
-}, function(e) {
-	console.log('touchend:', e.getLeft(), e.getTop());
-});
+	// touchend event
+	EVENT({
+		node : div,
+		name : 'touchend'
+	}, function(e) {
+		console.log('touchend:', e.getLeft(), e.getTop());
+	});
 
-// mouseover event
-EVENT({
-	node : div,
-	name : 'mouseover'
-}, function(e) {
-	console.log('mouseover:', e.getLeft(), e.getTop());
-});
+	// mouseover event
+	EVENT({
+		node : div,
+		name : 'mouseover'
+	}, function(e) {
+		console.log('mouseover:', e.getLeft(), e.getTop());
+	});
 
-// mouseout event
-EVENT({
-	node : div,
-	name : 'mouseout'
-}, function(e) {
-	console.log('mouseout:', e.getLeft(), e.getTop());
+	// mouseout event
+	EVENT({
+		node : div,
+		name : 'mouseout'
+	}, function(e) {
+		console.log('mouseout:', e.getLeft(), e.getTop());
+	});
 });

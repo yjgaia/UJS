@@ -3,12 +3,13 @@
  */
 global.STORE = STORE = CLASS({
 
-	init : function(inner, self, name) {'use strict';
-		//REQUIRED: name
+	init : function(inner, self, storeName) {
+		'use strict';
+		//REQUIRED: storeName
 
 		var
-		// gen full key.
-		genFullKey,
+		// gen full name.
+		genFullName,
 
 		// save.
 		save,
@@ -19,24 +20,24 @@ global.STORE = STORE = CLASS({
 		// remove.
 		remove;
 
-		inner.genFullKey = genFullKey = function(key) {
-			//REQUIRED: key
+		inner.genFullName = genFullName = function(name) {
+			//REQUIRED: name
 
-			return name + '.' + key;
+			return storeName + '.' + name;
 		};
 
 		self.save = save = function(params) {
 			//REQUIRED: params
-			//REQUIRED: params.key
+			//REQUIRED: params.name
 			//REQUIRED: params.value
 			//OPTIONAL: params.isToSession
 
 			var
-			// key
-			key = params.key,
+			// name
+			name = params.name,
 
-			// full key
-			fullKey = genFullKey(key),
+			// full name
+			fullName = genFullName(name),
 
 			// value
 			value = params.value,
@@ -44,25 +45,25 @@ global.STORE = STORE = CLASS({
 			// is to session
 			isToSession = params.isToSession;
 
-			sessionStorage.setItem(fullKey, STRINGIFY(value));
+			sessionStorage.setItem(fullName, STRINGIFY(value));
 
 			if (isToSession !== true) {
-				localStorage.setItem(fullKey, STRINGIFY(value));
+				localStorage.setItem(fullName, STRINGIFY(value));
 			}
 		};
 
-		self.get = get = function(key) {
-			//REQUIRED: key
+		self.get = get = function(name) {
+			//REQUIRED: name
 
 			var
-			// full key
-			fullKey = genFullKey(key),
+			// full name
+			fullName = genFullName(name),
 
 			// value
-			value = PARSE_STR(sessionStorage.getItem(fullKey));
+			value = PARSE_STR(sessionStorage.getItem(fullName));
 
 			if (value === undefined || value === TO_DELETE) {
-				value = PARSE_STR(localStorage.getItem(fullKey));
+				value = PARSE_STR(localStorage.getItem(fullName));
 
 				if (value === TO_DELETE) {
 					value = undefined;
@@ -72,15 +73,15 @@ global.STORE = STORE = CLASS({
 			return value;
 		};
 
-		self.remove = remove = function(key) {
-			//REQUIRED: key
+		self.remove = remove = function(name) {
+			//REQUIRED: name
 
 			var
-			// full key
-			fullKey = genFullKey(key);
+			// full name
+			fullName = genFullName(name);
 
-			sessionStorage.removeItem(fullKey);
-			localStorage.removeItem(fullKey);
+			sessionStorage.removeItem(fullName);
+			localStorage.removeItem(fullName);
 		};
 	}
 });

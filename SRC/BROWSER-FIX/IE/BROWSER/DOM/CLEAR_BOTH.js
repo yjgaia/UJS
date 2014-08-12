@@ -1,7 +1,8 @@
-OVERRIDE(CLEAR_BOTH, function(origin) {'use strict';
+OVERRIDE(CLEAR_BOTH, function(origin) {
+	'use strict';
 
 	/**
-	 * Create clear:both div. (fix for IE.)
+	 * Create clear:both div. (fix for IE)
 	 */
 	global.CLEAR_BOTH = CLEAR_BOTH = METHOD({
 

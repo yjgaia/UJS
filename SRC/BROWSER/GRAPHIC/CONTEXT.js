@@ -3,7 +3,8 @@
  */
 global.CONTEXT = CONTEXT = CLASS({
 
-	init : function(inner, self, canvas) {'use strict';
+	init : function(inner, self, canvas) {
+		'use strict';
 		//REQUIRED: canvas
 
 		var

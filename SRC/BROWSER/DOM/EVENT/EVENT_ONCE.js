@@ -4,6 +4,7 @@
 global.EVENT_ONCE = EVENT_ONCE = CLASS({
 
 	init : function(inner, self, params, func) {
+		'use strict';
 		//REQUIRED: params
 		//OPTIONAL: params.node
 		//REQUIRED: params.name

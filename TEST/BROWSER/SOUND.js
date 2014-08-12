@@ -1,46 +1,50 @@
-/**
- * IE6 ~ IE8 not supported.
- */
+TEST('SOUND', function(ok) {
+	'use strict';
 
-var
-// sound
-sound = SOUND({
-	mp3 : 'TEST/BROWSER/sound.mp3',
-	ogg : 'TEST/BROWSER/sound.ogg'
-}),
+	/**
+	 * IE6 ~ IE8 not supported.
+	 */
 
-// loop sound
-loopSound = SOUND({
-	mp3 : 'TEST/BROWSER/sound.mp3',
-	ogg : 'TEST/BROWSER/sound.ogg',
-	isLoop : true
-}),
+	var
+	// sound
+	sound = SOUND({
+		mp3 : 'TEST/BROWSER/sound.mp3',
+		ogg : 'TEST/BROWSER/sound.ogg'
+	}),
 
-// a
-a = A({
-	style : {
-		position : 'fixed',
-		left : 40,
-		top : 40,
-		backgroundColor : 'red',
-		padding : 20
-	},
-	c : 'Play Sound.',
-	on : {
-		tap : function() {
+	// loop sound
+	loopSound = SOUND({
+		mp3 : 'TEST/BROWSER/sound.mp3',
+		ogg : 'TEST/BROWSER/sound.ogg',
+		isLoop : true
+	}),
 
-			loopSound.play();
+	// a
+	a = A({
+		style : {
+			position : 'fixed',
+			left : 40,
+			top : 40,
+			backgroundColor : 'red',
+			padding : 20
+		},
+		c : 'Play Sound.',
+		on : {
+			tap : function() {
 
-			DELAY(3, function() {
-				loopSound.stop();
-			});
+				loopSound.play();
+
+				DELAY(3, function() {
+					loopSound.stop();
+				});
+			}
 		}
-	}
-}).appendTo(BODY);
+	}).appendTo(BODY);
 
-sound.play();
+	sound.play();
 
-// remove a after 5 seconds.
-DELAY(5, function() {
-	a.remove();
+	// remove a after 5 seconds.
+	DELAY(5, function() {
+		a.remove();
+	});
 });

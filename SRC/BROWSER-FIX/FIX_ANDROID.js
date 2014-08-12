@@ -1,7 +1,8 @@
 /**
  * Fix for Android Browser.
  */
-RUN(function() {'use strict';
+RUN(function() {
+	'use strict';
 
 	var
 	// load fix script.

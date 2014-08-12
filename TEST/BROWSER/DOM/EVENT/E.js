@@ -1,68 +1,72 @@
-var
-// input
-input,
+TEST('E', function(ok) {
+	'use strict';
 
-// div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 50,
-		top : 50,
-		width : 100,
-		height : 100,
-		backgroundColor : 'red'
-	},
-	c : ['Tap(click) or Touch this!', input = INPUT()]
-}).appendTo(BODY);
+	var
+	// input
+	input,
 
-// tap event
-EVENT({
-	node : div,
-	name : 'tap'
-}, function(e) {
+	// div
+	div = DIV({
+		style : {
+			position : 'fixed',
+			left : 50,
+			top : 50,
+			width : 100,
+			height : 100,
+			backgroundColor : 'red'
+		},
+		c : ['Tap(click) or Touch this!', input = INPUT()]
+	}).appendTo(BODY);
 
-	// get event position.
-	console.log('tap:', e.getLeft(), e.getTop());
+	// tap event
+	EVENT({
+		node : div,
+		name : 'tap'
+	}, function(e) {
 
-	div.remove();
-});
+		// get event position.
+		console.log('tap:', e.getLeft(), e.getTop());
 
-// tap event (stop bubbling.)
-EVENT({
-	node : input,
-	name : 'tap'
-}, function(e) {
+		div.remove();
+	});
 
-	// stop bubbling.
-	e.stopBubbling();
-});
+	// tap event (stop bubbling.)
+	EVENT({
+		node : input,
+		name : 'tap'
+	}, function(e) {
 
-// keydown event 1
-EVENT({
-	node : input,
-	name : 'keydown'
-}, function(e) {
+		// stop bubbling.
+		e.stopBubbling();
+	});
 
-	// stop browser default behavior.
-	e.stopDefault();
-});
+	// keydown event 1
+	EVENT({
+		node : input,
+		name : 'keydown'
+	}, function(e) {
 
-// keydown event 2
-EVENT({
-	node : input,
-	name : 'keydown'
-}, function(e) {
+		// stop browser default behavior.
+		e.stopDefault();
+	});
 
-	// e.stop() = e.stopBubbling() + e.stopDefault()
-	e.stop();
-});
+	// keydown event 2
+	EVENT({
+		node : input,
+		name : 'keydown'
+	}, function(e) {
 
-// keydown event 3
-EVENT({
-	node : input,
-	name : 'keydown'
-}, function(e) {
+		// e.stop() = e.stopBubbling() + e.stopDefault()
+		e.stop();
+	});
 
-	// get key code.
-	console.log('Key Code:', e.getKeyCode());
-});
+	// keydown event 3
+	EVENT({
+		node : input,
+		name : 'keydown'
+	}, function(e) {
+
+		// get key code.
+		console.log('Key Code:', e.getKeyCode());
+	});
+}); 

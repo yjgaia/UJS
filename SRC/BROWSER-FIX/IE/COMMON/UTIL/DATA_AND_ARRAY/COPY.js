@@ -1,7 +1,8 @@
-OVERRIDE(COPY, function(origin) {'use strict';
+OVERRIDE(COPY, function(origin) {
+	'use strict';
 
 	/**
-	 * copy data or array. (fix for IE.)
+	 * copy data or array. (fix for IE)
 	 */
 	global.COPY = COPY = METHOD({
 

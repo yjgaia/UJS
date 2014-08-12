@@ -1,7 +1,8 @@
-OVERRIDE(EXPORT_IMG_TYPE, function(origin) {'use strict';
+OVERRIDE(EXPORT_IMG_TYPE, function(origin) {
+	'use strict';
 
 	/**
-	 * export img type. (fix for IE.)
+	 * export img type. (fix for IE)
 	 */
 	global.EXPORT_IMG_TYPE = EXPORT_IMG_TYPE = METHOD({
 

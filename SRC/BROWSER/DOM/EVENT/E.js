@@ -3,7 +3,8 @@
  */
 global.E = E = CLASS({
 
-	init : function(inner, self, params) {'use strict';
+	init : function(inner, self, params) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.e
 		//REQUIRED: params.el

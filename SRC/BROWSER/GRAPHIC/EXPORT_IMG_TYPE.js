@@ -1,7 +1,8 @@
 /**
  * export img type.
  */
-global.EXPORT_IMG_TYPE = EXPORT_IMG_TYPE = METHOD(function(m) {'use strict';
+global.EXPORT_IMG_TYPE = EXPORT_IMG_TYPE = METHOD(function(m) {
+	'use strict';
 
 	var
 	// loaded img types

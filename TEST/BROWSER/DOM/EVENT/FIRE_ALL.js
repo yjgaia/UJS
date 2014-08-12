@@ -1,39 +1,43 @@
-var
-// div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 50,
-		top : 50,
-		width : 100,
-		height : 100,
-		backgroundColor : 'red',
-		padding : 10
-	},
-	c : 'Mouseover!'
-}).appendTo(BODY);
+TEST('FILE_ALL', function(ok) {
+	'use strict';
 
-// tap event
-EVENT({
-	node : div,
-	name : 'tap'
-}, function(e, div) {
+	var
+	// div
+	div = DIV({
+		style : {
+			position : 'fixed',
+			left : 50,
+			top : 50,
+			width : 100,
+			height : 100,
+			backgroundColor : 'red',
+			padding : 10
+		},
+		c : 'Mouseover!'
+	}).appendTo(BODY);
 
-	console.log('tapped!');
-
-	// remove div.
-	div.remove();
-});
-
-// mouseover event
-EVENT({
-	node : div,
-	name : 'mouseover'
-}, function(e) {
-
-	// fire tap event.
-	FIRE_ALL({
+	// tap event
+	EVENT({
 		node : div,
 		name : 'tap'
+	}, function(e, div) {
+
+		console.log('tapped!');
+
+		// remove div.
+		div.remove();
+	});
+
+	// mouseover event
+	EVENT({
+		node : div,
+		name : 'mouseover'
+	}, function(e) {
+
+		// fire tap event.
+		FIRE_ALL({
+			node : div,
+			name : 'tap'
+		});
 	});
 });

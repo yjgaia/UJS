@@ -1,76 +1,83 @@
-var
-// test view
-TestView = CLASS({
+TEST('VIEW', function(ok) {
+	'use strict';
 
-	preset : function() {'use strict';
-		return VIEW;
-	},
+	var
+	// test view
+	TestView = CLASS({
 
-	init : function(inner, self) {'use strict';
-
-		var
-		// on params change.
-		onParamsChange,
-
-		// close.
-		close;
-
-		// on view.
-		console.log('View Opened!');
-
-		self.onParamsChange = onParamsChange = function(params) {
-			// when change params.
-			console.log(params);
-		};
-
-		//OVERRIDE: self.close
-		self.close = close = function() {
-			// when close.
-			console.log('View Closed!');
-		};
-	}
-}),
-
-// test div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 40,
-		top : 40,
-		backgroundColor : 'red',
-		padding : 20,
-		margin : 0
-	},
-	c : [A({
-		style : {
-			textDecoration : 'underline'
+		preset : function() {
+			'use strict';
+			return VIEW;
 		},
-		c : 'test',
-		on : {
-			tap : function() {
-				GO('test');
-			}
+
+		init : function(inner, self) {
+			'use strict';
+
+			var
+			// change params.
+			changeParams,
+
+			// close.
+			close;
+
+			// on view.
+			console.log('View Opened!');
+
+			self.changeParams = changeParams = function(params) {
+
+				// when change params.
+				console.log(params);
+			};
+
+			//OVERRIDE: self.close
+			self.close = close = function() {
+				// when close.
+				console.log('View Closed!');
+			};
 		}
-	}), BR(), A({
+	}),
+
+	// test div
+	div = DIV({
 		style : {
-			textDecoration : 'underline'
+			position : 'fixed',
+			left : 40,
+			top : 40,
+			backgroundColor : 'red',
+			padding : 20,
+			margin : 0
 		},
-		c : 'test/1',
-		on : {
-			tap : function() {
-				GO('test/1');
+		c : [A({
+			style : {
+				textDecoration : 'underline'
+			},
+			c : 'view',
+			on : {
+				tap : function() {
+					GO('view');
+				}
 			}
-		}
-	})]
-}).appendTo(BODY);
+		}), BR(), A({
+			style : {
+				textDecoration : 'underline'
+			},
+			c : 'view/1',
+			on : {
+				tap : function() {
+					GO('view/1');
+				}
+			}
+		})]
+	}).appendTo(BODY);
 
-// match view.
-MATCH_VIEW({
-	uris : ['test', 'test/{id}'],
-	target : TestView
-});
+	// match view.
+	MATCH_VIEW({
+		uris : ['view', 'view/{id}'],
+		target : TestView
+	});
 
-// remove div after 5 seconds.
-DELAY(5, function() {
-	div.remove();
+	// remove div after 5 seconds.
+	DELAY(5, function() {
+		div.remove();
+	});
 });

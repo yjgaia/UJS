@@ -1,4 +1,5 @@
-OVERRIDE(TABLE, function(origin) {'use strict';
+OVERRIDE(TABLE, function(origin) {
+	'use strict';
 
 	/**
 	 * Table class (fix for IE<=7.)

@@ -3,7 +3,8 @@
  */
 global.EVENT_LOW = EVENT_LOW = CLASS({
 
-	init : function(inner, self, params, func) {'use strict';
+	init : function(inner, self, params, func) {
+		'use strict';
 		//REQUIRED: params
 		//OPTIONAL: params.node
 		//REQUIRED: params.name

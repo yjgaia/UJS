@@ -1,26 +1,30 @@
-var
-// test div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 40,
-		top : 40,
-		backgroundColor : 'red',
-		padding : 20,
-		margin : 0
-	},
-	c :
+TEST('IMG', function(ok) {
+	'use strict';
 
-	// image
-	IMG({
+	var
+	// test div
+	div = DIV({
 		style : {
-			width : 300
+			position : 'fixed',
+			left : 40,
+			top : 40,
+			backgroundColor : 'red',
+			padding : 20,
+			margin : 0
 		},
-		src : 'logo.png'
-	})
-}).appendTo(BODY);
+		c :
 
-// remove div after 3 seconds.
-DELAY(3, function() {
-	div.remove();
+		// image
+		IMG({
+			style : {
+				width : 300
+			},
+			src : 'TEST/test.png'
+		})
+	}).appendTo(BODY);
+
+	// remove div after 3 seconds.
+	DELAY(3, function() {
+		div.remove();
+	});
 });

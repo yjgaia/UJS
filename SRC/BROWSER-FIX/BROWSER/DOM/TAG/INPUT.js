@@ -1,7 +1,8 @@
-OVERRIDE(INPUT, function(origin) {'use strict';
+OVERRIDE(INPUT, function(origin) {
+	'use strict';
 
 	/**
-	 * Input class (fix.)
+	 * Input class (fix)
 	 */
 	global.INPUT = INPUT = CLASS(function(cls) {
 

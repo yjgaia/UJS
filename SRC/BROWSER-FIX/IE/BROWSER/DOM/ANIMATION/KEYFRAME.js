@@ -1,4 +1,5 @@
-OVERRIDE(KEYFRAMES, function(origin) {'use strict';
+OVERRIDE(KEYFRAMES, function(origin) {
+	'use strict';
 
 	/**
 	 * CSS3 animation keyframes class. (destory for IE.)

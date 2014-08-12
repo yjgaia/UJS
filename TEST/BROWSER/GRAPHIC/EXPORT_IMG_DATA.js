@@ -1,35 +1,39 @@
-/**
- * IE6 ~ IE8 need Flash Player.
- */
+TEST('EXPORT_IMG_DATA', function(ok) {
+	'use strict';
 
-var
-// img
-img,
+	/**
+	 * IE6 ~ IE8 need Flash Player.
+	 */
 
-// test div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 40,
-		top : 40,
-		backgroundColor : 'red',
-		padding : 20,
-		margin : 0
-	},
-	c : 
-
+	var
 	// img
-	img = IMG({
-		src : 'TEST/BROWSER/GRAPHIC/tricoloring.png'
-	})
-}).appendTo(BODY);
+	img,
 
-// export img data.
-EXPORT_IMG_DATA(img, function(imgData) {
-	console.log(imgData);
-});
+	// test div
+	div = DIV({
+		style : {
+			position : 'fixed',
+			left : 40,
+			top : 40,
+			backgroundColor : 'red',
+			padding : 20,
+			margin : 0
+		},
+		c :
 
-// remove div after 3 seconds.
-DELAY(3, function() {
-	div.remove();
+		// img
+		img = IMG({
+			src : 'TEST/test.png'
+		})
+	}).appendTo(BODY);
+
+	// export img data.
+	EXPORT_IMG_DATA(img, function(imgData) {
+		console.log(imgData);
+	});
+
+	// remove div after 3 seconds.
+	DELAY(3, function() {
+		div.remove();
+	});
 });

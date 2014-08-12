@@ -1,45 +1,49 @@
-var
-// animating div
-animatingDiv = DIV({
-	style : {
-		position : 'fixed',
-		left : 50,
-		top : 50,
-		width : 100,
-		height : 100,
-		backgroundColor : 'red',
-		padding : 10
-	},
-	c : 'Animating div.'
-}).appendTo(BODY);
+TEST('KEYFRAMES', function(ok) {
+	'use strict';
 
-// animate.
-ANIMATE({
-	node : animatingDiv,
-
-	// keyframes
-	// bounce bounce!
-	keyframes : KEYFRAMES({
-		from : {
-			marginLeft : 0,
-			marginTop : 0
+	var
+	// animating div
+	animatingDiv = DIV({
+		style : {
+			position : 'fixed',
+			left : 50,
+			top : 50,
+			width : 100,
+			height : 100,
+			backgroundColor : 'red',
+			padding : 10
 		},
-		'50%' : {
-			marginLeft : 100,
-			marginTop : 100
-		},
-		to : {
-			marginLeft : 0,
-			marginTop : 0
-		}
-	}),
+		c : 'Animating div.'
+	}).appendTo(BODY);
 
-	duration : 3
+	// animate.
+	ANIMATE({
+		node : animatingDiv,
 
-}, function() {
+		// keyframes
+		// bounce bounce!
+		keyframes : KEYFRAMES({
+			from : {
+				marginLeft : 0,
+				marginTop : 0
+			},
+			'50%' : {
+				marginLeft : 100,
+				marginTop : 100
+			},
+			to : {
+				marginLeft : 0,
+				marginTop : 0
+			}
+		}),
 
-	console.log('done!');
+		duration : 3
 
-	// remove div.
-	animatingDiv.remove();
+	}, function() {
+
+		console.log('done!');
+
+		// remove div.
+		animatingDiv.remove();
+	});
 });

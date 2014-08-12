@@ -1,7 +1,8 @@
-OVERRIDE(ADD_STYLE, function(origin) {'use strict';
+OVERRIDE(ADD_STYLE, function(origin) {
+	'use strict';
 
 	/**
-	 * Add style. (fix for IE.)
+	 * Add style. (fix for IE)
 	 */
 	global.ADD_STYLE = ADD_STYLE = METHOD({
 
@@ -47,7 +48,7 @@ OVERRIDE(ADD_STYLE, function(origin) {'use strict';
 							el.style.styleFloat = value;
 						}
 
-						// fix background PNG image.
+						// fix IE PNG transparent background bug.
 						else if ((name === 'backgroundImage' || (name === 'background' && value.length >= 7 && value.substring(0, 4) === 'url(')) &&
 
 						// when IE <= 6

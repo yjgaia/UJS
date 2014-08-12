@@ -3,7 +3,8 @@
  */
 global.FIRE_ALL = FIRE_ALL = METHOD({
 
-	run : function(params) {'use strict';
+	run : function(params) {
+		'use strict';
 		//REQUIRED: params
 		//OPTIONAL: params.node
 		//REQUIRED: params.name

@@ -3,7 +3,8 @@
  */
 global.REQUEST = REQUEST = METHOD({
 
-	run : function(params, responseListenerOrListeners) {'use strict';
+	run : function(params, responseListenerOrListeners) {
+		'use strict';
 		//REQUIRED: params
 		//OPTIONAL: params.host
 		//OPTIONAL: params.port

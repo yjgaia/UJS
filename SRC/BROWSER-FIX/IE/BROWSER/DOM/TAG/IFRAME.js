@@ -1,7 +1,8 @@
-OVERRIDE(IFRAME, function(origin) {'use strict';
+OVERRIDE(IFRAME, function(origin) {
+	'use strict';
 
 	/**
-	 * Iframe class. (fix for IE.)
+	 * Iframe class. (fix for IE)
 	 */
 	global.IFRAME = IFRAME = CLASS({
 
@@ -31,6 +32,7 @@ OVERRIDE(IFRAME, function(origin) {'use strict';
 			if (IE.version <= 7) {
 
 				if (name !== undefined) {
+
 					inner.setEl(document.createElement('<iframe name="' + name + '" />'));
 
 					inner.setAttr({
@@ -54,6 +56,7 @@ OVERRIDE(IFRAME, function(origin) {'use strict';
 				self.setSrc = setSrc = function(src) {
 					//REQUIRED: src
 
+					// go redirect page.
 					origin(BROWSER_CONFIG.fixScriptsFolderPath + '/IE/BROWSER/DOM/TAG/IFRAME_FIX_REDIRECT.html?' + encodeURIComponent(src));
 				};
 			});

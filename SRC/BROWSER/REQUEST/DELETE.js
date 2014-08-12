@@ -3,7 +3,8 @@
  */
 global.DELETE = DELETE = METHOD({
 
-	run : function(uriOrParams, responseListenerOrListeners) {'use strict';
+	run : function(uriOrParams, responseListenerOrListeners) {
+		'use strict';
 		//REQUIRED: uriOrParams
 		//OPTIONAL: uriOrParams.host
 		//OPTIONAL: uriOrParams.port

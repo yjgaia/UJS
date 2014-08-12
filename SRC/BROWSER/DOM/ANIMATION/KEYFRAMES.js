@@ -3,7 +3,8 @@
  */
 global.KEYFRAMES = KEYFRAMES = CLASS({
 
-	init : function(inner, self, keyframes) {'use strict';
+	init : function(inner, self, keyframes) {
+		'use strict';
 		//REQUIRED: keyframes
 
 		var
@@ -71,6 +72,7 @@ global.KEYFRAMES = KEYFRAMES = CLASS({
 		rulesStr += '@-ms-keyframes ' + name + '{' + str + '}';
 		rulesStr += '@keyframes ' + name + '{' + str + '}';
 
+		// create style element.
 		styleEl = document.createElement('style');
 		styleEl.type = 'text/css';
 		styleEl.appendChild(document.createTextNode(rulesStr));

@@ -1,25 +1,29 @@
-var
-// test div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 40,
-		top : 40,
-		backgroundColor : 'red',
-		padding : 20,
-		margin : 0
-	},
-	c :
+TEST('A', function(ok) {
+	'use strict';
 
-	// link
-	A({
-		href : 'http://www.btncafe.com',
-		target : '_blank',
-		c : 'http://www.btncafe.com'
-	})
-}).appendTo(BODY);
+	var
+	// test div
+	div = DIV({
+		style : {
+			position : 'fixed',
+			left : 40,
+			top : 40,
+			backgroundColor : 'red',
+			padding : 20,
+			margin : 0
+		},
+		c :
 
-// remove div after 3 seconds.
-DELAY(3, function() {
-	div.remove();
+		// link
+		A({
+			href : 'http://www.btncafe.com',
+			target : '_blank',
+			c : 'http://www.btncafe.com'
+		})
+	}).appendTo(BODY);
+
+	// remove div after 3 seconds.
+	DELAY(3, function() {
+		div.remove();
+	});
 });

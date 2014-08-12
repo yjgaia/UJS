@@ -3,11 +3,15 @@
  */
 global.LI = LI = CLASS({
 
-	preset : function() {'use strict';
+	preset : function() {
+		'use strict';
+
 		return DOM;
 	},
 
-	params : function() {'use strict';
+	params : function() {
+		'use strict';
+
 		return {
 			tag : 'li'
 		};

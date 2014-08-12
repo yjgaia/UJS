@@ -1,7 +1,8 @@
-OVERRIDE(EVENT_LOW, function(origin) {'use strict';
+OVERRIDE(EVENT_LOW, function(origin) {
+	'use strict';
 
 	/**
-	 * Low event class (fix.)
+	 * Low event class (fix)
 	 */
 	global.EVENT_LOW = EVENT_LOW = CLASS({
 
@@ -35,7 +36,7 @@ OVERRIDE(EVENT_LOW, function(origin) {'use strict';
 			// remove.
 			remove;
 
-			// hashchange bug fix.
+			// fix hashchange.
 			if (name === 'hashchange' && global.onhashchange === undefined) {
 
 				hash = location.hash;

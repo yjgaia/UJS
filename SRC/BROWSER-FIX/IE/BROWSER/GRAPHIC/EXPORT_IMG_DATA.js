@@ -1,7 +1,8 @@
-OVERRIDE(EXPORT_IMG_DATA, function(origin) {'use strict';
+OVERRIDE(EXPORT_IMG_DATA, function(origin) {
+	'use strict';
 
 	/**
-	 * export img data. (fix for IE.)
+	 * export img data. (fix for IE)
 	 */
 	global.EXPORT_IMG_DATA = EXPORT_IMG_DATA = METHOD(function(m) {
 
@@ -95,19 +96,24 @@ OVERRIDE(EXPORT_IMG_DATA, function(origin) {'use strict';
 						// wait draw img.
 						DELAY(0.5, function() {
 
-							// get img data.
-							imgData = context.getImgData();
+							if (BROWSER_CONFIG.isUsingFlashCanvasPro !== true) {
+								console.log('[UPPERCASE.JS-EXPORT_IMG_DATA] ERROR: You can use this method if you use FlashCanvas Pro.');
+							} else {
 
-							// cache.
-							exportedImgDataSet[uri] = imgData;
+								// get img data.
+								imgData = context.getImgData();
 
-							// run callbacks.
-							EACH(exportingCallbacks, function(callback) {
-								callback(imgData);
-							});
+								// cache.
+								exportedImgDataSet[uri] = imgData;
 
-							// clear cache for memory.
-							delete exportingCallbackMap[uri];
+								// run callbacks.
+								EACH(exportingCallbacks, function(callback) {
+									callback(imgData);
+								});
+
+								// clear cache for memory.
+								delete exportingCallbackMap[uri];
+							}
 						});
 					});
 				}

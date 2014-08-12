@@ -1,9 +1,10 @@
 /**
- * Browser informations object
+ * Browser information object
  */
 global.INFO = INFO = OBJECT({
 
-	init : function(inner, self) {'use strict';
+	init : function(inner, self) {
+		'use strict';
 
 		var
 		// browser info

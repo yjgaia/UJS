@@ -3,7 +3,8 @@
  */
 global.TITLE = TITLE = METHOD({
 
-	run : function(title) {'use strict';
+	run : function(title) {
+		'use strict';
 		//REQUIRED: title
 
 		document.title = title;

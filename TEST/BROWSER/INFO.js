@@ -1,14 +1,22 @@
-// get browser language.
-console.log(INFO.getLang());
+TEST('INFO', function(ok) {
+	'use strict';
 
-// change browser language.
-// INFO.changeLang('ko');
+	var
+	// now lang
+	nowLang = INFO.getLang();
 
-// check is hd display.
-console.log(INFO.checkIsHDDisplay());
+	// get browser language.
+	console.log(nowLang);
 
-// check is touchable display.
-console.log(INFO.checkIsTouchableDisplay());
+	// change browser language.
+	//INFO.changeLang('ko');
 
-// get browser info.
-console.log(INFO.getBrowserInfo());
+	// check is hd display.
+	console.log(INFO.checkIsHDDisplay());
+
+	// check is touchable display.
+	console.log(INFO.checkIsTouchableDisplay());
+
+	// get browser info.
+	console.log(INFO.getBrowserInfo());
+});

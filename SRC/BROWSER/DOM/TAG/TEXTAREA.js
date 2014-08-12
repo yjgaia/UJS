@@ -3,17 +3,22 @@
  */
 global.TEXTAREA = TEXTAREA = CLASS({
 
-	preset : function() {'use strict';
+	preset : function() {
+		'use strict';
+
 		return DOM;
 	},
 
-	params : function() {'use strict';
+	params : function() {
+		'use strict';
+
 		return {
 			tag : 'textarea'
 		};
 	},
 
-	init : function(inner, self, params) {'use strict';
+	init : function(inner, self, params) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.name
 		//OPTIONAL: params.placeholder

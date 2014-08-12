@@ -3,7 +3,8 @@
  */
 global.EMPTY_E = EMPTY_E = CLASS({
 
-	init : function(inner, self) {'use strict';
+	init : function(inner, self) {
+		'use strict';
 
 		var
 		// stop default.

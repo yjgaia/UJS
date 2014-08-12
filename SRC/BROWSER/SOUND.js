@@ -1,7 +1,8 @@
 /**
  * Play sound.
  */
-global.SOUND = SOUND = CLASS(function(cls) {'use strict';
+global.SOUND = SOUND = CLASS(function(cls) {
+	'use strict';
 
 	var
 	// Audio Context
@@ -136,6 +137,8 @@ global.SOUND = SOUND = CLASS(function(cls) {'use strict';
 				audio.src = src;
 
 				if (isLoop === true) {
+
+					// when audio ended, play again.
 					audio.addEventListener('ended', function() {
 						this.currentTime = 0;
 						this.play();

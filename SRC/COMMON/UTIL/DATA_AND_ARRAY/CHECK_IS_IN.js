@@ -22,7 +22,7 @@ global.CHECK_IS_IN = CHECK_IS_IN = METHOD({
 
 		if (data !== undefined) {
 			return EACH(data, function(_value, name) {
-				if (_value === value) {
+				if (CHECK_ARE_SAME([_value, value]) === true) {
 					return false;
 				}
 			}) !== true;
@@ -30,7 +30,7 @@ global.CHECK_IS_IN = CHECK_IS_IN = METHOD({
 
 		if (array !== undefined) {
 			return EACH(data, function(_value, key) {
-				if (_value === value) {
+				if (CHECK_ARE_SAME([_value, value]) === true) {
 					return false;
 				}
 			}) !== true;

@@ -3,17 +3,21 @@
  */
 global.DOM = DOM = CLASS({
 
-	preset : function() {'use strict';
+	preset : function() {
+		'use strict';
+
 		return NODE;
 	},
 
-	init : function(inner, self, params) {'use strict';
+	init : function(inner, self, params) {
+		'use strict';
 		//REQUIRED: params
 		//OPTIONAL: params.tag
 		//OPTIONAL: params.style
 		//OPTIONAL: params.c
 		//OPTIONAL: params.on
 		//OPTIONAL: params.__TEXT
+		//OPTIONAL: params.el
 
 		var
 		// tag
@@ -32,7 +36,7 @@ global.DOM = DOM = CLASS({
 		__TEXT = params.__TEXT,
 
 		// HTML Element
-		el,
+		el = params.el,
 
 		// waiting after nodes
 		waitingAfterNodes,
@@ -148,12 +152,24 @@ global.DOM = DOM = CLASS({
 		// check is showing.
 		checkIsShowing;
 
-		if (tag === 'body') {
-			el = document.body;
-		} else if (tag === '__STRING') {
-			el = document.createTextNode(__TEXT);
-		} else {
-			el = document.createElement(tag);
+		// when tag is not undefined
+		if (tag !== undefined) {
+
+			if (tag === 'body') {
+				el = document.body;
+			} else if (tag === '__STRING') {
+				el = document.createTextNode(__TEXT);
+			} else {
+				el = document.createElement(tag);
+			}
+		}
+
+		// when tag is undefined, el is not undefined
+		else if (el.parentNode !== TO_DELETE) {
+
+			parentDom = DOM({
+				el : el.parentNode
+			});
 		}
 
 		self.getEl = getEl = function() {
@@ -234,10 +250,10 @@ global.DOM = DOM = CLASS({
 			if (CHECK_IS_DATA(node) === true) {
 
 				el.appendChild(node.getDom().getEl());
-				
+
 				childDoms.push(node.getDom());
 				node.setParent(self);
-				
+
 				node.getDom().runShowHandlers();
 
 			} else if (tag === 'textarea') {
@@ -297,7 +313,7 @@ global.DOM = DOM = CLASS({
 
 				childDoms.push(node.getDom());
 				node.setParent(self);
-				
+
 				node.getDom().runShowHandlers();
 
 			} else if (tag === 'textarea') {

@@ -1,23 +1,27 @@
-var
-// test div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 40,
-		top : 40,
-		backgroundColor : 'red',
-		padding : 20,
-		margin : 0
-	},
-	c :
+TEST('P', function(ok) {
+	'use strict';
 
-	// paragraph
-	P({
-		c : 'This is paragraph.'
-	})
-}).appendTo(BODY);
+	var
+	// test div
+	div = DIV({
+		style : {
+			position : 'fixed',
+			left : 40,
+			top : 40,
+			backgroundColor : 'red',
+			padding : 20,
+			margin : 0
+		},
+		c :
 
-// remove div after 3 seconds.
-DELAY(3, function() {
-	div.remove();
+		// paragraph
+		P({
+			c : 'This is paragraph.'
+		})
+	}).appendTo(BODY);
+
+	// remove div after 3 seconds.
+	DELAY(3, function() {
+		div.remove();
+	});
 });

@@ -3,7 +3,8 @@
  */
 global.X2 = X2 = OBJECT({
 
-	init : function(inner, self) {'use strict';
+	init : function(inner, self) {
+		'use strict';
 
 		var
 		// X2 img data set

@@ -1,7 +1,8 @@
 /**
  * Fix for Internet Explorer.
  */
-RUN(function() {'use strict';
+RUN(function() {
+	'use strict';
 
 	var
 	// load fix script.
@@ -75,11 +76,6 @@ RUN(function() {'use strict';
 	// fix WIN_HEIGHT.
 	if (global.innerHeight === undefined) {
 		loadFixScript('BROWSER/WINDOW/WIN_HEIGHT');
-	}
-
-	// fix CLOSE_WIN.
-	if (IE.version <= 7) {
-		loadFixScript('BROWSER/WINDOW/CLOSE_WIN');
 	}
 
 	/**

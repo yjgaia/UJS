@@ -26,6 +26,8 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 	},
 
 	function() {
+
+		// check is support fixed.
 		return function() {
 
 			var

@@ -1,7 +1,8 @@
-OVERRIDE(IMG, function(origin) {'use strict';
+OVERRIDE(IMG, function(origin) {
+	'use strict';
 
 	/**
-	 * Img class (fix for IE.)
+	 * Img class (fix for IE)
 	 */
 	global.IMG = IMG = CLASS({
 
@@ -16,11 +17,13 @@ OVERRIDE(IMG, function(origin) {'use strict';
 			setSrc;
 
 			if (IE.version <= 8) {
+
 				if (self.getStyle('width') === undefined && self.getStyle('height') !== undefined) {
 					self.addStyle({
 						width : 'auto'
 					});
 				}
+
 				if (self.getStyle('width') !== undefined && self.getStyle('height') === undefined) {
 					self.addStyle({
 						height : 'auto'
@@ -44,6 +47,8 @@ OVERRIDE(IMG, function(origin) {'use strict';
 			}
 
 			if (IE.version <= 6 && self.getSrc().indexOf('.gif') === -1) {
+
+				// fix IE PNG transparent background bug.
 				ADD_STYLE({
 					node : self,
 					style : {

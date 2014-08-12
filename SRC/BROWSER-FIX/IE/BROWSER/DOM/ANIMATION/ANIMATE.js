@@ -1,4 +1,5 @@
-OVERRIDE(ANIMATE, function(origin) {'use strict';
+OVERRIDE(ANIMATE, function(origin) {
+	'use strict';
 
 	/**
 	 * CSS3 Dom Animate. (destroy for IE.)

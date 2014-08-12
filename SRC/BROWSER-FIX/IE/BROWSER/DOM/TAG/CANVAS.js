@@ -1,7 +1,8 @@
-OVERRIDE(CANVAS, function(origin) {'use strict';
+OVERRIDE(CANVAS, function(origin) {
+	'use strict';
 
 	/**
-	 * Canvas class (fix for IE.)
+	 * Canvas class (fix for IE)
 	 */
 	global.CANVAS = CANVAS = CLASS({
 

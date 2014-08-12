@@ -3,7 +3,8 @@
  */
 global.SCROLL_TOP = SCROLL_TOP = METHOD({
 
-	run : function() {'use strict';
+	run : function() {
+		'use strict';
 
 		return global.pageYOffset;
 	}

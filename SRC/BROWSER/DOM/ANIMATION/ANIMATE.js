@@ -3,7 +3,8 @@
  */
 global.ANIMATE = ANIMATE = METHOD({
 
-	run : function(params, callback) {'use strict';
+	run : function(params, callback) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.node
 		//REQUIRED: params.keyframes

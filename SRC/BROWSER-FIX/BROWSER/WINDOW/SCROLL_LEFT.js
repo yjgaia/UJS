@@ -1,7 +1,8 @@
-OVERRIDE(SCROLL_LEFT, function(origin) {'use strict';
+OVERRIDE(SCROLL_LEFT, function(origin) {
+	'use strict';
 
 	/**
-	 * Get scroll left. (fix.)
+	 * Get scroll left. (fix)
 	 */
 	global.SCROLL_LEFT = SCROLL_LEFT = METHOD({
 

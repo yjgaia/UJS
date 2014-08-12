@@ -1,7 +1,8 @@
-OVERRIDE(ADD_STYLE, function(origin) {'use strict';
+OVERRIDE(ADD_STYLE, function(origin) {
+	'use strict';
 
 	/**
-	 * Add style. (fix for Android.)
+	 * Add style. (fix for Android)
 	 */
 	global.ADD_STYLE = ADD_STYLE = METHOD({
 
@@ -46,81 +47,89 @@ OVERRIDE(ADD_STYLE, function(origin) {'use strict';
 
 					try {
 
-						if (name === 'overflow' && ANDROID.version < 3) {
+						if (ANDROID.version < 3) {
 
-							EVENT({
-								node : dom,
-								name : 'touchmove'
-							}, function(e) {
+							// fix overflow.
+							if (name === 'overflow') {
 
-								if (scrollStartLeft === undefined) {
-									scrollStartLeft = el.scrollLeft + e.getLeft();
-								} else {
-									el.scrollLeft = scrollStartLeft - e.getLeft();
-								}
+								EVENT({
+									node : dom,
+									name : 'touchmove'
+								}, function(e) {
 
-								if (scrollStartTop === undefined) {
-									scrollStartTop = el.scrollTop + e.getTop();
-								} else {
-									el.scrollTop = scrollStartTop - e.getTop();
-								}
+									if (scrollStartLeft === undefined) {
+										scrollStartLeft = el.scrollLeft + e.getLeft();
+									} else {
+										el.scrollLeft = scrollStartLeft - e.getLeft();
+									}
 
-								e.stopDefault();
-							});
+									if (scrollStartTop === undefined) {
+										scrollStartTop = el.scrollTop + e.getTop();
+									} else {
+										el.scrollTop = scrollStartTop - e.getTop();
+									}
 
-							EVENT({
-								node : dom,
-								name : 'touchend'
-							}, function(e) {
-								scrollStartLeft = undefined;
-								scrollStartTop = undefined;
-							});
+									e.stopDefault();
+								});
 
-						} else if (name === 'overflowX' && ANDROID.version < 3) {
+								EVENT({
+									node : dom,
+									name : 'touchend'
+								}, function(e) {
+									scrollStartLeft = undefined;
+									scrollStartTop = undefined;
+								});
+							}
 
-							EVENT({
-								node : dom,
-								name : 'touchmove'
-							}, function(e) {
+							// fix overflowX.
+							else if (name === 'overflowX') {
 
-								if (scrollStartLeft === undefined) {
-									scrollStartLeft = el.scrollLeft + e.getLeft();
-								} else {
-									el.scrollLeft = scrollStartLeft - e.getLeft();
-								}
+								EVENT({
+									node : dom,
+									name : 'touchmove'
+								}, function(e) {
 
-								e.stopDefault();
-							});
+									if (scrollStartLeft === undefined) {
+										scrollStartLeft = el.scrollLeft + e.getLeft();
+									} else {
+										el.scrollLeft = scrollStartLeft - e.getLeft();
+									}
 
-							EVENT({
-								node : dom,
-								name : 'touchend'
-							}, function(e) {
-								scrollStartLeft = undefined;
-							});
+									e.stopDefault();
+								});
 
-						} else if (name === 'overflowY' && ANDROID.version < 3) {
+								EVENT({
+									node : dom,
+									name : 'touchend'
+								}, function(e) {
+									scrollStartLeft = undefined;
+								});
+							}
 
-							EVENT({
-								node : dom,
-								name : 'touchmove'
-							}, function(e) {
+							// fix overflowY.
+							else if (name === 'overflowY') {
 
-								if (scrollStartTop === undefined) {
-									scrollStartTop = el.scrollTop + e.getTop();
-								} else {
-									el.scrollTop = scrollStartTop - e.getTop();
-								}
+								EVENT({
+									node : dom,
+									name : 'touchmove'
+								}, function(e) {
 
-								e.stopDefault();
-							});
+									if (scrollStartTop === undefined) {
+										scrollStartTop = el.scrollTop + e.getTop();
+									} else {
+										el.scrollTop = scrollStartTop - e.getTop();
+									}
 
-							EVENT({
-								node : dom,
-								name : 'touchend'
-							}, function(e) {
-								scrollStartTop = undefined;
-							});
+									e.stopDefault();
+								});
+
+								EVENT({
+									node : dom,
+									name : 'touchend'
+								}, function(e) {
+									scrollStartTop = undefined;
+								});
+							}
 						}
 
 						_style = {};

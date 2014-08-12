@@ -1,48 +1,57 @@
-var
-// new node type
-ImageAndText = CLASS({
+TEST('NODE', function(ok) {
+	'use strict';
 
-	preset : function() {
-		return NODE;
-	},
+	var
+	// new node type
+	ImageAndText = CLASS({
 
-	init : function(inner, self, params) {
-		//REQUIRED: params
-		//REQUIRED: params.img
-		//REQUIRED: params.text
+		preset : function() {
+			return NODE;
+		},
 
-		var
-		// img
-		img = params.img,
+		init : function(inner, self, params) {
+			//REQUIRED: params
+			//REQUIRED: params.img
+			//REQUIRED: params.text
 
-		// text
-		text = params.text,
+			var
+			// img
+			img = params.img,
 
-		// div
-		div = DIV({
-			c : [img, text]
-		}),
+			// text
+			text = params.text,
 
-		// get dom.
-		getDom;
+			// div
+			div = DIV({
+				style : {
+					position : 'fixed',
+					left : 40,
+					top : 40
+				},
+				c : [img, text]
+			}),
 
-		self.getDom = getDom = function() {
-			return div;
-		};
-	}
-}),
+			// get dom.
+			getDom;
 
-// node
-iat = ImageAndText({
-	img : IMG({
-		src : 'logo.png'
+			self.getDom = getDom = function() {
+				return div;
+			};
+		}
 	}),
-	text : 'Hello, UPPERCASE.JS!'
-});
 
-iat.appendTo(BODY);
+	// node
+	iat = ImageAndText({
+		img : IMG({
+			src : 'TEST/test.png'
+		}),
+		text : 'Hello, UPPERCASE.JS!'
+	});
 
-// remove node after 3 seconds.
-DELAY(3, function() {
-	iat.remove();
+	iat.appendTo(BODY);
+
+	// remove node after 3 seconds.
+	DELAY(3, function() {
+		iat.remove();
+	});
 });

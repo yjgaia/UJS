@@ -1,7 +1,8 @@
-OVERRIDE(INFO, function(origin) {'use strict';
+OVERRIDE(INFO, function(origin) {
+	'use strict';
 
 	/**
-	 * Browser informations object (fix for IE.)
+	 * Browser information object (fix for IE)
 	 */
 	global.INFO = INFO = OBJECT({
 

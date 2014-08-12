@@ -2,7 +2,7 @@ OVERRIDE(REMOVE_TO_DELETE, function(origin) {
 	'use strict';
 
 	/**
-	 * Pack data. (fix for IE.)
+	 * Pack data. (fix for IE)
 	 */
 	global.REMOVE_TO_DELETE = REMOVE_TO_DELETE = METHOD({
 

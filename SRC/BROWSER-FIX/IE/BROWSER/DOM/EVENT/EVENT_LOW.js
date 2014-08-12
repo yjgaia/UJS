@@ -1,7 +1,8 @@
-OVERRIDE(EVENT_LOW, function(origin) {'use strict';
+OVERRIDE(EVENT_LOW, function(origin) {
+	'use strict';
 
 	/**
-	 * Low event class (fix for IE.)
+	 * Low event class (fix for IE)
 	 */
 	global.EVENT_LOW = EVENT_LOW = CLASS({
 

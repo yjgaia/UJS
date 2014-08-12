@@ -1,7 +1,8 @@
 OVERRIDE(SOUND, function(origin) {
+	'use strict';
 
 	/**
-	 * SOUND class (destroy.)
+	 * SOUND class (destroy)
 	 */
 	global.SOUND = SOUND = CLASS({
 

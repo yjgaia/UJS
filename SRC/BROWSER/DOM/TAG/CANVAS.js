@@ -3,17 +3,22 @@
  */
 global.CANVAS = CANVAS = CLASS({
 
-	preset : function() {'use strict';
+	preset : function() {
+		'use strict';
+
 		return DOM;
 	},
 
-	params : function() {'use strict';
+	params : function() {
+		'use strict';
+
 		return {
 			tag : 'canvas'
 		};
 	},
 
-	init : function(inner, self, params) {'use strict';
+	init : function(inner, self, params) {
+		'use strict';
 		//OPTIONAL: params
 		//OPTIONAL: params.width
 		//OPTIONAL: params.height

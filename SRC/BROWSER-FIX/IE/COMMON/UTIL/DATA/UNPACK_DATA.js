@@ -1,7 +1,8 @@
-OVERRIDE(UNPACK_DATA, function(origin) {'use strict';
+OVERRIDE(UNPACK_DATA, function(origin) {
+	'use strict';
 
 	/**
-	 * Unpack data. (fix for IE.)
+	 * Unpack data. (fix for IE)
 	 */
 	global.UNPACK_DATA = UNPACK_DATA = METHOD({
 

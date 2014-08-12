@@ -1,9 +1,10 @@
 /**
- * Refresh.
+ * refresh.
  */
 global.REFRESH = REFRESH = METHOD({
 
-	run : function(uri) {'use strict';
+	run : function(uri) {
+		'use strict';
 		//OPTIONAL: uri
 
 		var

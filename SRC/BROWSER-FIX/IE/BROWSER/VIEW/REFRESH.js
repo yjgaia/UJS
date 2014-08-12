@@ -1,15 +1,17 @@
-OVERRIDE(REFRESH, function(origin) {'use strict';
+OVERRIDE(REFRESH, function(origin) {
+	'use strict';
 
 	/**
-	 * Refresh.
+	 * refresh. (fix for IE)
 	 */
 	global.REFRESH = REFRESH = METHOD({
 
-		run : function() {
+		run : function(uri) {
+			//OPTIONAL: uri
 
 			var
 			// saved hash
-			savedHash = location.hash;
+			savedHash = uri !== undefined ? '#' + uri : location.hash;
 
 			EVENT_ONCE({
 				name : 'hashchange'

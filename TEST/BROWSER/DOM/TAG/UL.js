@@ -1,32 +1,36 @@
-var
-// test div
-div = DIV({
-	style : {
-		position : 'fixed',
-		left : 40,
-		top : 40,
-		backgroundColor : 'red',
-		padding : 20,
-		margin : 0
-	},
-	c :
+TEST('UL', function(ok) {
+	'use strict';
 
-	// list
-	UL({
+	var
+	// test div
+	div = DIV({
 		style : {
-			listStyle : 'circle'
+			position : 'fixed',
+			left : 40,
+			top : 40,
+			backgroundColor : 'red',
+			padding : 20,
+			margin : 0
 		},
-		c : [LI({
-			c : 'Seoul'
-		}), LI({
-			c : 'Busan'
-		}), LI({
-			c : 'Jeju'
-		})]
-	})
-}).appendTo(BODY);
+		c :
 
-// remove div after 3 seconds.
-DELAY(3, function() {
-	div.remove();
+		// list
+		UL({
+			style : {
+				listStyle : 'circle'
+			},
+			c : [LI({
+				c : 'Seoul'
+			}), LI({
+				c : 'Busan'
+			}), LI({
+				c : 'Jeju'
+			})]
+		})
+	}).appendTo(BODY);
+
+	// remove div after 3 seconds.
+	DELAY(3, function() {
+		div.remove();
+	});
 });

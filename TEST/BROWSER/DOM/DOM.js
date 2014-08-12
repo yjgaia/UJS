@@ -1,105 +1,112 @@
-var
-// new dom
-dom = DOM({
+TEST('DOM', function(ok) {
+	'use strict';
 
-	// tag name
-	tag : 'div',
+	var
+	// new dom
+	dom = DOM({
 
-	// css style
-	style : {
-		color : 'red'
-	},
+		// tag name
+		tag : 'div',
 
-	// chidren doms
-	c : 'test',
+		// css style
+		style : {
+			color : 'red',
+			position : 'fixed',
+			left : 40,
+			top : 40
+		},
 
-	// events
-	on : {
+		// chidren doms
+		c : 'test',
 
-		// mouse click or mobile touch
-		tap : function() {
-			console.log('tapped new dom!');
+		// events
+		on : {
+
+			// mouse click or mobile touch
+			tap : function() {
+				console.log('tapped new dom!');
+			}
 		}
-	}
-}),
+	}),
 
-// before dom
-beforeDom,
+	// before dom
+	beforeDom,
 
-// after dom
-afterDom,
+	// after dom
+	afterDom,
 
-// blink interval
-blinkInterval;
+	// blink interval
+	blinkInterval;
 
-// append child dom.
-dom.append(DOM({
-	tag : 'p',
-	c : 'This is appended child.'
-}));
+	// append child dom.
+	dom.append(DOM({
+		tag : 'p',
+		c : 'This is appended child.'
+	}));
 
-// prepend child dom.
-dom.prepend(DOM({
-	tag : 'p',
-	c : 'This is prepended child.'
-}));
+	// prepend child dom.
+	dom.prepend(DOM({
+		tag : 'p',
+		c : 'This is prepended child.'
+	}));
 
-// add show handler.
-dom.addShowHandler(function() {
-	console.log('I\'m comming!');
-});
+	// add show handler.
+	dom.addShowHandler(function() {
+		console.log('I\'m comming!');
+	});
 
-// attach dom.
-dom.appendTo(BODY);
+	// attach dom.
+	dom.appendTo(BODY);
 
-// before dom.
-dom.before( beforeDom = DOM({
-	tag : 'p',
-	c : 'This is before dom.'
-}));
+	// before dom.
+	dom.before( beforeDom = DOM({
+		tag : 'p',
+		c : 'This is before dom.'
+	}));
 
-// after dom.
-dom.after( afterDom = DOM({
-	tag : 'p',
-	c : 'This is after dom.'
-}));
+	// after dom.
+	dom.after( afterDom = DOM({
+		tag : 'p',
+		c : 'This is after dom.'
+	}));
 
-// add style.
-dom.addStyle({
-	border : '5px solid blue'
-});
+	// add style.
+	dom.addStyle({
+		border : '5px solid blue'
+	});
 
-// get style.
-console.log(dom.getStyle('color'));
+	// get style.
+	ok(dom.getStyle('color') === 'red');
 
-// get size.
-console.log(dom.getWidth(), dom.getHeight());
+	// get size.
+	console.log(dom.getWidth(), dom.getHeight());
 
-// get position.
-console.log(dom.getLeft(), dom.getTop());
+	// get position.
+	console.log(dom.getLeft(), dom.getTop());
 
-// blink dom.
-blinkInterval = INTERVAL(1, function() {
+	// blink dom.
+	blinkInterval = INTERVAL(1, function() {
 
-	if (dom.checkIsShowing() === true) {
-		dom.hide();
-	} else {
-		dom.show();
-	}
-});
+		if (dom.checkIsShowing() === true) {
+			dom.hide();
+		} else {
+			dom.show();
+		}
+	});
 
-// add remove handler.
-dom.addRemoveHandler(function() {
+	// add remove handler.
+	dom.addRemoveHandler(function() {
 
-	console.log('Bye!');
+		console.log('Bye!');
 
-	beforeDom.remove();
-	afterDom.remove();
+		beforeDom.remove();
+		afterDom.remove();
 
-	blinkInterval.remove();
-});
+		blinkInterval.remove();
+	});
 
-// remove dom after 5 seconds.
-DELAY(5, function() {
-	dom.remove();
+	// remove dom after 5 seconds.
+	DELAY(5, function() {
+		dom.remove();
+	});
 });

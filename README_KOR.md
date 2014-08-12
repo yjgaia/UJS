@@ -128,18 +128,18 @@ cal.getSecond()
 * `DELAY(seconds, function(delay) {})` Delay class
 ```javascript
 delay = DELAY(3, function(delay) {});
-delay.remove();
+delay.remove()
 ```
 * `INTERVAL(seconds, function(interval) {})` Interval class
 ```javascript
 interval = INTERVAL(3, function(interval) {});
-interval.remove();
+interval.remove()
 ```
 * `LOOP(fps, function() {})` `LOOP(fps, {start: function() {}, interval: function() {}, end: function() {}})` Loop class (for game etc.)
 ```javascript
 loop = LOOP(100, {start: function() {}, interval: function() {}, end: function() {}});
-loop.changeFPS(fps);
-loop.remove();
+loop.changeFPS(fps) // ex) loop.changeFPS(60)
+loop.remove()
 ```
 * `OVERRIDE(origin, function(origin) {})` override something.
 * `NEXT([function(next) {}, function() { return function() {}; }, function() { return function() {}; }, ...])` `NEXT(count, [function(i, next) {}, function() { return function() {}; }, ...])` `NEXT(array, [function(element, next) {}, function() { return function() {}; }, ...])` async control-flow method that makes stepping through logic easy.
@@ -234,6 +234,23 @@ COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1
 		</script>
 	</body>
 </html>
+```
+
+#### `UTIL` 꼭 필요한 것들만 모아놓은 유틸리티 패키지
+* `INFO` Browser information object
+```javascript
+INFO.getLang()
+INFO.changeLang(lang) // ex) INFO.changeLang('ko')
+INFO.checkIsHDDisplay()
+INFO.checkIsTouchableDisplay()
+INFO.getBrowserInfo()
+```
+* `STORE(name)` Browser store class
+```javascript
+store = STORE('testStore');
+store.save({ name:, value:, isToSession: })
+store.get(name)
+store.remove(key)
 ```
 
 ## UPPERCASE.JS-PHANTOM

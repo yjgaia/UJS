@@ -1,7 +1,8 @@
 /**
  * Fix codes for old browsers.
  */
-RUN(function() {'use strict';
+RUN(function() {
+	'use strict';
 
 	var
 	// fix scripts folder path
@@ -25,6 +26,8 @@ RUN(function() {'use strict';
 
 	fixScriptsFolderPath = currentScript.getAttribute('src');
 	fixScriptsFolderPath = fixScriptsFolderPath.substring(0, fixScriptsFolderPath.indexOf('/FIX.js'));
+
+	BROWSER_CONFIG.fixScriptsFolderPath = fixScriptsFolderPath;
 
 	loadFixScript = function(name) {
 		LOAD(fixScriptsFolderPath + '/' + name + '.js');

@@ -1,51 +1,55 @@
-var
-// test dom
-dom = DOM({
-	tag : 'div',
-	c : 'This is test dom.'
-}).appendTo(BODY);
+TEST('ADD_STYLE', function(ok) {
+	'use strict';
 
-ADD_STYLE({
-	node : dom,
-	style : {
+	var
+	// test dom
+	dom = DOM({
+		tag : 'div',
+		c : 'This is test dom.'
+	}).appendTo(BODY);
 
-		// style
-		backgroundColor : '#00ff00',
-		padding : 20,
-		margin : 0,
-		width : 200,
-		height : 200,
+	ADD_STYLE({
+		node : dom,
+		style : {
 
-		// background image
-		backgroundImage : 'logo.png',
+			// style
+			backgroundColor : '#00ff00',
+			padding : 20,
+			margin : 0,
+			width : 200,
+			height : 200,
 
-		// position fixed (if not support fixed browser, simulate fixed.)
-		position : 'fixed',
-		right : 40,
-		top : 40,
+			// background image
+			backgroundImage : 'TEST/test.png',
 
-		// on display resize
-		onDisplayResize : function(width, height) {
+			// position fixed (if not support fixed browser, simulate fixed.)
+			position : 'fixed',
+			right : 40,
+			top : 40,
 
-			// log on display resize.
-			console.log(width, height);
+			// on display resize
+			onDisplayResize : function(width, height) {
+
+				// log on display resize.
+				console.log(width, height);
+			}
 		}
-	}
-});
+	});
 
-dom.append(P({
-	style : {
+	dom.append(P({
+		style : {
 
-		// float to right.
-		flt : 'right',
+			// float to right.
+			flt : 'right',
 
-		// hand cursor
-		cursor : 'pointer'
-	},
-	c : 'Float right.'
-}));
+			// hand cursor
+			cursor : 'pointer'
+		},
+		c : 'Float right.'
+	}));
 
-// remove dom after 3 seconds.
-DELAY(3, function() {
-	dom.remove();
+	// remove dom after 3 seconds.
+	DELAY(3, function() {
+		dom.remove();
+	});
 });

@@ -1,7 +1,8 @@
-OVERRIDE(E, function(origin) {'use strict';
+OVERRIDE(E, function(origin) {
+	'use strict';
 
 	/**
-	 * Dom event object wrapper class (fix for IE.)
+	 * Dom event object wrapper class (fix for IE)
 	 */
 	global.E = E = CLASS({
 
@@ -84,7 +85,11 @@ OVERRIDE(E, function(origin) {'use strict';
 				//OVERRIDE: self.getLeft
 				self.getLeft = getLeft = function() {
 
-					if (!e.target) {
+					var
+					// event document
+					eventDocument;
+
+					if (e.target === undefined || e.target === TO_DELETE) {
 						e.target = e.srcElement || document;
 					}
 
@@ -92,7 +97,7 @@ OVERRIDE(E, function(origin) {'use strict';
 						e.target = e.target.parentNode;
 					}
 
-					var eventDocument = e.target.ownerDocument || document, doc = eventDocument.documentElement, body = eventDocument.body;
+					eventDocument = e.target.ownerDocument || document, doc = eventDocument.documentElement, body = eventDocument.body;
 
 					return e.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
 				};
@@ -103,7 +108,11 @@ OVERRIDE(E, function(origin) {'use strict';
 				//OVERRIDE: self.getTop
 				self.getTop = getTop = function() {
 
-					if (!e.target) {
+					var
+					// event document
+					eventDocument;
+
+					if (e.target === undefined || e.target === TO_DELETE) {
 						e.target = e.srcElement || document;
 					}
 
@@ -111,7 +120,7 @@ OVERRIDE(E, function(origin) {'use strict';
 						e.target = e.target.parentNode;
 					}
 
-					var eventDocument = e.target.ownerDocument || document, doc = eventDocument.documentElement, body = eventDocument.body;
+					eventDocument = e.target.ownerDocument || document, doc = eventDocument.documentElement, body = eventDocument.body;
 
 					return e.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);
 				};

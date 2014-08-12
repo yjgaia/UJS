@@ -3,7 +3,8 @@
  */
 global.NODE = NODE = CLASS({
 
-	init : function(inner, self) {'use strict';
+	init : function(inner, self) {
+		'use strict';
 
 		// get dom.
 		self.getDom = function() {
