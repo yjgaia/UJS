@@ -1,5 +1,5 @@
 /**
- * IFrame class
+ * Iframe class
  */
 global.IFRAME = IFRAME = CLASS({
 
@@ -22,22 +22,28 @@ global.IFRAME = IFRAME = CLASS({
 
 	init : function(inner, self, params) {
 		'use strict';
-		//REQUIRED: params
+		//OPTIONAL: params
 		//OPTIONAL: params.name
 		//OPTIONAL: params.src
 
 		var
 		// name
-		name = params.name,
+		name,
 
 		// src
-		src = params.src,
+		src,
 
 		// set src.
 		setSrc,
 
 		// get src.
 		getSrc;
+
+		// init params.
+		if (params !== undefined) {
+			name = params.name;
+			src = params.src;
+		}
 
 		inner.setAttr({
 			name : 'allowTransparency',

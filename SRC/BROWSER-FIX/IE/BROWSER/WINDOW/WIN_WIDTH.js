@@ -2,7 +2,7 @@ OVERRIDE(WIN_WIDTH, function(origin) {
 	'use strict';
 
 	/**
-	 * Get window width. (fix for IE)
+	 * get window width. (fix for IE)
 	 */
 	global.WIN_WIDTH = WIN_WIDTH = METHOD({
 

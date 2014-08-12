@@ -8,7 +8,7 @@ global.RAR = RAR = METHOD({
 		//OPTIONAL: params
 		//REQUIRED: func
 
-		// init properties.
+		// init params and func.
 		if (func === undefined) {
 			func = params;
 			params = undefined;

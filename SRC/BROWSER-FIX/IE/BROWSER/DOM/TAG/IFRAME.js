@@ -11,23 +11,30 @@ OVERRIDE(IFRAME, function(origin) {
 		},
 
 		init : function(inner, self, params) {
-			//REQUIRED: params
+			//OPTIONAL: params
 			//OPTIONAL: params.name
 			//OPTIONAL: params.style
 			//OPTIONAL: params.src
 
 			var
 			// name
-			name = params.name,
+			name,
 
 			// style
-			style = params.style,
+			style,
 
 			// src
-			src = params.src,
+			src,
 
 			// set src.
 			setSrc;
+
+			// init params.
+			if (params !== undefined) {
+				name = params.name;
+				style = params.style;
+				src = params.src;
+			}
 
 			if (IE.version <= 7) {
 

@@ -25,10 +25,16 @@ global.TH = TH = CLASS({
 
 		var
 		// rowspan
-		rowspan = params === undefined ? undefined : params.rowspan,
+		rowspan,
 
 		// colspan
-		colspan = params === undefined ? undefined : params.colspan;
+		colspan;
+
+		// init params.
+		if (params !== undefined) {
+			rowspan = params.rowspan;
+			colspan = params.colspan;
+		}
 
 		if (rowspan !== undefined) {
 			inner.setAttr({

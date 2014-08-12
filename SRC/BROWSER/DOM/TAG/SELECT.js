@@ -19,16 +19,16 @@ global.SELECT = SELECT = CLASS({
 
 	init : function(inner, self, params) {
 		'use strict';
-		//REQUIRED: params
-		//REQUIRED: params.name
+		//OPTIONAL: params
+		//OPTIONAL: params.name
 		//OPTIONAL: params.value
 
 		var
 		// name
-		name = params.name,
+		name,
 
 		// value
-		value = params.value,
+		value,
 
 		// is ctrl down
 		isCtrlDown = false,
@@ -51,10 +51,18 @@ global.SELECT = SELECT = CLASS({
 		// blur.
 		blur;
 
-		inner.setAttr({
-			name : 'name',
-			value : name
-		});
+		// init params.
+		if (params !== undefined) {
+			name = params.name;
+			value = params.value;
+		}
+
+		if (name !== undefined) {
+			inner.setAttr({
+				name : 'name',
+				value : name
+			});
+		}
 
 		self.getName = getName = function() {
 			return name;

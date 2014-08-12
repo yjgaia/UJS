@@ -1,23 +1,37 @@
 /**
- * Fire all events.
+ * fire all events.
  */
 global.FIRE_ALL = FIRE_ALL = METHOD({
 
-	run : function(params) {
+	run : function(nameOrParams) {
 		'use strict';
-		//REQUIRED: params
-		//OPTIONAL: params.node
-		//REQUIRED: params.name
+		//REQUIRED: nameOrParams
+		//OPTIONAL: nameOrParams.node
+		//REQUIRED: nameOrParams.name
 
 		var
 		// node
-		node = params.node,
+		node,
 
 		// name
-		name = params.name,
+		name,
 
 		// node id
-		nodeId = node === undefined ? 'body' : node.id;
+		nodeId;
+
+		// init params.
+		if (CHECK_IS_DATA(nameOrParams) !== true) {
+			name = nameOrParams;
+		} else {
+			node = nameOrParams.node;
+			name = nameOrParams.name;
+		}
+
+		if (node === undefined) {
+			nodeId = 'body';
+		} else {
+			nodeId = node.id;
+		}
 
 		if (EVENT.getEventMap()[nodeId] !== undefined) {
 

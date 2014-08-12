@@ -1,5 +1,5 @@
 /**
- * Create clear:both div.
+ * create clear:both div.
  */
 global.CLEAR_BOTH = CLEAR_BOTH = METHOD({
 

@@ -1,5 +1,5 @@
 /**
- * Change document title.
+ * change document title.
  */
 global.TITLE = TITLE = METHOD({
 

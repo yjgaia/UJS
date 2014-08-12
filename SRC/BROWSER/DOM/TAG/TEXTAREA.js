@@ -19,20 +19,20 @@ global.TEXTAREA = TEXTAREA = CLASS({
 
 	init : function(inner, self, params) {
 		'use strict';
-		//REQUIRED: params
-		//REQUIRED: params.name
+		//OPTIONAL: params
+		//OPTIONAL: params.name
 		//OPTIONAL: params.placeholder
 		//OPTIONAL: params.value
 
 		var
 		// name
-		name = params.name,
+		name,
 
 		// placeholder
-		placeholder = params.placeholder,
+		placeholder,
 
 		// value
-		value = params.value,
+		value,
 
 		// is ctrl down
 		isCtrlDown = false,
@@ -55,10 +55,19 @@ global.TEXTAREA = TEXTAREA = CLASS({
 		// blur.
 		blur;
 
-		inner.setAttr({
-			name : 'name',
-			value : name
-		});
+		// init params.
+		if (params !== undefined) {
+			name = params.name;
+			placeholder = params.placeholder;
+			value = params.value;
+		}
+
+		if (name !== undefined) {
+			inner.setAttr({
+				name : 'name',
+				value : name
+			});
+		}
 
 		if (placeholder !== undefined) {
 			inner.setAttr({

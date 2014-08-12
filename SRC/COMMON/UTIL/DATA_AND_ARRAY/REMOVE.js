@@ -68,7 +68,7 @@ global.REMOVE = REMOVE = METHOD({
 		// when filter not exists
 		else {
 
-			// init properties.
+			// init params.
 			data = dataOrArrayOrParams.data;
 			array = dataOrArrayOrParams.array;
 			name = dataOrArrayOrParams.name;

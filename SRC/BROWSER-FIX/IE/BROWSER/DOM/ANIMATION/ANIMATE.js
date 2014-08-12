@@ -2,7 +2,7 @@ OVERRIDE(ANIMATE, function(origin) {
 	'use strict';
 
 	/**
-	 * CSS3 Dom Animate. (destroy for IE.)
+	 * animate node. (destroy for IE)
 	 */
 	global.ANIMATE = ANIMATE = METHOD({
 

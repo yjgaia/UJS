@@ -28,8 +28,8 @@ global.INPUT = INPUT = CLASS(function(cls) {
 		},
 
 		init : function(inner, self, params) {
-			//REQUIRED: params
-			//REQUIRED: params.name
+			//OPTIONAL: params
+			//OPTIONAL: params.name
 			//OPTIONAL: params.type
 			//OPTIONAL: params.placeholder
 			//OPTIONAL: params.value
@@ -37,19 +37,19 @@ global.INPUT = INPUT = CLASS(function(cls) {
 
 			var
 			// name
-			name = params.name,
+			name,
 
 			// type
-			type = params.type,
+			type,
 
 			// placeholder
-			placeholder = params.placeholder,
+			placeholder,
 
 			// value
-			value = params.value,
+			value,
 
 			// is multiple
-			isMultiple = params.isMultiple,
+			isMultiple,
 
 			// get name.
 			getName,
@@ -75,6 +75,15 @@ global.INPUT = INPUT = CLASS(function(cls) {
 			// check is checked.
 			checkIsChecked;
 
+			// init params.
+			if (params !== undefined) {
+				name = params.name;
+				type = params.type;
+				placeholder = params.placeholder;
+				value = params.value;
+				isMultiple = params.isMultiple;
+			}
+
 			if (type !== undefined) {
 				inner.setAttr({
 					name : 'type',
@@ -84,10 +93,12 @@ global.INPUT = INPUT = CLASS(function(cls) {
 
 			if (type !== 'submit' && type !== 'reset') {
 
-				inner.setAttr({
-					name : 'name',
-					value : name
-				});
+				if (name !== undefined) {
+					inner.setAttr({
+						name : 'name',
+						value : name
+					});
+				}
 
 				if (placeholder !== undefined) {
 					inner.setAttr({

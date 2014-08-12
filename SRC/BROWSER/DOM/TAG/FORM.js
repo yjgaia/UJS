@@ -19,24 +19,24 @@ global.FORM = FORM = CLASS({
 
 	init : function(inner, self, params) {
 		'use strict';
-		//REQUIRED: params
-		//REQUIRED: params.action
-		//REQUIRED: params.target
-		//REQUIRED: params.method
-		//REQUIRED: params.enctype
+		//OPTIONAL: params
+		//OPTIONAL: params.action
+		//OPTIONAL: params.target
+		//OPTIONAL: params.method
+		//OPTIONAL: params.enctype
 
 		var
 		// action
-		action = params.action,
+		action,
 
 		// target
-		target = params.target,
+		target,
 
 		// method
-		method = params.method,
+		method,
 
 		// enctype
-		enctype = params.enctype,
+		enctype,
 
 		// get data.
 		getData,
@@ -46,6 +46,14 @@ global.FORM = FORM = CLASS({
 
 		// submit.
 		submit;
+
+		// init params.
+		if (params !== undefined) {
+			action = params.action;
+			target = params.target;
+			method = params.method;
+			enctype = params.enctype;
+		}
 
 		if (action !== undefined) {
 			inner.setAttr({

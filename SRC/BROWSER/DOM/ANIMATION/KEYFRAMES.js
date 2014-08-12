@@ -1,5 +1,5 @@
 /**
- * CSS3 animation keyframes class
+ * Animation keyframes class
  */
 global.KEYFRAMES = KEYFRAMES = CLASS({
 

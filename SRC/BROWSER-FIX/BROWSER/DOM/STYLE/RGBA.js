@@ -2,7 +2,7 @@ OVERRIDE(RGBA, function(origin) {
 	'use strict';
 
 	/**
-	 * Get rgba style string. (fix)
+	 * get rgba style string. (fix)
 	 */
 	global.RGBA = RGBA = METHOD({
 

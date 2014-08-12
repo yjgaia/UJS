@@ -20,7 +20,7 @@ global.SCRIPT = SCRIPT = CLASS({
 	init : function(inner, self, params) {
 		'use strict';
 		//REQUIRED: params
-		//OPTIONAL: params.src
+		//REQUIRED: params.src
 
 		var
 		// src

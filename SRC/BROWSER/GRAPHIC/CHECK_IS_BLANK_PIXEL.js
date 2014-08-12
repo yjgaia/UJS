@@ -1,5 +1,5 @@
 /**
- * Check the pixel is blank pixel
+ * check the pixel is blank pixel.
  */
 global.CHECK_IS_BLANK_PIXEL = CHECK_IS_BLANK_PIXEL = METHOD(function(m) {
 	'use strict';

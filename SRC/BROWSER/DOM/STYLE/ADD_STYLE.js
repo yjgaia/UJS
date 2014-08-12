@@ -1,5 +1,5 @@
 /**
- * Add style.
+ * add style.
  */
 global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 	'use strict';

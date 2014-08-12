@@ -19,18 +19,23 @@ global.OPTION = OPTION = CLASS({
 
 	init : function(inner, self, params) {
 		'use strict';
-		//REQUIRED: params
+		//OPTIONAL: params
 		//OPTIONAL: params.value
 
 		var
 		// value
-		value = params.value,
+		value,
 
 		// get value.
 		getValue,
 
 		// set value.
 		setValue;
+
+		// init params.
+		if (params !== undefined) {
+			value = params.value;
+		}
 
 		self.getValue = getValue = function() {
 			return self.getEl().value;

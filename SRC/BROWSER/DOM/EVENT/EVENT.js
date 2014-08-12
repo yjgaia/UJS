@@ -17,21 +17,21 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 	return {
 
-		init : function(inner, self, params, func) {
-			//REQUIRED: params
-			//OPTIONAL: params.node
-			//REQUIRED: params.name
+		init : function(inner, self, nameOrParams, func) {
+			//REQUIRED: nameOrParams
+			//OPTIONAL: nameOrParams.node
+			//REQUIRED: nameOrParams.name
 			//REQUIRED: func
 
 			var
 			// node
-			node = params.node,
+			node,
 
 			// name
-			name = params.name,
+			name,
 
 			// node id
-			nodeId = node === undefined ? 'body' : node.id,
+			nodeId,
 
 			// event lows
 			eventLow1, eventLow2,
@@ -56,6 +56,20 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 			// fire.
 			fire;
+
+			// init params.
+			if (CHECK_IS_DATA(nameOrParams) !== true) {
+				name = nameOrParams;
+			} else {
+				node = nameOrParams.node;
+				name = nameOrParams.name;
+			}
+
+			if (node === undefined) {
+				nodeId = 'body';
+			} else {
+				nodeId = node.id;
+			}
 
 			// push event to map.
 

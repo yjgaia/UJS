@@ -1,5 +1,5 @@
 /**
- * refresh.
+ * refresh view.
  */
 global.REFRESH = REFRESH = METHOD({
 

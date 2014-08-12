@@ -2,7 +2,7 @@ OVERRIDE(SCROLL_TOP, function(origin) {
 	'use strict';
 
 	/**
-	 * Get scroll top. (fix)
+	 * get scroll top. (fix)
 	 */
 	global.SCROLL_TOP = SCROLL_TOP = METHOD({
 

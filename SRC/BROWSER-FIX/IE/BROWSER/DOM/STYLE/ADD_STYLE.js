@@ -2,7 +2,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 	'use strict';
 
 	/**
-	 * Add style. (fix for IE)
+	 * add style. (fix for IE)
 	 */
 	global.ADD_STYLE = ADD_STYLE = METHOD({
 

@@ -1,5 +1,5 @@
 /**
- * Get internationalization message.
+ * get internationalization message.
  */
 global.MSG = MSG = METHOD({
 

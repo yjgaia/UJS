@@ -2,7 +2,7 @@ OVERRIDE(REFRESH, function(origin) {
 	'use strict';
 
 	/**
-	 * refresh. (fix for IE)
+	 * refresh view. (fix for IE)
 	 */
 	global.REFRESH = REFRESH = METHOD({
 

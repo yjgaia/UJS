@@ -2,7 +2,7 @@ OVERRIDE(KEYFRAMES, function(origin) {
 	'use strict';
 
 	/**
-	 * CSS3 animation keyframes class. (destory for IE.)
+	 * Animation keyframes class. (destory for IE)
 	 */
 	global.KEYFRAMES = KEYFRAMES = CLASS({
 

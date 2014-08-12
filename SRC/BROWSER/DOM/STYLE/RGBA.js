@@ -1,5 +1,5 @@
 /**
- * Get rgba style string.
+ * get rgba style string.
  */
 global.RGBA = RGBA = METHOD({
 

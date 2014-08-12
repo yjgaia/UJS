@@ -25,10 +25,10 @@ global.CANVAS = CANVAS = CLASS({
 
 		var
 		// wdith
-		width = params === undefined ? undefined : params.width,
+		width,
 
 		// height
-		height = params === undefined ? undefined : params.height,
+		height,
 
 		// get context.
 		getContext,
@@ -44,6 +44,12 @@ global.CANVAS = CANVAS = CLASS({
 
 		// get data url.
 		getDataURL;
+
+		// init params.
+		if (params !== undefined) {
+			width = params.width;
+			height = params.height;
+		}
 
 		self.getContext = getContext = function() {
 			return CONTEXT(self);

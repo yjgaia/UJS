@@ -1,5 +1,5 @@
 /**
- * Get window height.
+ * get window height. (px)
  */
 global.WIN_HEIGHT = WIN_HEIGHT = METHOD({
 

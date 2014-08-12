@@ -1,5 +1,5 @@
 /**
- * CSS3 Dom Animate.
+ * animate node.
  */
 global.ANIMATE = ANIMATE = METHOD({
 

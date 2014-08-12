@@ -2,7 +2,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 	'use strict';
 
 	/**
-	 * Add style. (fix for Android)
+	 * add style. (fix for Android)
 	 */
 	global.ADD_STYLE = ADD_STYLE = METHOD({
 

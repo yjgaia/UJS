@@ -1,5 +1,5 @@
 /**
- * Get window width.
+ * get window width. (px)
  */
 global.WIN_WIDTH = WIN_WIDTH = METHOD({
 

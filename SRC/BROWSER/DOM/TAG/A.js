@@ -19,26 +19,33 @@ global.A = A = CLASS({
 
 	init : function(inner, self, params) {
 		'use strict';
-		//REQUIRED: params
+		//OPTIONAL: params
 		//OPTIONAL: params.href
 		//OPTIONAL: params.target
 		//OPTIONAL: params.style
 
 		var
 		// href
-		href = params.href,
-
+		href,
+		
 		// target
-		target = params.target,
-
+		target,
+		
 		// style
-		style = params.style,
-
+		style,
+		
 		// change href.
 		changeHref,
 
 		// tap.
 		tap;
+
+		// init params.
+		if (params !== undefined) {
+			href = params.href;
+			target = params.target;
+			style = params.style;
+		}
 
 		self.changeHref = changeHref = function(href) {
 			inner.setAttr({

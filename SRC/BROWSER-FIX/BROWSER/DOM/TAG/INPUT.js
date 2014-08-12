@@ -24,7 +24,12 @@ OVERRIDE(INPUT, function(origin) {
 
 				var
 				// placeholder
-				placeholder = params === undefined ? undefined : params.placeholder;
+				placeholder;
+
+				// init params.
+				if (params !== undefined) {;
+					placeholder = params.placeholder;
+				}
 
 				// simulate placeholder.
 				if (placeholder !== undefined) {

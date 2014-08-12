@@ -2,7 +2,7 @@ OVERRIDE(TABLE, function(origin) {
 	'use strict';
 
 	/**
-	 * Table class (fix for IE<=7.)
+	 * Table class (fix for IE<=7)
 	 */
 	global.TABLE = TABLE = CLASS({
 
@@ -16,7 +16,7 @@ OVERRIDE(TABLE, function(origin) {
 
 			var
 			// children
-			children = params === undefined ? undefined : (params.c === undefined || CHECK_IS_ARRAY(params.c) === true ? params.c : [params.c]),
+			children,
 
 			// tbody
 			tbody = DOM({
@@ -34,6 +34,11 @@ OVERRIDE(TABLE, function(origin) {
 
 			// get children.
 			getChildren;
+
+			// init params.
+			if (params !== undefined) {
+				children = (params.c === undefined || CHECK_IS_ARRAY(params.c) === true ? params.c : [params.c]);
+			}
 
 			self.append = append = function(node) {
 				//REQUIRED: node
