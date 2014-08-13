@@ -2,11 +2,11 @@
 동적인 웹 사이트 및 웹 애플리케이션 개발을 위한 쉽고 명확하면서 강력한 풀스택 (server-to-client) JavaScript 라이브러입니다. 모든 API가 대문자로 이루어져 있습니다. [UPPERCASE.IO](http://UPPERCASE.IO)에서 사용되고 있습니다.
 
 ###### COMPONENTS
-* [UPPERCASE.JS-COMMON](#UPPERCASE.JS-COMMON)
-* [UPPERCASE.JS-NODE](#UPPERCASE.JS-NODE)
-* [UPPERCASE.JS-BROWSER](#UPPERCASE.JS-BROWSER)
-* [UPPERCASE.JS-PHANTOM](#UPPERCASE.JS-PHANTOMs)
-* [UPPERCASE.JS-TITANIUM](#UPPERCASE.JS-TITANIUM)
+* [UPPERCASE.JS-COMMON](#uppercasejs-common)
+* [UPPERCASE.JS-NODE](#uppercasejs-node)
+* [UPPERCASE.JS-BROWSER](#uppercasejs-browser)
+* [UPPERCASE.JS-PHANTOM](#uppercasejs-phantom)
+* [UPPERCASE.JS-TITANIUM](#uppercasejs-titanium)
 
 ## UPPERCASE.JS-COMMON
 객체지향 프로그래밍 지원 및 다양한 기능을 제공하는 JavaScript 라이브러리입니다.

@@ -3,7 +3,8 @@
  */
 global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
-	run : function(params, connectionListenerOrListeners) {'use strict';
+	run : function(params, connectionListenerOrListeners) {
+		'use strict';
 		//REQUIRED: params
 		//OPTIONAL: params.host
 		//REQUIRED: params.port
@@ -21,9 +22,6 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
 		// error listener
 		errorListener,
-
-		// net
-		net = require('net'),
 
 		// connection
 		conn,
@@ -90,150 +88,163 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 			}
 		};
 
-		conn = net.connect({
+		conn = Ti.Network.Socket.createTCP({
 			host : host,
-			port : port
-		}, function() {
+			port : port,
 
-			isConnected = true;
+			connected : function(e) {
 
-			connectionListener(
+				Ti.Stream.pump(e.socket, function(e) {
 
-			// on.
-			on = function(methodName, method) {
-				//REQUIRED: methodName
-				//REQUIRED: method
+					// when disconnected
+					if (e.bytesProcessed < 0) {
 
-				var
-				// methods
-				methods = methodMap[methodName];
+						if (isForceDisconnecting !== true) {
+							runMethods('__DISCONNECTED');
+						}
 
-				if (methods === undefined) {
-					methods = methodMap[methodName] = [];
-				}
+						conn.close();
 
-				methods.push(method);
-			},
-
-			// off.
-			off = function(methodName, method) {
-				//REQUIRED: methodName
-				//OPTIONAL: method
-
-				var
-				// methods
-				methods = methodMap[methodName];
-
-				if (methods !== undefined) {
-
-					if (method !== undefined) {
-
-						REMOVE({
-							array : methods,
-							value : method
-						});
-
-					} else {
-						delete methodMap[methodName];
+						return;
 					}
-				}
+
+					// when receive data
+					if (e.buffer) {
+
+						var
+						// str
+						str,
+
+						// index
+						index,
+
+						// params
+						params;
+
+						receivedStr += e.buffer.toString();
+
+						while (( index = receivedStr.indexOf('\n')) !== -1) {
+
+							str = receivedStr.substring(0, index);
+
+							params = PARSE_STR(str);
+
+							if (params !== undefined) {
+								runMethods(params.methodName, params.data, params.sendKey);
+							}
+
+							receivedStr = receivedStr.substring(index + 1);
+						}
+					}
+
+				}, 1024, true);
+
+				isConnected = true;
+
+				connectionListener(
+
+				// on.
+				on = function(methodName, method) {
+					//REQUIRED: methodName
+					//REQUIRED: method
+
+					var
+					// methods
+					methods = methodMap[methodName];
+
+					if (methods === undefined) {
+						methods = methodMap[methodName] = [];
+					}
+
+					methods.push(method);
+				},
+
+				// off.
+				off = function(methodName, method) {
+					//REQUIRED: methodName
+					//OPTIONAL: method
+
+					var
+					// methods
+					methods = methodMap[methodName];
+
+					if (methods !== undefined) {
+
+						if (method !== undefined) {
+
+							REMOVE({
+								array : methods,
+								value : method
+							});
+
+						} else {
+							delete methodMap[methodName];
+						}
+					}
+				},
+
+				// send to server.
+				send = function(params, callback) {
+					//REQUIRED: params
+					//REQUIRED: params.methodName
+					//REQUIRED: params.data
+					//OPTIONAL: callback
+
+					var
+					// callback name
+					callbackName = '__CALLBACK_' + sendKey;
+
+					params.sendKey = sendKey;
+
+					sendKey += 1;
+
+					e.socket.write(Ti.createBuffer({
+						value : STRINGIFY(params) + '\n'
+					}));
+
+					if (callback !== undefined) {
+
+						// on callback.
+						on(callbackName, function(data) {
+
+							// run callback.
+							callback(data);
+
+							// off callback.
+							off(callbackName);
+						});
+					}
+				},
+
+				// disconnect.
+				function() {
+
+					isForceDisconnecting = true;
+
+					conn.close();
+				});
 			},
 
-			// send to server.
-			send = function(params, callback) {
-				//REQUIRED: params
-				//REQUIRED: params.methodName
-				//REQUIRED: params.data
-				//OPTIONAL: callback
+			error : function(e) {
 
 				var
-				// callback name
-				callbackName = '__CALLBACK_' + sendKey;
+				// error msg
+				errorMsg = e.error.toString();
 
-				params.sendKey = sendKey;
+				if (isConnected !== true) {
 
-				sendKey += 1;
+					console.log(CONSOLE_RED('[UPPERCASE.JS-CONNECT_TO_SOCKET_SERVER] CONNECT TO SOCKET SERVER FAILED: ' + errorMsg));
 
-				conn.write(STRINGIFY(params) + '\n');
+					if (errorListener !== undefined) {
+						errorListener(errorMsg);
+					}
 
-				if (callback !== undefined) {
-
-					// on callback.
-					on(callbackName, function(data) {
-
-						// run callback.
-						callback(data);
-
-						// off callback.
-						off(callbackName);
-					});
+				} else {
+					runMethods('__ERROR', errorMsg);
 				}
-			},
-
-			// disconnect.
-			function() {
-
-				isForceDisconnecting = true;
-
-				conn.end();
-			});
-		});
-
-		// when receive data
-		conn.on('data', function(content) {
-
-			var
-			// str
-			str,
-
-			// index
-			index,
-
-			// params
-			params;
-
-			receivedStr += content.toString();
-
-			while (( index = receivedStr.indexOf('\n')) !== -1) {
-
-				str = receivedStr.substring(0, index);
-
-				params = PARSE_STR(str);
-
-				if (params !== undefined) {
-					runMethods(params.methodName, params.data, params.sendKey);
-				}
-
-				receivedStr = receivedStr.substring(index + 1);
 			}
 		});
 
-		// when disconnected
-		conn.on('close', function() {
-
-			if (isForceDisconnecting !== true) {
-				runMethods('__DISCONNECTED');
-			}
-		});
-
-		// when error
-		conn.on('error', function(error) {
-
-			var
-			// error msg
-			errorMsg = error.toString();
-
-			if (isConnected !== true) {
-
-				console.log(CONSOLE_RED('[UPPERCASE.JS-CONNECT_TO_SOCKET_SERVER] CONNECT TO SOCKET SERVER FAILED: ' + errorMsg));
-
-				if (errorListener !== undefined) {
-					errorListener(errorMsg);
-				}
-
-			} else {
-				runMethods('__ERROR', errorMsg);
-			}
-		});
+		conn.connect();
 	}
 });

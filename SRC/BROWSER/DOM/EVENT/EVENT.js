@@ -388,7 +388,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			// other events
 			else {
 
-				eventLow1 = EVENT_LOW(params, func);
+				eventLow1 = EVENT_LOW(nameOrParams, func);
 
 				self.remove = remove = function() {
 
