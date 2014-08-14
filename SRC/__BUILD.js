@@ -1,7 +1,8 @@
 /*
  * build UPPERCASE.JS.
  */
-global.BUILD = function() {'use strict';
+global.BUILD = function() {
+	'use strict';
 
 	var
 	//IMPORT: fs
@@ -16,9 +17,9 @@ global.BUILD = function() {'use strict';
 	},
 
 	// scan folder.
-	scanFolder = function(path, func) {
+	scanFolder = function(scripts, path) {
+		//REQUIRED: scripts
 		//REQUIRED: path
-		//REQUIRED: func
 
 		var
 		// folder paths
@@ -41,54 +42,48 @@ global.BUILD = function() {'use strict';
 					if (fs.statSync(fullPath).isDirectory() === true) {
 						folderPaths.push(fullPath);
 					} else {
-						func(fs.readFileSync(fullPath));
+						scripts.push(fullPath);
 					}
 				}
 			});
 
 			for ( i = 0; i < folderPaths.length; i += 1) {
-				scanFolder(folderPaths[i], func);
+				scanFolder(scripts, folderPaths[i]);
 			}
 		}
 	},
 
-	// minify.
-	minify = function(script) {
+	// save.
+	save = function(scripts, path) {
 
 		var
 		// uglify-js
-		uglifyJS = require('uglify-js');
+		uglifyJS = require('uglify-js'),
 
-		// minify script.
-		return uglifyJS.minify(String(script), {
-			fromString : true,
+		// result
+		result = uglifyJS.minify(scripts, {
 			mangle : true
-		}).code;
-	},
+		});
 
-	// save.
-	save = function(script, path) {
-		fs.writeFileSync('../' + path, script);
+		fs.writeFileSync('../' + path, result.code);
 	},
 
 	// dist folder.
 	distFolder = function(name) {
 
 		var
-		// script
-		script = '';
+		// scripts
+		scripts = [];
 
 		log('BUILD [' + name + ']');
 
-		scanFolder(name, function(content) {
-			script += content;
-		});
+		scanFolder(scripts, name);
 
-		save(minify(script), 'UPPERCASE.JS-' + name + '.js');
+		save(scripts, 'UPPERCASE.JS-' + name + '.js');
 	},
 
 	// copy folder.
-	copyFolder = function(from, to) {
+	copyFolder = function(from, to, name) {
 
 		if (fs.statSync(from).isDirectory() === true) {
 			if (fs.existsSync('../' + to) !== true || fs.statSync('../' + to).isDirectory() !== true) {
@@ -96,11 +91,11 @@ global.BUILD = function() {'use strict';
 			}
 			fs.readdirSync(from).forEach(function(name) {
 				if (name[0] !== '.') {
-					copyFolder(from + '/' + name, to + '/' + name);
+					copyFolder(from + '/' + name, to + '/' + name, name);
 				}
 			});
 		} else if (path.extname(from) === '.js') {
-			save(minify(fs.readFileSync(from)), to);
+			save([from], to);
 		} else {
 			fs.createReadStream(from).pipe(fs.createWriteStream('../' + to));
 		}
@@ -109,23 +104,21 @@ global.BUILD = function() {'use strict';
 	(function() {
 
 		var
-		// script
-		script = '';
+		// scripts
+		scripts = [];
 
 		log('BUILD [COMMON]');
 
-		script += fs.readFileSync('COMMON/TO_DELETE.js');
-		script += fs.readFileSync('COMMON/CONFIG.js');
-		script += fs.readFileSync('COMMON/METHOD.js');
-		script += fs.readFileSync('COMMON/OOP/CLASS.js');
-		script += fs.readFileSync('COMMON/OOP/OBJECT.js');
-		script += fs.readFileSync('COMMON/OOP/INIT_OBJECTS.js');
-		
-		scanFolder('COMMON/UTIL', function(content) {
-			script += content;
-		});
+		scripts.push('COMMON/TO_DELETE.js');
+		scripts.push('COMMON/CONFIG.js');
+		scripts.push('COMMON/METHOD.js');
+		scripts.push('COMMON/OOP/CLASS.js');
+		scripts.push('COMMON/OOP/OBJECT.js');
+		scripts.push('COMMON/OOP/INIT_OBJECTS.js');
 
-		save(minify(script), 'UPPERCASE.JS-COMMON.js');
+		scanFolder(scripts, 'COMMON/UTIL');
+
+		save(scripts, 'UPPERCASE.JS-COMMON.js');
 	})();
 
 	distFolder('BROWSER');

@@ -1,7 +1,8 @@
 /*
  * write file.
  */
-global.WRITE_FILE = WRITE_FILE = METHOD(function() {'use strict';
+global.WRITE_FILE = WRITE_FILE = METHOD(function() {
+	'use strict';
 
 	var
 	//IMPORT: fs
@@ -16,8 +17,9 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {'use strict';
 			//REQUIRED: params
 			//REQUIRED: params.path
 			//REQUIRED: params.content
-			//REQUIRED: callbackOrHandlers
-			//REQUIRED: callbackOrHandlers.success
+			//OPTIONAL: params.isSync
+			//OPTIONAL: callbackOrHandlers
+			//OPTIONAL: callbackOrHandlers.success
 			//OPTIONAL: callbackOrHandlers.error
 
 			var
@@ -27,41 +29,86 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {'use strict';
 			// content
 			content = params.content,
 
+			// is sync
+			isSync = params.isSync,
+
 			// callback.
 			callback,
 
 			// error handler.
 			errorHandler;
 
-			if (CHECK_IS_DATA(callbackOrHandlers) !== true) {
-				callback = callbackOrHandlers;
-			} else {
-				callback = callbackOrHandlers.success;
-				errorHandler = callbackOrHandlers.error;
+			if (callbackOrHandlers !== undefined) {
+				if (CHECK_IS_DATA(callbackOrHandlers) !== true) {
+					callback = callbackOrHandlers;
+				} else {
+					callback = callbackOrHandlers.success;
+					errorHandler = callbackOrHandlers.error;
+				}
 			}
 
-			CREATE_FOLDER(_path.dirname(path), function() {
+			CREATE_FOLDER({
+				path : _path.dirname(path),
+				isSync : isSync
+			}, function() {
 
-				fs.writeFile(path, content, function(error) {
+				// when normal mode
+				if (isSync !== true) {
 
-					var
-					// error msg
-					errorMsg;
+					fs.writeFile(path, content, function(error) {
 
-					if (error !== TO_DELETE) {
+						var
+						// error msg
+						errorMsg;
 
-						errorMsg = error.toString();
+						if (error !== TO_DELETE) {
 
-						console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR:' + errorMsg));
+							errorMsg = error.toString();
 
-						if (errorHandler !== undefined) {
-							errorHandler(errorMsg);
+							console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR:' + errorMsg));
+
+							if (errorHandler !== undefined) {
+								errorHandler(errorMsg);
+							}
+
+						} else if (callback !== undefined) {
+							callback();
 						}
+					});
+				}
 
-					} else {
-						callback();
-					}
-				});
+				// when sync mode
+				else {
+
+					RUN(function() {
+
+						var
+						// error msg
+						errorMsg;
+
+						try {
+
+							fs.writeFileSync(path, content);
+
+							if (callback !== undefined) {
+								callback();
+							}
+
+						} catch(error) {
+
+							if (error !== TO_DELETE) {
+
+								errorMsg = error.toString();
+
+								console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR: ' + errorMsg));
+
+								if (errorHandler !== undefined) {
+									errorHandler(errorMsg);
+								}
+							}
+						}
+					});
+				}
 			});
 		}
 	};

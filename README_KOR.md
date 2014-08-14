@@ -143,6 +143,7 @@ loop.remove()
 ```
 * `OVERRIDE(origin, function(origin) {})` override something.
 * `NEXT([function(next) {}, function() { return function() {}; }, function() { return function() {}; }, ...])` `NEXT(count, [function(i, next) {}, function() { return function() {}; }, ...])` `NEXT(array, [function(element, next) {}, function() { return function() {}; }, ...])` async control-flow method that makes stepping through logic easy.
+* `PARALLEL([function(done) {}, function(done) {}, ..., function() {}])` run funcs in parallel.
 * `STRINGIFY(value)` stringify object.
 * `PARSE_STR(objectString)` parse stringified object.
 * `VALID(validDataSet)` Data validation class

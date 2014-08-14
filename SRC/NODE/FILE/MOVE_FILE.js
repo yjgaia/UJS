@@ -3,10 +3,12 @@
  */
 global.MOVE_FILE = MOVE_FILE = METHOD({
 
-	run : function(params, callbackOrHandlers) {'use strict';
+	run : function(params, callbackOrHandlers) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.srcPath
 		//REQUIRED: params.distPath
+		//OPTIONAL: params.isSync
 		//REQUIRED: callbackOrHandlers
 		//REQUIRED: callbackOrHandlers.success
 		//OPTIONAL: callbackOrHandlers.error
@@ -14,6 +16,9 @@ global.MOVE_FILE = MOVE_FILE = METHOD({
 		var
 		// src path
 		srcPath = params.srcPath,
+
+		// is sync
+		isSync = params.isSync,
 
 		// callback.
 		callback,
@@ -32,7 +37,10 @@ global.MOVE_FILE = MOVE_FILE = METHOD({
 			error : errorHandler,
 			success : function() {
 
-				REMOVE_FILE(srcPath, {
+				REMOVE_FILE({
+					path : srcPath,
+					isSync : isSync
+				}, {
 					error : errorHandler,
 					success : callback
 				});

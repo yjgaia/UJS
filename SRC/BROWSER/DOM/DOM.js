@@ -164,7 +164,13 @@ global.DOM = DOM = CLASS({
 			}
 		}
 
-		// when tag is undefined, el is not undefined
+		// when tag is undefined, el is not undefined, parentNode is body
+		else if (el.parentNode === document.body) {
+
+			parentDom = BODY;
+		}
+
+		// when tag is undefined, el is not undefined, parentNode is not undefined
 		else if (el.parentNode !== TO_DELETE) {
 
 			parentDom = DOM({

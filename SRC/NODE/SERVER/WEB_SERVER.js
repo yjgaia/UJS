@@ -1,7 +1,8 @@
 /*
  * create web server.
  */
-global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
+global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
+	'use strict';
 
 	var
 	//IMPORT: http
@@ -57,7 +58,8 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 
 	return {
 
-		init : function(inner, self, portOrParams, requestListener) {'use strict';
+		init : function(inner, self, portOrParams, requestListener) {
+			'use strict';
 			//REQUIRED: portOrParams
 			//OPTIONAL: portOrParams.port
 			//OPTIONAL: portOrParams.securedPort
@@ -91,12 +93,10 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {'use strict';
 			// get native http server.
 			getNativeHTTPServer;
 
+			// init params.
 			if (CHECK_IS_DATA(portOrParams) !== true) {
-
 				port = portOrParams;
-
 			} else {
-
 				port = portOrParams.port;
 				securedPort = portOrParams.securedPort;
 				securedKeyFilePath = portOrParams.securedKeyFilePath;

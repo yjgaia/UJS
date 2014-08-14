@@ -1,7 +1,8 @@
 /*
  * remove file.
  */
-global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {'use strict';
+global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
+	'use strict';
 
 	var
 	//IMPORT: fs
@@ -9,14 +10,22 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {'use strict';
 
 	return {
 
-		run : function(path, callbackOrHandlers) {
-			//REQUIRED: path
+		run : function(pathOrParams, callbackOrHandlers) {
+			//REQUIRED: pathOrParams
+			//REQUIRED: pathOrParams.path
+			//OPTIONAL: pathOrParams.isSync
 			//REQUIRED: callbackOrHandlers
 			//REQUIRED: callbackOrHandlers.success
 			//OPTIONAL: callbackOrHandlers.notExists
 			//OPTIONAL: callbackOrHandlers.error
 
 			var
+			// path
+			path,
+
+			// is sync
+			isSync,
+
 			// callback.
 			callback,
 
@@ -26,6 +35,14 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {'use strict';
 			// error handler.
 			errorHandler;
 
+			// init params.
+			if (CHECK_IS_DATA(pathOrParams) !== true) {
+				path = pathOrParams;
+			} else {
+				path = pathOrParams.path;
+				isSync = pathOrParams.isSync;
+			}
+
 			if (CHECK_IS_DATA(callbackOrHandlers) !== true) {
 				callback = callbackOrHandlers;
 			} else {
@@ -34,15 +51,77 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {'use strict';
 				errorHandler = callbackOrHandlers.error;
 			}
 
-			fs.exists(path, function(isExists) {
+			// when normal mode
+			if (isSync !== true) {
 
-				if (isExists === true) {
+				fs.exists(path, function(isExists) {
 
-					fs.unlink(path, function(error) {
+					if (isExists === true) {
 
-						var
-						// error msg
-						errorMsg;
+						fs.unlink(path, function(error) {
+
+							var
+							// error msg
+							errorMsg;
+
+							if (error !== TO_DELETE) {
+
+								errorMsg = error.toString();
+
+								console.log(CONSOLE_RED('[UPPERCASE.JS-REMOVE_FILE] ERROR: ' + errorMsg));
+
+								if (errorHandler !== undefined) {
+									errorHandler(errorMsg);
+								}
+
+							} else {
+
+								if (callback !== undefined) {
+									callback();
+								}
+							}
+						});
+
+					} else {
+
+						if (notExistsHandler !== undefined) {
+							notExistsHandler(path);
+						} else {
+							console.log(CONSOLE_YELLOW('[UPPERCASE.JS-REMOVE_FILE] NOT EXISTS! <' + path + '>'));
+						}
+					}
+				});
+			}
+
+			// when sync mode
+			else {
+
+				RUN(function() {
+
+					var
+					// error msg
+					errorMsg;
+
+					try {
+
+						if (fs.existsSync(path) === true) {
+
+							fs.unlinkSync(path);
+
+							if (callback !== undefined) {
+								callback();
+							}
+
+						} else {
+
+							if (notExistsHandler !== undefined) {
+								notExistsHandler(path);
+							} else {
+								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-REMOVE_FILE] NOT EXISTS! <' + path + '>'));
+							}
+						}
+
+					} catch(error) {
 
 						if (error !== TO_DELETE) {
 
@@ -53,19 +132,10 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {'use strict';
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							}
-
-						} else {
-
-							if (callback !== undefined) {
-								callback();
-							}
 						}
-					});
-
-				} else if (notExistsHandler !== undefined) {
-					notExistsHandler(path);
-				}
-			});
+					}
+				});
+			}
 		}
 	};
 });

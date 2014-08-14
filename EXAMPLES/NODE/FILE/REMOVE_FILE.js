@@ -4,10 +4,21 @@ require('../../../UPPERCASE.JS-NODE.js');
 
 INIT_OBJECTS();
 
-WRITE_FILE({
-	path : 'testFolder/subFolder1/subFolder2/test2',
-	content : 'test!!!'
+REMOVE_FILE({
+	path : 'test2.txt',
+	isSync : true
 }, {
+
+	error : function(errorMsg) {
+		console.log('ERROR!', errorMsg);
+	},
+
+	success : function() {
+		console.log('good!');
+	}
+});
+
+REMOVE_FILE('test3.txt', {
 
 	error : function(errorMsg) {
 		console.log('ERROR!', errorMsg);

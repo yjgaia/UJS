@@ -1,7 +1,8 @@
 /*
  * copy file.
  */
-global.COPY_FILE = COPY_FILE = METHOD(function() {'use strict';
+global.COPY_FILE = COPY_FILE = METHOD(function() {
+	'use strict';
 
 	var
 	//IMPORT: fs
@@ -16,8 +17,9 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {'use strict';
 			//REQUIRED: params
 			//REQUIRED: params.srcPath
 			//REQUIRED: params.distPath
-			//REQUIRED: callbackOrHandlers
-			//REQUIRED: callbackOrHandlers.success
+			//OPTIONAL: params.isSync
+			//OPTIONAL: callbackOrHandlers
+			//OPTIONAL: callbackOrHandlers.success
 			//OPTIONAL: callbackOrHandlers.error
 
 			var
@@ -27,43 +29,98 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {'use strict';
 			// dist path
 			distPath = params.distPath,
 
+			// is sync
+			isSync = params.isSync,
+
 			// callback.
 			callback,
 
 			// error handler.
 			errorHandler;
 
-			if (CHECK_IS_DATA(callbackOrHandlers) !== true) {
-				callback = callbackOrHandlers;
-			} else {
-				callback = callbackOrHandlers.success;
-				errorHandler = callbackOrHandlers.error;
+			if (callbackOrHandlers !== undefined) {
+				if (CHECK_IS_DATA(callbackOrHandlers) !== true) {
+					callback = callbackOrHandlers;
+				} else {
+					callback = callbackOrHandlers.success;
+					errorHandler = callbackOrHandlers.error;
+				}
 			}
 
-			CREATE_FOLDER(_path.dirname(distPath), function() {
+			CREATE_FOLDER({
+				path : _path.dirname(distPath),
+				isSync : isSync
+			}, {
 
-				var
-				// reader
-				reader = fs.createReadStream(srcPath);
+				error : errorHandler,
 
-				reader.pipe(fs.createWriteStream(distPath));
+				success : function() {
 
-				reader.on('error', function(error) {
+					// when normal mode
+					if (isSync !== true) {
 
-					var
-					// error msg
-					errorMsg = error.toString();
+						RUN(function() {
 
-					console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR:' + errorMsg));
+							var
+							// reader
+							reader = fs.createReadStream(srcPath);
 
-					if (errorHandler !== undefined) {
-						errorHandler(errorMsg);
+							reader.pipe(fs.createWriteStream(distPath));
+
+							reader.on('error', function(error) {
+
+								var
+								// error msg
+								errorMsg = error.toString();
+
+								console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR:' + errorMsg));
+
+								if (errorHandler !== undefined) {
+									errorHandler(errorMsg);
+								}
+							});
+
+							reader.on('end', function() {
+								if (callback !== undefined) {
+									callback();
+								}
+							});
+						});
 					}
-				});
 
-				reader.on('end', function() {
-					callback();
-				});
+					// when sync mode
+					else {
+
+						RUN(function() {
+
+							var
+							// error msg
+							errorMsg;
+
+							try {
+
+								fs.writeFileSync(distPath, fs.readFileSync(srcPath));
+
+								if (callback !== undefined) {
+									callback();
+								}
+
+							} catch(error) {
+
+								if (error !== TO_DELETE) {
+
+									errorMsg = error.toString();
+
+									console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR: ' + errorMsg));
+
+									if (errorHandler !== undefined) {
+										errorHandler(errorMsg);
+									}
+								}
+							}
+						});
+					}
+				}
 			});
 		}
 	};
