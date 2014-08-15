@@ -11,6 +11,9 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 	//IMPORT: querystring
 	querystring = require('querystring'),
 
+	//IMPORT: zlib
+	zlib = require('zlib'),
+
 	// get encoding from content type.
 	getEncodingFromContentType;
 
@@ -119,6 +122,9 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 				// ip
 				ip = headers['X-Forwarded-For'],
 
+				// accept encoding
+				acceptEncoding = headers['accept-encoding'],
+
 				// disconnected methods
 				disconnectedMethods = [],
 
@@ -130,6 +136,10 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 
 				if (ip === undefined) {
 					ip = nativeReq.connection.remoteAddress;
+				}
+
+				if (acceptEncoding === undefined) {
+					acceptEncoding = '';
 				}
 
 				if (uri.indexOf('?') != -1) {
@@ -243,11 +253,12 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 								}
 
 								if (contentType !== undefined) {
-									headers['Content-Type'] = contentType;
 
 									if (encoding === undefined) {
 										encoding = getEncodingFromContentType(contentType);
 									}
+
+									headers['Content-Type'] = contentType + '; charset=' + encoding;
 								}
 
 								if (CONFIG.isDevMode !== true) {
@@ -258,8 +269,33 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 									}
 								}
 
-								nativeRes.writeHead(statusCode, headers);
-								nativeRes.end(buffer !== undefined ? buffer : content, encoding);
+								// when deflate encoding
+								if (acceptEncoding.match(/\bdeflate\b/) !== TO_DELETE) {
+
+									headers['content-encoding'] = 'deflate';
+
+									zlib.deflate(buffer !== undefined ? buffer : content, function(error, buffer) {
+										nativeRes.writeHead(statusCode, headers);
+										nativeRes.end(buffer, encoding);
+									});
+								}
+
+								// when gzip encoding
+								else if (acceptEncoding.match(/\bgzip\b/) !== TO_DELETE) {
+
+									headers['content-encoding'] = 'gzip';
+
+									zlib.gzip(buffer !== undefined ? buffer : content, function(error, buffer) {
+										nativeRes.writeHead(statusCode, headers);
+										nativeRes.end(buffer, encoding);
+									});
+								}
+
+								// when not encoding
+								else {
+									nativeRes.writeHead(statusCode, headers);
+									nativeRes.end(buffer !== undefined ? buffer : content, encoding);
+								}
 
 								requestInfo.isResponsed = true;
 							}

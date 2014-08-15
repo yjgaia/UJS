@@ -18,7 +18,7 @@ CPU_CLUSTERING(function(workerData, on, off, broadcast) {
 		if (workerData.id === 1) {
 
 			sharedStore.save({
-				key : 'msg',
+				name : 'msg',
 				value : 'Hello World!'
 			});
 		}

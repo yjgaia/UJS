@@ -21,15 +21,15 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 
 	cls.save = save = function(params, remove) {
 		//REQUIRED: params
-		//REQUIRED: params.fullKey
+		//REQUIRED: params.fullName
 		//REQUIRED: params.value
 		//OPTIONAL: params.removeAfterSeconds
 		//OPTIONAL: params.isWaitRemove
 		//OPTIONAL: remove
 
 		var
-		// full key
-		fullKey = params.fullKey,
+		// full name
+		fullName = params.fullName,
 
 		// value
 		value = params.value,
@@ -40,32 +40,32 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 		// is wait remove
 		isWaitRemove = params.isWaitRemove;
 
-		storage[fullKey] = value;
+		storage[fullName] = value;
 
-		if (isWaitRemove === true && removeDelays[fullKey] !== undefined) {
-			removeDelays[fullKey].remove();
-			delete removeDelays[fullKey];
+		if (isWaitRemove === true && removeDelays[fullName] !== undefined) {
+			removeDelays[fullName].remove();
+			delete removeDelays[fullName];
 		}
 
 		if (removeAfterSeconds !== undefined) {
-			removeDelays[fullKey] = DELAY(removeAfterSeconds, remove);
+			removeDelays[fullName] = DELAY(removeAfterSeconds, remove);
 		}
 	};
 
-	cls.get = get = function(fullKey) {
-		//REQUIRED: fullKey
+	cls.get = get = function(fullName) {
+		//REQUIRED: fullName
 
-		return storage[fullKey];
+		return storage[fullName];
 	};
 
-	cls.remove = remove = function(fullKey) {
-		//REQUIRED: fullKey
+	cls.remove = remove = function(fullName) {
+		//REQUIRED: fullName
 
-		delete storage[fullKey];
+		delete storage[fullName];
 
-		if (removeDelays[fullKey] !== undefined) {
-			removeDelays[fullKey].remove();
-			delete removeDelays[fullKey];
+		if (removeDelays[fullName] !== undefined) {
+			removeDelays[fullName].remove();
+			delete removeDelays[fullName];
 		}
 	};
 
@@ -75,8 +75,8 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 			//REQUIRED: name
 
 			var
-			// gen full key.
-			genFullKey,
+			// gen full name.
+			genfullName,
 
 			// save.
 			save,
@@ -87,22 +87,22 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 			// remove.
 			remove;
 
-			genFullKey = function(key) {
-				return name + '.' + key;
+			genfullName = function(_name) {
+				return name + '.' + _name;
 			};
 
 			self.save = save = function(params) {
 				//REQUIRED: params
-				//REQUIRED: params.key
+				//REQUIRED: params.name
 				//REQUIRED: params.value
 				//OPTIONAL: params.removeAfterSeconds
 
 				var
-				// key
-				key = params.key,
+				// name
+				name = params.name,
 
-				// full key
-				fullKey = genFullKey(key),
+				// full name
+				fullName = genfullName(name),
 
 				// value
 				value = params.value,
@@ -111,11 +111,11 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 				removeAfterSeconds = params.removeAfterSeconds;
 
 				cls.save({
-					fullKey : fullKey,
+					fullName : fullName,
 					value : value,
 					removeAfterSeconds : removeAfterSeconds
 				}, function() {
-					remove(key);
+					remove(name);
 				});
 
 				if (CPU_CLUSTERING.broadcast !== undefined) {
@@ -123,7 +123,7 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 					CPU_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_SAVE',
 						data : {
-							fullKey : fullKey,
+							fullName : fullName,
 							value : value,
 							isWaitRemove : removeAfterSeconds !== undefined
 						}
@@ -135,7 +135,7 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 					SERVER_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_SAVE',
 						data : {
-							fullKey : fullKey,
+							fullName : fullName,
 							value : value,
 							isWaitRemove : removeAfterSeconds !== undefined
 						}
@@ -143,26 +143,26 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 				}
 			};
 
-			self.get = get = function(key) {
-				//REQUIRED: key
+			self.get = get = function(name) {
+				//REQUIRED: name
 
-				return cls.get(genFullKey(key));
+				return cls.get(genfullName(name));
 			};
 
-			self.remove = remove = function(key) {
-				//REQUIRED: key
+			self.remove = remove = function(name) {
+				//REQUIRED: name
 
 				var
-				// full key
-				fullKey = genFullKey(key);
+				// full name
+				fullName = genfullName(name);
 
-				cls.remove(fullKey);
+				cls.remove(fullName);
 
 				if (CPU_CLUSTERING.broadcast !== undefined) {
 
 					CPU_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_REMOVE',
-						data : fullKey
+						data : fullName
 					});
 				}
 
@@ -170,7 +170,7 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 
 					SERVER_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_REMOVE',
-						data : fullKey
+						data : fullName
 					});
 				}
 			};
