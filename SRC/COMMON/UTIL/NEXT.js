@@ -41,7 +41,7 @@ global.NEXT = NEXT = METHOD({
 			next;
 
 			// get last function.
-			if (f === undefined) {
+			if (i !== 0 && f === undefined) {
 				f = funcs[i]();
 			}
 
@@ -60,6 +60,13 @@ global.NEXT = NEXT = METHOD({
 
 				next = f;
 
+				// when next not exists, next is empty function.
+				if (next === undefined) {
+					next = function() {
+						// ignore.
+					};
+				}
+
 				f = funcs[i];
 
 				if (count !== undefined) {
@@ -68,17 +75,17 @@ global.NEXT = NEXT = METHOD({
 
 						var
 						// i
-						i = 0;
+						i = -1;
 
 						RUN(function(self) {
+
+							i += 1;
 
 							if (i + 1 < count) {
 								f(i, self);
 							} else {
 								f(i, next);
 							}
-
-							i += 1;
 						});
 					});
 
@@ -91,13 +98,15 @@ global.NEXT = NEXT = METHOD({
 						length = array.length,
 
 						// i
-						i = 0;
+						i = -1;
 
 						if (length === 0) {
 							next();
 						} else {
 
 							RUN(function(self) {
+
+								i += 1;
 
 								if (i + 1 < length) {
 
@@ -112,8 +121,6 @@ global.NEXT = NEXT = METHOD({
 								} else {
 									f(array[i], next);
 								}
-
-								i += 1;
 							});
 						}
 					});
