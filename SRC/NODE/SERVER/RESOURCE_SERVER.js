@@ -260,7 +260,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 
 								var
 								// resource cache
-								resourceCache = resourceCaches[uri];
+								resourceCache = resourceCaches[originalURI];
 
 								if (resourceCache !== undefined) {
 									next(resourceCache.buffer, resourceCache.contentType);
@@ -296,8 +296,8 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 										contentType = getContentTypeFromURI(uri);
 									}
 
-									if (CONFIG.isDevMode !== true && overrideResponseInfo.isFinal !== true && resourceCaches[uri] === undefined) {
-										resourceCaches[uri] = {
+									if (CONFIG.isDevMode !== true && overrideResponseInfo.isFinal !== true && resourceCaches[originalURI] === undefined) {
+										resourceCaches[originalURI] = {
 											buffer : buffer,
 											contentType : contentType
 										};
