@@ -33,7 +33,7 @@ global.PARALLEL = PARALLEL = METHOD({
 
 		if (count !== undefined) {
 
-			REPEAT(count, function() {
+			REPEAT(count, function(i) {
 
 				funcs[0](i, function() {
 
@@ -47,16 +47,16 @@ global.PARALLEL = PARALLEL = METHOD({
 
 		} else if (array !== undefined) {
 
-			EACH(array, function(value) {
+			EACH(array, function(value, i) {
 
 				funcs[0](value, function() {
 
 					doneCount += 1;
 
-					if (doneCount === count) {
+					if (doneCount === array.length) {
 						funcs[1]();
 					}
-				});
+				}, i);
 			});
 
 		} else {

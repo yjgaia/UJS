@@ -12,7 +12,7 @@
 객체지향 프로그래밍 지원 및 다양한 기능을 제공하는 JavaScript 라이브러리입니다.
 JavaScript 유틸리티를 찾고 계신다면 UPPERCASE.JS-COMMON을 사용해보세요.
 
-* `METHOD` 메소드를 생성합니다. 메소드에 static 변수를 지정할 수 있습니다.
+* `METHOD` 메소드를 생성합니다. 메소드에 static 변수를 지정할 수 있습니다. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/METHOD.js)
 ```javascript
 method = METHOD({
 	run: function(params, callback) {
@@ -35,7 +35,7 @@ method.staticString // 'Static!'
 ```
 
 #### `OOP` 제대로 된 객체지향 프로그래밍
-* `CLASS` 클래스를 선언합니다. 클래스 상속이 가능하고, private 및 public, protected 변수를 지정할 수 있습니다. 또한 파라미터를 객체 생성 이전에 수정할 수 있으며 static 변수를 지정할 수도 있습니다.
+* `CLASS` 클래스를 선언합니다. 클래스 상속이 가능하고, private 및 public, protected 변수를 지정할 수 있습니다. 또한 파라미터를 객체 생성 이전에 수정할 수 있으며 static 변수를 지정할 수도 있습니다. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/OOP/CLASS.js)
 ```javascript
 Sample = CLASS({
 	init: function(inner, self, params, callback) {
@@ -81,7 +81,7 @@ Sample = CLASS(function(c) {
 });
 Sample.staticString // 'Static!'
 ```
-* `OBJECT` 객체를 선언합니다. 모든 객체가 선언된 이후에는 `INIT_OBJECTS()`로 초기화합니다.
+* `OBJECT` 객체를 선언합니다. 모든 객체가 선언된 이후에는 `INIT_OBJECTS()`로 초기화합니다. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/OOP/OBJECT.js)
 ```javascript
 sample = OBJECT({
 	init: function(inner, self) {
@@ -95,12 +95,27 @@ INIT_OBJECTS();
 sample.hello(); // Hi there?
 ```
 
-#### `UTIL` 꼭 필요한 것들만 모아놓은 유틸리티 패키지
-* `INTEGER(integerString)` convert integer string to integer number.
-* `REAL(realString)` convert real string to real number.
-* `RANDOM(max)` `RANDOM({min:, max:})` `RANDOM({min:, limit:})` generate random integer.
-* `RANDOM_STR(length)` generate random string.
-* `CALENDAR()` `CALENDAR(date)` Calendar class
+#### `UTIL` 꼭 필요한 것들만 모아놓은 유틸리티
+
+###### 숫자 관련
+* `INTEGER(integerString)` convert integer string to integer number. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/NUMBER/INTEGER.js)
+* `REAL(realString)` convert real string to real number. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/NUMBER/REAL.js)
+* `RANDOM(max)` `RANDOM({min:, max:})` `RANDOM({min:, limit:})` generate random integer. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/NUMBER/RANDOM.js)
+
+###### DATA 및 배열 관련
+* `CHECK_IS_DATA(it)` check it is data. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA/CHECK_IS_DATA.js)
+* `CHECK_IS_EMPTY_DATA(data)` check data is empty. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA/CHECK_IS_EMPTY_DATA.js)
+* `CHECK_IS_ARRAY(it)` check it is array. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/ARRAY/CHECK_IS_ARRAY.js)
+* `CHECK_ARE_SAME(array)` check are same all elements in array. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/ARRAY/CHECK_ARE_SAME.js)
+* `CHECK_IS_IN({data:, value:})` `CHECK_IS_IN({array:, value:})` check is exists value in data or array. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/CHECK_IS_IN.js)
+* `COMBINE(data)` `COMBINE(array)` combine data set or arrays. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/COMBINE.js)
+* `COPY(data)` `COPY(array)` copy data or array. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/COPY.js)
+* `EXTEND({origin:, extend:})` extend data or array. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/EXTEND.js)
+* `FIND({data:, value:})` `FIND({array:, value:})` find name or key in data or array. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/FIND.js)
+* `REMOVE({data:, name:})` `REMOVE({data:, value:})` `REMOVE({array:, key:})` `REMOVE({array:, value:})` `REMOVE(dataOrArray, function(value) {})` remove at name or key or some value in data or array. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/REMOVE.js)
+
+###### 날짜 관련
+* `CALENDAR()` `CALENDAR(date)` Calendar class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATE/CALENDAR.js)
 ```javascript
 cal = CALENDAR(new Date());
 cal.getYear()
@@ -111,42 +126,41 @@ cal.getHour()
 cal.getMinute()
 cal.getSecond()
 ```
-* `CHECK_IS_DATA(it)` check it is data.
-* `CHECK_IS_EMPTY_DATA(data)` check data is empty.
-* `CHECK_IS_ARRAY(it)` check it is array.
-* `CHECK_ARE_SAME(array)` check are same all elements in array.
-* `CHECK_IS_IN({data:, value:})` `CHECK_IS_IN({array:, value:})` check is exists value in data or array.
-* `COMBINE(data)` `COMBINE(array)` combine data set or arrays.
-* `COPY(data)` `COPY(array)` copy data or array.
-* `EXTEND({origin:, extend:})` extend data or array.
-* `FIND({data:, value:})` `FIND({array:, value:})` find name or key in data or array.
-* `REMOVE({data:, name:})` `REMOVE({data:, value:})` `REMOVE({array:, key:})` `REMOVE({array:, value:})` `REMOVE(dataOrArray, function(value) {})` remove at name or key or some value in data or array.
-* `RUN(function(func) {})` just run. use this if you need a code block.
-* `RAR(function() {})` `RAR(params, function(params) {})` run `func` and return it.
-* `REPEAT(count, function(i) {})` `REPEAT({start:, end:}, function(i) {})` `REPEAT({start:, end:, step:}, function(i) {})` `REPEAT({start:, limit:}, function(i) {})` `REPEAT({start:, limit:, step:}, function(i) {})` run `func` repeat `count` time, or same as `for`.
-* `EACH(data, function(value) {})` `EACH(array, function(value) {})` same as `foreach`.
-* `DELAY(seconds, function(delay) {})` Delay class
+
+###### 함수 관련
+* `RUN(function(func) {})` just run. use this if you need a code block. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/FUNCTION/RUN.js)
+* `RAR(function() {})` `RAR(params, function(params) {})` run `func` and return it. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/FUNCTION/RAR.js)
+
+###### 반복문 관련
+* `REPEAT(count, function(i) {})` `REPEAT({start:, end:}, function(i) {})` `REPEAT({start:, end:, step:}, function(i) {})` `REPEAT({start:, limit:}, function(i) {})` `REPEAT({start:, limit:, step:}, function(i) {})` run `func` repeat `count` time, or same as `for`. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/REPEAT/REPEAT.js)
+* `EACH(data, function(value) {})` `EACH(array, function(value) {})` same as `foreach`. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/REPEAT/EACH.js)
+
+###### 지연 관련
+* `DELAY(seconds, function(delay) {})` Delay class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DELAY/DELAY.js)
 ```javascript
 delay = DELAY(3, function(delay) {});
 delay.remove()
 ```
-* `INTERVAL(seconds, function(interval) {})` Interval class
+* `INTERVAL(seconds, function(interval) {})` Interval class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DELAY/INTERVAL.js)
 ```javascript
 interval = INTERVAL(3, function(interval) {});
 interval.remove()
 ```
-* `LOOP(fps, function() {})` `LOOP(fps, {start: function() {}, interval: function() {}, end: function() {}})` Loop class (for game etc.)
+* `LOOP(fps, function() {})` `LOOP(fps, {start: function() {}, interval: function() {}, end: function() {}})` Loop class (for game etc.) [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DELAY/LOOP.js)
 ```javascript
 loop = LOOP(100, {start: function() {}, interval: function() {}, end: function() {}});
 loop.changeFPS(fps) // ex) loop.changeFPS(60)
 loop.remove()
 ```
-* `OVERRIDE(origin, function(origin) {})` override something.
-* `NEXT([function(next) {}, function() { return function() {}; }, function() { return function() {}; }, ...])` `NEXT(count, [function(i, next) {}, function() { return function() {}; }, ...])` `NEXT(array, [function(element, next) {}, function() { return function() {}; }, ...])` async control-flow method that makes stepping through logic easy.
-* `PARALLEL([function(done) {}, function(done) {}, ..., function() {}])` run funcs in parallel.
-* `STRINGIFY(value)` stringify object.
-* `PARSE_STR(objectString)` parse stringified object.
-* `VALID(validDataSet)` Data validation class
+
+###### 기타
+* `RANDOM_STR(length)` generate random string. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/RANDOM_STR.js)
+* `OVERRIDE(origin, function(origin) {})` override something. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/OVERRIDE.js)
+* `NEXT([function(next) {}, function() { return function() {}; }, function() { return function() {}; }, ...])` `NEXT(count, [function(i, next) {}, function() { return function() {}; }, ...])` `NEXT(array, [function(element, next) {}, function() { return function() {}; }, ...])` async control-flow method that makes stepping through logic easy. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/NEXT.js)
+* `PARALLEL([function(done) {}, function(done) {}, ..., function() {}])` `PARALLEL(count, [function(done) {}, function() {}])` `PARALLEL(array, [function(value, done) {}, function() {}])` run funcs in parallel. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/PARALLEL.js)
+* `STRINGIFY(value)` stringify object. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/STRINGIFY.js)
+* `PARSE_STR(objectString)` parse stringified object. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/PARSE_STR.js)
+* `VALID(validDataSet)` Data validation class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/VALID.js)
 ```javascript
 validResult = VALID(validData).check({
      data : data
@@ -162,7 +176,7 @@ node.js를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-NODE를 사�
 * UPPERCASE.JS-COMMON.js가 필요합니다.
 
 ### node.js에서 사용하기
-* `require`와 `INIT_OBJECTS();`은 한번만 실행합니다.
+* `INIT_OBJECTS();`은 한번만 실행합니다.
 
 ```javascript
 require('UPPERCASE.JS-COMMON.js');
@@ -238,7 +252,7 @@ COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1
 ```
 
 #### 브라우저 패키지
-* `INFO` Browser information object
+* `INFO` Browser information object [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/INFO.js)
 ```javascript
 INFO.getLang()
 INFO.changeLang(lang) // ex) INFO.changeLang('ko')
@@ -246,75 +260,94 @@ INFO.checkIsHDDisplay()
 INFO.checkIsTouchableDisplay()
 INFO.getBrowserInfo()
 ```
-* `STORE(name)` Browser store class
+* `STORE(name)` Browser store class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/STORE.js)
 ```javascript
 store = STORE('testStore');
 store.save({ name:, value:, isToSession: })
 store.get(name)
 store.remove(name)
 ```
-* `TITLE(title)` change document title.
-* `WIN_WIDTH()` get window width. (px)
-* `WIN_HEIGHT()` get window height. (px)
-* `SCROLL_LEFT()` get scroll left. (px)
-* `SCROLL_TOP()` get scroll top. (px)
-* `MSG({ko:, en:, ...})` get internationalization message.
-* `DOM({tag:})` `DOM({tag:, style:})` `DOM({tag:, c:})` `DOM({tag:, on:})` `DOM({el:})` Dom wrapper class
-* `NODE` Node interface
-* `ADD_STYLE({node:, style:})` add style.
-* `RGBA([r, g, b, a])` get rgba style string.
-* `ANIMATE({node:, keyframes:})` `ANIMATE({node:, keyframes:, duration:})` `ANIMATE({node:, keyframes:, timingFunction:})` `ANIMATE({node:, keyframes:, delay:})` `ANIMATE({node:, keyframes:, iterationCount:})` `ANIMATE({node:, keyframes:, direction:})` `ANIMATE({node:, keyframes:, playState:})` `ANIMATE({node:, keyframes:}, callback)` animate node.
-* `KEYFRAMES(keyframes)` Animation keyframes class
-* `EVENT(name, func)` `EVENT({node:, name:}, func)` Event class
-* `FIRE_ALL(name)` `FIRE_ALL({node:, name:})` fire all events.
+* `MSG({ko:, en:, ...})` get internationalization message. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/I18N/MSG.js)
+
+###### 윈도우 관련
+* `TITLE(title)` change document title. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/WINDOW.js)
+* `WIN_WIDTH()` get window width. (px) [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/WIN_WIDTH.js)
+* `WIN_HEIGHT()` get window height. (px) [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/WIN_HEIGHT.js)
+* `SCROLL_LEFT()` get scroll left. (px) [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/SCROLL_LEFT.js)
+* `SCROLL_TOP()` get scroll top. (px) [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/SCROLL_TOP.js)
+
+###### NODE 및 DOM 관련
+* `NODE` Node interface [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/NODE.js)
+* `DOM({tag:})` `DOM({tag:, style:})` `DOM({tag:, c:})` `DOM({tag:, on:})` `DOM({el:})` Dom wrapper class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/DOM.js)
 * `BODY` Body class
-* `DIV({style:})` `DIV({c:})` `DIV({on:})` Div class
-* `SPAN({style:})` `SPAN({c:})` `SPAN({on:})` Span class
-* `H1({style:})` `H1({c:})` `H1({on:})` H1 class
-* `H2({style:})` `H2({c:})` `H2({on:})` H2 class
-* `H3({style:})` `H3({c:})` `H3({on:})` H3 class
-* `H4({style:})` `H4({c:})` `H4({on:})` H4 class
-* `H5({style:})` `H5({c:})` `H5({on:})` H5 class
-* `H6({style:})` `H6({c:})` `H6({on:})` H6 class
-* `P({style:})` `P({c:})` `P({on:})` P class
+* `DIV({style:})` `DIV({c:})` `DIV({on:})` Div class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/DIV.js)
+* `SPAN({style:})` `SPAN({c:})` `SPAN({on:})` Span class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/SPAN.js)
+* `H1({style:})` `H1({c:})` `H1({on:})` H1 class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/H1.js)
+* `H2({style:})` `H2({c:})` `H2({on:})` H2 class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/H1.js)
+* `H3({style:})` `H3({c:})` `H3({on:})` H3 class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/H1.js)
+* `H4({style:})` `H4({c:})` `H4({on:})` H4 class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/H1.js)
+* `H5({style:})` `H5({c:})` `H5({on:})` H5 class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/H1.js)
+* `H6({style:})` `H6({c:})` `H6({on:})` H6 class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/H1.js)
+* `P({style:})` `P({c:})` `P({on:})` P class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/P.js)
 * `BR()` Br class
-* `UL({style:})` `UL({c:})` `UL({on:})` Ul class
-* `LI({style:})` `LI({c:})` `LI({on:})` Li class
-* `A({href:})` `A({href:, target:})` `A({style:})` `A({c:})` `A({on:})` A class
-* `IMG({src:})` `IMG({style:})` `IMG({c:})` `IMG({on:})` Img class
-* `TABLE({style:})` `TABLE({c:})` `TABLE({on:})` Table class
-* `TR({style:})` `TR({c:})` `TR({on:})` Tr class
-* `TH({style:})` `TH({c:})` `TH({on:})` Th class
-* `TD({style:})` `TD({c:})` `TD({on:})` Td class
-* `FORM({action:})` `FORM({target:})` `FORM({method:})` `FORM({enctype:})` `FORM({style:})` `FORM({c:})` `FORM({on:})` Form class
-* `INPUT({name:})` `INPUT({type:})` `INPUT({placeholder:})` `INPUT({value:})` `INPUT({isMultiple:})` `INPUT({style:})` `INPUT({on:})` Input class
-* `TEXTAREA({name:})` `TEXTAREA({placeholder:})` `TEXTAREA({value:})` `TEXTAREA({style:})` `TEXTAREA({c:})` `TEXTAREA({on:})` Textarea class
-* `SELECT({name:})` `SELECT({value:})` `SELECT({style:})` `SELECT({c:})` `SELECT({on:})` Select class
-* `OPTION({value:})` `OPTION({style:})` `OPTION({c:})` `OPTION({on:})` Option class
-* `SCRIPT({src:})` `SCRIPT({on:})` Script class
-* `IFRAME({name:})` `IFRAME({src:})` `IFRAME({style:})` `IFRAME({c:})` `SELECT({on:})` Iframe class
-* `CANVAS()` `CANVAS({width:})` `CANVAS({height:})` `CANVAS({style:})` `CANVAS({c:})` `CANVAS({on:})` Canvas class
-* `CLEAR_BOTH()` create clear:both div.
-* `CHECK_IS_BLANK_PIXEL({img:, left:, top:}, callback)` `CHECK_IS_BLANK_PIXEL({img:, right:, bottom:}, callback)` check the pixel is blank pixel.
-* `EXPORT_IMG_DATA(img, callback)` export img data.
-* `EXPORT_IMG_TYPE(img, callback)` export img type.
-* `SOUND({mp3:, ogg:, isLoop:})` SOUND class
+* `UL({style:})` `UL({c:})` `UL({on:})` Ul class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/UL.js)
+* `LI({style:})` `LI({c:})` `LI({on:})` Li class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/UL.js)
+* `A({href:})` `A({href:, target:})` `A({style:})` `A({c:})` `A({on:})` A class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/A.js)
+* `IMG({src:})` `IMG({style:})` `IMG({c:})` `IMG({on:})` Img class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/IMG.js)
+* `TABLE({style:})` `TABLE({c:})` `TABLE({on:})` Table class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/TABLE.js)
+* `TR({style:})` `TR({c:})` `TR({on:})` Tr class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/TABLE.js)
+* `TH({style:})` `TH({c:})` `TH({on:})` Th class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/TABLE.js)
+* `TD({style:})` `TD({c:})` `TD({on:})` Td class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/TABLE.js)
+* `FORM({action:})` `FORM({target:})` `FORM({method:})` `FORM({enctype:})` `FORM({style:})` `FORM({c:})` `FORM({on:})` Form class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/FORM.js)
+* `INPUT({name:})` `INPUT({type:})` `INPUT({placeholder:})` `INPUT({value:})` `INPUT({isMultiple:})` `INPUT({style:})` `INPUT({on:})` Input class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/INPUT.js)
+* `TEXTAREA({name:})` `TEXTAREA({placeholder:})` `TEXTAREA({value:})` `TEXTAREA({style:})` `TEXTAREA({c:})` `TEXTAREA({on:})` Textarea class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/FORM.js)
+* `SELECT({name:})` `SELECT({value:})` `SELECT({style:})` `SELECT({c:})` `SELECT({on:})` Select class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/FORM.js)
+* `OPTION({value:})` `OPTION({style:})` `OPTION({c:})` `OPTION({on:})` Option class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/FORM.js)
+* `IFRAME({name:})` `IFRAME({src:})` `IFRAME({style:})` `IFRAME({c:})` `SELECT({on:})` Iframe class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/IFRAME.js)
+* `CANVAS()` `CANVAS({width:})` `CANVAS({height:})` `CANVAS({style:})` `CANVAS({c:})` `CANVAS({on:})` Canvas class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/CANVAS.js)
+* `CLEAR_BOTH()` create clear:both div. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/CLEAR_BOTH.js)
+
+###### 스타일 관련
+* `ADD_STYLE({node:, style:})` add style. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/STYLE/ADD_STYLE.js)
+* `RGBA([r, g, b, a])` get rgba style string. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/STYLE/RGBA.js)
+
+###### 애니메이션 관련
+* `ANIMATE({node:, keyframes:})` `ANIMATE({node:, keyframes:, duration:})` `ANIMATE({node:, keyframes:, timingFunction:})` `ANIMATE({node:, keyframes:, delay:})` `ANIMATE({node:, keyframes:, iterationCount:})` `ANIMATE({node:, keyframes:, direction:})` `ANIMATE({node:, keyframes:, playState:})` `ANIMATE({node:, keyframes:}, callback)` animate node. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/ANIMATION/ANIMATE.js)
+* `KEYFRAMES(keyframes)` Animation keyframes class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/ANIMATION/KEYFRAMES.js)
+
+###### 이벤트 관련
+* `EVENT(name, func)` `EVENT({node:, name:}, func)` Event class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/EVENT/EVENT.js)
+* `EVENT_ONCE(name, func)` `EVENT_ONCE({node:, name:}, func)` Event class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/EVENT/EVENT_ONCE.js)
+* `FIRE_ALL(name)` `FIRE_ALL({node:, name:})` fire all events. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/EVENT/FIRE_ALL.js)
+
+###### 그래픽 관련
+* `CHECK_IS_BLANK_PIXEL({img:, left:, top:}, callback)` `CHECK_IS_BLANK_PIXEL({img:, right:, bottom:}, callback)` check the pixel is blank pixel. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/GRAPHIC/CHECK_IS_BLANK_PIXEL.js)
+* `EXPORT_IMG_DATA(img, callback)` export img data. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/GRAPHIC/EXPORT_IMG_DATA.js)
+* `EXPORT_IMG_TYPE(img, callback)` export img type. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/GRAPHIC/EXPORT_IMG_TYPE.js)
+
+###### 사운드 관련
+* `SOUND({mp3:, ogg:, isLoop:})` SOUND class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/SOUND.js)
 ```javascript
 sound = SOUND({mp3:'test.mp3', ogg:'test.ogg', isLoop:true});
 store.play()
 store.stop()
 ```
-* `VIEW` View interface
-* `MATCH_VIEW({uris:, target})` match view.
-* `HREF(uri)` get href.
-* `GO(uri)` go another view.
-* `GO_NEW_WIN(uri)` go another view on new window.
-* `REFRESH()` refresh view.
-* `REQUEST({method, uri}, responseListenerOrListeners)` `REQUEST({method, uri, paramStr, data}, responseListenerOrListeners)` `REQUEST({host:, port:, isSecure:, method, uri}, responseListenerOrListeners)` ajax request.
-* `GET(uri, responseListenerOrListeners)` `GET({uri, paramStr, data}, responseListenerOrListeners)` `GET({host:, port:, isSecure:, uri}, responseListenerOrListeners)` ajax GET request.
-* `POST(uri, responseListenerOrListeners)` `POST({uri, paramStr, data}, responseListenerOrListeners)` `POST({host:, port:, isSecure:, uri}, responseListenerOrListeners)` ajax POST request.
-* `PUT(uri, responseListenerOrListeners)` `PUT({uri, paramStr, data}, responseListenerOrListeners)` `PUT({host:, port:, isSecure:, uri}, responseListenerOrListeners)` ajax PUT request.
-* `DELETE(uri, responseListenerOrListeners)` `DELETE({uri, paramStr, data}, responseListenerOrListeners)` `DELETE({host:, port:, isSecure:, uri}, responseListenerOrListeners)` ajax GET request.
+
+###### AJAX 관련
+* `REQUEST({method, uri}, responseListenerOrListeners)` `REQUEST({method, uri, paramStr, data}, responseListenerOrListeners)` `REQUEST({host:, port:, isSecure:, method, uri}, responseListenerOrListeners)` ajax request. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/REQUEST.js)
+* `GET(uri, responseListenerOrListeners)` `GET({uri, paramStr, data}, responseListenerOrListeners)` `GET({host:, port:, isSecure:, uri}, responseListenerOrListeners)` ajax GET request. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/GET.js)
+* `POST(uri, responseListenerOrListeners)` `POST({uri, paramStr, data}, responseListenerOrListeners)` `POST({host:, port:, isSecure:, uri}, responseListenerOrListeners)` ajax POST request. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/POST.js)
+* `PUT(uri, responseListenerOrListeners)` `PUT({uri, paramStr, data}, responseListenerOrListeners)` `PUT({host:, port:, isSecure:, uri}, responseListenerOrListeners)` ajax PUT request. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/PUT.js)
+* `DELETE(uri, responseListenerOrListeners)` `DELETE({uri, paramStr, data}, responseListenerOrListeners)` `DELETE({host:, port:, isSecure:, uri}, responseListenerOrListeners)` ajax DELETE request. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/DELETE.js)
+
+###### VIEW 관련
+* `VIEW` View interface [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/VIEW.js)
+* `MATCH_VIEW({uris:, target})` match view. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/VIEW.js)
+* `HREF(uri)` get href. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/HREF.js)
+* `GO(uri)` go another view. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/GO.js)
+* `GO_NEW_WIN(uri)` go another view on new window. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/GO_NEW_WIN.js)
+* `REFRESH()` refresh view. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/REFRESH.js)
+
 
 ## UPPERCASE.JS-PHANTOM
 PhantomJS 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.

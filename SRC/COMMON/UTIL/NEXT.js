@@ -116,10 +116,10 @@ global.NEXT = NEXT = METHOD({
 										length -= 1;
 									}
 
-									f(array[i], self);
+									f(array[i], self, i);
 
 								} else {
-									f(array[i], next);
+									f(array[i], next, i);
 								}
 							});
 						}

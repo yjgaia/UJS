@@ -23,12 +23,12 @@ TEST('EXPORT_IMG_TYPE', function(ok) {
 
 		// img1
 		img1 = IMG({
-			src : 'TEST/BROWSER/GRAPHIC/tricoloring.png'
+			src : 'EXAMPLES/BROWSER/GRAPHIC/tricoloring.png'
 		}), BR(),
 
 		// img2
 		img2 = IMG({
-			src : 'TEST/BROWSER/GRAPHIC/stonehenge.jpg'
+			src : 'EXAMPLES/BROWSER/GRAPHIC/stonehenge.jpg'
 		})]
 	}).appendTo(BODY);
 

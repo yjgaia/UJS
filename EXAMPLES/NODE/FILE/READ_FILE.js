@@ -4,7 +4,7 @@ require('../../../UPPERCASE.JS-NODE.js');
 
 INIT_OBJECTS();
 
-var content = READ_FILE({
+var buffer = READ_FILE({
 	path : 'test.txt',
 	isSync : true
 }, {
@@ -17,12 +17,12 @@ var content = READ_FILE({
 		console.log('NOT EXISTS!');
 	},
 
-	success : function(content) {
-		console.log(content.toString());
+	success : function(buffer) {
+		console.log(buffer.toString());
 	}
 });
 
-console.log(content.toString());
+console.log(buffer.toString());
 
 READ_FILE('test.txt', {
 
@@ -34,7 +34,7 @@ READ_FILE('test.txt', {
 		console.log('NOT EXISTS!');
 	},
 
-	success : function(content) {
-		console.log(content.toString());
+	success : function(buffer) {
+		console.log(buffer.toString());
 	}
 });

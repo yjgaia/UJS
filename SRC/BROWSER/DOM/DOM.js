@@ -23,15 +23,6 @@ global.DOM = DOM = CLASS({
 		// tag
 		tag = params.tag,
 
-		// style
-		style = params.style,
-
-		// children
-		children = params.c === undefined || CHECK_IS_ARRAY(params.c) === true ? params.c : [params.c],
-
-		// _on
-		_on = params.on,
-
 		// __TEXT
 		__TEXT = params.__TEXT,
 
@@ -278,12 +269,6 @@ global.DOM = DOM = CLASS({
 				});
 			}
 		};
-
-		if (children !== undefined) {
-			EACH(children, function(child, i) {
-				append(child);
-			});
-		}
 
 		self.appendTo = appendTo = function(node) {
 			//REQUIRED: node
@@ -552,10 +537,6 @@ global.DOM = DOM = CLASS({
 			return style === '' ? undefined : (style.substring(style.length - 2) === 'px' ? REAL(style) : style);
 		};
 
-		if (style !== undefined) {
-			addStyle(style);
-		}
-
 		self.getWidth = getWidth = function() {
 			return el.offsetWidth;
 		};
@@ -624,11 +605,5 @@ global.DOM = DOM = CLASS({
 		self.checkIsShowing = checkIsShowing = function() {
 			return getStyle('display') !== 'none';
 		};
-
-		if (_on !== undefined) {
-			EACH(_on, function(func, name) {
-				on(name, func);
-			});
-		}
 	}
 });

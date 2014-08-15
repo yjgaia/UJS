@@ -8,14 +8,14 @@ TEST('SOUND', function(ok) {
 	var
 	// sound
 	sound = SOUND({
-		mp3 : 'TEST/BROWSER/sound.mp3',
-		ogg : 'TEST/BROWSER/sound.ogg'
+		mp3 : 'EXAMPLES/BROWSER/sound.mp3',
+		ogg : 'EXAMPLES/BROWSER/sound.ogg'
 	}),
 
 	// loop sound
 	loopSound = SOUND({
-		mp3 : 'TEST/BROWSER/sound.mp3',
-		ogg : 'TEST/BROWSER/sound.ogg',
+		mp3 : 'EXAMPLES/BROWSER/sound.mp3',
+		ogg : 'EXAMPLES/BROWSER/sound.ogg',
 		isLoop : true
 	}),
 

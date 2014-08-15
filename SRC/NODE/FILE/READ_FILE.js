@@ -86,7 +86,7 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 
 							} else {
 
-								fs.readFile(path, function(error, content) {
+								fs.readFile(path, function(error, buffer) {
 
 									var
 									// error msg
@@ -103,7 +103,7 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 										}
 
 									} else if (callback !== undefined) {
-										callback(content);
+										callback(buffer);
 									}
 								});
 							}
@@ -129,8 +129,8 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 					// error msg
 					errorMsg,
 
-					// content
-					content;
+					// buffer
+					buffer;
 
 					try {
 
@@ -146,13 +146,13 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 
 							} else {
 
-								content = fs.readFileSync(path);
+								buffer = fs.readFileSync(path);
 
 								if (callback !== undefined) {
-									callback(content);
+									callback(buffer);
 								}
 
-								return content;
+								return buffer;
 							}
 
 						} else {

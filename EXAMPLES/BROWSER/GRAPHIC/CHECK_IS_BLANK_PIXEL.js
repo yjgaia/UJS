@@ -23,7 +23,7 @@ TEST('CHECK_IS_BLANK', function(ok) {
 
 		// img
 		img = IMG({
-			src : 'TEST/test.png'
+			src : 'EXAMPLES/test.png'
 		})
 	}).appendTo(BODY);
 

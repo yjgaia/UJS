@@ -19,7 +19,7 @@ TEST('IMG', function(ok) {
 			style : {
 				width : 300
 			},
-			src : 'TEST/test.png'
+			src : 'EXAMPLES/test.png'
 		})
 	}).appendTo(BODY);
 

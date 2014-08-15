@@ -1,186 +1,273 @@
 /**
  * Node interface
  */
-global.NODE = NODE = CLASS({
+global.NODE = NODE = CLASS(function() {
+	'use strict';
 
-	init : function(inner, self) {
-		'use strict';
+	var
+	// parent nodes
+	parentNodes = [];
 
-		// get dom.
-		self.getDom = function() {
-			// to implement (must!)
-		};
+	return {
 
-		// add show handler.
-		self.addShowHandler = function(handler) {
-			//REQUIRED: handler
+		init : function(inner, self) {
 
-			self.getDom().addShowHandler(handler);
-		};
+			// get dom.
+			self.getDom = function() {
+				// to implement (must!)
+			};
 
-		// run show handlers.
-		self.runShowHandlers = function() {
-			self.getDom().runShowHandlers();
-		};
+			// add show handler.
+			self.addShowHandler = function(handler) {
+				//REQUIRED: handler
 
-		// add remove handler.
-		self.addRemoveHandler = function(handler) {
-			//REQUIRED: handler
+				self.getDom().addShowHandler(handler);
+			};
 
-			self.getDom().addRemoveHandler(handler);
-		};
+			// run show handlers.
+			self.runShowHandlers = function() {
+				self.getDom().runShowHandlers();
+			};
 
-		// run remove handlers.
-		self.runRemoveHandlers = function() {
-			self.getDom().runRemoveHandlers();
-		};
+			// add remove handler.
+			self.addRemoveHandler = function(handler) {
+				//REQUIRED: handler
 
-		// append.
-		self.append = function(node) {
-			//REQUIRED: node
+				self.getDom().addRemoveHandler(handler);
+			};
 
-			self.getDom().append(node);
-		};
+			// run remove handlers.
+			self.runRemoveHandlers = function() {
+				self.getDom().runRemoveHandlers();
+			};
 
-		// append to.
-		self.appendTo = function(node) {
-			//REQUIRED: node
+			// append.
+			self.append = function(node) {
+				//REQUIRED: node
 
-			self.getDom().appendTo(node);
+				self.getDom().append(node);
+			};
 
-			return self;
-		};
+			// append to.
+			self.appendTo = function(node) {
+				//REQUIRED: node
 
-		// prepend.
-		self.prepend = function(node) {
-			//REQUIRED: node
+				self.getDom().appendTo(node);
 
-			self.getDom().prepend(node);
-		};
+				return self;
+			};
 
-		// prepend to.
-		self.prependTo = function(node) {
-			//REQUIRED: node
+			// prepend.
+			self.prepend = function(node) {
+				//REQUIRED: node
 
-			self.getDom().prependTo(node);
+				self.getDom().prepend(node);
+			};
 
-			return self;
-		};
+			// prepend to.
+			self.prependTo = function(node) {
+				//REQUIRED: node
 
-		// after.
-		self.after = function(node) {
-			//REQUIRED: node
+				self.getDom().prependTo(node);
 
-			self.getDom().after(node);
-		};
+				return self;
+			};
 
-		// insert after.
-		self.insertAfter = function(node) {
-			//REQUIRED: node
+			// after.
+			self.after = function(node) {
+				//REQUIRED: node
 
-			self.getDom().insertAfter(node);
+				self.getDom().after(node);
+			};
 
-			return self;
-		};
+			// insert after.
+			self.insertAfter = function(node) {
+				//REQUIRED: node
 
-		// before.
-		self.before = function(node) {
-			//REQUIRED: node
+				self.getDom().insertAfter(node);
 
-			self.getDom().before(node);
-		};
+				return self;
+			};
 
-		// insert before.
-		self.insertBefore = function(node) {
-			//REQUIRED: node
+			// before.
+			self.before = function(node) {
+				//REQUIRED: node
 
-			self.getDom().insertBefore(node);
+				self.getDom().before(node);
+			};
 
-			return self;
-		};
+			// insert before.
+			self.insertBefore = function(node) {
+				//REQUIRED: node
 
-		// remove.
-		self.remove = function() {
-			self.getDom().remove();
-		};
+				self.getDom().insertBefore(node);
 
-		// empty.
-		self.empty = function() {
-			self.getDom().empty();
-		};
+				return self;
+			};
 
-		// get parent.
-		self.getParent = function() {
-			return self.getDom().getParent();
-		};
+			// remove.
+			self.remove = function() {
+				self.getDom().remove();
+			};
 
-		// set parent.
-		self.setParent = function(parent) {
-			//REQUIRED: parent
+			// empty.
+			self.empty = function() {
+				self.getDom().empty();
+			};
 
-			self.getDom().setParent(parent);
-		};
+			// get parent.
+			self.getParent = function() {
+				return self.getDom().getParent();
+			};
 
-		// get children.
-		self.getChildren = function() {
-			return self.getDom().getChildren();
-		};
+			// set parent.
+			self.setParent = function(parent) {
+				//REQUIRED: parent
 
-		// on.
-		self.on = function(eventName, eventHandler) {
-			//REQUIRED: eventName
-			//REQUIRED: eventHandler
+				self.getDom().setParent(parent);
+			};
 
-			self.getDom().on(eventName, eventHandler);
-		};
+			// get children.
+			self.getChildren = function() {
+				return self.getDom().getChildren();
+			};
 
-		// add style.
-		self.addStyle = function(style) {
-			//REQUIRED: style
+			// on.
+			self.on = function(eventName, eventHandler) {
+				//REQUIRED: eventName
+				//REQUIRED: eventHandler
 
-			self.getDom().addStyle(style);
-		};
+				self.getDom().on(eventName, function(e) {
+					eventHandler(e, self);
+				});
+			};
 
-		// get style.
-		self.getStyle = function(name) {
-			//REQUIRED: name
+			// add style.
+			self.addStyle = function(style) {
+				//REQUIRED: style
 
-			self.getDom().getStyle(name);
-		};
+				self.getDom().addStyle(style);
+			};
 
-		// get width.
-		self.getWidth = function() {
-			return self.getDom().getWidth();
-		};
+			// get style.
+			self.getStyle = function(name) {
+				//REQUIRED: name
 
-		// get height.
-		self.getHeight = function() {
-			return self.getDom().getHeight();
-		};
+				self.getDom().getStyle(name);
+			};
 
-		// get left.
-		self.getLeft = function() {
-			return self.getDom().getLeft();
-		};
+			// get width.
+			self.getWidth = function() {
+				return self.getDom().getWidth();
+			};
 
-		// get top.
-		self.getTop = function() {
-			return self.getDom().getTop();
-		};
+			// get height.
+			self.getHeight = function() {
+				return self.getDom().getHeight();
+			};
 
-		// hide.
-		self.hide = function() {
-			self.getDom().hide();
-		};
+			// get left.
+			self.getLeft = function() {
+				return self.getDom().getLeft();
+			};
 
-		// show.
-		self.show = function() {
-			self.getDom().show();
-		};
+			// get top.
+			self.getTop = function() {
+				return self.getDom().getTop();
+			};
 
-		// check is showing.
-		self.checkIsShowing = function() {
-			return self.getDom().checkIsShowing();
-		};
-	}
+			// hide.
+			self.hide = function() {
+				self.getDom().hide();
+			};
+
+			// show.
+			self.show = function() {
+				self.getDom().show();
+			};
+
+			// check is showing.
+			self.checkIsShowing = function() {
+				return self.getDom().checkIsShowing();
+			};
+		},
+
+		afterInit : function(inner, self, params, generateChildren) {
+			//OPTIONAL: params
+			//OPTIONAL: params.tag
+			//OPTIONAL: params.style
+			//OPTIONAL: params.c
+			//OPTIONAL: params.on
+			//OPTIONAL: generateChildren
+
+			var
+			// tag
+			tag,
+
+			// style
+			style,
+
+			// children
+			children,
+
+			// on
+			on,
+
+			// parent nodes length
+			parentNodesLength = parentNodes.length,
+
+			// generate children result
+			generateChildrenResult;
+
+			// init params.
+			if (params !== undefined) {
+
+				if (CHECK_IS_DATA(params) === true) {
+
+					tag = params.tag;
+					style = params.style;
+					children = params.c === undefined || CHECK_IS_ARRAY(params.c) === true ? params.c : [params.c];
+					on = params.on;
+
+				} else if (generateChildren === undefined) {
+					generateChildren = params;
+				}
+			}
+
+			if (style !== undefined) {
+				self.addStyle(style);
+			}
+
+			if (on !== undefined) {
+				EACH(on, function(handler, name) {
+					self.on(name, handler);
+				});
+			}
+
+			if (children !== undefined) {
+				EACH(children, function(child, i) {
+					self.append(child);
+				});
+			}
+
+			// when parent node exists, when tag is not __STRING.
+			if (parentNodesLength > 0 && tag !== '__STRING') {
+				self.appendTo(parentNodes[parentNodesLength - 1]);
+			}
+
+			if (generateChildren !== undefined) {
+
+				parentNodes.push(self);
+
+				generateChildrenResult = generateChildren();
+
+				// append __STRING.
+				if (generateChildrenResult !== undefined && CHECK_IS_DATA(generateChildrenResult) !== true) {
+					self.append(generateChildrenResult);
+				}
+
+				parentNodes.pop();
+			}
+		}
+	};
 });

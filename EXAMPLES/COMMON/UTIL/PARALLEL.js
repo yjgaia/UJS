@@ -3,7 +3,13 @@ TEST('PARALLEL', function(ok) {
 
 	var
 	// data
-	data = {};
+	data = {},
+
+	// count
+	count = 0,
+	
+	// sum
+	sum = 0;
 
 	PARALLEL([
 
@@ -47,5 +53,39 @@ TEST('PARALLEL', function(ok) {
 			b : 2,
 			c : 3
 		}]));
+	}]);
+
+	PARALLEL(3, [
+
+	// func1
+	function(i, done) {
+
+		setTimeout(function() {
+
+			count += 1;
+
+			done();
+		}, 100);
+	},
+
+	function() {
+		ok(count === 3);
+	}]);
+	
+	PARALLEL([1, 2, 3], [
+
+	// func1
+	function(value, done) {
+
+		setTimeout(function() {
+
+			sum += value;
+
+			done();
+		}, 100);
+	},
+
+	function() {
+		ok(sum === 6);
 	}]);
 });

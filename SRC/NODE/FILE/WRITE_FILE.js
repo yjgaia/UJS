@@ -16,7 +16,8 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {
 		run : function(params, callbackOrHandlers) {
 			//REQUIRED: params
 			//REQUIRED: params.path
-			//REQUIRED: params.content
+			//OPTIONAL: params.content
+			//OPTIONAL: params.buffer
 			//OPTIONAL: params.isSync
 			//OPTIONAL: callbackOrHandlers
 			//OPTIONAL: callbackOrHandlers.success
@@ -28,6 +29,9 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {
 
 			// content
 			content = params.content,
+
+			// buffer
+			buffer = params.buffer,
 
 			// is sync
 			isSync = params.isSync,
@@ -55,7 +59,7 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {
 				// when normal mode
 				if (isSync !== true) {
 
-					fs.writeFile(path, content, function(error) {
+					fs.writeFile(path, buffer !== undefined ? buffer : content, function(error) {
 
 						var
 						// error msg
@@ -88,7 +92,7 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {
 
 						try {
 
-							fs.writeFileSync(path, content);
+							fs.writeFileSync(path, buffer !== undefined ? buffer : content);
 
 							if (callback !== undefined) {
 								callback();

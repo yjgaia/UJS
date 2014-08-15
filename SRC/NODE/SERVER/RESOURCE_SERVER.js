@@ -263,7 +263,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 								resourceCache = resourceCaches[uri];
 
 								if (resourceCache !== undefined) {
-									next(resourceCache.content, resourceCache.contentType);
+									next(resourceCache.buffer, resourceCache.contentType);
 								} else {
 
 									// serve file.
@@ -277,8 +277,8 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 												notExists : responseNotFound,
 												error : responseError,
 
-												success : function(content) {
-													next(content, 'text/html');
+												success : function(buffer) {
+													next(buffer, 'text/html');
 												}
 											});
 										},
@@ -290,7 +290,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 							},
 
 							function() {
-								return function(content, contentType) {
+								return function(buffer, contentType) {
 
 									if (contentType === undefined) {
 										contentType = getContentTypeFromURI(uri);
@@ -298,14 +298,14 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 
 									if (CONFIG.isDevMode !== true && overrideResponseInfo.isFinal !== true && resourceCaches[uri] === undefined) {
 										resourceCaches[uri] = {
-											content : content,
+											buffer : buffer,
 											contentType : contentType
 										};
 									}
 
 									response(EXTEND({
 										origin : {
-											content : content,
+											buffer : buffer,
 											contentType : contentType,
 											version : version
 										},

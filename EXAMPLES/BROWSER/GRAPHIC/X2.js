@@ -10,7 +10,7 @@ TEST('X2', function(ok) {
 			left : 40,
 			top : 40
 		},
-		src : 'TEST/BROWSER/GRAPHIC/text.png'
+		src : 'EXAMPLES/BROWSER/GRAPHIC/text.png'
 	}).appendTo(BODY),
 
 	// background X2 div
@@ -24,7 +24,7 @@ TEST('X2', function(ok) {
 			height : 400,
 
 			// background image
-			backgroundImage : 'TEST/BROWSER/GRAPHIC/text.png'
+			backgroundImage : 'EXAMPLES/BROWSER/GRAPHIC/text.png'
 		}
 	}).appendTo(BODY),
 
@@ -36,7 +36,7 @@ TEST('X2', function(ok) {
 			left : 40,
 			top : 270
 		},
-		src : 'TEST/BROWSER/GRAPHIC/text.jpg'
+		src : 'EXAMPLES/BROWSER/GRAPHIC/text.jpg'
 	}).appendTo(BODY);
 
 	// remove img and div after 3 seconds.

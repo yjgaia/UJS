@@ -188,7 +188,8 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 							//OPTIONAL: contentOrParams.statusCode
 							//OPTIONAL: contentOrParams.headers
 							//OPTIONAL: contentOrParams.contentType
-							//REQUIRED: contentOrParams.content
+							//OPTIONAL: contentOrParams.content
+							//OPTIONAL: contentOrParams.buffer
 							//OPTIONAL: contentOrParams.encoding
 							//OPTIONAL: contentOrParams.version
 							//OPTIONAL: contentOrParams.isFinal
@@ -205,6 +206,9 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 
 							// content
 							content,
+
+							// buffer
+							buffer,
 
 							// encoding
 							encoding,
@@ -224,6 +228,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 									headers = contentOrParams.headers;
 									contentType = contentOrParams.contentType;
 									content = contentOrParams.content;
+									buffer = contentOrParams.buffer;
 									encoding = contentOrParams.encoding;
 									version = contentOrParams.version;
 									isFinal = contentOrParams.isFinal;
@@ -254,7 +259,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 								}
 
 								nativeRes.writeHead(statusCode, headers);
-								nativeRes.end(content, encoding);
+								nativeRes.end(buffer !== undefined ? buffer : content, encoding);
 
 								requestInfo.isResponsed = true;
 							}
