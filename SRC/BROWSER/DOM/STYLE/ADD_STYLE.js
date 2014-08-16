@@ -163,7 +163,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 							}));
 
 							// fix position when show.
-							node.addShowHandler(function() {
+							node.addAttachHandler(function() {
 								fixPosition();
 							});
 

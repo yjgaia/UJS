@@ -17,16 +17,16 @@ global.NODE = NODE = CLASS(function() {
 				// to implement (must!)
 			};
 
-			// add show handler.
-			self.addShowHandler = function(handler) {
+			// add attach handler.
+			self.addAttachHandler = function(handler) {
 				//REQUIRED: handler
 
-				self.getDom().addShowHandler(handler);
+				self.getDom().addAttachHandler(handler);
 			};
 
-			// run show handlers.
-			self.runShowHandlers = function() {
-				self.getDom().runShowHandlers();
+			// run attach handlers.
+			self.runAttachHandler = function() {
+				self.getDom().runAttachHandler();
 			};
 
 			// add remove handler.

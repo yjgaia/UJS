@@ -50,8 +50,8 @@ TEST('DOM', function(ok) {
 		c : 'This is prepended child.'
 	}));
 
-	// add show handler.
-	dom.addShowHandler(function() {
+	// add attach handler.
+	dom.addAttachHandler(function() {
 		console.log('I\'m comming!');
 	});
 

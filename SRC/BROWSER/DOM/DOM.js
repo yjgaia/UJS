@@ -62,11 +62,11 @@ global.DOM = DOM = CLASS({
 		// get dom.
 		getDom,
 
-		// add show handler.
-		addShowHandler,
+		// add attach handler.
+		addAttachHandler,
 
-		// run show handlers.
-		runShowHandlers,
+		// run attach handlers.
+		runAttachHandler,
 
 		// add remove handler.
 		addRemoveHandler,
@@ -192,13 +192,13 @@ global.DOM = DOM = CLASS({
 			return self;
 		};
 
-		self.addShowHandler = addShowHandler = function(handler) {
+		self.addAttachHandler = addAttachHandler = function(handler) {
 			//REQUIRED: handler
 
 			showHandlers.push(handler);
 		};
 
-		self.runShowHandlers = runShowHandlers = function() {
+		self.runAttachHandler = runAttachHandler = function() {
 
 			// run after wating after nodes.
 			if (waitingAfterNodes !== undefined) {
@@ -245,7 +245,7 @@ global.DOM = DOM = CLASS({
 				childDoms.push(node.getDom());
 				node.setParent(self);
 
-				node.getDom().runShowHandlers();
+				node.getDom().runAttachHandler();
 
 			} else if (tag === 'textarea') {
 
@@ -299,7 +299,7 @@ global.DOM = DOM = CLASS({
 				childDoms.push(node.getDom());
 				node.setParent(self);
 
-				node.getDom().runShowHandlers();
+				node.getDom().runAttachHandler();
 
 			} else if (tag === 'textarea') {
 
@@ -361,7 +361,7 @@ global.DOM = DOM = CLASS({
 					parentDom.getChildren().push(node.getDom());
 					node.setParent(parentDom);
 
-					node.getDom().runShowHandlers();
+					node.getDom().runAttachHandler();
 
 				} else if (tag === 'textarea') {
 
@@ -425,7 +425,7 @@ global.DOM = DOM = CLASS({
 					parentDom.getChildren().push(node.getDom());
 					node.setParent(parentDom);
 
-					node.getDom().runShowHandlers();
+					node.getDom().runAttachHandler();
 
 				} else if (tag === 'textarea') {
 
