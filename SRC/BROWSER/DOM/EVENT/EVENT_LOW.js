@@ -24,10 +24,7 @@ global.EVENT_LOW = EVENT_LOW = CLASS({
 		innerFunc,
 
 		// remove.
-		remove,
-
-		// fire.
-		fire;
+		remove;
 
 		if (node !== undefined) {
 			el = node.getDom().getEl();
@@ -60,12 +57,6 @@ global.EVENT_LOW = EVENT_LOW = CLASS({
 
 		self.remove = remove = function() {
 			el.removeEventListener(name, innerFunc, false);
-		};
-
-		self.fire = fire = function() {
-
-			// pass empty e object.
-			func(EMPTY_E(), node);
 		};
 	}
 });

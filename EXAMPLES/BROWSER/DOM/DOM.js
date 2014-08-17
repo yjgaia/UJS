@@ -51,7 +51,7 @@ TEST('DOM', function(ok) {
 	}));
 
 	// add attach handler.
-	dom.addAttachHandler(function() {
+	dom.on('attach', function() {
 		console.log('I\'m comming!');
 	});
 
@@ -95,7 +95,7 @@ TEST('DOM', function(ok) {
 	});
 
 	// add remove handler.
-	dom.addRemoveHandler(function() {
+	dom.on('remove', function() {
 
 		console.log('Bye!');
 

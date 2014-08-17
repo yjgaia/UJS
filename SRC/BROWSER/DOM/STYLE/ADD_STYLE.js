@@ -108,7 +108,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 					}));
 
 					// remove resize event when remove node.
-					node.addRemoveHandler(function() {
+					node.on('remove', function() {
 						resizeEvent.remove();
 					});
 
@@ -163,7 +163,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 							}));
 
 							// fix position when show.
-							node.addAttachHandler(function() {
+							node.on('attach', function() {
 								fixPosition();
 							});
 
@@ -173,7 +173,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 							});
 
 							// remove scroll event when remove node.
-							node.addRemoveHandler(function() {
+							node.on('remove', function() {
 								scrollEvent.remove();
 							});
 						}

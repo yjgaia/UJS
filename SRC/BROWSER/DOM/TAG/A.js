@@ -79,7 +79,7 @@ global.A = A = CLASS({
 
 		self.tap = tap = function() {
 
-			FIRE_ALL({
+			EVENT.fireAll({
 				node : self,
 				name : 'tap'
 			});

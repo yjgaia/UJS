@@ -56,7 +56,7 @@ TEST 'FORM', (ok) ->
     age: 26
     profile: 'Young man.'
 
-  ok CHECK_ARE_SAME [
+  ok CHECK_ARE_SAME([
     form.getData()
     {
       name: 'SYJ'
@@ -64,7 +64,7 @@ TEST 'FORM', (ok) ->
       age: '26'
       profile: 'Young man.'
     }
-  ] is true
+  ]) is true
 
   ok input.getValue() is 'SYJ'
   

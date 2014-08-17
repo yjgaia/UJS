@@ -11,10 +11,59 @@ TEST('EVENT', function(ok) {
 			width : 100,
 			height : 100,
 			backgroundColor : 'red',
-			padding : 10
+			padding : 10,
+			display : 'none'
 		},
-		c : 'Tap(click) or Touch this!'
-	}).appendTo(BODY);
+		c : [SPAN({
+			c : SPAN({
+				c : 'Tap(click) or Touch this!',
+				on : {
+					show : function() {
+						console.log('child child showed!');
+					}
+				}
+			}),
+			on : {
+				show : function() {
+					console.log('child showed!');
+				}
+			}
+		}),
+
+		// image
+		IMG({
+			style : {
+				width : 300
+			},
+			src : 'EXAMPLES/test.png',
+			on : {
+				show : function(e, img) {
+					console.log(img.getWidth());
+				}
+			}
+		})]
+	});
+
+	// remove event
+	EVENT({
+		node : div,
+		name : 'attach'
+	}, function(e) {
+		console.log('attached!');
+		console.log(div.getWidth());
+	});
+
+	// show event
+	EVENT({
+		node : div,
+		name : 'show'
+	}, function(e) {
+		console.log('showed!');
+		console.log(div.getWidth());
+	});
+
+	div.appendTo(BODY);
+	div.show();
 
 	// tap event
 	EVENT({
@@ -72,5 +121,21 @@ TEST('EVENT', function(ok) {
 		name : 'mouseout'
 	}, function(e) {
 		console.log('mouseout:', e.getLeft(), e.getTop());
+	});
+
+	// mouseout event
+	EVENT({
+		node : div,
+		name : 'mouseout'
+	}, function(e) {
+		console.log('mouseout:', e.getLeft(), e.getTop());
+	});
+
+	// remove event
+	EVENT({
+		node : div,
+		name : 'remove'
+	}, function(e) {
+		console.log('removed!');
 	});
 });

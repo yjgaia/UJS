@@ -79,7 +79,7 @@ global.SELECT = SELECT = CLASS({
 
 				self.getEl().value = value;
 
-				FIRE_ALL({
+				EVENT.fireAll({
 					node : self,
 					name : 'change'
 				});
@@ -153,7 +153,7 @@ global.SELECT = SELECT = CLASS({
 			});
 		});
 
-		self.addRemoveHandler(function() {
+		self.on('remove', function() {
 
 			REMOVE({
 				array : INPUT.getFocusingInputIds(),

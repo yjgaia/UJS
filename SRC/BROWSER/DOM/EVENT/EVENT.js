@@ -6,13 +6,123 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 	var
 	// event map
-	eventMap = {},
+	eventMaps = {},
 
-	// get event map.
-	getEventMap;
+	// fire all.
+	fireAll,
 
-	cls.getEventMap = getEventMap = function() {
-		return eventMap;
+	// remove all.
+	removeAll;
+
+	cls.fireAll = fireAll = function(nameOrParams) {
+		//REQUIRED: nameOrParams
+		//OPTIONAL: nameOrParams.node
+		//REQUIRED: nameOrParams.name
+
+		var
+		// node
+		node,
+
+		// name
+		name,
+
+		// node id
+		nodeId,
+
+		// event map
+		eventMap,
+
+		// events
+		events;
+
+		// init params.
+		if (CHECK_IS_DATA(nameOrParams) !== true) {
+			name = nameOrParams;
+		} else {
+			node = nameOrParams.node;
+			name = nameOrParams.name;
+		}
+
+		if (node === undefined) {
+			nodeId = 'body';
+		} else {
+			nodeId = node.id;
+		}
+
+		eventMap = eventMaps[nodeId];
+
+		if (eventMap !== undefined) {
+
+			events = eventMap[name];
+
+			if (events !== undefined) {
+
+				EACH(events, function(evt) {
+					evt.fire();
+				});
+			}
+		}
+	};
+
+	cls.removeAll = removeAll = function(nameOrParams) {
+		//OPTIONAL: nameOrParams
+		//OPTIONAL: nameOrParams.node
+		//OPTIONAL: nameOrParams.name
+
+		var
+		// node
+		node,
+
+		// name
+		name,
+
+		// node id
+		nodeId,
+
+		// event map
+		eventMap,
+
+		// events
+		events;
+
+		// init params.
+		if (CHECK_IS_DATA(nameOrParams) !== true) {
+			name = nameOrParams;
+		} else {
+			node = nameOrParams.node;
+			name = nameOrParams.name;
+		}
+
+		if (node === undefined) {
+			nodeId = 'body';
+		} else {
+			nodeId = node.id;
+		}
+
+		eventMap = eventMaps[nodeId];
+
+		if (eventMap !== undefined) {
+
+			if (name !== undefined) {
+
+				events = eventMap[name];
+
+				if (events !== undefined) {
+
+					EACH(events, function(evt) {
+						evt.remove();
+					});
+				}
+
+			} else {
+
+				EVENT(eventMap, function(events) {
+					EACH(events, function(evt) {
+						evt.remove();
+					});
+				});
+			}
+		}
 	};
 
 	return {
@@ -45,9 +155,6 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			// last tap time
 			lastTapTime,
 
-			// is removed
-			isRemoved,
-
 			// remove from map.
 			removeFromMap,
 
@@ -73,29 +180,29 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 			// push event to map.
 
-			if (eventMap[nodeId] === undefined) {
-				eventMap[nodeId] = {};
+			if (eventMaps[nodeId] === undefined) {
+				eventMaps[nodeId] = {};
 			}
 
-			if (eventMap[nodeId][name] === undefined) {
-				eventMap[nodeId][name] = [];
+			if (eventMaps[nodeId][name] === undefined) {
+				eventMaps[nodeId][name] = [];
 			}
 
-			eventMap[nodeId][name].push(self);
+			eventMaps[nodeId][name].push(self);
 
 			removeFromMap = function() {
 
 				REMOVE({
-					array : eventMap[nodeId][name],
+					array : eventMaps[nodeId][name],
 					value : self
 				});
 
-				if (eventMap[nodeId][name].length <= 0) {
-					delete eventMap[nodeId][name];
+				if (eventMaps[nodeId][name].length <= 0) {
+					delete eventMaps[nodeId][name];
 				}
 
-				if (CHECK_IS_EMPTY_DATA(eventMap[nodeId]) === true) {
-					delete eventMap[nodeId];
+				if (CHECK_IS_EMPTY_DATA(eventMaps[nodeId]) === true) {
+					delete eventMaps[nodeId];
 				}
 			};
 
@@ -150,15 +257,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 						eventLow2.remove();
 
 						removeFromMap();
-
-						isRemoved = true;
 					};
-
-					self.fire = fire = function() {
-						eventLow1.fire();
-						eventLow2.fire();
-					};
-
 				}
 
 				// if is not touchable display.
@@ -209,13 +308,6 @@ global.EVENT = EVENT = CLASS(function(cls) {
 						eventLow2.remove();
 
 						removeFromMap();
-
-						isRemoved = true;
-					};
-
-					self.fire = fire = function() {
-						eventLow1.fire();
-						eventLow2.fire();
 					};
 				}
 			}
@@ -248,12 +340,6 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					event1.remove();
 
 					removeFromMap();
-
-					isRemoved = true;
-				};
-
-				self.fire = fire = function() {
-					event1.fire();
 				};
 			}
 
@@ -270,12 +356,6 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					eventLow1.remove();
 
 					removeFromMap();
-
-					isRemoved = true;
-				};
-
-				self.fire = fire = function() {
-					eventLow1.fire();
 				};
 			}
 
@@ -292,12 +372,6 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					eventLow1.remove();
 
 					removeFromMap();
-
-					isRemoved = true;
-				};
-
-				self.fire = fire = function() {
-					eventLow1.fire();
 				};
 			}
 
@@ -314,12 +388,6 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					eventLow1.remove();
 
 					removeFromMap();
-
-					isRemoved = true;
-				};
-
-				self.fire = fire = function() {
-					eventLow1.fire();
 				};
 			}
 
@@ -344,13 +412,6 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					eventLow2.remove();
 
 					removeFromMap();
-
-					isRemoved = true;
-				};
-
-				self.fire = fire = function() {
-					eventLow1.fire();
-					eventLow2.fire();
 				};
 			}
 
@@ -375,13 +436,14 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					eventLow2.remove();
 
 					removeFromMap();
-
-					isRemoved = true;
 				};
+			}
 
-				self.fire = fire = function() {
-					eventLow1.fire();
-					eventLow2.fire();
+			// other events
+			else if (name === 'attach' || name === 'show' || name === 'remove') {
+
+				self.remove = remove = function() {
+					removeFromMap();
 				};
 			}
 
@@ -395,23 +457,14 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					eventLow1.remove();
 
 					removeFromMap();
-
-					isRemoved = true;
-				};
-
-				self.fire = fire = function() {
-					eventLow1.fire();
 				};
 			}
 
-			// when node removed, remove this event.
-			if (node !== undefined) {
-				node.addRemoveHandler(function() {
-					if (isRemoved !== true) {
-						remove();
-					}
-				});
-			}
+			self.fire = fire = function() {
+
+				// pass empty e object.
+				func(EMPTY_E(), node);
+			};
 		}
 	};
 });

@@ -83,7 +83,7 @@ TEST('FORM', function(ok) {
       age: '26',
       profile: 'Young man.'
     }
-  ] === true));
+  ]) === true);
   ok(input.getValue() === 'SYJ');
   return DELAY(3, function() {
     return div.remove();

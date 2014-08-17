@@ -9,6 +9,8 @@ VERSIONS
 - PARALLEL 추가
 - add DOM generate children func param 
 - change name DOM/showHandler to attachHandler
+- addShowHandler -> on('attach', function() {...}), addRemoveHandler -> on('remove', function() {...})
+- DOM에 실제 렌더링 할 때 발생하는 show 이벤트 추가
 
 1.4.10 (2014. 7. 31)
 - COPY_ARRAY와 COPY_DATA를 COPY로 통일

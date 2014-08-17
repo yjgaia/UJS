@@ -151,7 +151,7 @@ global.INPUT = INPUT = CLASS(function(cls) {
 							self.getEl().checked = true;
 						}
 
-						FIRE_ALL({
+						EVENT.fireAll({
 							node : self,
 							name : 'change'
 						});
@@ -169,7 +169,7 @@ global.INPUT = INPUT = CLASS(function(cls) {
 					}, function(e) {
 						if (e !== undefined && e.getKeyCode() === 32) {
 							DELAY(function() {
-								FIRE_ALL({
+								EVENT.fireAll({
 									node : self,
 									name : 'change'
 								});
@@ -190,7 +190,7 @@ global.INPUT = INPUT = CLASS(function(cls) {
 
 							self.getEl().checked = true;
 
-							FIRE_ALL({
+							EVENT.fireAll({
 								node : self,
 								name : 'change'
 							});
@@ -205,7 +205,7 @@ global.INPUT = INPUT = CLASS(function(cls) {
 
 							self.getEl().checked = false;
 
-							FIRE_ALL({
+							EVENT.fireAll({
 								node : self,
 								name : 'change'
 							});
@@ -221,7 +221,7 @@ global.INPUT = INPUT = CLASS(function(cls) {
 
 						self.getEl().value = value;
 
-						FIRE_ALL({
+						EVENT.fireAll({
 							node : self,
 							name : 'change'
 						});
@@ -281,7 +281,7 @@ global.INPUT = INPUT = CLASS(function(cls) {
 				});
 			});
 
-			self.addRemoveHandler(function() {
+			self.on('remove', function() {
 
 				REMOVE({
 					array : getFocusingInputIds(),

@@ -91,7 +91,7 @@ global.TEXTAREA = TEXTAREA = CLASS({
 
 				self.getEl().value = value;
 
-				FIRE_ALL({
+				EVENT.fireAll({
 					node : self,
 					name : 'change'
 				});
@@ -165,7 +165,7 @@ global.TEXTAREA = TEXTAREA = CLASS({
 			});
 		});
 
-		self.addRemoveHandler(function() {
+		self.on('remove', function() {
 
 			REMOVE({
 				array : INPUT.getFocusingInputIds(),

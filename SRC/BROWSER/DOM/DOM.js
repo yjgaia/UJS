@@ -44,12 +44,6 @@ global.DOM = DOM = CLASS({
 		// origin display
 		originDisplay,
 
-		// show handlers
-		showHandlers = [],
-
-		// remove handlers
-		removeHandlers = [],
-
 		// get el.
 		getEl,
 
@@ -62,17 +56,8 @@ global.DOM = DOM = CLASS({
 		// get dom.
 		getDom,
 
-		// add attach handler.
-		addAttachHandler,
-
-		// run attach handlers.
-		runAttachHandler,
-
-		// add remove handler.
-		addRemoveHandler,
-
-		// run remove handlers.
-		runRemoveHandlers,
+		// attach.
+		attach,
 
 		// append.
 		append,
@@ -156,7 +141,7 @@ global.DOM = DOM = CLASS({
 		}
 
 		// when tag is undefined, el is not undefined
-		else if (el.parentNode !== TO_DELETE) {
+		else if (el !== document.body && el.parentNode !== TO_DELETE) {
 
 			parentDom = DOM({
 				el : el.parentNode
@@ -192,13 +177,29 @@ global.DOM = DOM = CLASS({
 			return self;
 		};
 
-		self.addAttachHandler = addAttachHandler = function(handler) {
-			//REQUIRED: handler
+		attach = function(parentDom) {
+			//REQUIRED: parent dom
 
-			showHandlers.push(handler);
-		};
+			parentDom.getChildren().push(self);
+			setParent(parentDom);
 
-		self.runAttachHandler = runAttachHandler = function() {
+			EVENT.fireAll({
+				node : self,
+				name : 'attach'
+			});
+
+			if (checkIsShowing() === true) {
+
+				EVENT.fireAll({
+					node : self,
+					name : 'show'
+				});
+
+				EVENT.removeAll({
+					node : self,
+					name : 'show'
+				});
+			}
 
 			// run after wating after nodes.
 			if (waitingAfterNodes !== undefined) {
@@ -213,22 +214,6 @@ global.DOM = DOM = CLASS({
 					before(node);
 				});
 			}
-
-			EACH(showHandlers, function(handler) {
-				handler();
-			});
-		};
-
-		self.addRemoveHandler = addRemoveHandler = function(handler) {
-			//REQUIRED: handler
-
-			removeHandlers.push(handler);
-		};
-
-		self.runRemoveHandlers = runRemoveHandlers = function() {
-			EACH(removeHandlers, function(handler) {
-				handler();
-			});
 		};
 
 		self.append = append = function(node) {
@@ -240,12 +225,7 @@ global.DOM = DOM = CLASS({
 
 			if (CHECK_IS_DATA(node) === true) {
 
-				el.appendChild(node.getDom().getEl());
-
-				childDoms.push(node.getDom());
-				node.setParent(self);
-
-				node.getDom().runAttachHandler();
+				node.appendTo(self);
 
 			} else if (tag === 'textarea') {
 
@@ -273,7 +253,9 @@ global.DOM = DOM = CLASS({
 		self.appendTo = appendTo = function(node) {
 			//REQUIRED: node
 
-			node.append(self);
+			node.getDom().getEl().appendChild(el);
+
+			attach(node);
 
 			return self;
 		};
@@ -290,16 +272,7 @@ global.DOM = DOM = CLASS({
 
 			if (CHECK_IS_DATA(node) === true) {
 
-				if (el.childNodes[0] === undefined) {
-					el.appendChild(node.getDom().getEl());
-				} else {
-					el.insertBefore(node.getDom().getEl(), el.childNodes[0]);
-				}
-
-				childDoms.push(node.getDom());
-				node.setParent(self);
-
-				node.getDom().runAttachHandler();
+				node.prependTo(self);
 
 			} else if (tag === 'textarea') {
 
@@ -327,7 +300,17 @@ global.DOM = DOM = CLASS({
 		self.prependTo = prependTo = function(node) {
 			//REQUIRED: node
 
-			node.prepend(self);
+			var
+			// parent el
+			parentEl = node.getDom().getEl();
+
+			if (parentEl.childNodes[0] === undefined) {
+				parentEl.appendChild(el);
+			} else {
+				parentEl.insertBefore(el, parentEl.childNodes[0]);
+			}
+
+			attach(node);
 
 			return self;
 		};
@@ -356,12 +339,7 @@ global.DOM = DOM = CLASS({
 
 				if (CHECK_IS_DATA(node) === true) {
 
-					el.parentNode.insertBefore(node.getDom().getEl(), el.nextSibling);
-
-					parentDom.getChildren().push(node.getDom());
-					node.setParent(parentDom);
-
-					node.getDom().runAttachHandler();
+					node.insertAfter(self);
 
 				} else if (tag === 'textarea') {
 
@@ -397,7 +375,13 @@ global.DOM = DOM = CLASS({
 		self.insertAfter = insertAfter = function(node) {
 			//REQUIRED: node
 
-			node.after(self);
+			var
+			// after el
+			afterEl = node.getDom().getEl();
+
+			afterEl.parentNode.insertBefore(el, afterEl.nextSibling);
+
+			attach(node.getParent());
 
 			return self;
 		};
@@ -420,12 +404,7 @@ global.DOM = DOM = CLASS({
 
 				if (CHECK_IS_DATA(node) === true) {
 
-					el.parentNode.insertBefore(node.getDom().getEl(), el);
-
-					parentDom.getChildren().push(node.getDom());
-					node.setParent(parentDom);
-
-					node.getDom().runAttachHandler();
+					node.insertBefore(self);
 
 				} else if (tag === 'textarea') {
 
@@ -463,7 +442,13 @@ global.DOM = DOM = CLASS({
 		self.insertBefore = insertBefore = function(node) {
 			//REQUIRED: node
 
-			node.before(self);
+			var
+			// after el
+			afterEl = node.getDom().getEl();
+
+			afterEl.parentNode.insertBefore(el, afterEl);
+
+			attach(node.getParent());
 
 			return self;
 		};
@@ -482,7 +467,14 @@ global.DOM = DOM = CLASS({
 				});
 				setParent(undefined);
 
-				runRemoveHandlers();
+				EVENT.fireAll({
+					node : self,
+					name : 'remove'
+				});
+
+				EVENT.removeAll({
+					node : self
+				});
 
 				el = undefined;
 			}
@@ -518,6 +510,28 @@ global.DOM = DOM = CLASS({
 			}, eventHandler);
 		};
 
+		on('show', function() {
+
+			DELAY(function() {
+
+				EACH(childDoms, function(childDom) {
+
+					if (childDom.checkIsShowing() === true) {
+
+						EVENT.fireAll({
+							node : childDom,
+							name : 'show'
+						});
+
+						EVENT.removeAll({
+							node : childDom,
+							name : 'show'
+						});
+					}
+				});
+			});
+		});
+
 		self.addStyle = addStyle = function(style) {
 			//REQUIRED: style
 
@@ -531,11 +545,21 @@ global.DOM = DOM = CLASS({
 			//REQUIRED: name
 
 			var
-			// style
-			style = el.style[name];
+			// styles
+			styles = el.style,
 
-			return style === '' ? undefined : (style.substring(style.length - 2) === 'px' ? REAL(style) : style);
+			// style
+			style;
+
+			if (styles !== undefined) {
+
+				style = styles[name];
+
+				return style === '' ? undefined : (style.substring(style.length - 2) === 'px' ? REAL(style) : style);
+			}
 		};
+
+		originDisplay = getStyle('display');
 
 		self.getWidth = getWidth = function() {
 			return el.offsetWidth;
@@ -581,29 +605,38 @@ global.DOM = DOM = CLASS({
 
 		self.hide = hide = function() {
 
-			if (getStyle('display') !== 'none') {
-
-				originDisplay = getStyle('display');
-
-				addStyle({
-					display : 'none'
-				});
-			}
+			addStyle({
+				display : 'none'
+			});
 		};
 
 		self.show = show = function() {
 
-			if (originDisplay === undefined) {
-				originDisplay = '';
-			}
-
 			addStyle({
-				display : originDisplay
+				display : originDisplay === undefined ? '' : originDisplay
 			});
+
+			if (checkIsShowing() === true) {
+
+				EVENT.fireAll({
+					node : self,
+					name : 'show'
+				});
+
+				EVENT.removeAll({
+					node : self,
+					name : 'show'
+				});
+			}
 		};
 
 		self.checkIsShowing = checkIsShowing = function() {
-			return getStyle('display') !== 'none';
+
+			if (el === document.body) {
+				return true;
+			} else {
+				return parentDom !== undefined && parentDom.checkIsShowing() === true && getStyle('display') !== 'none';
+			}
 		};
 	}
 });

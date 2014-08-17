@@ -144,7 +144,7 @@ global.FORM = FORM = CLASS({
 		self.submit = submit = function(isRealSubmit) {
 			//OPTIONAL: isRealSubmit
 
-			FIRE_ALL({
+			EVENT.fireAll({
 				node : self,
 				name : 'submit'
 			});
