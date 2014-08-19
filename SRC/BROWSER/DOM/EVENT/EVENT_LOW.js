@@ -3,19 +3,23 @@
  */
 global.EVENT_LOW = EVENT_LOW = CLASS({
 
-	init : function(inner, self, params, func) {
+	init : function(inner, self, nameOrParams, func) {
 		'use strict';
-		//REQUIRED: params
-		//OPTIONAL: params.node
-		//REQUIRED: params.name
+		//REQUIRED: nameOrParams
+		//OPTIONAL: nameOrParams.node
+		//OPTIONAL: nameOrParams.lowNode
+		//REQUIRED: nameOrParams.name
 		//REQUIRED: func
 
 		var
 		// node
-		node = params.node,
+		node,
+
+		// low node
+		lowNode,
 
 		// name
-		name = params.name,
+		name,
 
 		// el
 		el,
@@ -26,8 +30,21 @@ global.EVENT_LOW = EVENT_LOW = CLASS({
 		// remove.
 		remove;
 
-		if (node !== undefined) {
-			el = node.getDom().getEl();
+		// init params.
+		if (CHECK_IS_DATA(nameOrParams) !== true) {
+			name = nameOrParams;
+		} else {
+			node = nameOrParams.node;
+			lowNode = nameOrParams.lowNode;
+			name = nameOrParams.name;
+
+			if (lowNode === undefined) {
+				lowNode = node;
+			}
+		}
+
+		if (lowNode !== undefined) {
+			el = lowNode.getWrapperEl();
 		} else if (global['on' + name] === undefined) {
 			el = document;
 		} else {
@@ -37,20 +54,10 @@ global.EVENT_LOW = EVENT_LOW = CLASS({
 		inner.innerFunc = innerFunc = function(e) {
 			//REQUIRED: e
 
-			if (node === undefined) {
-
-				return func(E({
-					e : e,
-					el : el
-				}));
-
-			} else if (node.getDom().getEl() !== undefined) {
-
-				return func(E({
-					e : e,
-					el : el
-				}), node);
-			}
+			return func(E({
+				e : e,
+				el : el
+			}), node);
 		};
 
 		el.addEventListener(name, innerFunc, false);

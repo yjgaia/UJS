@@ -6,26 +6,20 @@ OVERRIDE(EVENT_LOW, function(origin) {
 	 */
 	global.EVENT_LOW = EVENT_LOW = CLASS({
 
-		preset : function(params) {
-			//REQUIRED: params
-			//OPTIONAL: params.node
-			//REQUIRED: params.name
-
+		preset : function() {
 			return origin;
 		},
 
-		init : function(inner, self, params, func) {
-			//REQUIRED: params
-			//OPTIONAL: params.node
-			//REQUIRED: params.name
+		init : function(inner, self, nameOrParams, func) {
+			//REQUIRED: nameOrParams
+			//OPTIONAL: nameOrParams.node
+			//OPTIONAL: nameOrParams.lowNode
+			//REQUIRED: nameOrParams.name
 			//REQUIRED: func
 
 			var
-			// node
-			node = params.node,
-
 			// name
-			name = params.name,
+			name,
 
 			// hash
 			hash,
@@ -36,6 +30,13 @@ OVERRIDE(EVENT_LOW, function(origin) {
 			// remove.
 			remove;
 
+			// init params.
+			if (CHECK_IS_DATA(nameOrParams) !== true) {
+				name = nameOrParams;
+			} else {
+				name = nameOrParams.name;
+			}
+
 			// fix hashchange.
 			if (name === 'hashchange' && global.onhashchange === undefined) {
 
@@ -43,7 +44,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				hashchangeInterval = setInterval(function() {
 					if (location.hash !== hash) {
 						hash = location.hash;
-						func(undefined, node);
+						func(EMPTY_E());
 					}
 				}, 100);
 

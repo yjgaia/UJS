@@ -130,12 +130,16 @@ global.EVENT = EVENT = CLASS(function(cls) {
 		init : function(inner, self, nameOrParams, func) {
 			//REQUIRED: nameOrParams
 			//OPTIONAL: nameOrParams.node
+			//OPTIONAL: nameOrParams.lowNode
 			//REQUIRED: nameOrParams.name
 			//REQUIRED: func
 
 			var
 			// node
 			node,
+
+			// low node
+			lowNode,
 
 			// name
 			name,
@@ -169,7 +173,12 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				name = nameOrParams;
 			} else {
 				node = nameOrParams.node;
+				lowNode = nameOrParams.lowNode;
 				name = nameOrParams.name;
+
+				if (lowNode === undefined) {
+					lowNode = node;
+				}
 			}
 
 			if (node === undefined) {
@@ -214,6 +223,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 					eventLow1 = EVENT_LOW({
 						node : node,
+						lowNode : lowNode,
 						name : 'touchstart'
 					}, function(e) {
 
@@ -228,6 +238,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 					eventLow2 = EVENT_LOW({
 						node : node,
+						lowNode : lowNode,
 						name : 'touchend'
 					}, function(e, node) {
 
@@ -265,6 +276,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 					eventLow1 = EVENT_LOW({
 						node : node,
+						lowNode : lowNode,
 						name : 'mousedown'
 					}, function(e) {
 
@@ -279,6 +291,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 					eventLow2 = EVENT_LOW({
 						node : node,
+						lowNode : lowNode,
 						name : 'mouseup'
 					}, function(e, node) {
 
@@ -348,6 +361,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 				eventLow1 = EVENT_LOW({
 					node : node,
+					lowNode : lowNode,
 					name : 'mousedown'
 				}, func);
 
@@ -364,6 +378,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 				eventLow1 = EVENT_LOW({
 					node : node,
+					lowNode : lowNode,
 					name : 'mousemove'
 				}, func);
 
@@ -380,6 +395,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 				eventLow1 = EVENT_LOW({
 					node : node,
+					lowNode : lowNode,
 					name : 'mouseup'
 				}, func);
 
@@ -397,12 +413,14 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				// by touch
 				eventLow1 = EVENT_LOW({
 					node : node,
+					lowNode : lowNode,
 					name : 'touchstart'
 				}, func);
 
 				// by mouse
 				eventLow2 = EVENT_LOW({
 					node : node,
+					lowNode : lowNode,
 					name : 'mouseover'
 				}, func);
 
@@ -421,12 +439,14 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				// by touch
 				eventLow1 = EVENT_LOW({
 					node : node,
+					lowNode : lowNode,
 					name : 'touchend'
 				}, func);
 
 				// by mouse
 				eventLow2 = EVENT_LOW({
 					node : node,
+					lowNode : lowNode,
 					name : 'mouseout'
 				}, func);
 

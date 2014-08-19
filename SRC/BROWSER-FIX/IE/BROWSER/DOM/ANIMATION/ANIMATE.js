@@ -31,7 +31,7 @@ OVERRIDE(ANIMATE, function(origin) {
 			// iteration count
 			iterationCount = params.iterationCount === undefined ? '' : params.iterationCount;
 
-			node.getDom().addStyle(keyframes.getFinalStyle());
+			node.addStyle(keyframes.getFinalStyle());
 
 			if (callback !== undefined && (iterationCount === '' || iterationCount === 1)) {
 

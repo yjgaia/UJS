@@ -14,34 +14,14 @@ TEST('EVENT', function(ok) {
 			padding : 10,
 			display : 'none'
 		},
-		c : [SPAN({
-			c : SPAN({
-				c : 'Tap(click) or Touch this!',
-				on : {
-					show : function() {
-						console.log('child child showed!');
-					}
-				}
-			}),
+		c : SPAN({
+			c : 'Tap(click) or Touch this!',
 			on : {
 				show : function() {
 					console.log('child showed!');
 				}
 			}
-		}),
-
-		// image
-		IMG({
-			style : {
-				width : 300
-			},
-			src : 'EXAMPLES/test.png',
-			on : {
-				show : function(e, img) {
-					console.log(img.getWidth());
-				}
-			}
-		})]
+		})
 	});
 
 	// remove event
@@ -50,7 +30,6 @@ TEST('EVENT', function(ok) {
 		name : 'attach'
 	}, function(e) {
 		console.log('attached!');
-		console.log(div.getWidth());
 	});
 
 	// show event
@@ -59,7 +38,6 @@ TEST('EVENT', function(ok) {
 		name : 'show'
 	}, function(e) {
 		console.log('showed!');
-		console.log(div.getWidth());
 	});
 
 	div.appendTo(BODY);

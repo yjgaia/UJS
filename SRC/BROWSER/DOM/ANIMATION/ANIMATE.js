@@ -20,9 +20,6 @@ global.ANIMATE = ANIMATE = METHOD({
 		// node
 		node = params.node,
 
-		// dom
-		dom = node.getDom(),
-
 		// keyframes
 		keyframes = params.keyframes,
 
@@ -47,13 +44,13 @@ global.ANIMATE = ANIMATE = METHOD({
 		// str
 		str = keyframes.getName() + ' ' + duration + 's ' + timingFunction + ' ' + delay + ' ' + iterationCount + ' ' + direction + ' ' + playState;
 
-		dom.addStyle(keyframes.getStartStyle());
+		node.addStyle(keyframes.getStartStyle());
 
-		dom.addStyle({
+		node.addStyle({
 			animation : str
 		});
 
-		dom.addStyle(keyframes.getFinalStyle());
+		node.addStyle(keyframes.getFinalStyle());
 
 		if (callback !== undefined && (iterationCount === '' || iterationCount === 1)) {
 

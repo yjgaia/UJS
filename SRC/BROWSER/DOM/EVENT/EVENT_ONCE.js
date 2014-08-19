@@ -7,6 +7,7 @@ global.EVENT_ONCE = EVENT_ONCE = CLASS({
 		'use strict';
 		//REQUIRED: nameOrParams
 		//OPTIONAL: nameOrParams.node
+		//OPTIONAL: nameOrParams.lowNode
 		//REQUIRED: nameOrParams.name
 		//REQUIRED: func
 

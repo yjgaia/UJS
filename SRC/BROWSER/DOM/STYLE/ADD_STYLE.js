@@ -61,7 +61,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 			style = params.style,
 
 			// el
-			el = node.getDom().getEl(),
+			el = node.getWrapperEl(),
 
 			// switch bg to X2.
 			switchBGToX2 = function(uri) {

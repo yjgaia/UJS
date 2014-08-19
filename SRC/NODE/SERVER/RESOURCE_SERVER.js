@@ -36,9 +36,14 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 			return 'image/gif';
 		}
 
+		// svg
+		if (extname === '.svg') {
+			return 'image/svg+xml';
+		}
+
 		// javascript
 		if (extname === '.js') {
-			return 'text/javascript';
+			return 'application/javascript';
 		}
 
 		// json document

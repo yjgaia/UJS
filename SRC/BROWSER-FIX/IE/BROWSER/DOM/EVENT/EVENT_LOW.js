@@ -6,23 +6,40 @@ OVERRIDE(EVENT_LOW, function(origin) {
 	 */
 	global.EVENT_LOW = EVENT_LOW = CLASS({
 
-		preset : function(params) {
-			//REQUIRED: params
-			//OPTIONAL: params.node
-			//REQUIRED: params.name
+		preset : function(nameOrParams) {
+			//REQUIRED: nameOrParams
+			//OPTIONAL: nameOrParams.node
+			//OPTIONAL: nameOrParams.lowNode
+			//REQUIRED: nameOrParams.name
 
 			var
 			// node
-			node = params.node,
+			node,
+
+			// low node
+			lowNode,
 
 			// name
-			name = params.name,
+			name,
 
 			// el
 			el;
 
-			if (node !== undefined) {
-				el = node.getDom().getEl();
+			// init params.
+			if (CHECK_IS_DATA(nameOrParams) !== true) {
+				name = nameOrParams;
+			} else {
+				node = nameOrParams.node;
+				lowNode = nameOrParams.lowNode;
+				name = nameOrParams.name;
+
+				if (lowNode === undefined) {
+					lowNode = node;
+				}
+			}
+
+			if (lowNode !== undefined) {
+				el = lowNode.getWrapperEl();
 			} else if (global['on' + name] === undefined) {
 				el = document;
 			} else {
@@ -39,18 +56,22 @@ OVERRIDE(EVENT_LOW, function(origin) {
 			return origin;
 		},
 
-		init : function(inner, self, params, func) {
-			//REQUIRED: params
-			//OPTIONAL: params.node
-			//REQUIRED: params.name
+		init : function(inner, self, nameOrParams, func) {
+			//REQUIRED: nameOrParams
+			//OPTIONAL: nameOrParams.node
+			//OPTIONAL: nameOrParams.lowNode
+			//REQUIRED: nameOrParams.name
 			//REQUIRED: func
 
 			var
 			// node
-			node = params.node,
+			node,
+
+			// low node
+			lowNode,
 
 			// name
-			name = params.name,
+			name,
 
 			// el
 			el,
@@ -67,8 +88,21 @@ OVERRIDE(EVENT_LOW, function(origin) {
 			// remove.
 			remove;
 
-			if (node !== undefined) {
-				el = node.getDom().getEl();
+			// init params.
+			if (CHECK_IS_DATA(nameOrParams) !== true) {
+				name = nameOrParams;
+			} else {
+				node = nameOrParams.node;
+				lowNode = nameOrParams.lowNode;
+				name = nameOrParams.name;
+
+				if (lowNode === undefined) {
+					lowNode = node;
+				}
+			}
+
+			if (lowNode !== undefined) {
+				el = lowNode.getWrapperEl();
 			} else if (global['on' + name] === undefined) {
 				el = document;
 			} else {
@@ -165,7 +199,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				hashchangeInterval = setInterval(function() {
 					if (location.hash !== hash) {
 						hash = location.hash;
-						func(undefined, node);
+						func();
 					}
 				}, 100);
 

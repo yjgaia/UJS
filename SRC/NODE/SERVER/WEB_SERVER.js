@@ -20,7 +20,11 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 	cls.getEncodingFromContentType = getEncodingFromContentType = function(contentType) {
 		//REQUIRED: contentType
 
-		if (contentType === 'text/javascript') {
+		if (contentType === 'application/javascript') {
+			return 'utf-8';
+		}
+
+		if (contentType === 'application/json') {
 			return 'utf-8';
 		}
 
@@ -46,6 +50,10 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 
 		if (contentType === 'image/gif') {
 			return 'binary';
+		}
+
+		if (contentType === 'image/svg+xml') {
+			return 'utf-8';
 		}
 
 		if (contentType === 'application/x-shockwave-flash') {

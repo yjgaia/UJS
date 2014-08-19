@@ -2,29 +2,19 @@ TEST('IMG', function(ok) {
 	'use strict';
 
 	var
-	// test div
-	div = DIV({
+	// img
+	img = IMG({
 		style : {
+			width : 300,
 			position : 'fixed',
 			left : 40,
-			top : 40,
-			backgroundColor : 'red',
-			padding : 20,
-			margin : 0
+			top : 40
 		},
-		c :
-
-		// image
-		IMG({
-			style : {
-				width : 300
-			},
-			src : 'EXAMPLES/test.png'
-		})
+		src : 'EXAMPLES/test.png'
 	}).appendTo(BODY);
 
-	// remove div after 3 seconds.
+	// remove img after 3 seconds.
 	DELAY(3, function() {
-		div.remove();
+		img.remove();
 	});
 });

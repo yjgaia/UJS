@@ -29,14 +29,9 @@ TEST('NODE', function(ok) {
 					top : 40
 				},
 				c : [img, text]
-			}),
-
-			// get dom.
-			getDom;
-
-			self.getDom = getDom = function() {
-				return div;
-			};
+			});
+			
+			inner.setDom(div);
 		}
 	}),
 

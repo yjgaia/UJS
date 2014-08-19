@@ -318,7 +318,6 @@ store.remove(name)
 ###### 이벤트 관련
 * `EVENT(name, func)` `EVENT({node:, name:}, func)` Event class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/EVENT/EVENT.js)
 * `EVENT_ONCE(name, func)` `EVENT_ONCE({node:, name:}, func)` Event class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/EVENT/EVENT_ONCE.js)
-* `FIRE_ALL(name)` `FIRE_ALL({node:, name:})` fire all events. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/EVENT/FIRE_ALL.js)
 
 ###### 그래픽 관련
 * `CHECK_IS_BLANK_PIXEL({img:, left:, top:}, callback)` `CHECK_IS_BLANK_PIXEL({img:, right:, bottom:}, callback)` check the pixel is blank pixel. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/GRAPHIC/CHECK_IS_BLANK_PIXEL.js)

@@ -19,7 +19,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 			style = params.style,
 
 			// el
-			el = node.getDom().getEl();
+			el = node.getWrapperEl();
 
 			EACH(style, function(value, name) {
 
