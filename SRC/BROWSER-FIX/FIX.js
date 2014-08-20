@@ -6,28 +6,10 @@ RUN(function() {
 
 	var
 	// fix scripts folder path
-	fixScriptsFolderPath,
-
-	// current script
-	currentScript,
-
-	// script els
-	scriptEls,
+	fixScriptsFolderPath = BROWSER_CONFIG.fixScriptsFolderPath,
 
 	// load fix script.
 	loadFixScript;
-
-	currentScript = document.currentScript;
-
-	if (currentScript === undefined) {
-		scriptEls = document.getElementsByTagName('script');
-		currentScript = scriptEls[scriptEls.length - 1];
-	}
-
-	fixScriptsFolderPath = currentScript.getAttribute('src');
-	fixScriptsFolderPath = fixScriptsFolderPath.substring(0, fixScriptsFolderPath.indexOf('/FIX.js'));
-
-	BROWSER_CONFIG.fixScriptsFolderPath = fixScriptsFolderPath;
 
 	loadFixScript = function(name) {
 		LOAD(fixScriptsFolderPath + '/' + name + '.js');

@@ -277,21 +277,10 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 									}
 								}
 
-								// when deflate encoding
-								if (acceptEncoding.match(/\bdeflate\b/) !== TO_DELETE) {
-
-									headers['content-encoding'] = 'deflate';
-
-									zlib.deflate(buffer !== undefined ? buffer : content, function(error, buffer) {
-										nativeRes.writeHead(statusCode, headers);
-										nativeRes.end(buffer, encoding);
-									});
-								}
-
 								// when gzip encoding
-								else if (acceptEncoding.match(/\bgzip\b/) !== TO_DELETE) {
+								if (acceptEncoding.match(/\bgzip\b/) !== TO_DELETE) {
 
-									headers['content-encoding'] = 'gzip';
+									headers['Content-Encoding'] = 'gzip';
 
 									zlib.gzip(buffer !== undefined ? buffer : content, function(error, buffer) {
 										nativeRes.writeHead(statusCode, headers);
