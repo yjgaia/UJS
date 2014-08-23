@@ -45,7 +45,7 @@ TEST('FORM', function(ok) {
 				});
 
 				SELECT({
-					name : 'gender',
+					name : 'gender'
 				}, function() {
 
 					OPTION({

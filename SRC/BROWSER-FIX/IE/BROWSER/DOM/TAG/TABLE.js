@@ -10,61 +10,17 @@ OVERRIDE(TABLE, function(origin) {
 			return origin;
 		},
 
-		init : function(inner, self, params) {
-			//OPTIONAL: params
-			//OPTIONAL: params.c
+		init : function(inner, self) {
 
 			var
-			// children
-			children,
-
 			// tbody
 			tbody = DOM({
 				tag : 'tbody'
-			}).appendTo(self),
+			});
 
-			// append.
-			append,
+			self.getWrapperEl().appendChild(tbody.getEl());
 
-			// prepend.
-			prepend,
-
-			// empty.
-			empty,
-
-			// get children.
-			getChildren;
-
-			// init params.
-			if (params !== undefined) {
-				children = (params.c === undefined || CHECK_IS_ARRAY(params.c) === true ? params.c : [params.c]);
-			}
-
-			self.append = append = function(node) {
-				//REQUIRED: node
-
-				tbody.append(node);
-			};
-
-			if (children !== undefined) {
-				EACH(children, function(child, i) {
-					append(child);
-				});
-			}
-
-			self.prepend = prepend = function(node) {
-				//REQUIRED: node
-
-				tbody.prepend(node);
-			};
-
-			self.empty = empty = function() {
-				tbody.empty();
-			};
-
-			self.getChildren = getChildren = function() {
-				return tbody.getChildren();
-			};
+			inner.setContentDom(tbody);
 		}
 	});
 });

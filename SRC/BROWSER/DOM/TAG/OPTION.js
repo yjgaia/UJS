@@ -23,19 +23,11 @@ global.OPTION = OPTION = CLASS({
 		//OPTIONAL: params.value
 
 		var
-		// value
-		value,
-
 		// get value.
 		getValue,
 
 		// set value.
 		setValue;
-
-		// init params.
-		if (params !== undefined) {
-			value = params.value;
-		}
 
 		self.getValue = getValue = function() {
 			return self.getEl().value;
@@ -46,11 +38,28 @@ global.OPTION = OPTION = CLASS({
 
 			self.getEl().value = value;
 		};
+	},
+
+	afterInit : function(inner, self, params) {
+		'use strict';
+		//OPTIONAL: params
+		//OPTIONAL: params.name
+		//OPTIONAL: params.placeholder
+		//OPTIONAL: params.value
+
+		var
+		// value
+		value;
+
+		// init params.
+		if (params !== undefined) {
+			value = params.value;
+		}
 
 		if (value === undefined) {
-			setValue('');
+			self.setValue('');
 		} else {
-			setValue(value);
+			self.setValue(value);
 		}
 	}
 });

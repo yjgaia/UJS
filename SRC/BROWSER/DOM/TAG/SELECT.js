@@ -27,9 +27,6 @@ global.SELECT = SELECT = CLASS({
 		// name
 		name,
 
-		// value
-		value,
-
 		// is ctrl down
 		isCtrlDown = false,
 
@@ -54,7 +51,6 @@ global.SELECT = SELECT = CLASS({
 		// init params.
 		if (params !== undefined) {
 			name = params.name;
-			value = params.value;
 		}
 
 		if (name !== undefined) {
@@ -88,10 +84,6 @@ global.SELECT = SELECT = CLASS({
 				self.getEl().value = value;
 			}
 		};
-
-		if (value !== undefined) {
-			setValue(value);
-		}
 
 		self.select = select = function() {
 			self.getEl().select();
@@ -160,5 +152,26 @@ global.SELECT = SELECT = CLASS({
 				value : self.id
 			});
 		});
+	},
+
+	afterInit : function(inner, self, params) {
+		'use strict';
+		//OPTIONAL: params
+		//OPTIONAL: params.name
+		//OPTIONAL: params.placeholder
+		//OPTIONAL: params.value
+
+		var
+		// value
+		value;
+
+		// init params.
+		if (params !== undefined) {
+			value = params.value;
+		}
+
+		if (value !== undefined) {
+			self.setValue(value);
+		}
 	}
 });

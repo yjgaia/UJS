@@ -117,8 +117,10 @@ RUN(function() {
 		loadFixScript('BROWSER/DOM/TAG/TD');
 	}
 
-	// fix IFRAME.
-	loadFixScript('BROWSER/DOM/TAG/IFRAME');
+	// fix TEXTAREA.
+	if (IE.version <= 5.5) {
+		loadFixScript('BROWSER/DOM/TAG/TEXTAREA');
+	}
 
 	// load flash canvas and fix CANVAS.
 	if (RUN(function() {

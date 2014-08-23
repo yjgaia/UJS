@@ -31,9 +31,6 @@ global.TEXTAREA = TEXTAREA = CLASS({
 		// placeholder
 		placeholder,
 
-		// value
-		value,
-
 		// is ctrl down
 		isCtrlDown = false,
 
@@ -59,7 +56,6 @@ global.TEXTAREA = TEXTAREA = CLASS({
 		if (params !== undefined) {
 			name = params.name;
 			placeholder = params.placeholder;
-			value = params.value;
 		}
 
 		if (name !== undefined) {
@@ -100,10 +96,6 @@ global.TEXTAREA = TEXTAREA = CLASS({
 				self.getEl().value = value;
 			}
 		};
-
-		if (value !== undefined) {
-			setValue(value);
-		}
 
 		self.select = select = function() {
 			self.getEl().select();
@@ -172,5 +164,26 @@ global.TEXTAREA = TEXTAREA = CLASS({
 				value : self.id
 			});
 		});
+	},
+
+	afterInit : function(inner, self, params) {
+		'use strict';
+		//OPTIONAL: params
+		//OPTIONAL: params.name
+		//OPTIONAL: params.placeholder
+		//OPTIONAL: params.value
+
+		var
+		// value
+		value;
+
+		// init params.
+		if (params !== undefined) {
+			value = params.value;
+		}
+
+		if (value !== undefined) {
+			self.setValue(value);
+		}
 	}
 });

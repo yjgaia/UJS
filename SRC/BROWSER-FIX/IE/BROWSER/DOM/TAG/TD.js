@@ -12,15 +12,12 @@ OVERRIDE(TD, function(origin) {
 
 		init : function(inner, self) {
 
-			if (IE.version <= 8) {
-
-				ADD_STYLE({
-					node : self,
-					style : {
-						verticalAlign : 'middle'
-					}
-				});
-			}
+			ADD_STYLE({
+				node : self,
+				style : {
+					verticalAlign : 'middle'
+				}
+			});
 		}
 	});
 });

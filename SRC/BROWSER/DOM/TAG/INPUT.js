@@ -45,9 +45,6 @@ global.INPUT = INPUT = CLASS(function(cls) {
 			// placeholder
 			placeholder,
 
-			// value
-			value,
-
 			// is multiple
 			isMultiple,
 
@@ -80,7 +77,6 @@ global.INPUT = INPUT = CLASS(function(cls) {
 				name = params.name;
 				type = params.type;
 				placeholder = params.placeholder;
-				value = params.value;
 				isMultiple = params.isMultiple;
 			}
 
@@ -232,6 +228,49 @@ global.INPUT = INPUT = CLASS(function(cls) {
 				}
 			};
 
+			EVENT({
+				node : self,
+				name : 'focus'
+			}, function() {
+				getFocusingInputIds().push(self.id);
+			});
+
+			EVENT({
+				node : self,
+				name : 'blur'
+			}, function() {
+
+				REMOVE({
+					array : getFocusingInputIds(),
+					value : self.id
+				});
+			});
+
+			self.on('remove', function() {
+
+				REMOVE({
+					array : getFocusingInputIds(),
+					value : self.id
+				});
+			});
+		},
+
+		afterInit : function(inner, self, params) {
+			'use strict';
+			//OPTIONAL: params
+			//OPTIONAL: params.name
+			//OPTIONAL: params.placeholder
+			//OPTIONAL: params.value
+
+			var
+			// value
+			value;
+
+			// init params.
+			if (params !== undefined) {
+				value = params.value;
+			}
+
 			if (value !== undefined) {
 
 				if (type === 'checkbox') {
@@ -262,32 +301,6 @@ global.INPUT = INPUT = CLASS(function(cls) {
 					}
 				}
 			}
-
-			EVENT({
-				node : self,
-				name : 'focus'
-			}, function() {
-				getFocusingInputIds().push(self.id);
-			});
-
-			EVENT({
-				node : self,
-				name : 'blur'
-			}, function() {
-
-				REMOVE({
-					array : getFocusingInputIds(),
-					value : self.id
-				});
-			});
-
-			self.on('remove', function() {
-
-				REMOVE({
-					array : getFocusingInputIds(),
-					value : self.id
-				});
-			});
 		}
 	};
 });
