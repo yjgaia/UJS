@@ -1,6 +1,6 @@
 // load UPPERCASE.JS.
-require('../../../UPPERCASE.JS-COMMON.js');
-require('../../../UPPERCASE.JS-NODE.js');
+require('../../../../UPPERCASE.JS-COMMON.js');
+require('../../../../UPPERCASE.JS-NODE.js');
 
 TEST('SERVER_CLUSTERING', function(ok) {
 	'use strict';
@@ -8,15 +8,13 @@ TEST('SERVER_CLUSTERING', function(ok) {
 	INIT_OBJECTS();
 
 	SERVER_CLUSTERING({
-		hosts : ['192.168.206.1', '192.168.114.1'],
-		thisServerHost : '192.168.206.1',
-		port : 8125
+		hosts : ['1.226.84.92', '58.229.105.35'],
+		thisServerHost : '1.226.84.92',
+		port : 9125
 	}, function(thisServerHost, on, off, broadcast) {
 
 		on('receive', function(data) {
-			ok(CHECK_ARE_SAME([data, {
-				msg : 'Hey!'
-			}]));
+			console.log('SERVER_CLUSTERING received: ', data);
 		});
 
 		DELAY(1, function() {

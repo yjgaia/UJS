@@ -1,7 +1,8 @@
 /**
  * Cpu clustering shared store class
  */
-global.CPU_SHARED_STORE = CPU_SHARED_STORE = CLASS(function(cls) {'use strict';
+global.CPU_SHARED_STORE = CPU_SHARED_STORE = CLASS(function(cls) {
+	'use strict';
 
 	var
 	// static storage
@@ -71,7 +72,7 @@ global.CPU_SHARED_STORE = CPU_SHARED_STORE = CLASS(function(cls) {'use strict';
 
 	return {
 
-		init : function(inner, self, name) {'use strict';
+		init : function(inner, self, name) {
 			//REQUIRED: name
 
 			var
@@ -87,7 +88,7 @@ global.CPU_SHARED_STORE = CPU_SHARED_STORE = CLASS(function(cls) {'use strict';
 			// remove.
 			remove;
 
-			getFullName = function(_name) {
+			inner.getFullName = getFullName = function(_name) {
 				return name + '.' + _name;
 			};
 

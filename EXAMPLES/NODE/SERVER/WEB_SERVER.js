@@ -2,53 +2,57 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('WEB_SERVER', function(ok) {
+	'use strict';
 
-CPU_CLUSTERING(function(workerData, on, off, broadcast) {
+	INIT_OBJECTS();
 
-	WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
+	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
 
-		var
-		// session key
-		sessionKey = requestInfo.cookies.__SESSION_KEY,
+		WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
 
-		// session store
-		sessionStore = SHARED_STORE('sessionStore'),
+			var
+			// session key
+			sessionKey = requestInfo.cookies.__SESSION_KEY,
 
-		// session
-		session;
+			// session store
+			sessionStore = SHARED_STORE('sessionStore'),
 
-		if (sessionKey !== undefined) {
+			// session
+			session;
 
-			session = sessionStore.get(sessionKey);
+			if (sessionKey !== undefined) {
 
-			if (session === undefined) {
+				session = sessionStore.get(sessionKey);
 
-				sessionStore.save({
-					key : sessionKey,
-					value : {
-						data : 'This is session data.',
-						removeAfterSeconds : 30 * 60 // 30 minutes
-					}
-				});
+				if (session === undefined) {
 
-				console.log('create session.');
+					sessionStore.save({
+						name : sessionKey,
+						value : {
+							data : 'This is session data.',
+							removeAfterSeconds : 30 * 60 // 30 minutes
+						}
+					});
 
-			} else {
+					console.log('create session.');
 
-				console.log(session.data + ' (WORKER #' + workerData.id + ')');
+				} else {
+
+					console.log(session.data + ' (WORKER #' + workerData.id + ')');
+				}
 			}
-		}
 
-		response({
-			content : 'Welcome to UPPERCASE.JS web server! (node.js) (WORKER #' + workerData.id + ')',
+			response({
+				content : 'Welcome to UPPERCASE.JS web server! (WORKER #' + workerData.id + ')',
 
-			headers : sessionKey !== undefined ? undefined : {
+				headers : sessionKey !== undefined ? undefined : {
 
-				'Set-Cookie' : CREATE_COOKIE_STR_ARRAY({
-					__SESSION_KEY : RANDOM_STR(40)
-				})
-			}
+					'Set-Cookie' : CREATE_COOKIE_STR_ARRAY({
+						__SESSION_KEY : RANDOM_STR(40)
+					})
+				}
+			});
 		});
 	});
 });

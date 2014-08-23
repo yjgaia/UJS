@@ -3,7 +3,8 @@
  */
 global.PARSE_COOKIE_STR = PARSE_COOKIE_STR = METHOD({
 
-	run : function(str) {'use strict';
+	run : function(str) {
+		'use strict';
 		//OPTIONAL: str
 
 		var

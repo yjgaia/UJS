@@ -1,11 +1,12 @@
 /**
- * ajax GET request.
+ * http GET request.
  */
 global.GET = GET = METHOD({
 
-	run : function(uriOrParams, responseListenerOrListeners) {'use strict';
+	run : function(uriOrParams, responseListenerOrListeners) {
+		'use strict';
 		//REQUIRED: uriOrParams
-		//OPTIONAL: uriOrParams.host
+		//REQUIRED: uriOrParams.host
 		//OPTIONAL: uriOrParams.port
 		//OPTIONAL: uriOrParams.isSecure
 		//REQUIRED: uriOrParams.uri

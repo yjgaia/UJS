@@ -1,7 +1,8 @@
 /**
  * Cpu and server clustering shared store class
  */
-global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
+global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {
+	'use strict';
 
 	var
 	// static storage
@@ -71,12 +72,13 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 
 	return {
 
-		init : function(inner, self, name) {'use strict';
+		init : function(inner, self, name) {
+			'use strict';
 			//REQUIRED: name
 
 			var
 			// gen full name.
-			genfullName,
+			genFullName,
 
 			// save.
 			save,
@@ -87,7 +89,7 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 			// remove.
 			remove;
 
-			genfullName = function(_name) {
+			genFullName = function(_name) {
 				return name + '.' + _name;
 			};
 
@@ -102,7 +104,7 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 				name = params.name,
 
 				// full name
-				fullName = genfullName(name),
+				fullName = genFullName(name),
 
 				// value
 				value = params.value,
@@ -146,7 +148,7 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 			self.get = get = function(name) {
 				//REQUIRED: name
 
-				return cls.get(genfullName(name));
+				return cls.get(genFullName(name));
 			};
 
 			self.remove = remove = function(name) {
@@ -154,7 +156,7 @@ global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {'use strict';
 
 				var
 				// full name
-				fullName = genfullName(name);
+				fullName = genFullName(name);
 
 				cls.remove(fullName);
 

@@ -2,33 +2,40 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('MOVE_FILE', function(ok) {
+	'use strict';
 
-MOVE_FILE({
-	srcPath : 'test2.txt',
-	distPath : 'testaaa/testaaa2.txt',
-	isSync : true
-}, {
+	INIT_OBJECTS();
 
-	error : function(errorMsg) {
-		console.log('ERROR!', errorMsg);
-	},
+	MOVE_FILE({
+		srcPath : 'test2.txt',
+		distPath : 'testFolder/test2.txt',
+		isSync : true
+	}, {
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
+		}
+	});
 
-	success : function() {
-		console.log('good!');
-	}
-});
+	ok(READ_FILE({
+		path : 'testFolder/test2.txt',
+		isSync : true
+	}).toString() === 'this is test file.');
 
-MOVE_FILE({
-	srcPath : 'test3.txt',
-	distPath : 'testaaa/testaaa3.txt'
-}, {
+	MOVE_FILE({
+		srcPath : 'test3.txt',
+		distPath : 'testFolder/test3.txt'
+	}, {
 
-	error : function(errorMsg) {
-		console.log('ERROR!', errorMsg);
-	},
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
+		},
 
-	success : function() {
-		console.log('good!');
-	}
+		success : function() {
+			ok(READ_FILE({
+				path : 'testFolder/test3.txt',
+				isSync : true
+			}).toString() === 'this is test file.');
+		}
+	});
 });

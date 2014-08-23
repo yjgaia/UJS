@@ -76,7 +76,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 			//OPTIONAL: portOrParams.securedPort
 			//OPTIONAL: portOrParams.securedKeyFilePath
 			//OPTIONAL: portOrParams.securedCertFilePath
-			//OPTIONAL: portOrParams.notParsingNativeReqURIs
+			//OPTIONAL: portOrParams.noParsingNativeReqURIs
 			//REQUIRED: requestListener
 
 			var
@@ -92,8 +92,8 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 			// secured cert file path
 			securedCertFilePath,
 
-			// not parsing native req uris
-			notParsingNativeReqURIs,
+			// no parsing native req uris
+			noParsingNativeReqURIs,
 
 			// server
 			nativeHTTPServer,
@@ -112,7 +112,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 				securedPort = portOrParams.securedPort;
 				securedKeyFilePath = portOrParams.securedKeyFilePath;
 				securedCertFilePath = portOrParams.securedCertFilePath;
-				notParsingNativeReqURIs = portOrParams.notParsingNativeReqURIs;
+				noParsingNativeReqURIs = portOrParams.noParsingNativeReqURIs;
 			}
 
 			serve = function(nativeReq, nativeRes) {
@@ -161,7 +161,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 				function(next) {
 
 					if (method === 'GET' || CHECK_IS_IN({
-						array : notParsingNativeReqURIs,
+						array : noParsingNativeReqURIs,
 						value : uri
 					}) === true) {
 						next();
@@ -306,7 +306,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 				}]);
 
 				if (CHECK_IS_IN({
-					array : notParsingNativeReqURIs,
+					array : noParsingNativeReqURIs,
 					value : uri
 				}) !== true) {
 

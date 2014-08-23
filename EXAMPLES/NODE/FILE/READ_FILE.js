@@ -2,39 +2,43 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('READ_FILE', function(ok) {
+	'use strict';
 
-var buffer = READ_FILE({
-	path : 'test.txt',
-	isSync : true
-}, {
+	INIT_OBJECTS();
 
-	error : function(errorMsg) {
-		console.log('ERROR!', errorMsg);
-	},
+	var buffer = READ_FILE({
+		path : 'test.txt',
+		isSync : true
+	}, {
 
-	notExists : function() {
-		console.log('NOT EXISTS!');
-	},
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
+		},
 
-	success : function(buffer) {
-		console.log(buffer.toString());
-	}
-});
+		notExists : function() {
+			console.log('NOT EXISTS!');
+		},
 
-console.log(buffer.toString());
+		success : function(buffer) {
+			ok(buffer.toString() === 'this is test file.');
+		}
+	});
 
-READ_FILE('test.txt', {
+	ok(buffer.toString() === 'this is test file.');
 
-	error : function(errorMsg) {
-		console.log('ERROR!', errorMsg);
-	},
+	READ_FILE('test.txt', {
 
-	notExists : function() {
-		console.log('NOT EXISTS!');
-	},
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
+		},
 
-	success : function(buffer) {
-		console.log(buffer.toString());
-	}
+		notExists : function() {
+			console.log('NOT EXISTS!');
+		},
+
+		success : function(buffer) {
+			ok(buffer.toString() === 'this is test file.');
+		}
+	});
 });

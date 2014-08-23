@@ -3,7 +3,8 @@
  */
 global.CREATE_COOKIE_STR_ARRAY = CREATE_COOKIE_STR_ARRAY = METHOD({
 
-	run : function(data) {'use strict';
+	run : function(data) {
+		'use strict';
 		//REQUIRED: data
 
 		var

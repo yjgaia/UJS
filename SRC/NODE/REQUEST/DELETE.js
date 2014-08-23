@@ -1,11 +1,12 @@
 /**
- * ajax DELETE request.
+ * http DELETE request.
  */
 global.DELETE = DELETE = METHOD({
 
-	run : function(uriOrParams, responseListenerOrListeners) {'use strict';
+	run : function(uriOrParams, responseListenerOrListeners) {
+		'use strict';
 		//REQUIRED: uriOrParams
-		//OPTIONAL: uriOrParams.host
+		//REQUIRED: uriOrParams.host
 		//OPTIONAL: uriOrParams.port
 		//OPTIONAL: uriOrParams.isSecure
 		//OPTIONAL: uriOrParams.uri

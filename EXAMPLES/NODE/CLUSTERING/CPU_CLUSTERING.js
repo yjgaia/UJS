@@ -2,23 +2,29 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('CPU_CLUSTERING', function(ok) {
+	'use strict';
 
-CPU_CLUSTERING(function(workerData, on, off, broadcast) {
+	INIT_OBJECTS();
 
-	console.log('WORK, WORKER!: ', workerData.id, workerData.pid);
+	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
 
-	on('receive', function(data) {
-		console.log('WORKER #' + workerData.id + ' received: ', data);
-	});
+		console.log('WORK, WORKER!: ', workerData.id, workerData.pid);
 
-	if (workerData.id === 1) {
-
-		broadcast({
-			methodName : 'receive',
-			data : {
+		on('receive', function(data) {
+			ok(CHECK_ARE_SAME([data, {
 				msg : 'Hey!'
-			}
+			}]));
 		});
-	}
+
+		if (workerData.id === 1) {
+
+			broadcast({
+				methodName : 'receive',
+				data : {
+					msg : 'Hey!'
+				}
+			});
+		}
+	});
 });

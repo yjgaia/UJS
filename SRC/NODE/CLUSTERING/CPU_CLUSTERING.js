@@ -1,7 +1,8 @@
 /*
  * cpu clustering work.
  */
-global.CPU_CLUSTERING = CPU_CLUSTERING = METHOD(function(m) {'use strict';
+global.CPU_CLUSTERING = CPU_CLUSTERING = METHOD(function(m) {
+	'use strict';
 
 	var
 	//IMPORT: cluster

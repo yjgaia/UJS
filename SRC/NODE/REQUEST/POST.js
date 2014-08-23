@@ -1,11 +1,12 @@
 /**
- * ajax POST request.
+ * http POST request.
  */
 global.POST = POST = METHOD({
 
-	run : function(uriOrParams, responseListenerOrListeners) {'use strict';
+	run : function(uriOrParams, responseListenerOrListeners) {
+		'use strict';
 		//REQUIRED: uriOrParams
-		//OPTIONAL: uriOrParams.host
+		//REQUIRED: uriOrParams.host
 		//OPTIONAL: uriOrParams.port
 		//OPTIONAL: uriOrParams.isSecure
 		//OPTIONAL: uriOrParams.uri

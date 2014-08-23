@@ -1,5 +1,5 @@
 /*
- * resourec server.
+ * create resourec server.
  */
 global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 	'use strict';
@@ -87,7 +87,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 			//OPTIONAL: params.securedPort
 			//OPTIONAL: params.securedKeyFilePath
 			//OPTIONAL: params.securedCertFilePath
-			//OPTIONAL: params.notParsingNativeReqURIs
+			//OPTIONAL: params.noParsingNativeReqURIs
 			//REQUIRED: params.rootPath
 			//OPTIONAL: params.version
 			//OPTIONAL: requestListenerOrHandlers

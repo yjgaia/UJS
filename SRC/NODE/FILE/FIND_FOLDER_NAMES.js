@@ -1,7 +1,7 @@
 /*
- * find folder.
+ * find folder names.
  */
-global.FIND_FOLDER = FIND_FOLDER = METHOD(function() {
+global.FIND_FOLDER_NAMES = FIND_FOLDER_NAMES = METHOD(function() {
 	'use strict';
 
 	var
@@ -38,7 +38,7 @@ global.FIND_FOLDER = FIND_FOLDER = METHOD(function() {
 			errorHandler,
 
 			// file names
-			fileNames = [];
+			folderNames = [];
 
 			// init params.
 			if (CHECK_IS_DATA(folderPathOrParams) !== true) {
@@ -100,7 +100,7 @@ global.FIND_FOLDER = FIND_FOLDER = METHOD(function() {
 								} else {
 
 									if (stats.isDirectory() === true) {
-										fileNames.push(name);
+										folderNames.push(name);
 									}
 
 									done();
@@ -110,7 +110,7 @@ global.FIND_FOLDER = FIND_FOLDER = METHOD(function() {
 
 						function() {
 							if (callback !== undefined) {
-								callback(fileNames);
+								callback(folderNames);
 							}
 						}]);
 					}
@@ -135,15 +135,15 @@ global.FIND_FOLDER = FIND_FOLDER = METHOD(function() {
 
 						EACH(names, function(name) {
 							if (fs.statSync(folderPath + '/' + name).isDirectory() === true) {
-								fileNames.push(name);
+								folderNames.push(name);
 							}
 						});
 
 						if (callback !== undefined) {
-							callback(fileNames);
+							callback(folderNames);
 						}
 
-						return fileNames;
+						return folderNames;
 
 					} catch(error) {
 

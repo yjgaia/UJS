@@ -2,33 +2,28 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-TEST('COPY_FILE', function(ok) {
+TEST('FIND_FOLDER_NAMES', function(ok) {
 	'use strict';
 
 	INIT_OBJECTS();
 
-	REMOVE_FILE({
-		path : 'testFolder/test2.txt',
+	ok(CHECK_ARE_SAME([FIND_FOLDER_NAMES({
+		folderPath : 'testFolder',
 		isSync : true
 	}, {
-
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
-		},
-
-		success : function() {
-			console.log('good!');
 		}
-	});
+	}), ['subFolder1', 'subFolder2']]));
 
-	REMOVE_FILE('testFolder/test3.txt', {
+	FIND_FOLDER_NAMES('testFolder', {
 
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
 		},
 
-		success : function() {
-			console.log('good!');
+		success : function(fileNames) {
+			ok(CHECK_ARE_SAME([fileNames, ['subFolder1', 'subFolder2']]));
 		}
 	});
 });

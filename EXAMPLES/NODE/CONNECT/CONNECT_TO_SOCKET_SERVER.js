@@ -2,67 +2,78 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+//!! run SERVER/SOCKET_SERVER.js before this test.
 
-// if you not want error listener.
-//
-//	CONNECT_TO_SOCKET_SERVER({
-//		port : 8124
-//	}, function(on, off, send) {
-//		...
-//	});
+TEST('CONNECT_TO_SOCKET_SERVER', function(ok) {
+	'use strict';
 
-CONNECT_TO_SOCKET_SERVER({
-	port : 8124
-}, {
-	error : function(error) {
-		console.log('ERROR!');
-	},
-	success : function(on, off, send, disconnect) {
+	INIT_OBJECTS();
 
-		on('message', function(data, ret) {
+	// if you not want error listener.
+	//
+	//	CONNECT_TO_SOCKET_SERVER({
+	//		host : 'localhost',
+	//		port : 8124
+	//	}, function(on, off, send) {
+	//		...
+	//	});
 
-			console.log('CLIENT!', data);
+	CONNECT_TO_SOCKET_SERVER({
+		host : 'localhost',
+		port : 8124
+	}, {
+		error : function(error) {
+			console.log('ERROR!');
+		},
+		success : function(on, off, send, disconnect) {
 
-			ret('Thanks!');
-		});
+			on('message', function(data, ret) {
 
-		send({
-			methodName : 'message',
-			data : {
-				msg : 'message from client.'
-			}
-		}, function(retMsg) {
+				ok(CHECK_ARE_SAME([data, {
+					msg : 'message from server.'
+				}]));
 
-			console.log('RETURN MESSAGE:', retMsg);
-		});
-
-		send({
-			methodName : 'message',
-			data : {
-				msg : 'second message from client.'
-			}
-		});
-
-		send({
-			methodName : 'login',
-			data : {
-				username : 'test',
-				password : '1234'
-			}
-		});
-
-		DELAY(1, function() {
+				ret('Thanks!');
+			});
 
 			send({
-				methodName : 'checkRole',
-				data : 'USER'
+				methodName : 'message',
+				data : {
+					msg : 'message from client.'
+				}
+			}, function(retMsg) {
+				ok(retMsg === 'Thanks!');
 			});
-		});
 
-		// when disconnected
-		on('__DISCONNECTED', function() {
-			console.log('DISCONNECTED!');
-		});
-	}
+			send({
+				methodName : 'message',
+				data : {
+					msg : 'message from client.'
+				}
+			});
+
+			send({
+				methodName : 'login',
+				data : {
+					username : 'test',
+					password : '1234'
+				}
+			});
+
+			DELAY(1, function() {
+
+				send({
+					methodName : 'checkRole',
+					data : 'USER'
+				});
+			});
+
+			// when disconnected
+			on('__DISCONNECTED', function() {
+				console.log('DISCONNECTED!');
+			});
+			
+			DELAY(3, disconnect);
+		}
+	});
 });

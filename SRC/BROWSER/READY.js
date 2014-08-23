@@ -7,6 +7,9 @@ global.READY = READY = METHOD(function(m) {
 	var
 	// ready count
 	readyCount = 0,
+	
+	// is loaded
+	isLoaded,
 
 	// handler.
 	handler,
@@ -25,6 +28,16 @@ global.READY = READY = METHOD(function(m) {
 
 		readyCount -= 1;
 
+		if (isLoaded === true && handler !== undefined && readyCount === 0) {
+			handler();
+			handler = undefined;
+		}
+	};
+
+	global.onload = function() {
+
+		isLoaded = true;
+
 		if (handler !== undefined && readyCount === 0) {
 			handler();
 			handler = undefined;
@@ -37,14 +50,6 @@ global.READY = READY = METHOD(function(m) {
 			//REQUIRED: _handler
 
 			handler = _handler;
-
-			global.onload = function() {
-
-				if (handler !== undefined && readyCount === 0) {
-					handler();
-					handler = undefined;
-				}
-			};
 		}
 	};
 });

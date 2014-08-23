@@ -2,29 +2,33 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('CREATE_FOLDER', function(ok) {
+	'use strict';
 
-CREATE_FOLDER({
-	path : 'test',
-	isSync : true
-}, {
+	INIT_OBJECTS();
 
-	error : function(errorMsg) {
-		console.log('ERROR!', errorMsg);
-	},
+	CREATE_FOLDER({
+		path : 'test',
+		isSync : true
+	}, {
 
-	success : function() {
-		console.log('good!');
-	}
-});
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
+		},
 
-CREATE_FOLDER('test2', {
+		success : function() {
+			console.log('good!');
+		}
+	});
 
-	error : function(errorMsg) {
-		console.log('ERROR!', errorMsg);
-	},
+	CREATE_FOLDER('test2', {
 
-	success : function() {
-		console.log('good!');
-	}
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
+		},
+
+		success : function() {
+			console.log('good!');
+		}
+	});
 });

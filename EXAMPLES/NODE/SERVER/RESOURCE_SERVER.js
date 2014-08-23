@@ -2,9 +2,16 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('RESOURCE_SERVER', function(ok) {
+	'use strict';
 
-RESOURCE_SERVER({
-	port : 8123,
-	rootPath : __dirname + '/R'
+	INIT_OBJECTS();
+
+	// if you don't want resource caching.
+	CONFIG.isDevMode = true;
+
+	RESOURCE_SERVER({
+		port : 8123,
+		rootPath : __dirname + '/R'
+	});
 });

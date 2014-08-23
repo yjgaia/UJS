@@ -2,23 +2,27 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('CPU_SHARED_STORE', function(ok) {
+	'use strict';
 
-CPU_CLUSTERING(function(workerData, on, off, broadcast) {
+	INIT_OBJECTS();
 
-	var
-	// shared store
-	sharedStore = CPU_SHARED_STORE('test');
+	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
 
-	if (workerData.id === 1) {
+		var
+		// shared store
+		sharedStore = CPU_SHARED_STORE('test');
 
-		sharedStore.save({
-			key : 'msg',
-			value : 'Hello World!'
+		if (workerData.id === 1) {
+
+			sharedStore.save({
+				name : 'msg',
+				value : 'Hello World!'
+			});
+		}
+
+		DELAY(1, function() {
+			ok(sharedStore.get('msg') === 'Hello World!');
 		});
-	}
-
-	DELAY(1, function() {
-		console.log(sharedStore.get('msg'));
 	});
 });

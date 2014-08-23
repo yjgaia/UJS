@@ -2,60 +2,78 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+//!! run TEST-SERVER.js before this test.
 
-// test GET request.
-GET({
-	port : 8810,
-	uri : 'AJAX_TEST'
-}, function(content) {
-	console.log(content);
-});
+TEST('GET', function(ok) {
+	'use strict';
 
-// test GET request with parameters.
-GET({
-	port : 8810,
-	uri : 'AJAX_TEST',
-	paramStr : 'thisis=parameter'
-}, function(content) {
-	console.log(content);
-});
+	INIT_OBJECTS();
 
-// test GET request with data.
-GET({
-	port : 8810,
-	uri : 'AJAX_TEST',
-	data : {
-		thisis : 'data'
-	}
-}, function(content) {
-	console.log(content);
-});
+	// test GET request.
+	GET({
+		host : 'localhost',
+		port : 8810,
+		uri : 'AJAX_TEST'
+	}, function(content) {
+		ok(content === 'Request DONE!');
+	});
 
-// test GET request.
-GET({
-	port : 8810,
-	uri : 'AJAX_JSON_TEST'
-}, function(content) {
-	console.log(PARSE_STR(content));
-});
+	// test GET request with parameters.
+	GET({
+		host : 'localhost',
+		port : 8810,
+		uri : 'AJAX_TEST',
+		paramStr : 'thisis=parameter'
+	}, function(content) {
+		ok(content === 'Request DONE!');
+	});
 
-// test GET request with parameters.
-GET({
-	port : 8810,
-	uri : 'AJAX_JSON_TEST',
-	paramStr : 'thisis=parameter'
-}, function(content) {
-	console.log(PARSE_STR(content));
-});
+	// test GET request with data.
+	GET({
+		host : 'localhost',
+		port : 8810,
+		uri : 'AJAX_TEST',
+		data : {
+			thisis : 'data'
+		}
+	}, function(content) {
+		ok(content === 'Request DONE!');
+	});
 
-// test GET request with data.
-GET({
-	port : 8810,
-	uri : 'AJAX_JSON_TEST',
-	data : {
-		thisis : 'data'
-	}
-}, function(content) {
-	console.log(PARSE_STR(content));
+	// test GET request.
+	GET({
+		host : 'localhost',
+		port : 8810,
+		uri : 'AJAX_JSON_TEST'
+	}, function(content) {
+		ok(CHECK_ARE_SAME([PARSE_STR(content), {
+			thisis : 'JSON'
+		}]) === true);
+	});
+
+	// test GET request with parameters.
+	GET({
+		host : 'localhost',
+		port : 8810,
+		uri : 'AJAX_JSON_TEST',
+		paramStr : 'thisis=parameter'
+	}, function(content) {
+		ok(CHECK_ARE_SAME([PARSE_STR(content), {
+			thisis : 'JSON'
+		}]) === true);
+	});
+
+	// test GET request with data.
+	GET({
+		host : 'localhost',
+		port : 8810,
+		uri : 'AJAX_JSON_TEST',
+		data : {
+			thisis : 'data'
+		}
+	}, function(content) {
+		ok(CHECK_ARE_SAME([PARSE_STR(content), {
+			thisis : 'JSON'
+		}]) === true);
+	});
 });

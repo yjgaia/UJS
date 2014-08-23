@@ -1,6 +1,7 @@
 VERSIONS
 ========
-1.4.11 (working)
+1.4.11 (2014. 8. 18)
+- 
 
 1.4.10 (2014. 7. 31)
 - COPY_ARRAY and COPY_DATA are integrated into COPY

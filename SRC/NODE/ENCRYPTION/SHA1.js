@@ -3,7 +3,8 @@
  */
 global.SHA1 = SHA1 = METHOD({
 
-	run : function(params) {'use strict';
+	run : function(params) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.key
 		//REQUIRED: params.password

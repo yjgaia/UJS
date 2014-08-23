@@ -3,11 +3,14 @@
  */
 global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
-	run : function(params, connectionListenerOrListeners) {'use strict';
+	run : function(params, connectionListenerOrListeners) {
+		'use strict';
 		//REQUIRED: params
-		//OPTIONAL: params.host
+		//REQUIRED: params.host
 		//REQUIRED: params.port
 		//REQUIRED: connectionListenerOrListeners
+		//REQUIRED: connectionListenerOrListeners.success
+		//OPTIONAL: connectionListenerOrListeners.error
 
 		var
 		// host

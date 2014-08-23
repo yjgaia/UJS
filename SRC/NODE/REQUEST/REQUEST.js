@@ -1,5 +1,5 @@
 /**
- * ajax request.
+ * http request.
  */
 global.REQUEST = REQUEST = METHOD(function() {
 	'use strict';
@@ -15,7 +15,7 @@ global.REQUEST = REQUEST = METHOD(function() {
 
 		run : function(params, responseListenerOrListeners) {
 			//REQUIRED: params
-			//OPTIONAL: params.host
+			//REQUIRED: params.host
 			//OPTIONAL: params.port
 			//OPTIONAL: params.isSecure
 			//REQUIRED: params.method
@@ -26,7 +26,7 @@ global.REQUEST = REQUEST = METHOD(function() {
 
 			var
 			// host
-			host = params.host === undefined ? 'localhost' : params.host,
+			host = params.host,
 
 			// is secure
 			isSecure = params.isSecure,

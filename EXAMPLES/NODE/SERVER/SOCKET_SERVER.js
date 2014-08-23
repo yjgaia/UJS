@@ -2,59 +2,65 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('SOCKET_SERVER', function(ok) {
+	'use strict';
 
-SOCKET_SERVER(8124, function(clientInfo, on, off, send, disconnect) {
+	INIT_OBJECTS();
 
-	var
-	// roles
-	roles = [];
+	SOCKET_SERVER(8124, function(clientInfo, on, off, send, disconnect) {
 
-	console.log('CONNECTED!', clientInfo);
+		var
+		// roles
+		roles = [];
 
-	on('message', function(data, ret) {
+		ok(CHECK_ARE_SAME([clientInfo, {
+			ip : '127.0.0.1'
+		}]));
 
-		console.log('SERVER!', data);
+		on('message', function(data, ret) {
 
-		ret('Thanks!');
-	});
+			ok(CHECK_ARE_SAME([data, {
+				msg : 'message from client.'
+			}]));
 
-	send({
-		methodName : 'message',
-		data : {
-			msg : 'message from server.'
-		}
-	}, function(retMsg) {
+			ret('Thanks!');
+		});
 
-		console.log('RETURN MESSAGE:', retMsg);
-	});
+		send({
+			methodName : 'message',
+			data : {
+				msg : 'message from server.'
+			}
+		}, function(retMsg) {
+			ok(retMsg === 'Thanks!');
+		});
 
-	send({
-		methodName : 'message',
-		data : {
-			msg : 'second message from server.'
-		}
-	});
+		send({
+			methodName : 'message',
+			data : {
+				msg : 'message from server.'
+			}
+		});
 
-	on('login', function(data) {
-		if (data.username === 'test' && data.password === '1234') {
-			roles.push('USER');
-		}
-	});
+		on('login', function(data) {
+			if (data.username === 'test' && data.password === '1234') {
+				roles.push('USER');
+			}
+		});
 
-	on('checkRole', function(role) {
+		on('checkRole', function(role) {
 
-		if (CHECK_IS_IN({
-			data : roles,
-			value : role
-		}) === true) {
+			if (CHECK_IS_IN({
+				data : roles,
+				value : role
+			}) === true) {
+				ok(role === 'USER');
+			}
+		});
 
-			console.log('SINGED!', role);
-		}
-	});
-
-	// when disconnected
-	on('__DISCONNECTED', function() {
-		console.log('DISCONNECTED!');
+		// when disconnected
+		on('__DISCONNECTED', function() {
+			console.log('DISCONNECTED!');
+		});
 	});
 });

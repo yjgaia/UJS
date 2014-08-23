@@ -2,33 +2,40 @@
 require('../../../UPPERCASE.JS-COMMON.js');
 require('../../../UPPERCASE.JS-NODE.js');
 
-INIT_OBJECTS();
+TEST('COPY_FILE', function(ok) {
+	'use strict';
 
-COPY_FILE({
-	srcPath : 'test.txt',
-	distPath : 'test2.txt',
-	isSync : true
-}, {
+	INIT_OBJECTS();
 
-	error : function(errorMsg) {
-		console.log('ERROR!', errorMsg);
-	},
+	COPY_FILE({
+		srcPath : 'test.txt',
+		distPath : 'test2.txt',
+		isSync : true
+	}, {
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
+		}
+	});
 
-	success : function() {
-		console.log('good!');
-	}
-});
+	ok(READ_FILE({
+		path : 'test2.txt',
+		isSync : true
+	}).toString() === 'this is test file.');
 
-COPY_FILE({
-	srcPath : 'test.txt',
-	distPath : 'test3.txt'
-}, {
+	COPY_FILE({
+		srcPath : 'test.txt',
+		distPath : 'test3.txt'
+	}, {
 
-	error : function(errorMsg) {
-		console.log('ERROR!', errorMsg);
-	},
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
+		},
 
-	success : function() {
-		console.log('good!');
-	}
+		success : function() {
+			ok(READ_FILE({
+				path : 'test3.txt',
+				isSync : true
+			}).toString() === 'this is test file.');
+		}
+	});
 });
