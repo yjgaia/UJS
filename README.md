@@ -12,7 +12,7 @@ Easy, Clear, and Powerful Full-stack (server-to-client) JavaScript Library for D
 Provides OOP support and various features.
 UPPERCASE.JS-COMMON is for those who seek for JavaScript utilities.
 
-* `METHOD` 메소드를 생성합니다. 메소드에 static 변수를 지정할 수 있습니다. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/METHOD.js)
+* Create `METHOD` method. Can specify a static variable inside. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/METHOD.js)
 ```javascript
 method = METHOD({
 	run: function(params, callback) {
@@ -25,7 +25,7 @@ method({ name: 'YJ Sim', age: 27 }, function(content) {
 ```
 ```javascript
 method = METHOD(function(m) {
-	// 정적 변수
+	// static variable
 	m.staticString = 'Static!';
 	return {
 		run: function(params, callback) {...}
@@ -34,7 +34,7 @@ method = METHOD(function(m) {
 method.staticString // 'Static!'
 ```
 
-#### `OOP` 제대로 된 객체지향 프로그래밍
+#### `OOP` State-of-art OOP
 * `CLASS` 클래스를 선언합니다. 클래스 상속이 가능하고, private 및 public, protected 변수를 지정할 수 있습니다. 또한 파라미터를 객체 생성 이전에 수정할 수 있으며 static 변수를 지정할 수도 있습니다. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/OOP/CLASS.js)
 ```javascript
 Sample = CLASS({
@@ -392,8 +392,8 @@ store.stop()
 PhantomJS 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
 PhantomJS를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-NODE를 사용해보세요.
 
-* UPPERCASE.JS-COMMON.js가 필요합니다.
-* 상세 명세는 준비중입니다.
+* UPPERCASE.JS-COMMON.js is required.
+* More details are coming soon.
 
 ## UPPERCASE.JS-TITANIUM
 Titanium 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
