@@ -35,7 +35,7 @@ method.staticString // 'Static!'
 ```
 
 #### `OOP` State-of-art OOP
-* `CLASS` 클래스를 선언합니다. 클래스 상속이 가능하고, private 및 public, protected 변수를 지정할 수 있습니다. 또한 파라미터를 객체 생성 이전에 수정할 수 있으며 static 변수를 지정할 수도 있습니다. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/OOP/CLASS.js)
+* Declare `CLASS` class. Can inherit and set accessors such as private, protected, and public. Can modify parameters before instantiation and specify static variables. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/OOP/CLASS.js)
 ```javascript
 Sample = CLASS({
 	init: function(inner, self, params, callback) {
@@ -52,28 +52,28 @@ sample.hello(); // YJ Sim is 27 years old.
 ```
 ```javascript
 Sample = CLASS({
-	// 초기 파라미터를 지정합니다.
+	// Set initial parameters.
 	params: function() {
 		return {...};
 	},
-	// 파라미터를 수정하거나, 부모 CLASS를 상속합니다.
+	// Modify the parameters or inherit from the parent CLASS.
 	preset: function(params, funcs) {
 		...
 		return parentClass;
 	},
-	// 객체를 초기화합니다.
+	// Initialize instantiation.
 	init: function(inner, self, params, funcs) {
-		inner.a // 상속된 자식 객체에서만 사용할 수 있습니다.
-		self.b // 외부에서 사용할 수 있습니다.
+		inner.a // protected for children.
+		self.b // exposed to public.
 		...
 	},
-	// 초기화 이후에 실행됩니다.
+	// Post-initialize.
 	afterInit: function(inner, self, params, funcs) {...}
 });
 ```
 ```javascript
 Sample = CLASS(function(c) {
-	// 정적 변수
+	// static variable
 	c.staticString = 'Static!';
 	return {
 		init: function(inner, self, params, funcs) {...}
@@ -81,7 +81,7 @@ Sample = CLASS(function(c) {
 });
 Sample.staticString // 'Static!'
 ```
-* `OBJECT` 객체를 선언합니다. 모든 객체가 선언된 이후에는 `INIT_OBJECTS()`로 초기화합니다. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/OOP/OBJECT.js)
+* Declare `OBJECT` object. Initialize via `INIT_OBJECTS()` after every OBJECT is declared. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/OOP/OBJECT.js)
 ```javascript
 sample = OBJECT({
 	init: function(inner, self) {
@@ -95,14 +95,14 @@ INIT_OBJECTS();
 sample.hello(); // Hi there?
 ```
 
-#### `UTIL` 꼭 필요한 것들만 모아놓은 유틸리티
+#### `UTIL` essential utilities
 
-###### 숫자 관련
+###### Number
 * `INTEGER(integerString)` convert integer string to integer number. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/NUMBER/INTEGER.js)
 * `REAL(realString)` convert real string to real number. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/NUMBER/REAL.js)
 * `RANDOM(max)` `RANDOM({min:, max:})` `RANDOM({min:, limit:})` generate random integer. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/NUMBER/RANDOM.js)
 
-###### DATA 및 배열 관련
+###### DATA and array
 * `CHECK_IS_DATA(it)` check it is data. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA/CHECK_IS_DATA.js)
 * `CHECK_IS_EMPTY_DATA(data)` check data is empty. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA/CHECK_IS_EMPTY_DATA.js)
 * `CHECK_IS_ARRAY(it)` check it is array. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/ARRAY/CHECK_IS_ARRAY.js)
@@ -114,7 +114,7 @@ sample.hello(); // Hi there?
 * `FIND({data:, value:})` `FIND({array:, value:})` find name or key in data or array. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/FIND.js)
 * `REMOVE({data:, name:})` `REMOVE({data:, value:})` `REMOVE({array:, key:})` `REMOVE({array:, value:})` `REMOVE(dataOrArray, function(value) {})` remove at name or key or some value in data or array. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/REMOVE.js)
 
-###### 날짜 관련
+###### Date
 * `CALENDAR()` `CALENDAR(date)` Calendar class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DATE/CALENDAR.js)
 ```javascript
 cal = CALENDAR(new Date());
@@ -127,15 +127,15 @@ cal.getMinute()
 cal.getSecond()
 ```
 
-###### 함수 관련
+###### Function
 * `RUN(function(func) {})` just run. use this if you need a code block. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/FUNCTION/RUN.js)
 * `RAR(function() {})` `RAR(params, function(params) {})` run `func` and return it. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/FUNCTION/RAR.js)
 
-###### 반복문 관련
+###### Loop
 * `REPEAT(count, function(i) {})` `REPEAT({start:, end:}, function(i) {})` `REPEAT({start:, end:, step:}, function(i) {})` `REPEAT({start:, limit:}, function(i) {})` `REPEAT({start:, limit:, step:}, function(i) {})` run `func` repeat `count` time, or same as `for`. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/REPEAT/REPEAT.js)
 * `EACH(data, function(value) {})` `EACH(array, function(value) {})` same as `foreach`. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/REPEAT/EACH.js)
 
-###### 지연 관련
+###### Delay
 * `DELAY(seconds, function(delay) {})` Delay class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/DELAY/DELAY.js)
 ```javascript
 delay = DELAY(3, function(delay) {});
@@ -153,7 +153,7 @@ loop.changeFPS(fps) // ex) loop.changeFPS(60)
 loop.remove()
 ```
 
-###### 기타
+###### Etc.
 * `RANDOM_STR(length)` generate random string. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/RANDOM_STR.js)
 * `OVERRIDE(origin, function(origin) {})` override something. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/OVERRIDE.js)
 * `NEXT([function(next) {}, function() { return function() {}; }, function() { return function() {}; }, ...])` `NEXT(count, [function(i, next) {}, function() { return function() {}; }, ...])` `NEXT(array, [function(element, next) {}, function() { return function() {}; }, ...])` async control-flow method that makes stepping through logic easy. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/UTIL/NEXT.js)
@@ -170,19 +170,19 @@ validResult.getErrors()
 ```
 
 ## UPPERCASE.JS-NODE
-node.js 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-node.js를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-NODE를 사용해보세요.
+Provide a bunch of features useful for node.js-based projects.
+UPPERCASE.JS-NODE is for those who seek for node.js utilities.
 
-* UPPERCASE.JS-COMMON.js가 필요합니다.
+* UPPERCASE.JS-COMMON.js is required.
 
-### node.js에서 사용하기
-* `INIT_OBJECTS();`은 한번만 실행합니다.
+### How to use on node.js
+* `INIT_OBJECTS();` is executed once.
 
 ```javascript
 require('UPPERCASE.JS-COMMON.js');
 require('UPPERCASE.JS-NODE.js');
 
-// 선언부
+// declare.
 var
 // method
 method = METHOD({
@@ -194,11 +194,11 @@ method = METHOD({
 // init all singleton classes.
 INIT_OBJECTS();
 
-// 실행부
+// execute.
 method();
 ```
 
-#### Node 패키지
+#### Node package
 
 ###### Clustering
 * `CPU_CLUSTERING(work)` cpu clustering work. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/CLUSTERING/CPU_CLUSTERING.js)
@@ -239,20 +239,20 @@ method();
 
 
 ## UPPERCASE.JS-BROWSER
-웹 브라우저에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-모든 브라우저와 호환되는 브라우저용 유틸리티와 훌륭한 템플릿 엔진을 찾으신다면 UPPERCASE.JS-BROWSER를 사용해보세요.
+Provide a bunch of features useful for web browsers.
+UPPERCASE.JS-BROWSER is for those who seek for handy utilities and powerful template engines compliant with all the browsers on the earth.
 
-* UPPERCASE.JS-COMMON.js가 필요합니다.
+* UPPERCASE.JS-COMMON.js is required.
 
 ### UPPERCASE.JS-BROWSER-FIX
-COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1 Browser 등)를 지원하는 라이브러리입니다.
+Support old browsers (IE5.5, Android 2.1 Browser, ...) with COMMON and BROWSER.
 
-* UPPERCASE.JS-COMMON.js가 필요합니다.
-* UPPERCASE.JS-BROWSER.js가 필요합니다.
+* UPPERCASE.JS-COMMON.js is required.
+* UPPERCASE.JS-BROWSER.js is required.
 
-### 브라우저에서 사용하기
-* 스크립트를 불러오기 이전에 `global = window;`로 글로벌 변수를 설정합니다.
-* `INIT_OBJECTS();`은 한번만 실행합니다.
+### How to use in a browser
+* Set `global = window;` to prepare a global variable prior to loading scripts.
+* `INIT_OBJECTS();` is executed once.
 
 ```html
 <!doctype html>
@@ -271,7 +271,7 @@ COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1
 		<script>
 			global.onload = function() {
 
-				// 선언부
+				// declare.
 				var
 				// method
 				method = METHOD({
@@ -283,7 +283,7 @@ COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1
 				// init all singleton classes.
 				INIT_OBJECTS();
 
-				// 실행부
+				// execute.
 				method();
 			};
 		</script>
@@ -291,7 +291,7 @@ COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1
 </html>
 ```
 
-#### 브라우저 패키지
+#### Browser Package
 * `INFO` Browser information object [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/INFO.js)
 ```javascript
 INFO.getLang()
@@ -309,14 +309,14 @@ store.remove(name)
 ```
 * `MSG({ko:, en:, ...})` get internationalization message. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/I18N/MSG.js)
 
-###### 윈도우 관련
+###### Window
 * `TITLE(title)` change document title. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/WINDOW.js)
 * `WIN_WIDTH()` get window width. (px) [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/WIN_WIDTH.js)
 * `WIN_HEIGHT()` get window height. (px) [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/WIN_HEIGHT.js)
 * `SCROLL_LEFT()` get scroll left. (px) [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/SCROLL_LEFT.js)
 * `SCROLL_TOP()` get scroll top. (px) [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/SCROLL_TOP.js)
 
-###### NODE 및 DOM 관련
+###### NODE and DOM
 * `NODE` Node interface [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/NODE.js)
 * `DOM({tag:})` `DOM({tag:, style:})` `DOM({tag:, c:})` `DOM({tag:, on:})` `DOM({el:})` Dom wrapper class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/DOM.js)
 * `BODY` Body class
@@ -347,24 +347,24 @@ store.remove(name)
 * `CANVAS()` `CANVAS({width:})` `CANVAS({height:})` `CANVAS({style:})` `CANVAS({c:})` `CANVAS({on:})` Canvas class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/CANVAS.js)
 * `CLEAR_BOTH()` create clear:both div. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/CLEAR_BOTH.js)
 
-###### 스타일 관련
+###### Styles
 * `ADD_STYLE({node:, style:})` add style. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/STYLE/ADD_STYLE.js)
 * `RGBA([r, g, b, a])` get rgba style string. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/STYLE/RGBA.js)
 
-###### 애니메이션 관련
+###### Animations
 * `ANIMATE({node:, keyframes:})` `ANIMATE({node:, keyframes:, duration:})` `ANIMATE({node:, keyframes:, timingFunction:})` `ANIMATE({node:, keyframes:, delay:})` `ANIMATE({node:, keyframes:, iterationCount:})` `ANIMATE({node:, keyframes:, direction:})` `ANIMATE({node:, keyframes:, playState:})` `ANIMATE({node:, keyframes:}, callback)` animate node. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/ANIMATION/ANIMATE.js)
 * `KEYFRAMES(keyframes)` Animation keyframes class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/ANIMATION/KEYFRAMES.js)
 
-###### 이벤트 관련
+###### Events
 * `EVENT(name, func)` `EVENT({node:, name:}, func)` Event class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/EVENT/EVENT.js)
 * `EVENT_ONCE(name, func)` `EVENT_ONCE({node:, name:}, func)` Event class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/EVENT/EVENT_ONCE.js)
 
-###### 그래픽 관련
+###### Graphics
 * `CHECK_IS_BLANK_PIXEL({img:, left:, top:}, callback)` `CHECK_IS_BLANK_PIXEL({img:, right:, bottom:}, callback)` check the pixel is blank pixel. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/GRAPHIC/CHECK_IS_BLANK_PIXEL.js)
 * `EXPORT_IMG_DATA(img, callback)` export img data. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/GRAPHIC/EXPORT_IMG_DATA.js)
 * `EXPORT_IMG_TYPE(img, callback)` export img type. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/GRAPHIC/EXPORT_IMG_TYPE.js)
 
-###### 사운드 관련
+###### Sounds
 * `SOUND({mp3:, ogg:, isLoop:})` SOUND class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/SOUND.js)
 ```javascript
 sound = SOUND({mp3:'test.mp3', ogg:'test.ogg', isLoop:true});
@@ -372,14 +372,14 @@ store.play()
 store.stop()
 ```
 
-###### AJAX 관련
+###### AJAX
 * `REQUEST({method:, uri:}, responseListenerOrListeners)` `REQUEST({method:, uri:, paramStr:}, responseListenerOrListeners)` `REQUEST({host:, port:, isSecure:, method:, uri:, data:}, responseListenerOrListeners)` ajax request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/REQUEST.js)
 * `GET(uri, responseListenerOrListeners)` `GET({uri:, paramStr:}, responseListenerOrListeners)` `GET({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)` ajax GET request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/GET.js)
 * `POST(uri:, responseListenerOrListeners)` `POST({uri:, paramStr:}, responseListenerOrListeners)` `POST({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)` ajax POST request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/POST.js)
 * `PUT(uri:, responseListenerOrListeners)` `PUT({uri:, paramStr:}, responseListenerOrListeners)` `PUT({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)` ajax PUT request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/PUT.js)
 * `DELETE(uri:, responseListenerOrListeners)` `DELETE({uri:, paramStr:}, responseListenerOrListeners)` `DELETE({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)` ajax DELETE request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/DELETE.js)
 
-###### VIEW 관련
+###### VIEW
 * `VIEW` View interface [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/VIEW.js)
 * `MATCH_VIEW({uris:, target:})` match view. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/VIEW.js)
 * `HREF(uri)` get href. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/HREF.js)
@@ -389,18 +389,18 @@ store.stop()
 
 
 ## UPPERCASE.JS-PHANTOM
-PhantomJS 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-PhantomJS를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-NODE를 사용해보세요.
+Provide a number of features useful for PhantomJS-based projects.
+UPPERCASE.JS-PHANTOM is for those who seek for utilities on PhantomJS.
 
 * UPPERCASE.JS-COMMON.js is required.
 * More details are coming soon.
 
 ## UPPERCASE.JS-TITANIUM
-Titanium 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-Titanium를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-TITANIUM를 사용해보세요.
+Provide enormous features useful for Titanium-based projects.
+UPPERCASE.JS-TITANIUM is for those who look for utilities on Titanium.
 
-* UPPERCASE.JS-COMMON.js가 필요합니다.
-* 상세 명세는 준비중입니다.
+* UPPERCASE.JS-COMMON.js is required.
+* More details are coming soon.
 
 ## License
 [MIT License](https://github.com/UPPERCASEIO/UPPERCASE.JS/blob/master/LICENSE.md)
