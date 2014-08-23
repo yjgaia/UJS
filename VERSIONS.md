@@ -1,7 +1,17 @@
 VERSIONS
 ========
 1.4.11 (2014. 8. 18)
-- 
+- Add afterInit for code executed right after initialization in case of CLASS declaration
+- Switch overriding VIEW/close and onParamsChange to on('paramsChange', function(params) {...}) on('close', function() {...})
+- Connect tap event to click event in EVENT
+- Change CHECK_IS_EXISTS to CHECK_IS_IN
+- Change FIND_KEY to FIND
+- Add PARALLEL
+- Add DOM generate children func param
+- Change name DOM/showHandler to attachHandler
+- Switch addShowHandler to on('attach', function() {...}), addRemoveHandler -> on('remove', function() {...})
+- Add show event when DOM occurs actually
+- Change FIRE_ALL to EVENT.fireAll
 
 1.4.10 (2014. 7. 31)
 - COPY_ARRAY and COPY_DATA are integrated into COPY
