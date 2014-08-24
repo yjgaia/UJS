@@ -1,159 +1,51 @@
-var
-// port
-port = 8810,
+// load UPPERCASE.JS.
+require('./UPPERCASE.JS-COMMON.js');
+require('./UPPERCASE.JS-NODE.js');
 
-// fs
-fs = require('fs'),
-
-// path
-path = require('path'),
-
-// querystring
-qs = require('querystring'),
-
-// server
-server = require('http').createServer(function(req, res) {
+RUN(function() {
+	'use strict';
 
 	var
-	// url
-	url = req.url,
+	// port
+	port = 8810;
 
-	// param str
-	paramStr,
+	INIT_OBJECTS();
 
-	// filepath
-	filepath,
+	// don't resource caching.
+	CONFIG.isDevMode = true;
 
-	// extname
-	extname,
+	RESOURCE_SERVER({
+		port : port,
+		rootPath : __dirname
+	}, function(requestInfo, response, onDisconnected, replaceRootPath, next) {
 
-	// content type
-	contentType;
+		var
+		// uri
+		uri = requestInfo.uri,
 
-	if (url.indexOf('?') != -1) {
-		paramStr = url.substring(url.indexOf('?') + 1);
-		url = url.substring(0, url.indexOf('?'));
-	}
+		// method
+		method = requestInfo.method,
 
-	if (url === '/AJAX_TEST') {
+		// params
+		params = requestInfo.params;
 
-		if (req.method.toUpperCase() === 'GET') {
-			console.log(req.method.toUpperCase(), qs.parse(paramStr));
-		} else {
+		if (uri === '') {
 
-			req.on('data', function(data) {
-				if (paramStr === undefined) {
-					paramStr = '';
-				}
-				paramStr += data;
-			});
+			requestInfo.uri = 'TEST.html';
 
-			req.on('end', function() {
-				console.log(req.method.toUpperCase(), qs.parse(paramStr));
-			});
+		} else if (uri === 'AJAX_TEST') {
+
+			console.log(method, params);
+
+			response('Request DONE!');
+
+		} else if (uri === 'AJAX_JSON_TEST') {
+
+			console.log(method, params);
+
+			response('{ "thisis" : "JSON" }');
 		}
+	});
 
-		res.end('Request DONE!');
-
-	} else if (url === '/AJAX_JSON_TEST') {
-
-		if (req.method.toUpperCase() === 'GET') {
-			console.log(req.method.toUpperCase(), qs.parse(paramStr));
-		} else {
-
-			req.on('data', function(data) {
-				if (paramStr === undefined) {
-					paramStr = '';
-				}
-				paramStr += data;
-			});
-
-			req.on('end', function() {
-				console.log(req.method.toUpperCase(), qs.parse(paramStr));
-			});
-		}
-
-		res.end('{ "thisis" : "JSON" }');
-
-	} else {
-
-		if (url === '/') {
-			url = '/TEST.html';
-		}
-
-		filepath = './' + url;
-		extname = path.extname(filepath);
-
-		switch (extname) {
-
-			case '.js':
-				contentType = 'text/javascript';
-				break;
-
-			case '.css':
-				contentType = 'text/css';
-				break;
-
-			case '.jpg':
-			case '.jpeg':
-				contentType = 'image/jpeg';
-				break;
-
-			case '.png':
-				contentType = 'image/png';
-				break;
-
-			case '.swf':
-				contentType = 'application/x-shockwave-flash';
-				break;
-
-			case '.html':
-				contentType = 'text/html';
-				break;
-
-			case '.mp3':
-				contentType = 'audio/mpeg';
-				break;
-
-			default :
-				contentType = 'application/octet-stream';
-				break;
-		}
-
-		fs.exists(filepath, function(exists) {
-
-			if (exists === true) {
-
-				fs.readFile(filepath, 'binary', function(error, data) {
-
-					if (error === null) {
-
-						res.writeHead(200, {
-							'Content-Type' : contentType
-						});
-						res.write(data, 'binary');
-						res.end();
-
-					} else {
-						res.writeHead(500, {
-							'Content-Type' : 'text/plain'
-						});
-						res.write(error);
-						res.end();
-					}
-				});
-
-			} else {
-				res.writeHead(404, {
-					'Content-Type' : 'text/plain'
-				});
-				res.write('404 Not Found.');
-				res.end();
-			}
-		});
-	}
+	console.log('UPPERCASE.JS test server running. - http://localhost:' + port);
 });
-
-server.listen(port);
-
-console.log('UPPERCASE.JS test server running. - http://localhost:' + port);

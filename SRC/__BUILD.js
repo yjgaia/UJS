@@ -1,15 +1,19 @@
+// load UPPERCASE.JS.
+require('../UPPERCASE.JS-COMMON.js');
+require('../UPPERCASE.JS-NODE.js');
+
 /*
  * build UPPERCASE.JS.
  */
-global.BUILD = function() {
+RUN(function() {
 	'use strict';
 
 	var
-	//IMPORT: fs
-	fs = require('fs'),
-
 	//IMPORT: path
 	path = require('path'),
+
+	//IMPORT: uglify
+	uglifyJS = require('uglify-js'),
 
 	// log.
 	log = function(msg) {
@@ -21,55 +25,43 @@ global.BUILD = function() {
 		//REQUIRED: scripts
 		//REQUIRED: path
 
-		var
-		// folder paths
-		folderPaths,
-
-		// extra
-		i;
-
-		if (fs.existsSync(path) === true) {
-
-			folderPaths = [];
-
-			fs.readdirSync(path).forEach(function(name) {
-
-				var
-				// full path
-				fullPath = path + '/' + name;
-
-				if (name[0] !== '.') {
-					if (fs.statSync(fullPath).isDirectory() === true) {
-						folderPaths.push(fullPath);
-					} else {
-						scripts.push(fullPath);
-					}
-				}
+		FIND_FILE_NAMES({
+			path : path,
+			isSync : true
+		}, function(fileNames) {
+			EACH(fileNames, function(fileName) {
+				scripts.push(path + '/' + fileName);
 			});
+		});
 
-			for ( i = 0; i < folderPaths.length; i += 1) {
-				scanFolder(scripts, folderPaths[i]);
-			}
-		}
+		FIND_FOLDER_NAMES({
+			path : path,
+			isSync : true
+		}, function(folderNames) {
+			EACH(folderNames, function(folderName) {
+				scanFolder(scripts, path + '/' + folderName);
+			});
+		});
 	},
 
 	// save.
 	save = function(scripts, path) {
 
 		var
-		// uglify-js
-		uglifyJS = require('uglify-js'),
-
 		// result
 		result = uglifyJS.minify(scripts, {
 			mangle : true
 		});
 
-		fs.writeFileSync('../' + path, result.code);
+		WRITE_FILE({
+			path : '../' + path,
+			content : result.code,
+			isSync : true
+		});
 	},
 
-	// dist folder.
-	distFolder = function(name) {
+	// build folder.
+	buildFolder = function(name) {
 
 		var
 		// scripts
@@ -85,23 +77,36 @@ global.BUILD = function() {
 	// copy folder.
 	copyFolder = function(from, to, name) {
 
-		if (fs.statSync(from).isDirectory() === true) {
-			if (fs.existsSync('../' + to) !== true || fs.statSync('../' + to).isDirectory() !== true) {
-				fs.mkdirSync('../' + to);
-			}
-			fs.readdirSync(from).forEach(function(name) {
-				if (name[0] !== '.') {
-					copyFolder(from + '/' + name, to + '/' + name, name);
+		FIND_FILE_NAMES({
+			path : from,
+			isSync : true
+		}, function(fileNames) {
+			EACH(fileNames, function(fileName) {
+				if (path.extname(fileName) === '.js') {
+					save([from + '/' + fileName], to + '/' + fileName);
+				} else {
+					COPY_FILE({
+						srcPath : from + '/' + fileName,
+						distPath : '../' + to + '/' + fileName,
+						isSync : true
+					});
 				}
 			});
-		} else if (path.extname(from) === '.js') {
-			save([from], to);
-		} else {
-			fs.createReadStream(from).pipe(fs.createWriteStream('../' + to));
-		}
+		});
+
+		FIND_FOLDER_NAMES({
+			path : from,
+			isSync : true
+		}, function(folderNames) {
+			EACH(folderNames, function(folderName) {
+				copyFolder(from + '/' + folderName, to + '/' + folderName, folderName);
+			});
+		});
 	};
 
-	(function() {
+	INIT_OBJECTS();
+
+	RUN(function() {
 
 		var
 		// scripts
@@ -119,21 +124,20 @@ global.BUILD = function() {
 		scanFolder(scripts, 'COMMON/UTIL');
 
 		save(scripts, 'UPPERCASE.JS-COMMON.js');
-	})();
+	});
 
-	distFolder('BROWSER');
+	buildFolder('BROWSER');
 
-	(function() {
+	RUN(function() {
 
 		log('BUILD [BROWSER-FIX]');
 
 		copyFolder('BROWSER-FIX', 'UPPERCASE.JS-BROWSER-FIX');
-	})();
+	});
 
-	distFolder('NODE');
-	distFolder('PHANTOM');
-	distFolder('TITANIUM');
+	buildFolder('NODE');
+	buildFolder('PHANTOM');
+	buildFolder('TITANIUM');
 
 	log('DONE.');
-};
-BUILD();
+});

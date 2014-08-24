@@ -13,23 +13,20 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 
 	return {
 
-		run : function(folderPathOrParams, callbackOrHandlers) {
-			//REQUIRED: folderPathOrParams
-			//REQUIRED: folderPathOrParams.folderPath
-			//OPTIONAL: folderPathOrParams.isSync
+		run : function(pathOrParams, callbackOrHandlers) {
+			//REQUIRED: pathOrParams
+			//REQUIRED: pathOrParams.path
+			//OPTIONAL: pathOrParams.isSync
 			//OPTIONAL: callbackOrHandlers
 			//OPTIONAL: callbackOrHandlers.success
 			//OPTIONAL: callbackOrHandlers.error
 
 			var
-			// folder path
-			folderPath,
+			// path
+			path,
 
 			// is sync
 			isSync,
-
-			// folder path
-			folderPath,
 
 			// callback.
 			callback,
@@ -41,11 +38,11 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 			fileNames = [];
 
 			// init params.
-			if (CHECK_IS_DATA(folderPathOrParams) !== true) {
-				folderPath = folderPathOrParams;
+			if (CHECK_IS_DATA(pathOrParams) !== true) {
+				path = pathOrParams;
 			} else {
-				folderPath = folderPathOrParams.folderPath;
-				isSync = folderPathOrParams.isSync;
+				path = pathOrParams.path;
+				isSync = pathOrParams.isSync;
 			}
 
 			if (callbackOrHandlers !== undefined) {
@@ -60,7 +57,7 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 			// when normal mode
 			if (isSync !== true) {
 
-				fs.readdir(folderPath, function(error, names) {
+				fs.readdir(path, function(error, names) {
 
 					var
 					// error msg
@@ -81,31 +78,37 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 						PARALLEL(names, [
 						function(name, done) {
 
-							fs.stat(folderPath + '/' + name, function(error, stats) {
+							if (name[0] !== '.') {
 
-								var
-								// error msg
-								errorMsg;
+								fs.stat(path + '/' + name, function(error, stats) {
 
-								if (error !== TO_DELETE) {
+									var
+									// error msg
+									errorMsg;
 
-									errorMsg = error.toString();
+									if (error !== TO_DELETE) {
 
-									console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FILE] ERROR:' + errorMsg));
+										errorMsg = error.toString();
 
-									if (errorHandler !== undefined) {
-										errorHandler(errorMsg);
+										console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FILE] ERROR:' + errorMsg));
+
+										if (errorHandler !== undefined) {
+											errorHandler(errorMsg);
+										}
+
+									} else {
+
+										if (stats.isDirectory() !== true) {
+											fileNames.push(name);
+										}
+
+										done();
 									}
+								});
 
-								} else {
-
-									if (stats.isDirectory() !== true) {
-										fileNames.push(name);
-									}
-
-									done();
-								}
-							});
+							} else {
+								done();
+							}
 						},
 
 						function() {
@@ -131,10 +134,10 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 
 					try {
 
-						names = fs.readdirSync(folderPath);
+						names = fs.readdirSync(path);
 
 						EACH(names, function(name) {
-							if (fs.statSync(folderPath + '/' + name).isDirectory() !== true) {
+							if (name[0] !== '.' && fs.statSync(path + '/' + name).isDirectory() !== true) {
 								fileNames.push(name);
 							}
 						});

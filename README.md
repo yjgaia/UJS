@@ -8,6 +8,9 @@ Easy, Clear, and Powerful Full-stack (server-to-client) JavaScript Library for D
 * [UPPERCASE.JS-PHANTOM](#uppercasejs-phantom)
 * [UPPERCASE.JS-TITANIUM](#uppercasejs-titanium)
 
+###### TRANSLATION
+* [한국어 문서](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/README_KOR.md)
+
 ## UPPERCASE.JS-COMMON
 Provides OOP support and various features.
 UPPERCASE.JS-COMMON is for those who seek for JavaScript utilities.
@@ -212,8 +215,8 @@ method();
 * `MOVE_FILE({srcPath:, distPath:}, callbackOrHandlers)` `MOVE_FILE({srcPath:, distPath:, isSync:}, callbackOrHandlers)` move file. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/FILE/MOVE_FILE.js)
 * `REMOVE_FILE(path, callbackOrHandlers)` `REMOVE_FILE({path:, isSync:}, callbackOrHandlers)` remove file. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/FILE/REMOVE_FILE.js)
 * `CREATE_FOLDER(path, callbackOrHandlers)` `CREATE_FOLDER({path:, isSync:}, callbackOrHandlers)` remove file. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/FILE/CREATE_FOLDER.js)
-* `FIND_FILE_NAMES(folderPath, callbackOrHandlers)` `FIND_FILE_NAMES({folderPath:, isSync:}, callbackOrHandlers)` find file names. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/FILE/FIND_FILE_NAMES.js)
-* `FIND_FOLDER_NAMES(folderPath, callbackOrHandlers)` `FIND_FOLDER_NAMES({folderPath:, isSync:}, callbackOrHandlers)` find folder names. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/FILE/FIND_FOLDER_NAMES.js)
+* `FIND_FILE_NAMES(path, callbackOrHandlers)` `FIND_FILE_NAMES({path:, isSync:}, callbackOrHandlers)` find file names. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/FILE/FIND_FILE_NAMES.js)
+* `FIND_FOLDER_NAMES(path, callbackOrHandlers)` `FIND_FOLDER_NAMES({path:, isSync:}, callbackOrHandlers)` find folder names. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/FILE/FIND_FOLDER_NAMES.js)
 
 ###### HTTP Request
 * `REQUEST({host:, port:, method:, uri:}, responseListenerOrListeners)` `REQUEST({host:, method:, uri:, paramStr:}, responseListenerOrListeners)` `REQUEST({host:, port:, isSecure:, method:, uri:, data:}, responseListenerOrListeners)` http request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/NODE/REQUEST/REQUEST.js)

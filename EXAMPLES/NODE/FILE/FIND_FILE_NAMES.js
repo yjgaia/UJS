@@ -8,7 +8,7 @@ TEST('FIND_FILE_NAMES', function(ok) {
 	INIT_OBJECTS();
 
 	ok(CHECK_ARE_SAME([FIND_FILE_NAMES({
-		folderPath : 'testFolder/subFolder1/subFolder1',
+		path : 'testFolder/subFolder1/subFolder1',
 		isSync : true
 	}, {
 		error : function(errorMsg) {
