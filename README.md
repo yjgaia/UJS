@@ -270,7 +270,10 @@ Support old browsers (IE5.5, Android 2.1 Browser, ...) with COMMON and BROWSER.
 		</script>
 		<script src="UPPERCASE.JS-COMMON.js"></script>
 		<script src="UPPERCASE.JS-BROWSER.js"></script>
-		<script src="UPPERCASE.JS-BROWSER-FIX/FIX.js"></script>
+		<script>
+			BROWSER_CONFIG.fixScriptsFolderPath = 'UPPERCASE.JS-BROWSER-FIX';
+			LOAD('UPPERCASE.JS-BROWSER-FIX/FIX.js');
+		</script>
 		<script>
 			global.onload = function() {
 

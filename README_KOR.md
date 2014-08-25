@@ -267,7 +267,10 @@ COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1
 		</script>
 		<script src="UPPERCASE.JS-COMMON.js"></script>
 		<script src="UPPERCASE.JS-BROWSER.js"></script>
-		<script src="UPPERCASE.JS-BROWSER-FIX/FIX.js"></script>
+		<script>
+			BROWSER_CONFIG.fixScriptsFolderPath = 'UPPERCASE.JS-BROWSER-FIX';
+			LOAD('UPPERCASE.JS-BROWSER-FIX/FIX.js');
+		</script>
 		<script>
 			global.onload = function() {
 
