@@ -29,7 +29,7 @@ global.CHECK_IS_IN = CHECK_IS_IN = METHOD({
 		}
 
 		if (array !== undefined) {
-			return EACH(data, function(_value, key) {
+			return EACH(array, function(_value, key) {
 				if (CHECK_ARE_SAME([_value, value]) === true) {
 					return false;
 				}

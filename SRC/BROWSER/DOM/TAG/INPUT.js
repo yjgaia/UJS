@@ -259,15 +259,21 @@ global.INPUT = INPUT = CLASS(function(cls) {
 			'use strict';
 			//OPTIONAL: params
 			//OPTIONAL: params.name
+			//OPTIONAL: params.type
 			//OPTIONAL: params.placeholder
 			//OPTIONAL: params.value
+			//OPTIONAL: params.isMultiple
 
 			var
+			// type
+			type,
+
 			// value
 			value;
 
 			// init params.
 			if (params !== undefined) {
+				type = params.type;
 				value = params.value;
 			}
 
