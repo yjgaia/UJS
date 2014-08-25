@@ -403,7 +403,7 @@ Titanium를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-TITANIUM를 
 * 상세 명세는 준비중입니다.
 
 ## License
-[MIT License](https://github.com/UPPERCASEIO/UPPERCASE.JS/blob/master/LICENSE.md)
+[MIT](LICENSE)
 
 ## Author
-[Young Jae Sim](http://hanul.me) - [hanul@hanul.me](mailto:hanul@hanul.me)
+[Young Jae Sim](https://github.com/Hanul)

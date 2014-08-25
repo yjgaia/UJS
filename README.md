@@ -406,7 +406,7 @@ UPPERCASE.JS-TITANIUM is for those who look for utilities on Titanium.
 * More details are coming soon.
 
 ## License
-[MIT License](https://github.com/UPPERCASEIO/UPPERCASE.JS/blob/master/LICENSE.md)
+[MIT](LICENSE)
 
 ## Author
-[Young Jae Sim](http://hanul.me) - [hanul@hanul.me](mailto:hanul@hanul.me)
+[Young Jae Sim](https://github.com/Hanul)
