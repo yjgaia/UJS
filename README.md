@@ -323,6 +323,26 @@ store.remove(name)
 * `SCROLL_TOP()` get scroll top. (px) [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/tree/master/EXAMPLES/BROWSER/SCROLL_TOP.js)
 
 ###### NODE and DOM
+```coffeescript
+# form example
+form = FORM ->
+  DIV ->
+    H5 -> 'Name'
+    INPUT name: 'name'
+  DIV style: marginTop: 10, ->
+    H5 -> 'Gender'
+    SELECT name: 'gender', ->
+      OPTION value: 'male', ->
+        'Male'
+      OPTION value: 'female', ->
+        'Female'
+  DIV style: marginTop: 10, ->
+    H5 -> 'Age'
+    INPUT name: 'age'
+  DIV style: marginTop: 10, ->
+    H5 -> 'Profile'
+    TEXTAREA name: 'profile'
+```
 * `NODE` Node interface [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/NODE.js)
 * `DOM({tag:})` `DOM({tag:, style:})` `DOM({tag:, c:})` `DOM({tag:, on:})` `DOM({el:})` Dom wrapper class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/DOM.js)
 * `BODY` Body class

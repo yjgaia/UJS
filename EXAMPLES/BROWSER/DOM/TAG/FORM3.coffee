@@ -14,39 +14,20 @@ TEST 'FORM', (ok) ->
   , ->
     form = FORM ->
       DIV ->
-        H5 ->
-          'Name'
+        H5 -> 'Name'
         input = INPUT name: 'name'
-      DIV
-        style:
-          marginTop: 10
-      , ->
-        H5 ->
-          'Gender'
-        SELECT
-          name: 'gender'
-        , ->
-          OPTION
-            value: 'male'
-          , ->
+      DIV style: marginTop: 10, ->
+        H5 -> 'Gender'
+        SELECT name: 'gender', ->
+          OPTION value: 'male', ->
             'Male'
-          OPTION
-            value: 'female'
-          , ->
+          OPTION value: 'female', ->
             'Female'
-      DIV
-        style:
-          marginTop: 10
-      , ->
-        H5 ->
-          'Age'
+      DIV style: marginTop: 10, ->
+        H5 -> 'Age'
         INPUT name: 'age'
-      DIV
-        style:
-          marginTop: 10
-      , ->
-        H5 ->
-          'Profile'
+      DIV style: marginTop: 10, ->
+        H5 -> 'Profile'
         TEXTAREA name: 'profile'
   ).appendTo BODY
 
