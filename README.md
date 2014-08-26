@@ -324,7 +324,7 @@ store.remove(name)
 
 ###### NODE and DOM
 ```coffeescript
-# form example
+# CoffeeScript form example
 form = FORM ->
   DIV ->
     H5 -> 'Name'
@@ -433,3 +433,7 @@ UPPERCASE.JS-TITANIUM is for those who look for utilities on Titanium.
 
 ## Author
 [Young Jae Sim](https://github.com/Hanul)
+
+## Contact
+* [UPPERCASE.IO Facebook User Group](https://www.facebook.com/groups/UPPERCASE.IO/)
+* [GitHub Issues](https://github.com/UPPERCASE-Series/UPPERCASE.JS/issues)
