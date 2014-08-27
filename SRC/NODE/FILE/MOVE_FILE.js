@@ -6,16 +6,16 @@ global.MOVE_FILE = MOVE_FILE = METHOD({
 	run : function(params, callbackOrHandlers) {
 		'use strict';
 		//REQUIRED: params
-		//REQUIRED: params.srcPath
-		//REQUIRED: params.distPath
+		//REQUIRED: params.from
+		//REQUIRED: params.to
 		//OPTIONAL: params.isSync
 		//REQUIRED: callbackOrHandlers
 		//REQUIRED: callbackOrHandlers.success
 		//OPTIONAL: callbackOrHandlers.error
 
 		var
-		// src path
-		srcPath = params.srcPath,
+		// from
+		from = params.from,
 
 		// is sync
 		isSync = params.isSync,
@@ -38,7 +38,7 @@ global.MOVE_FILE = MOVE_FILE = METHOD({
 			success : function() {
 
 				REMOVE_FILE({
-					path : srcPath,
+					path : from,
 					isSync : isSync
 				}, {
 					error : errorHandler,

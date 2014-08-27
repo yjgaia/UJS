@@ -8,8 +8,8 @@ TEST('MOVE_FILE', function(ok) {
 	INIT_OBJECTS();
 
 	MOVE_FILE({
-		srcPath : 'test2.txt',
-		distPath : 'testFolder/test2.txt',
+		from : 'test2.txt',
+		to : 'testFolder/test2.txt',
 		isSync : true
 	}, {
 		error : function(errorMsg) {
@@ -23,8 +23,8 @@ TEST('MOVE_FILE', function(ok) {
 	}).toString() === 'this is test file.');
 
 	MOVE_FILE({
-		srcPath : 'test3.txt',
-		distPath : 'testFolder/test3.txt'
+		from : 'test3.txt',
+		to : 'testFolder/test3.txt'
 	}, {
 
 		error : function(errorMsg) {

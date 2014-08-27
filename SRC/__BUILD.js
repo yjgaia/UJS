@@ -86,8 +86,8 @@ RUN(function() {
 					save([from + '/' + fileName], to + '/' + fileName);
 				} else {
 					COPY_FILE({
-						srcPath : from + '/' + fileName,
-						distPath : '../' + to + '/' + fileName,
+						from : from + '/' + fileName,
+						to : '../' + to + '/' + fileName,
 						isSync : true
 					});
 				}

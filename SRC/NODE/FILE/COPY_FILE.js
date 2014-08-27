@@ -15,19 +15,19 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 
 		run : function(params, callbackOrHandlers) {
 			//REQUIRED: params
-			//REQUIRED: params.srcPath
-			//REQUIRED: params.distPath
+			//REQUIRED: params.from
+			//REQUIRED: params.to
 			//OPTIONAL: params.isSync
 			//OPTIONAL: callbackOrHandlers
 			//OPTIONAL: callbackOrHandlers.success
 			//OPTIONAL: callbackOrHandlers.error
 
 			var
-			// src path
-			srcPath = params.srcPath,
+			// from
+			from = params.from,
 
-			// dist path
-			distPath = params.distPath,
+			// to
+			to = params.to,
 
 			// is sync
 			isSync = params.isSync,
@@ -48,7 +48,7 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 			}
 
 			CREATE_FOLDER({
-				path : _path.dirname(distPath),
+				path : _path.dirname(to),
 				isSync : isSync
 			}, {
 
@@ -63,9 +63,9 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 
 							var
 							// reader
-							reader = fs.createReadStream(srcPath);
+							reader = fs.createReadStream(from);
 
-							reader.pipe(fs.createWriteStream(distPath));
+							reader.pipe(fs.createWriteStream(to));
 
 							reader.on('error', function(error) {
 
@@ -99,7 +99,7 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 
 							try {
 
-								fs.writeFileSync(distPath, fs.readFileSync(srcPath));
+								fs.writeFileSync(to, fs.readFileSync(from));
 
 								if (callback !== undefined) {
 									callback();

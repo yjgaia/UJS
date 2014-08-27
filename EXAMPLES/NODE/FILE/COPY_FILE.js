@@ -8,8 +8,8 @@ TEST('COPY_FILE', function(ok) {
 	INIT_OBJECTS();
 
 	COPY_FILE({
-		srcPath : 'test.txt',
-		distPath : 'test2.txt',
+		from : 'test.txt',
+		to : 'test2.txt',
 		isSync : true
 	}, {
 		error : function(errorMsg) {
@@ -23,8 +23,8 @@ TEST('COPY_FILE', function(ok) {
 	}).toString() === 'this is test file.');
 
 	COPY_FILE({
-		srcPath : 'test.txt',
-		distPath : 'test3.txt'
+		from : 'test.txt',
+		to : 'test3.txt'
 	}, {
 
 		error : function(errorMsg) {
