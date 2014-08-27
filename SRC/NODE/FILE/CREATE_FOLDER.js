@@ -83,10 +83,10 @@ global.CREATE_FOLDER = CREATE_FOLDER = METHOD(function() {
 
 										errorMsg = error.toString();
 
-										console.log(CONSOLE_RED('[UPPERCASE.JS-CREATE_FOLDER] ERROR: ' + errorMsg));
-
 										if (errorHandler !== undefined) {
 											errorHandler(errorMsg);
+										} else {
+											console.log(CONSOLE_RED('[UPPERCASE.JS-CREATE_FOLDER] ERROR: ' + errorMsg));
 										}
 
 									} else {
@@ -149,10 +149,10 @@ global.CREATE_FOLDER = CREATE_FOLDER = METHOD(function() {
 
 							errorMsg = error.toString();
 
-							console.log(CONSOLE_RED('[UPPERCASE.JS-CREATE_FOLDER] ERROR: ' + errorMsg));
-
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
+							} else {
+								console.log(CONSOLE_RED('[UPPERCASE.JS-CREATE_FOLDER] ERROR: ' + errorMsg));
 							}
 						}
 					}

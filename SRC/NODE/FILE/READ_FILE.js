@@ -70,10 +70,10 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 
 								errorMsg = error.toString();
 
-								console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
-
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
+								} else {
+									console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
 								}
 
 							} else if (stat.isDirectory() === true) {
@@ -96,10 +96,10 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 
 										errorMsg = error.toString();
 
-										console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
-
 										if (errorHandler !== undefined) {
 											errorHandler(errorMsg);
+										} else {
+											console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
 										}
 
 									} else if (callback !== undefined) {
@@ -170,10 +170,10 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 
 							errorMsg = error.toString();
 
-							console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
-
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
+							} else {
+								console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
 							}
 						}
 					}

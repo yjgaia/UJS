@@ -105,10 +105,10 @@ global.REQUEST = REQUEST = METHOD(function() {
 				// error msg
 				errorMsg = error.toString();
 
-				console.log(CONSOLE_RED('[UPPERCASE.JS-NODE] REQUEST FAILED: ' + errorMsg), params);
-
 				if (errorListener !== undefined) {
 					errorListener(errorMsg);
+				} else {
+					console.log(CONSOLE_RED('[UPPERCASE.JS-NODE] REQUEST FAILED: ' + errorMsg), params);
 				}
 			});
 		}

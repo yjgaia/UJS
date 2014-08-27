@@ -67,10 +67,10 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 
 						errorMsg = error.toString();
 
-						console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FILE] ERROR:' + errorMsg));
-
 						if (errorHandler !== undefined) {
 							errorHandler(errorMsg);
+						} else {
+							console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FILE] ERROR:' + errorMsg));
 						}
 
 					} else if (callback !== undefined) {
@@ -90,10 +90,10 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 
 										errorMsg = error.toString();
 
-										console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FILE] ERROR:' + errorMsg));
-
 										if (errorHandler !== undefined) {
 											errorHandler(errorMsg);
+										} else {
+											console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FILE] ERROR:' + errorMsg));
 										}
 
 									} else {
@@ -154,10 +154,10 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 
 							errorMsg = error.toString();
 
-							console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FILE] ERROR: ' + errorMsg));
-
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
+							} else {
+								console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FILE] ERROR: ' + errorMsg));
 							}
 						}
 					}

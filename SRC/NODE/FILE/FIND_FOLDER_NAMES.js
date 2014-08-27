@@ -67,10 +67,10 @@ global.FIND_FOLDER_NAMES = FIND_FOLDER_NAMES = METHOD(function() {
 
 						errorMsg = error.toString();
 
-						console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER] ERROR:' + errorMsg));
-
 						if (errorHandler !== undefined) {
 							errorHandler(errorMsg);
+						} else {
+							console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER] ERROR:' + errorMsg));
 						}
 
 					} else if (callback !== undefined) {
@@ -90,10 +90,10 @@ global.FIND_FOLDER_NAMES = FIND_FOLDER_NAMES = METHOD(function() {
 
 										errorMsg = error.toString();
 
-										console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER] ERROR:' + errorMsg));
-
 										if (errorHandler !== undefined) {
 											errorHandler(errorMsg);
+										} else {
+											console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER] ERROR:' + errorMsg));
 										}
 
 									} else {
@@ -154,10 +154,10 @@ global.FIND_FOLDER_NAMES = FIND_FOLDER_NAMES = METHOD(function() {
 
 							errorMsg = error.toString();
 
-							console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER] ERROR: ' + errorMsg));
-
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
+							} else {
+								console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER] ERROR: ' + errorMsg));
 							}
 						}
 					}

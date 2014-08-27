@@ -73,10 +73,10 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 								// error msg
 								errorMsg = error.toString();
 
-								console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR:' + errorMsg));
-
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
+								} else {
+									console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR:' + errorMsg));
 								}
 							});
 
@@ -111,10 +111,10 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 
 									errorMsg = error.toString();
 
-									console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR: ' + errorMsg));
-
 									if (errorHandler !== undefined) {
 										errorHandler(errorMsg);
+									} else {
+										console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR: ' + errorMsg));
 									}
 								}
 							}

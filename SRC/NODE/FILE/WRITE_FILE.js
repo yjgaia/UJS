@@ -69,10 +69,10 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {
 
 							errorMsg = error.toString();
 
-							console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR:' + errorMsg));
-
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
+							} else {
+								console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR:' + errorMsg));
 							}
 
 						} else if (callback !== undefined) {
@@ -104,10 +104,10 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {
 
 								errorMsg = error.toString();
 
-								console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR: ' + errorMsg));
-
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
+								} else {
+									console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR: ' + errorMsg));
 								}
 							}
 						}

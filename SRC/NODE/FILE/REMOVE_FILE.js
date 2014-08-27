@@ -68,10 +68,10 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
 
 								errorMsg = error.toString();
 
-								console.log(CONSOLE_RED('[UPPERCASE.JS-REMOVE_FILE] ERROR: ' + errorMsg));
-
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
+								} else {
+									console.log(CONSOLE_RED('[UPPERCASE.JS-REMOVE_FILE] ERROR: ' + errorMsg));
 								}
 
 							} else {
@@ -127,10 +127,10 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
 
 							errorMsg = error.toString();
 
-							console.log(CONSOLE_RED('[UPPERCASE.JS-REMOVE_FILE] ERROR: ' + errorMsg));
-
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
+							} else {
+								console.log(CONSOLE_RED('[UPPERCASE.JS-REMOVE_FILE] ERROR: ' + errorMsg));
 							}
 						}
 					}

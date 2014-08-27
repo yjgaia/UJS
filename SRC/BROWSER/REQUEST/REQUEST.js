@@ -93,10 +93,10 @@ global.REQUEST = REQUEST = METHOD({
 						code : req.status
 					};
 
-					console.log('[UPPERCASE.JS-REQUEST] REQUEST FAILED:', params, error);
-
 					if (errorListener !== undefined) {
 						errorListener(error);
+					} else {
+						console.log('[UPPERCASE.JS-REQUEST] REQUEST FAILED:', params, error);
 					}
 				}
 			}

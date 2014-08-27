@@ -246,10 +246,10 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 
 							responseError = function(errorMsg) {
 
-								console.log(CONSOLE_RED('[UPPERCASE.JS-RESOURCE_SERVER] ERROR: ' + errorMsg));
-
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg, requestInfo, response);
+								} else {
+									console.log(CONSOLE_RED('[UPPERCASE.JS-RESOURCE_SERVER] ERROR: ' + errorMsg));
 								}
 
 								if (requestInfo.isResponsed !== true) {
