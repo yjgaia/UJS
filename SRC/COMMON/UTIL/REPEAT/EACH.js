@@ -54,6 +54,17 @@ global.EACH = EACH = METHOD({
 			}
 		}
 
+		// when dataOrArray is func
+		else if (func === undefined) {
+
+			func = dataOrArray;
+			dataOrArray = undefined;
+
+			return function(dataOrArray) {
+				return EACH(dataOrArray, func);
+			};
+		}
+
 		return true;
 	}
 });
