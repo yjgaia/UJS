@@ -3,46 +3,86 @@
  */
 global.FIND = FIND = METHOD({
 
-	run : function(params) {
+	run : function(dataOrArrayOrParams, filter) {
 		'use strict';
-		//REQUIRED: params
-		//OPTIONAL: params.data
-		//OPTIONAL: params.array
-		//REQUIRED: params.value
+		//REQUIRED: dataOrArrayOrParams
+		//OPTIONAL: dataOrArrayOrParams.data
+		//OPTIONAL: dataOrArrayOrParams.array
+		//REQUIRED: dataOrArrayOrParams.value
+		//OPTIONAL: filter
 
 		var
 		// data
-		data = params.data,
+		data,
 
 		// array
-		array = params.array,
+		array,
 
 		// value
-		value = params.value,
+		value,
 
-		// ret key
-		retKey;
+		// ret
+		ret;
 
-		if (data !== undefined) {
+		// when filter exists
+		if (filter !== undefined) {
 
-			EACH(data, function(_value, name) {
-				if (_value === value) {
-					retKey = name;
-					return false;
-				}
-			});
+			// when dataOrArrayOrParams is data
+			if (CHECK_IS_DATA(dataOrArrayOrParams) === true) {
+
+				EACH(dataOrArrayOrParams, function(value, name) {
+
+					// value passed filter.
+					if (filter(value) === true) {
+						ret = value;
+						return false;
+					}
+				});
+			}
+
+			// when dataOrArrayOrParams is array
+			else if (CHECK_IS_ARRAY(dataOrArrayOrParams) === true) {
+
+				EACH(dataOrArrayOrParams, function(value, key) {
+
+					// value passed filter.
+					if (filter(value) === true) {
+						ret = value;
+						return false;
+					}
+				});
+			}
 		}
 
-		if (array !== undefined) {
+		// when filter not exists
+		else {
 
-			EACH(array, function(_value, key) {
-				if (_value === value) {
-					retKey = key;
-					return false;
-				}
-			});
+			// init params.
+			data = dataOrArrayOrParams.data;
+			array = dataOrArrayOrParams.array;
+			value = dataOrArrayOrParams.value;
+
+			if (data !== undefined) {
+
+				EACH(data, function(_value, name) {
+					if (_value === value) {
+						ret = name;
+						return false;
+					}
+				});
+			}
+
+			if (array !== undefined) {
+
+				EACH(array, function(_value, key) {
+					if (_value === value) {
+						ret = key;
+						return false;
+					}
+				});
+			}
 		}
 
-		return retKey;
+		return ret;
 	}
 });
