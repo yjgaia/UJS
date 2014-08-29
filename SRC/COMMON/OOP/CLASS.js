@@ -193,11 +193,6 @@ global.CLASS = CLASS = METHOD(function(m) {
 				// mom
 				mom = cls.mom;
 
-				// run after init.
-				if (afterInit !== undefined) {
-					afterInit(inner, self, params, funcs);
-				}
-
 				// when mom exists, run mom's after init.
 				if (mom !== undefined) {
 
@@ -210,6 +205,11 @@ global.CLASS = CLASS = METHOD(function(m) {
 					else {
 						mom.type.innerAfterInit(inner, self, params, funcs);
 					}
+				}
+
+				// run after init.
+				if (afterInit !== undefined) {
+					afterInit(inner, self, params, funcs);
 				}
 			};
 
