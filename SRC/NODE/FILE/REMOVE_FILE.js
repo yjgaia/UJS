@@ -54,7 +54,7 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
 			// when normal mode
 			if (isSync !== true) {
 
-				fs.exists(path, function(isExists) {
+				CHECK_IS_EXISTS_FILE(path, function(isExists) {
 
 					if (isExists === true) {
 
@@ -104,7 +104,10 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
 
 					try {
 
-						if (fs.existsSync(path) === true) {
+						if (CHECK_IS_EXISTS_FILE({
+							path : path,
+							isSync : true
+						}) === true) {
 
 							fs.unlinkSync(path);
 

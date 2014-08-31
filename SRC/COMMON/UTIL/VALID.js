@@ -369,245 +369,255 @@ global.VALID = VALID = CLASS(function(cls) {
 					getErrors;
 
 					EACH(validDataSet, function(validData, attr) {
-						EACH(validData, function(validParams, name) {
 
-							var
-							// value
-							value = data[attr];
+						// when valid data is true, pass
+						if (validData !== true) {
 
-							if (isExceptUndefined === true && value === undefined) {
+							EACH(validData, function(validParams, name) {
 
-								// break.
-								return false;
-							}
+								var
+								// value
+								value = data[attr];
 
-							if (name !== 'notEmpty' && notEmpty(value) !== true) {
+								if (isExceptUndefined === true && value === undefined) {
 
-								if (name === 'integer' || name === 'real' || name === 'bool' || name === 'date') {
-
-									// 만약 value가 ''일 경우 그냥 두면 엄한 값이 들어갈테고, undefined로 하면 update시 해당 변수가 삭제되지 않는다.
-									data[attr] = TO_DELETE;
+									// break.
+									return false;
 								}
 
-								// continue.
-								return true;
-							}
+								if (name !== 'notEmpty' && notEmpty(value) !== true) {
 
-							// one
-							if (name === 'one') {
+									if (name === 'integer' || name === 'real' || name === 'bool' || name === 'date') {
 
-								if (one({
-									array : validParams,
-									value : value
-								}) === false) {
+										// 만약 value가 ''일 경우 그냥 두면 엄한 값이 들어갈테고, undefined로 하면 update시 해당 변수가 삭제되지 않는다.
+										data[attr] = TO_DELETE;
+									}
 
-									hasError = true;
-									errors[attr] = {
-										type : name,
+									// continue.
+									return true;
+								}
+
+								// one
+								if (name === 'one') {
+
+									if (one({
 										array : validParams,
 										value : value
-									};
+									}) === false) {
 
-									// break.
-									return false;
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											array : validParams,
+											value : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-							// element
-							else if (name === 'element') {
+								// element
+								else if (name === 'element') {
 
-								if (element({
-									validData : validParams,
-									array : value
-								}) === false) {
-
-									hasError = true;
-									errors[attr] = {
-										type : name,
+									if (element({
 										validData : validParams,
 										array : value
-									};
+									}) === false) {
 
-									// break.
-									return false;
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											validData : validParams,
+											array : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-							// property
-							else if (name === 'property') {
+								// property
+								else if (name === 'property') {
 
-								if (property({
-									validData : validParams,
-									data : value
-								}) === false) {
-
-									hasError = true;
-									errors[attr] = {
-										type : name,
+									if (property({
 										validData : validParams,
 										data : value
-									};
+									}) === false) {
 
-									// break.
-									return false;
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											validData : validParams,
+											data : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-							// detail
-							else if (name === 'detail') {
+								// detail
+								else if (name === 'detail') {
 
-								if (detail({
-									validDataSet : validParams,
-									data : value
-								}) === false) {
-
-									hasError = true;
-									errors[attr] = {
-										type : name,
+									if (detail({
 										validDataSet : validParams,
 										data : value
-									};
+									}) === false) {
 
-									// break.
-									return false;
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											validDataSet : validParams,
+											data : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-							// need params
-							else if (name === 'size') {
+								// need params
+								else if (name === 'size') {
 
-								if (cls[name](CHECK_IS_DATA(validParams) === true ? COMBINE([validParams, {
-									value : value
-								}]) : COMBINE([{
-									min : validParams,
-									max : validParams
-								}, {
-									value : value
-								}])) === false) {
-
-									hasError = true;
-									errors[attr] = {
-										type : name,
-										validParams : validParams,
+									if (cls[name](CHECK_IS_DATA(validParams) === true ? COMBINE([validParams, {
 										value : value
-									};
-
-									// break.
-									return false;
-								}
-							}
-
-							// regex
-							else if (name === 'regex') {
-
-								if (cls[name]({
-									pattern : validParams,
-									value : value
-								}) === false) {
-
-									hasError = true;
-									errors[attr] = {
-										type : name,
-										validParam : validParams,
+									}]) : COMBINE([{
+										min : validParams,
+										max : validParams
+									}, {
 										value : value
-									};
+									}])) === false) {
 
-									// break.
-									return false;
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											validParams : validParams,
+											value : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-							// min
-							else if (name === 'min') {
+								// regex
+								else if (name === 'regex') {
 
-								if (cls[name]({
-									min : validParams,
-									value : value
-								}) === false) {
-
-									hasError = true;
-									errors[attr] = {
-										type : name,
-										validParam : validParams,
+									if (cls[name]({
+										pattern : validParams,
 										value : value
-									};
+									}) === false) {
 
-									// break.
-									return false;
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											validParam : validParams,
+											value : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-							// max
-							else if (name === 'max') {
+								// min
+								else if (name === 'min') {
 
-								if (cls[name]({
-									max : validParams,
-									value : value
-								}) === false) {
-
-									hasError = true;
-									errors[attr] = {
-										type : name,
-										validParam : validParams,
+									if (cls[name]({
+										min : validParams,
 										value : value
-									};
+									}) === false) {
 
-									// break.
-									return false;
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											validParam : validParams,
+											value : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-							// equal
-							else if (name === 'equal') {
+								// max
+								else if (name === 'max') {
 
-								if (cls[name]({
-									value : value,
-									validValue : validParams
-								}) === false) {
-
-									hasError = true;
-									errors[attr] = {
-										type : name,
-										validParam : validParams,
+									if (cls[name]({
+										max : validParams,
 										value : value
-									};
+									}) === false) {
 
-									// break.
-									return false;
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											validParam : validParams,
+											value : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-							// need value
-							else if (validParams === true) {
+								// equal
+								else if (name === 'equal') {
 
-								if (cls[name](value) === false) {
+									if (cls[name]({
+										value : value,
+										validValue : validParams
+									}) === false) {
 
-									hasError = true;
-									errors[attr] = {
-										type : name,
-										value : value
-									};
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											validParam : validParams,
+											value : value
+										};
 
-									// break.
-									return false;
+										// break.
+										return false;
+									}
 								}
-							}
 
-							if (notEmpty(value) === true && typeof value === 'string') {
-								if (name === 'integer') {
-									data[attr] = INTEGER(value);
-								} else if (name === 'real') {
-									data[attr] = REAL(value);
-								} else if (name === 'bool') {
-									data[attr] = value === 'true';
-								} else if (name === 'date') {
-									data[attr] = new Date(value);
-								} else if (name === 'username') {
-									data[attr] = value.toLowerCase();
+								// need value
+								else if (validParams === true) {
+
+									if (cls[name](value) === false) {
+
+										hasError = true;
+										errors[attr] = {
+											type : name,
+											value : value
+										};
+
+										// break.
+										return false;
+									}
 								}
-							}
 
-						});
+								if (notEmpty(value) === true && typeof value === 'string') {
+									if (name === 'integer') {
+										data[attr] = INTEGER(value);
+									} else if (name === 'real') {
+										data[attr] = REAL(value);
+									} else if (name === 'bool') {
+										data[attr] = value === 'true';
+									} else if (name === 'date') {
+										data[attr] = new Date(value);
+									} else if (name === 'username') {
+										data[attr] = value.toLowerCase();
+									}
+								}
+							});
+						}
+					});
+
+					EACH(data, function(value, attr) {
+						if (validDataSet[attr] === undefined) {
+							delete data[attr];
+						}
 					});
 
 					self.checkHasError = checkHasError = function() {

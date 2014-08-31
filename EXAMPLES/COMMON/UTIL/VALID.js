@@ -4,12 +4,14 @@ TEST('VALID', function(ok) {
 	var
 	// data
 	data = {
+		test : 1,
 		parentId : 'test',
 		factorCount : 1.2,
 		isCompanyFolder : 'true',
 		category : 'tile',
 		man : {
-			name : 'test'
+			name : 'test',
+			age : 12
 		},
 		mans : [{
 			name : 'test'
@@ -67,19 +69,32 @@ TEST('VALID', function(ok) {
 	},
 
 	// valid result
-	validResult = VALID(validData).check({
-		data : data
-	});
+	validResult = VALID(validData).check(data);
+
+	ok(CHECK_ARE_SAME([data, {
+		parentId : 'test',
+		factorCount : 1.2,
+		isCompanyFolder : true,
+		category : 'tile',
+		man : {
+			name : 'test'
+		},
+		mans : [{
+			name : 'test'
+		}]
+	}]));
 
 	ok(CHECK_ARE_SAME([validResult.getErrors(), {
+		parentId : {
+			type : 'id',
+			value : 'test'
+		},
 		name : {
 			type : 'notEmpty'
 		},
 		factorCount : {
-			type : 'notEmpty'
-		},
-		category : {
-			type : 'notEmpty'
+			type : 'integer',
+			value : 1.2
 		}
 	}]));
 

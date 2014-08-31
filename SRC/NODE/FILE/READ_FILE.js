@@ -56,7 +56,7 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 			// when normal mode
 			if (isSync !== true) {
 
-				fs.exists(path, function(isExists) {
+				CHECK_IS_EXISTS_FILE(path, function(isExists) {
 
 					if (isExists === true) {
 
@@ -134,7 +134,10 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 
 					try {
 
-						if (fs.existsSync(path) === true) {
+						if (CHECK_IS_EXISTS_FILE({
+							path : path,
+							isSync : true
+						}) === true) {
 
 							if (fs.statSync(path).isDirectory() === true) {
 
