@@ -6,7 +6,17 @@ global.CPU_CLUSTERING = CPU_CLUSTERING = METHOD(function(m) {
 
 	var
 	//IMPORT: cluster
-	cluster = require('cluster');
+	cluster = require('cluster'),
+
+	// worker id
+	workerId,
+
+	// get worker id.
+	getWorkerId;
+
+	m.getWorkerId = getWorkerId = function() {
+		return workerId;
+	};
 
 	return {
 
@@ -44,7 +54,7 @@ global.CPU_CLUSTERING = CPU_CLUSTERING = METHOD(function(m) {
 					});
 
 					cluster.on('exit', function(worker, code, signal) {
-						console.log(CONSOLE_RED('[UPPERCASE.JS-CPU_CLUSTERING] WORKER #' + worker.id + ' (PID:' + worker.process.pid + ') died. (' + (signal !== undefined ? signal : code) + '). restarting...'));
+						console.log(CONSOLE_RED('[UPPERCASE.JS-CPU_CLUSTERING] WORKER #' + worker.id + ' died. (' + (signal !== undefined ? signal : code) + '). restarting...'));
 						fork();
 					});
 				});
@@ -56,12 +66,6 @@ global.CPU_CLUSTERING = CPU_CLUSTERING = METHOD(function(m) {
 				RUN(function() {
 
 					var
-					// id
-					id = cluster.worker.id,
-
-					// pid
-					pid = cluster.worker.process.pid,
-
 					// method map
 					methodMap = {},
 
@@ -90,6 +94,8 @@ global.CPU_CLUSTERING = CPU_CLUSTERING = METHOD(function(m) {
 
 					// broadcast.
 					broadcast;
+
+					workerId = cluster.worker.id;
 
 					// receive data.
 					process.on('message', function(paramsStr) {
@@ -140,21 +146,9 @@ global.CPU_CLUSTERING = CPU_CLUSTERING = METHOD(function(m) {
 						process.send(STRINGIFY(params));
 					};
 
-					work({
-						id : id,
-						pid : pid
-					},
+					work();
 
-					// on.
-					on,
-
-					// off.
-					off,
-
-					// broadcast.
-					broadcast);
-
-					console.log(CONSOLE_GREEN('[UPPERCASE.JS-CPU_CLUSTERING] RUNNING WORKER... (ID:' + id + ', PID:' + pid + ')'));
+					console.log(CONSOLE_GREEN('[UPPERCASE.JS-CPU_CLUSTERING] RUNNING WORKER... (ID:' + workerId + ')'));
 				});
 			}
 		}
