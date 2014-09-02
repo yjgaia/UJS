@@ -33,7 +33,10 @@ global.EVENT = EVENT = CLASS(function(cls) {
 		eventMap,
 
 		// events
-		events;
+		events,
+
+		// ret
+		ret;
 
 		// init params.
 		if (CHECK_IS_DATA(nameOrParams) !== true) {
@@ -58,10 +61,19 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			if (events !== undefined) {
 
 				EACH(events, function(evt) {
-					evt.fire();
+
+					var
+					// b
+					b = evt.fire();
+
+					if (b === false) {
+						ret = false;
+					}
 				});
 			}
 		}
+
+		return ret;
 	};
 
 	cls.removeAll = removeAll = function(nameOrParams) {
@@ -483,7 +495,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			self.fire = fire = function() {
 
 				// pass empty e object.
-				func(EMPTY_E(), node);
+				return func(EMPTY_E(), node);
 			};
 		}
 	};
