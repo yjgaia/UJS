@@ -120,7 +120,7 @@ global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 
 			connectionListener(
 
-			// info
+			// client info
 			{
 				ip : conn.remoteAddress
 			},
