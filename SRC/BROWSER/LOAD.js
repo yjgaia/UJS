@@ -3,18 +3,38 @@
  */
 global.LOAD = LOAD = METHOD({
 
-	run : function(pathOrParams) {
+	run : function(urlOrParams) {
 		'use strict';
-		//REQUIRED: pathOrParams
-		//REQUIRED: pathOrParams.path
-		//OPTIONAL: pathOrParams.isNoCache
+		//REQUIRED: urlOrParams
+		//REQUIRED: urlOrParams.url
+		//OPTIONAL: urlOrParams.host
+		//OPTIONAL: urlOrParams.port
+		//OPTIONAL: urlOrParams.isSecure
+		//OPTIONAL: urlOrParams.uri
+		//OPTIONAL: urlOrParams.paramStr
+		//OPTIONAL: urlOrParams.isNoCache
 
 		var
-		// path
-		path,
+		// url
+		url,
 
 		// is no Cache
 		isNoCache,
+
+		// host
+		host,
+
+		// port
+		port,
+
+		// is secure
+		isSecure,
+
+		// uri
+		uri,
+
+		// param str
+		paramStr,
 
 		// current script
 		currentScript = document.currentScript,
@@ -25,11 +45,24 @@ global.LOAD = LOAD = METHOD({
 		// script el
 		scriptEl;
 
-		if (CHECK_IS_DATA(pathOrParams) !== true) {
-			path = pathOrParams;
+		if (CHECK_IS_DATA(urlOrParams) !== true) {
+			url = urlOrParams;
 		} else {
-			path = pathOrParams.path;
-			isNoCache = pathOrParams.isNoCache;
+
+			url = urlOrParams.url;
+
+			if (url === undefined) {
+
+				host = urlOrParams.host === undefined ? global.location.hostname : urlOrParams.host;
+				port = urlOrParams.port === undefined ? global.location.port : urlOrParams.port;
+				isSecure = urlOrParams.isSecure;
+				uri = urlOrParams.uri;
+				paramStr = urlOrParams.paramStr;
+
+				url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + uri + '?' + paramStr;
+			}
+
+			isNoCache = urlOrParams.isNoCache;
 		}
 
 		READY.readyLoad();
@@ -40,7 +73,7 @@ global.LOAD = LOAD = METHOD({
 		}
 
 		scriptEl = document.createElement('script');
-		scriptEl.src = (path.indexOf('?') === -1 ? path + '?' : path + '&') + (isNoCache !== true ? (CONFIG.version !== undefined ? 'version=' + CONFIG.version : '') : (new Date()).getTime());
+		scriptEl.src = (url.indexOf('?') === -1 ? url + '?' : url + '&') + (isNoCache !== true ? (CONFIG.version !== undefined ? 'version=' + CONFIG.version : '') : (new Date()).getTime());
 
 		scriptEl.onload = function() {
 			READY.loaded();
