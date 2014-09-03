@@ -78,7 +78,7 @@ global.CLASS = CLASS = METHOD(function(m) {
 				self.id = getInstanceId();
 
 				// run inner init.
-				innerInit(inner, self, params, funcs);
+				params = innerInit(inner, self, params, funcs);
 
 				// run inner after init.
 				innerAfterInit(inner, self, params, funcs);
@@ -107,7 +107,20 @@ global.CLASS = CLASS = METHOD(function(m) {
 				tempParams,
 
 				// param value
-				paramValue;
+				paramValue,
+
+				// extend.
+				extend = function(params, tempParams) {
+
+					EACH(tempParams, function(value, name) {
+
+						if (params[name] === undefined) {
+							params[name] = value;
+						} else if (CHECK_IS_DATA(params[name]) === true && CHECK_IS_DATA(value) === true) {
+							extend(params[name], value);
+						}
+					});
+				};
 
 				// init params.
 				if (_params !== undefined) {
@@ -123,20 +136,14 @@ global.CLASS = CLASS = METHOD(function(m) {
 						tempParams = _params(cls);
 
 						if (tempParams !== undefined) {
-
-							EACH(tempParams, function(value, name) {
-
-								if (params[name] === undefined) {
-									params[name] = value;
-								}
-							});
+							extend(params, tempParams);
 						}
 					}
 
 					// when params is value
 					else {
 						paramValue = params;
-						params = _params();
+						params = _params(cls);
 					}
 				}
 
@@ -165,6 +172,8 @@ global.CLASS = CLASS = METHOD(function(m) {
 				if (init !== undefined) {
 					init(inner, self, paramValue === undefined ? params : paramValue, funcs);
 				}
+
+				return params;
 			};
 
 			// when define is function
