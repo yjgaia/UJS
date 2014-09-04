@@ -198,11 +198,16 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
 					sendKey += 1;
 
-					Ti.Stream.write(conn, Ti.createBuffer({
-						value : STRINGIFY(params) + '\r\n'
-					}), function() {
-						// ignore.
-					});
+					try {
+						e.socket.write(Ti.createBuffer({
+							value : STRINGIFY(params) + '\r\n'
+						}));
+					}
+
+					// when error!
+					catch(e) {
+						runMethods('__DISCONNECTED');
+					}
 
 					if (callback !== undefined) {
 
