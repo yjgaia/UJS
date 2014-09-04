@@ -81,7 +81,7 @@ global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 
 				receivedStr += content.toString();
 
-				while (( index = receivedStr.indexOf('\n')) !== -1) {
+				while (( index = receivedStr.indexOf('\r\n')) !== -1) {
 
 					str = receivedStr.substring(0, index);
 
@@ -180,7 +180,7 @@ global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 
 				sendKey += 1;
 
-				conn.write(STRINGIFY(params) + '\n');
+				conn.write(STRINGIFY(params) + '\r\n');
 
 				if (callback !== undefined) {
 

@@ -123,7 +123,7 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
 						receivedStr += e.buffer.toString();
 
-						while (( index = receivedStr.indexOf('\n')) !== -1) {
+						while (( index = receivedStr.indexOf('\r\n')) !== -1) {
 
 							str = receivedStr.substring(0, index);
 
@@ -198,9 +198,11 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
 					sendKey += 1;
 
-					e.socket.write(Ti.createBuffer({
-						value : STRINGIFY(params) + '\n'
-					}));
+					Ti.Stream.write(conn, Ti.createBuffer({
+						value : STRINGIFY(params) + '\r\n'
+					}), function() {
+						// ignore.
+					});
 
 					if (callback !== undefined) {
 
