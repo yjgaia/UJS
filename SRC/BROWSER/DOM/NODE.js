@@ -13,6 +13,12 @@ global.NODE = NODE = CLASS(function() {
 		init : function(inner, self) {
 
 			var
+			// wrapper dom
+			wrapperDom,
+
+			// content dom
+			contentDom,
+
 			// wrapper el
 			wrapperEl,
 
@@ -42,6 +48,12 @@ global.NODE = NODE = CLASS(function() {
 
 			// set dom.
 			setDom,
+
+			// get wrapper dom.
+			getWrapperDom,
+
+			// get content dom.
+			getContentDom,
 
 			// get wrapper el.
 			getWrapperEl,
@@ -124,6 +136,7 @@ global.NODE = NODE = CLASS(function() {
 			inner.setWrapperDom = setWrapperDom = function(dom) {
 				//REQUIRED: dom
 
+				wrapperDom = dom;
 				wrapperEl = dom.getEl();
 
 				originDisplay = getStyle('display');
@@ -151,6 +164,7 @@ global.NODE = NODE = CLASS(function() {
 			inner.setContentDom = setContentDom = function(dom) {
 				//REQUIRED: dom
 
+				contentDom = dom;
 				contentEl = dom.getEl();
 			};
 
@@ -159,6 +173,14 @@ global.NODE = NODE = CLASS(function() {
 
 				setWrapperDom(dom);
 				setContentDom(dom);
+			};
+
+			self.getWrapperDom = getWrapperDom = function() {
+				return wrapperDom;
+			};
+
+			self.getContentDom = getContentDom = function() {
+				return contentDom;
 			};
 
 			self.getWrapperEl = getWrapperEl = function() {

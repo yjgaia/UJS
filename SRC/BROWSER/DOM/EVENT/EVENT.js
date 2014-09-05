@@ -230,8 +230,8 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			// tap event (for remove click delay, simulate click event.)
 			if (name === 'tap') {
 
-				// if is touchable display.
-				if (INFO.checkIsTouchableDisplay() === true) {
+				// when is touchable display or when is exists tap delay (300ms)
+				if (INFO.checkIsTouchableDisplay() === true && INFO.checkIsNotExistsTapDelay() !== true) {
 
 					eventLow1 = EVENT_LOW({
 						node : node,
@@ -243,8 +243,6 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 							startLeft = e.getLeft();
 							startTop = e.getTop();
-
-							e.stopBubbling();
 						}
 					});
 
@@ -266,9 +264,10 @@ global.EVENT = EVENT = CLASS(function(cls) {
 							left = e.getLeft();
 							top = e.getTop();
 
-							e.stopDefault();
-
 							if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
+
+								e.stopDefault();
+
 								return func(e, node);
 							}
 						}
@@ -283,57 +282,22 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					};
 				}
 
-				// if is not touchable display.
+				// when is not touchable display or when is not exists tap delay (300ms)
 				else {
 
 					eventLow1 = EVENT_LOW({
 						node : node,
 						lowNode : lowNode,
-						name : 'mousedown'
-					}, function(e) {
-
-						if (e !== undefined) {
-
-							startLeft = e.getLeft();
-							startTop = e.getTop();
-
-							e.stopBubbling();
-						}
-					});
-
-					eventLow2 = EVENT_LOW({
-						node : node,
-						lowNode : lowNode,
-						name : 'mouseup'
-					}, function(e, node) {
-
-						var
-						// left
-						left,
-
-						// top
-						top;
-
-						if (e !== undefined) {
-
-							left = e.getLeft();
-							top = e.getTop();
-
-							e.stopDefault();
-
-							if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
-								return func(e, node);
-							}
-						}
-					});
+						name : 'click'
+					}, func);
 
 					self.remove = remove = function() {
 
 						eventLow1.remove();
-						eventLow2.remove();
 
 						removeFromMap();
 					};
+
 				}
 			}
 
@@ -368,7 +332,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// if is not touchable display, touchmove link to mousedown event
+			// when is not touchable display, touchmove link to mousedown event
 			else if (name === 'touchstart' && INFO.checkIsTouchableDisplay() !== true) {
 
 				eventLow1 = EVENT_LOW({
@@ -385,7 +349,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// if is not touchable display, touchmove link to mousemove event
+			// when is not touchable display, touchmove link to mousemove event
 			else if (name === 'touchmove' && INFO.checkIsTouchableDisplay() !== true) {
 
 				eventLow1 = EVENT_LOW({
@@ -402,7 +366,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// if is not touchable display, touchend link to mouseup event
+			// when is not touchable display, touchend link to mouseup event
 			else if (name === 'touchend' && INFO.checkIsTouchableDisplay() !== true) {
 
 				eventLow1 = EVENT_LOW({
@@ -419,7 +383,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// mouse over event (if is touchable display, link to touchstart event.)
+			// mouse over event (when is touchable display, link to touchstart event.)
 			else if (name === 'mouseover' && INFO.checkIsTouchableDisplay() === true) {
 
 				// by touch
@@ -445,7 +409,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// mouse out event (if is touchable display, link to touchend event.)
+			// mouse out event (when is touchable display, link to touchend event.)
 			else if (name === 'mouseout' && INFO.checkIsTouchableDisplay() === true) {
 
 				// by touch
