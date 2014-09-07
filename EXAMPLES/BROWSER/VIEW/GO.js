@@ -39,7 +39,7 @@ TEST('GO', function(ok) {
 
 	// match view.
 	MATCH_VIEW({
-		uris : ['go', 'go/{id}'],
+		uri : ['go', 'go/{id}'],
 		target : TestView
 	});
 

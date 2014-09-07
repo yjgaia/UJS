@@ -42,7 +42,7 @@ TEST('REFRESH', function(ok) {
 
 	// match view.
 	MATCH_VIEW({
-		uris : ['refresh', 'refresh/{id}'],
+		uri : ['refresh', 'refresh/{id}'],
 		target : TestView
 	});
 
