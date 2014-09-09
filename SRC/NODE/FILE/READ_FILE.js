@@ -147,15 +147,8 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
 								}
 
-							} else {
-
-								buffer = fs.readFileSync(path);
-
-								if (callback !== undefined) {
-									callback(buffer);
-								}
-
-								return buffer;
+								// do not run callback.
+								return;
 							}
 
 						} else {
@@ -165,6 +158,9 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 							} else {
 								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
 							}
+
+							// do not run callback.
+							return;
 						}
 
 					} catch(error) {
@@ -180,6 +176,14 @@ global.READ_FILE = READ_FILE = METHOD(function() {
 							}
 						}
 					}
+
+					buffer = fs.readFileSync(path);
+
+					if (callback !== undefined) {
+						callback(buffer);
+					}
+
+					return buffer;
 				});
 			}
 		}

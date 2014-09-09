@@ -5,7 +5,7 @@ global.GO_NEW_WIN = GO_NEW_WIN = METHOD({
 
 	run : function(uri) {
 		'use strict';
-		//REQUIRED: uri
+		//OPTIONAL: uri
 
 		global.open(HREF(uri));
 	}

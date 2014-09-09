@@ -111,10 +111,6 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
 
 							fs.unlinkSync(path);
 
-							if (callback !== undefined) {
-								callback();
-							}
-
 						} else {
 
 							if (notExistsHandler !== undefined) {
@@ -122,6 +118,9 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
 							} else {
 								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-REMOVE_FILE] NOT EXISTS! <' + path + '>'));
 							}
+
+							// do not run callback.
+							return;
 						}
 
 					} catch(error) {
@@ -136,6 +135,10 @@ global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
 								console.log(CONSOLE_RED('[UPPERCASE.JS-REMOVE_FILE] ERROR: ' + errorMsg));
 							}
 						}
+					}
+
+					if (callback !== undefined) {
+						callback();
 					}
 				});
 			}

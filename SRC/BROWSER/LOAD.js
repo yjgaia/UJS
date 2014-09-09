@@ -3,7 +3,7 @@
  */
 global.LOAD = LOAD = METHOD({
 
-	run : function(urlOrParams) {
+	run : function(urlOrParams, handlers) {
 		'use strict';
 		//REQUIRED: urlOrParams
 		//REQUIRED: urlOrParams.url
@@ -13,6 +13,8 @@ global.LOAD = LOAD = METHOD({
 		//OPTIONAL: urlOrParams.uri
 		//OPTIONAL: urlOrParams.paramStr
 		//OPTIONAL: urlOrParams.isNoCache
+		//OPTIONAL: handlers
+		//OPTIONAL: handlers.error
 
 		var
 		// url
@@ -35,6 +37,9 @@ global.LOAD = LOAD = METHOD({
 
 		// param str
 		paramStr,
+
+		// error handler.
+		errorHandler,
 
 		// current script
 		currentScript = document.currentScript,
@@ -65,6 +70,10 @@ global.LOAD = LOAD = METHOD({
 			isNoCache = urlOrParams.isNoCache;
 		}
 
+		if (handlers !== undefined) {
+			errorHandler = handlers.error;
+		}
+
 		READY.readyLoad();
 
 		if (currentScript === undefined || currentScript === TO_DELETE) {
@@ -75,7 +84,7 @@ global.LOAD = LOAD = METHOD({
 		scriptEl = document.createElement('script');
 		scriptEl.src = (url.indexOf('?') === -1 ? url + '?' : url + '&') + (isNoCache !== true ? (CONFIG.version !== undefined ? 'version=' + CONFIG.version : '') : (new Date()).getTime());
 
-		scriptEl.onload = function() {
+		scriptEl.onload = function(e) {
 			READY.loaded();
 		};
 
@@ -84,6 +93,13 @@ global.LOAD = LOAD = METHOD({
 				READY.loaded();
 			});
 		};
+
+		try {
+			// this work only IE >= 9
+			scriptEl.onerror = errorHandler;
+		} catch (e) {
+			// ignore.
+		}
 
 		// create script.
 		return DOM({

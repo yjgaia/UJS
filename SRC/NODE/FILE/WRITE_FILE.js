@@ -94,10 +94,6 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {
 
 							fs.writeFileSync(path, buffer !== undefined ? buffer : content);
 
-							if (callback !== undefined) {
-								callback();
-							}
-
 						} catch(error) {
 
 							if (error !== TO_DELETE) {
@@ -110,6 +106,10 @@ global.WRITE_FILE = WRITE_FILE = METHOD(function() {
 									console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR: ' + errorMsg));
 								}
 							}
+						}
+
+						if (callback !== undefined) {
+							callback();
 						}
 					});
 				}

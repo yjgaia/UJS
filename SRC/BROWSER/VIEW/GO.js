@@ -5,7 +5,7 @@ global.GO = GO = METHOD({
 
 	run : function(uri) {
 		'use strict';
-		//REQUIRED: uri
+		//OPTIONAL: uri
 
 		location.href = HREF(uri);
 	}

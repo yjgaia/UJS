@@ -145,10 +145,6 @@ global.CREATE_FOLDER = CREATE_FOLDER = METHOD(function() {
 							}
 						}
 
-						if (callback !== undefined) {
-							callback();
-						}
-
 					} catch(error) {
 
 						if (error !== TO_DELETE) {
@@ -161,6 +157,10 @@ global.CREATE_FOLDER = CREATE_FOLDER = METHOD(function() {
 								console.log(CONSOLE_RED('[UPPERCASE.JS-CREATE_FOLDER] ERROR: ' + errorMsg));
 							}
 						}
+					}
+
+					if (callback !== undefined) {
+						callback();
 					}
 				});
 			}

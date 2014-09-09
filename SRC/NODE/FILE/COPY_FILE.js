@@ -101,10 +101,6 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 
 								fs.writeFileSync(to, fs.readFileSync(from));
 
-								if (callback !== undefined) {
-									callback();
-								}
-
 							} catch(error) {
 
 								if (error !== TO_DELETE) {
@@ -117,6 +113,10 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 										console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR: ' + errorMsg));
 									}
 								}
+							}
+
+							if (callback !== undefined) {
+								callback();
 							}
 						});
 					}

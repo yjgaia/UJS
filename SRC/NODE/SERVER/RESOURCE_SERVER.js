@@ -81,15 +81,15 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 
 	return {
 
-		init : function(inner, self, params, requestListenerOrHandlers) {
-			//REQUIRED: params
-			//OPTIONAL: params.port
-			//OPTIONAL: params.securedPort
-			//OPTIONAL: params.securedKeyFilePath
-			//OPTIONAL: params.securedCertFilePath
-			//OPTIONAL: params.noParsingNativeReqURIs
-			//REQUIRED: params.rootPath
-			//OPTIONAL: params.version
+		init : function(inner, self, portOrParams, requestListenerOrHandlers) {
+			//REQUIRED: portOrParams
+			//OPTIONAL: portOrParams.port
+			//OPTIONAL: portOrParams.securedPort
+			//OPTIONAL: portOrParams.securedKeyFilePath
+			//OPTIONAL: portOrParams.securedCertFilePath
+			//OPTIONAL: portOrParams.noParsingNativeReqURIs
+			//OPTIONAL: portOrParams.rootPath
+			//OPTIONAL: portOrParams.version
 			//OPTIONAL: requestListenerOrHandlers
 			//OPTIONAL: requestListenerOrHandlers.requestListener
 			//OPTIONAL: requestListenerOrHandlers.error
@@ -100,16 +100,16 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 			path = require('path'),
 
 			// port
-			port = params.port,
+			port,
 
 			// secured port
-			securedPort = params.securedPort,
+			securedPort,
 
 			// origin root path
-			originRootPath = params.rootPath,
+			originRootPath,
 
 			// version
-			version = params.version,
+			version,
 
 			// request listener.
 			requestListener,
@@ -129,6 +129,16 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 			// get native http server.
 			getNativeHTTPServer;
 
+			// init params.
+			if (CHECK_IS_DATA(portOrParams) !== true) {
+				port = portOrParams;
+			} else {
+				port = portOrParams.port;
+				securedPort = portOrParams.securedPort;
+				originRootPath = portOrParams.rootPath;
+				version = portOrParams.version;
+			}
+
 			if (requestListenerOrHandlers !== undefined) {
 				if (CHECK_IS_DATA(requestListenerOrHandlers) !== true) {
 					requestListener = requestListenerOrHandlers;
@@ -139,7 +149,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 				}
 			}
 
-			webServer = WEB_SERVER(params, function(requestInfo, response, onDisconnected) {
+			webServer = WEB_SERVER(portOrParams, function(requestInfo, response, onDisconnected) {
 
 				var
 				// root path
@@ -180,7 +190,11 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 						isGoingOn = requestListener(requestInfo, response, onDisconnected, function(newRootPath) {
 							rootPath = newRootPath;
 						}, function(_overrideResponseInfo) {
-							overrideResponseInfo = _overrideResponseInfo;
+
+							if (_overrideResponseInfo !== undefined) {
+								overrideResponseInfo = _overrideResponseInfo;
+							}
+
 							next();
 						});
 
@@ -228,7 +242,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 						}
 
 						// response resource file.
-						else if (method === 'GET') {
+						else if (rootPath !== undefined && method === 'GET') {
 
 							responseNotFound = function(resourcePath) {
 
@@ -318,6 +332,11 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 									}));
 								};
 							}]);
+
+						} else {
+							response({
+								statusCode : 404
+							});
 						}
 					};
 				}]);

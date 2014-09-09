@@ -16,6 +16,9 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 		// target
 		target = params.target,
 
+		// uri matcher
+		uriMatcher = URI_MATCHER(uri),
+
 		// view
 		view,
 
@@ -30,15 +33,16 @@ global.MATCH_VIEW = MATCH_VIEW = METHOD({
 			// hash
 			hash = location.hash,
 
-			// uri params
+			// result
+			result,
+
+			// uri parmas
 			uriParams;
 
 			// when view founded
-			if (hash !== '#__REFRESING' && CHECK_IS_MATCHING_URI({
-				format : uri,
-				uri : hash.substring(1),
-				params : uriParams = {}
-			}) === true) {
+			if (hash !== '#__REFRESING' && ( result = uriMatcher.check(hash.substring(1))).checkIsMatched() === true) {
+
+				uriParams = result.getURIParams();
 
 				// when before view not exists, create view.
 				if (view === undefined) {

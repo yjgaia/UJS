@@ -4,6 +4,7 @@ VERSIONS
 - VALID check 시 허락되지 않은 property는 삭제
 - CHECK_IS_EXISTS_FILE 추가
 - CPU_CLUSTERING.getWorkerId() 추가, 기존 workerData 삭제
+- URI_MATCHER 추가
 
 1.4.11 (2014. 8. 18)
 - CLASS 선언 시 초기화 직후 실행할 수 있는 afterInit 기능 추가

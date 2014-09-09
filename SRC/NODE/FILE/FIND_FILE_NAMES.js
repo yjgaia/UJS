@@ -142,12 +142,6 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 							}
 						});
 
-						if (callback !== undefined) {
-							callback(fileNames);
-						}
-
-						return fileNames;
-
 					} catch(error) {
 
 						if (error !== TO_DELETE) {
@@ -161,6 +155,12 @@ global.FIND_FILE_NAMES = FIND_FILE_NAMES = METHOD(function() {
 							}
 						}
 					}
+
+					if (callback !== undefined) {
+						callback(fileNames);
+					}
+
+					return fileNames;
 				});
 			}
 		}

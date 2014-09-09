@@ -142,12 +142,6 @@ global.FIND_FOLDER_NAMES = FIND_FOLDER_NAMES = METHOD(function() {
 							}
 						});
 
-						if (callback !== undefined) {
-							callback(folderNames);
-						}
-
-						return folderNames;
-
 					} catch(error) {
 
 						if (error !== TO_DELETE) {
@@ -161,6 +155,12 @@ global.FIND_FOLDER_NAMES = FIND_FOLDER_NAMES = METHOD(function() {
 							}
 						}
 					}
+
+					if (callback !== undefined) {
+						callback(folderNames);
+					}
+
+					return folderNames;
 				});
 			}
 		}
