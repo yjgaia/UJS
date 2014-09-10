@@ -13,6 +13,7 @@ global.REQUEST = REQUEST = METHOD({
 		//REQUIRED: params.uri
 		//OPTIONAL: params.paramStr
 		//OPTIONAL: params.data
+		//OPTIONAL: params.isNotUsingLoadingBar
 		//REQUIRED: responseListenerOrListeners
 
 		var
@@ -34,6 +35,9 @@ global.REQUEST = REQUEST = METHOD({
 		// param str
 		paramStr = params.data !== undefined ? 'data=' + encodeURIComponent(STRINGIFY(params.data)) : params.paramStr,
 
+		// is not using loading bar
+		isNotUsingLoadingBar = params.isNotUsingLoadingBar,
+
 		// response listener
 		responseListener,
 
@@ -43,6 +47,9 @@ global.REQUEST = REQUEST = METHOD({
 		// url
 		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + uri,
 
+		// loading bar
+		loadingBar,
+
 		// http request
 		req;
 
@@ -51,6 +58,10 @@ global.REQUEST = REQUEST = METHOD({
 		} else {
 			responseListener = responseListenerOrListeners.success;
 			errorListener = responseListenerOrListeners.error;
+		}
+
+		if (isNotUsingLoadingBar !== true) {
+			loadingBar = LOADING_BAR();
 		}
 
 		paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
@@ -98,6 +109,10 @@ global.REQUEST = REQUEST = METHOD({
 					} else {
 						console.log('[UPPERCASE.JS-REQUEST] REQUEST FAILED:', params, error);
 					}
+				}
+
+				if (loadingBar !== undefined) {
+					loadingBar.done();
 				}
 			}
 		};

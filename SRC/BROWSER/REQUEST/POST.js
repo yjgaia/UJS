@@ -12,6 +12,7 @@ global.POST = POST = METHOD({
 		//REQUIRED: uriOrParams.uri
 		//OPTIONAL: uriOrParams.paramStr
 		//OPTIONAL: uriOrParams.data
+		//OPTIONAL: uriOrParams.isNotUsingLoadingBar
 		//REQUIRED: responseListenerOrListeners
 
 		REQUEST(COMBINE([CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
