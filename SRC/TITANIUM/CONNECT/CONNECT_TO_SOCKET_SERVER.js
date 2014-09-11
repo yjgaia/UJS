@@ -94,7 +94,11 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
 			connected : function(e) {
 
-				Ti.Stream.pump(e.socket, function(e) {
+				var
+				// socket
+				socket = e.socket;
+
+				Ti.Stream.pump(socket, function(e) {
 
 					// when disconnected
 					if (e.bytesProcessed < 0) {
@@ -199,7 +203,7 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 					sendKey += 1;
 
 					try {
-						e.socket.write(Ti.createBuffer({
+						socket.write(Ti.createBuffer({
 							value : STRINGIFY(params) + '\r\n'
 						}));
 					}
