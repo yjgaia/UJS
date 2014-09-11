@@ -7,12 +7,12 @@ global.READY = READY = METHOD(function(m) {
 	var
 	// ready count
 	readyCount = 0,
-	
+
 	// is loaded
 	isLoaded,
 
-	// handler.
-	handler,
+	// handlers
+	handlers = [],
 
 	// ready load.
 	readyLoad,
@@ -28,9 +28,13 @@ global.READY = READY = METHOD(function(m) {
 
 		readyCount -= 1;
 
-		if (isLoaded === true && handler !== undefined && readyCount === 0) {
-			handler();
-			handler = undefined;
+		if (isLoaded === true && handlers !== undefined && readyCount === 0) {
+
+			EACH(handlers, function(handler) {
+				handler();
+			});
+
+			handlers = undefined;
 		}
 	};
 
@@ -38,18 +42,26 @@ global.READY = READY = METHOD(function(m) {
 
 		isLoaded = true;
 
-		if (handler !== undefined && readyCount === 0) {
-			handler();
-			handler = undefined;
+		if (handlers !== undefined && readyCount === 0) {
+
+			EACH(handlers, function(handler) {
+				handler();
+			});
+
+			handlers = undefined;
 		}
 	};
 
 	return {
 
-		run : function(_handler) {
-			//REQUIRED: _handler
+		run : function(handler) {
+			//REQUIRED: handler
 
-			handler = _handler;
+			if (handlers !== undefined) {
+				handlers.push(handler);
+			} else {
+				handler();
+			}
 		}
 	};
 });
