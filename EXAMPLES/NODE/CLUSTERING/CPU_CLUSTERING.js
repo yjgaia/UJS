@@ -7,19 +7,19 @@ TEST('CPU_CLUSTERING', function(ok) {
 
 	INIT_OBJECTS();
 
-	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
+	CPU_CLUSTERING(function() {
 
-		console.log('WORK, WORKER!: ', workerData.id, workerData.pid);
+		console.log('WORK, WORKER!: ', CPU_CLUSTERING.getWorkerId());
 
-		on('receive', function(data) {
+		CPU_CLUSTERING.on('receive', function(data) {
 			ok(CHECK_ARE_SAME([data, {
 				msg : 'Hey!'
 			}]));
 		});
 
-		if (workerData.id === 1) {
+		if (CPU_CLUSTERING.getWorkerId() === 1) {
 
-			broadcast({
+			CPU_CLUSTERING.broadcast({
 				methodName : 'receive',
 				data : {
 					msg : 'Hey!'

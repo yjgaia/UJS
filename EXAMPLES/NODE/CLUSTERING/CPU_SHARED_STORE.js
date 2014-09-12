@@ -7,13 +7,13 @@ TEST('CPU_SHARED_STORE', function(ok) {
 
 	INIT_OBJECTS();
 
-	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
+	CPU_CLUSTERING(function() {
 
 		var
 		// shared store
 		sharedStore = CPU_SHARED_STORE('test');
 
-		if (workerData.id === 1) {
+		if (CPU_CLUSTERING.getWorkerId() === 1) {
 
 			sharedStore.save({
 				name : 'msg',

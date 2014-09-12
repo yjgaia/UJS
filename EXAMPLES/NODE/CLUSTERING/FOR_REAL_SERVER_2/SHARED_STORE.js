@@ -7,13 +7,16 @@ TEST('SHARED_STORE', function(ok) {
 
 	INIT_OBJECTS();
 
-	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
+	CPU_CLUSTERING(function(on, off, broadcast) {
 
 		SERVER_CLUSTERING({
-			hosts : ['1.226.84.92', '58.229.105.35'],
-			thisServerHost : '58.229.105.35',
+			servers : {
+				serverA : '1.btncafe.com',
+				serverB : '2.btncafe.com'
+			},
+			thisServerName : 'serverB',
 			port : 9125
-		}, function(thisServerHost, on, off, broadcast) {
+		}, function(on, off, broadcast) {
 
 			var
 			// shared store
@@ -23,27 +26,14 @@ TEST('SHARED_STORE', function(ok) {
 				console.log(sharedStore.get('msg'));
 			});
 
-			if (workerData.id === 1) {
+			if (CPU_CLUSTERING.getWorkerId() === 1) {
 
-				if (thisServerHost === '58.229.105.35') {
-
-					DELAY(1, function() {
-						sharedStore.save({
-							name : 'msg',
-							value : 'Hello SERVER_CLUSTERING!'
-						});
+				DELAY(1, function() {
+					sharedStore.save({
+						name : 'msg',
+						value : 'Hello SERVER_CLUSTERING!'
 					});
-
-				} else {
-
-					DELAY(5, function() {
-						sharedStore.save({
-							name : 'msg',
-							value : 'Hello SERVER_CLUSTERING2!',
-							removeAfterSeconds : 5
-						});
-					});
-				}
+				});
 			}
 		});
 	});

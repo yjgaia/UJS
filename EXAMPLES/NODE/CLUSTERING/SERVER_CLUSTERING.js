@@ -8,12 +8,15 @@ TEST('SERVER_CLUSTERING', function(ok) {
 	INIT_OBJECTS();
 
 	SERVER_CLUSTERING({
-		hosts : ['192.168.206.1', '192.168.114.1'],
-		thisServerHost : '192.168.206.1',
+		servers : {
+			serverA : '127.0.0.1',
+			serverB : '127.0.0.1'
+		},
+		thisServerName : 'serverA',
 		port : 8125
-	}, function(thisServerHost, on, off, broadcast) {
+	}, function() {
 
-		on('receive', function(data) {
+		SERVER_CLUSTERING.on('receive', function(data) {
 			ok(CHECK_ARE_SAME([data, {
 				msg : 'Hey!'
 			}]));
@@ -21,7 +24,7 @@ TEST('SERVER_CLUSTERING', function(ok) {
 
 		DELAY(1, function() {
 
-			broadcast({
+			SERVER_CLUSTERING.broadcast({
 				methodName : 'receive',
 				data : {
 					msg : 'Hey!'

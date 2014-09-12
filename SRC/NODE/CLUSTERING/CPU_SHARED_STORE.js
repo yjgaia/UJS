@@ -25,7 +25,7 @@ global.CPU_SHARED_STORE = CPU_SHARED_STORE = CLASS(function(cls) {
 		//REQUIRED: params.fullName
 		//REQUIRED: params.value
 		//OPTIONAL: params.removeAfterSeconds
-		//OPTIONAL: params.isWaitRemove
+		//OPTIONAL: params.isWaitingRemove
 		//OPTIONAL: remove
 
 		var
@@ -38,12 +38,12 @@ global.CPU_SHARED_STORE = CPU_SHARED_STORE = CLASS(function(cls) {
 		// remove after seconds
 		removeAfterSeconds = params.removeAfterSeconds,
 
-		// is wait remove
-		isWaitRemove = params.isWaitRemove;
+		// is waiting remove
+		isWaitingRemove = params.isWaitingRemove;
 
 		storage[fullName] = value;
 
-		if (isWaitRemove === true && removeDelays[fullName] !== undefined) {
+		if (isWaitingRemove === true && removeDelays[fullName] !== undefined) {
 			removeDelays[fullName].remove();
 			delete removeDelays[fullName];
 		}
@@ -126,7 +126,7 @@ global.CPU_SHARED_STORE = CPU_SHARED_STORE = CLASS(function(cls) {
 						data : {
 							fullName : fullName,
 							value : value,
-							isWaitRemove : removeAfterSeconds !== undefined
+							isWaitingRemove : removeAfterSeconds !== undefined
 						}
 					});
 				}

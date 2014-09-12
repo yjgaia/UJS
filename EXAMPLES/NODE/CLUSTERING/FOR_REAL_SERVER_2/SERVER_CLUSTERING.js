@@ -8,18 +8,21 @@ TEST('SERVER_CLUSTERING', function(ok) {
 	INIT_OBJECTS();
 
 	SERVER_CLUSTERING({
-		hosts : ['1.226.84.92', '58.229.105.35'],
-		thisServerHost : '58.229.105.35',
+		servers : {
+			serverA : '1.btncafe.com',
+			serverB : '2.btncafe.com'
+		},
+		thisServerName : 'serverB',
 		port : 9125
-	}, function(thisServerHost, on, off, broadcast) {
+	}, function() {
 
-		on('receive', function(data) {
+		SERVER_CLUSTERING.on('receive', function(data) {
 			console.log('SERVER_CLUSTERING received: ', data);
 		});
 
 		DELAY(1, function() {
 
-			broadcast({
+			SERVER_CLUSTERING.broadcast({
 				methodName : 'receive',
 				data : {
 					msg : 'Hey!'

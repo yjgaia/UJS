@@ -8,17 +8,17 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {
 
 		run : function(params, work) {
 			//REQUIRED: params
-			//REQUIRED: params.hosts
-			//REQUIRED: params.thisServerHost
+			//REQUIRED: params.servers
+			//REQUIRED: params.thisServerName
 			//REQUIRED: params.port
 			//OPTIONAL: work
 
 			var
-			// hosts
-			hosts = params.hosts,
+			// servers
+			servers = params.servers,
 
-			// this server host
-			thisServerHost = params.thisServerHost,
+			// this server name
+			thisServerName = params.thisServerName,
 
 			// port
 			port = params.port,
@@ -64,27 +64,27 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {
 			// broadcast.
 			broadcast;
 
-			connectToClusteringServer = function(host) {
+			connectToClusteringServer = function(serverName) {
 
-				if (isConnectings[host] !== true) {
-					isConnectings[host] = true;
+				if (isConnectings[serverName] !== true) {
+					isConnectings[serverName] = true;
 
 					CONNECT_TO_SOCKET_SERVER({
-						host : host,
+						host : servers[serverName],
 						port : port
 					}, {
 						error : function() {
-							delete isConnectings[host];
+							delete isConnectings[serverName];
 						},
 
 						success : function(on, off, send) {
 
 							send({
 								methodName : '__BOOTED',
-								data : thisServerHost
+								data : thisServerName
 							});
 
-							serverSends[host] = function(params) {
+							serverSends[serverName] = function(params) {
 								//REQUIRED: params
 								//REQUIRED: params.methodName
 								//REQUIRED: params.data
@@ -103,17 +103,17 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {
 							};
 
 							on('__DISCONNECTED', function() {
-								delete serverSends[host];
-								delete isConnectings[host];
+								delete serverSends[serverName];
+								delete isConnectings[serverName];
 							});
 
-							console.log('[UPPERCASE.JS-SERVER_CLUSTERING] CONNECTED CLUSTERING SERVER. (HOST:' + host + ')');
+							console.log('[UPPERCASE.JS-SERVER_CLUSTERING] CONNECTED CLUSTERING SERVER. (SERVER NAME:' + serverName + ')');
 
 							if (CPU_CLUSTERING.broadcast !== undefined) {
 
 								CPU_CLUSTERING.broadcast({
 									methodName : '__SERVER_CLUSTERING__CONNECT_TO_CLUSTERING_SERVER',
-									data : host
+									data : serverName
 								});
 							}
 						}
@@ -126,9 +126,9 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {
 			}
 
 			// try connect to all clustering servers.
-			EACH(hosts, function(host) {
-				if (host !== thisServerHost) {
-					connectToClusteringServer(host);
+			EACH(servers, function(host, serverName) {
+				if (serverName !== thisServerName) {
+					connectToClusteringServer(serverName);
 				}
 			});
 
@@ -136,8 +136,8 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {
 
 				socketServeOns.push(socketServeOn);
 
-				socketServeOn('__BOOTED', function(host) {
-					connectToClusteringServer(host);
+				socketServeOn('__BOOTED', function(serverName) {
+					connectToClusteringServer(serverName);
 				});
 
 				EACH(methodMap, function(methods, methodName) {
@@ -186,15 +186,15 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {
 			});
 
 			// remove shared value.
-			on('__SHARED_STORE_REMOVE', function(fullKey) {
+			on('__SHARED_STORE_REMOVE', function(fullName) {
 
-				SHARED_STORE.remove(fullKey);
+				SHARED_STORE.remove(fullName);
 
 				if (CPU_CLUSTERING.broadcast !== undefined) {
 
 					CPU_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_REMOVE',
-						data : fullKey
+						data : fullName
 					});
 				}
 			});
@@ -214,20 +214,10 @@ global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {
 			};
 
 			if (work !== undefined) {
-
-				work(thisServerHost,
-
-				// on.
-				on,
-
-				// off.
-				off,
-
-				// broadcast.
-				broadcast);
+				work();
 			}
 
-			console.log(CONSOLE_BLUE('[UPPERCASE.JS-SERVER_CLUSTERING] RUNNING CLUSTERING SERVER... (THIS SERVER HOST:' + thisServerHost + ', PORT:' + port + ')'));
+			console.log(CONSOLE_BLUE('[UPPERCASE.JS-SERVER_CLUSTERING] RUNNING CLUSTERING SERVER... (THIS SERVER NAME:' + thisServerName + ', PORT:' + port + ')'));
 		}
 	};
 });

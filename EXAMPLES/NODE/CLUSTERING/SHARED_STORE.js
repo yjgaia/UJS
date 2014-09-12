@@ -7,28 +7,36 @@ TEST('SHARED_STORE', function(ok) {
 
 	INIT_OBJECTS();
 
-	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
+	CPU_CLUSTERING(function() {
 
 		SERVER_CLUSTERING({
-			hosts : ['192.168.206.1', '192.168.114.1'],
-			thisServerHost : '192.168.206.1',
+			servers : {
+				serverA : '127.0.0.1',
+				serverB : '127.0.0.1'
+			},
+			thisServerName : 'serverA',
 			port : 8125
-		}, function(thisServerHost, on, off, broadcast) {
+		}, function() {
 
 			var
 			// shared store
 			sharedStore = SHARED_STORE('test');
 
-			if (workerData.id === 1) {
+			if (CPU_CLUSTERING.getWorkerId() === 1) {
 
 				sharedStore.save({
 					name : 'msg',
-					value : 'Hello World!'
+					value : 'Hello World!',
+					removeAfterSeconds : 2
 				});
 			}
 
 			DELAY(1, function() {
 				ok(sharedStore.get('msg') === 'Hello World!');
+			});
+
+			DELAY(3, function() {
+				ok(sharedStore.get('msg') === undefined);
 			});
 		});
 	});
