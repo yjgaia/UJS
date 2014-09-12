@@ -33,7 +33,10 @@ global.REQUEST = REQUEST = METHOD({
 		uri = params.uri,
 
 		// param str
-		paramStr = params.data !== undefined ? 'data=' + encodeURIComponent(STRINGIFY(params.data)) : params.paramStr,
+		paramStr = params.paramStr,
+
+		// data
+		data = params.data,
 
 		// is not using loading bar
 		isNotUsingLoadingBar = params.isNotUsingLoadingBar,
@@ -45,13 +48,26 @@ global.REQUEST = REQUEST = METHOD({
 		errorListener,
 
 		// url
-		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + uri,
+		url,
 
 		// loading bar
 		loadingBar,
 
 		// http request
 		req;
+
+		method = method.toUpperCase();
+
+		if (uri.indexOf('?') !== -1) {
+			paramStr = uri.substring(uri.indexOf('?') + 1) + (paramStr === undefined ? '' : '&' + paramStr);
+			uri = uri.substring(0, uri.indexOf('?'));
+		}
+
+		if (data !== undefined) {
+			paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(params.data));
+		}
+
+		paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
 
 		if (CHECK_IS_DATA(responseListenerOrListeners) !== true) {
 			responseListener = responseListenerOrListeners;
@@ -60,11 +76,11 @@ global.REQUEST = REQUEST = METHOD({
 			errorListener = responseListenerOrListeners.error;
 		}
 
+		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + uri;
+
 		if (isNotUsingLoadingBar !== true) {
 			loadingBar = LOADING_BAR();
 		}
-
-		paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
 
 		// Mozilla, Safari, ...
 		if (global.XMLHttpRequest !== undefined) {
@@ -116,8 +132,6 @@ global.REQUEST = REQUEST = METHOD({
 				}
 			}
 		};
-
-		method = method.toUpperCase();
 
 		// GET request.
 		if (method === 'GET') {

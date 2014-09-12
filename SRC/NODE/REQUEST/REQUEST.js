@@ -41,7 +41,10 @@ global.REQUEST = REQUEST = METHOD(function() {
 			uri = params.uri,
 
 			// param str
-			paramStr = params.data !== undefined ? 'data=' + encodeURIComponent(STRINGIFY(params.data)) : params.paramStr,
+			paramStr = params.paramStr,
+
+			// data
+			data = params.data,
 
 			// response listener
 			responseListener,
@@ -52,16 +55,25 @@ global.REQUEST = REQUEST = METHOD(function() {
 			// http request
 			req;
 
+			method = method.toUpperCase();
+
+			if (uri.indexOf('?') !== -1) {
+				paramStr = uri.substring(uri.indexOf('?') + 1) + (paramStr === undefined ? '' : '&' + paramStr);
+				uri = uri.substring(0, uri.indexOf('?'));
+			}
+
+			if (data !== undefined) {
+				paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(params.data));
+			}
+
+			paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
+
 			if (CHECK_IS_DATA(responseListenerOrListeners) !== true) {
 				responseListener = responseListenerOrListeners;
 			} else {
 				responseListener = responseListenerOrListeners.success;
 				errorListener = responseListenerOrListeners.error;
 			}
-
-			paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
-
-			method = method.toUpperCase();
 
 			// GET request.
 			if (method === 'GET') {
