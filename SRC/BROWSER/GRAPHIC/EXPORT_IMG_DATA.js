@@ -21,6 +21,9 @@ global.EXPORT_IMG_DATA = EXPORT_IMG_DATA = METHOD(function(m) {
 			// uri
 			uri = img.getSrc(),
 
+			// new img
+			newImg,
+
 			// exported img data
 			exportedImgData = exportedImgDataSet[uri],
 
@@ -42,10 +45,12 @@ global.EXPORT_IMG_DATA = EXPORT_IMG_DATA = METHOD(function(m) {
 
 				exportingCallbacks = exportingCallbackMap[uri] = [callback];
 
+				newImg = IMG();
+				newImg.getContentEl().crossOrigin = 'anonymous';
+				newImg.setSrc(uri);
+
 				EVENT_ONCE({
-					node : IMG({
-						src : uri
-					}),
+					node : newImg,
 					name : 'load'
 				}, function(e, img) {
 

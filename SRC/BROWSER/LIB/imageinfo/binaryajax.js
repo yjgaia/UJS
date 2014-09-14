@@ -158,7 +158,7 @@ var BinaryAjax = (function() {
 
 						if (oHTTP.status == "200" || oHTTP.status == "206") {
 							this.binaryResponse = new BinaryFile(this.responseText, iDataOffset, iDataLen);
-							this.fileSize = iFileSize || this.getResponseHeader("Content-Length");
+							//this.fileSize = iFileSize || this.getResponseHeader("Content-Length");
 							fncCallback(this);
 						} else {
 							if (fncError) fncError();
@@ -170,7 +170,7 @@ var BinaryAjax = (function() {
 						if (oHTTP.readyState == 4) {
 							if (oHTTP.status == "200" || oHTTP.status == "206") {
 								this.binaryResponse = new BinaryFile(oHTTP.responseBody, iDataOffset, iDataLen);
-								this.fileSize = iFileSize || this.getResponseHeader("Content-Length");
+								//this.fileSize = iFileSize || this.getResponseHeader("Content-Length");
 								fncCallback(this);
 							} else {
 								if (fncError) fncError();
@@ -188,7 +188,7 @@ var BinaryAjax = (function() {
 				oHTTP.setRequestHeader("Range", "bytes=" + aRange[0] + "-" + aRange[1]);
 			}
 
-			oHTTP.setRequestHeader("If-Modified-Since", "Sat, 1 Jan 1970 00:00:00 GMT");
+			//oHTTP.setRequestHeader("If-Modified-Since", "Sat, 1 Jan 1970 00:00:00 GMT");
 
 			oHTTP.send(null);
 		} else {
@@ -202,6 +202,7 @@ var BinaryAjax = (function() {
 			getHead(
 				strURL, 
 				function(oHTTP) {
+					/*
 					var iLength = parseInt(oHTTP.getResponseHeader("Content-Length"),10);
 					var strAcceptRanges = oHTTP.getResponseHeader("Accept-Ranges");
 
@@ -212,6 +213,7 @@ var BinaryAjax = (function() {
 					iEnd = iStart + aRange[1] - 1;
 
 					sendRequest(strURL, fncCallback, fncError, [iStart, iEnd], (strAcceptRanges == "bytes"), iLength);
+					*/
 				}
 			);
 
