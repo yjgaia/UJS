@@ -401,8 +401,8 @@ form = FORM ->
 * `SOUND({mp3:, ogg:, isLoop:})` SOUND class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/SOUND.js)
 ```javascript
 sound = SOUND({mp3:'test.mp3', ogg:'test.ogg', isLoop:true});
-store.play()
-store.stop()
+sound.play()
+sound.stop()
 ```
 
 ###### AJAX
@@ -443,5 +443,5 @@ UPPERCASE.JS-TITANIUM is for those who look for utilities on Titanium.
 [Young Jae Sim](https://github.com/Hanul)
 
 ## Contact
-* [UPPERCASE.IO Facebook User Group](https://www.facebook.com/groups/UPPERCASE.IO/)
+* [Facebook UPPERCASE.IO User Group](https://www.facebook.com/groups/UPPERCASE.IO/)
 * [GitHub Issues](https://github.com/UPPERCASE-Series/UPPERCASE.JS/issues)

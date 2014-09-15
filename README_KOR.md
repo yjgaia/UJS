@@ -398,8 +398,8 @@ form = FORM ->
 * `SOUND({mp3:, ogg:, isLoop:})` SOUND class [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/SOUND.js)
 ```javascript
 sound = SOUND({mp3:'test.mp3', ogg:'test.ogg', isLoop:true});
-store.play()
-store.stop()
+sound.play()
+sound.stop()
 ```
 
 ###### AJAX 관련
@@ -440,5 +440,5 @@ Titanium를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-TITANIUM를 
 [Young Jae Sim](https://github.com/Hanul)
 
 ## Contact
-* [UPPERCASE.IO Facebook User Group](https://www.facebook.com/groups/uppercase/)
+* [Facebook UPPERCASE.IO User Group](https://www.facebook.com/groups/uppercase/)
 * [GitHub Issues](https://github.com/UPPERCASE-Series/UPPERCASE.JS/issues)
