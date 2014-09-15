@@ -8,6 +8,13 @@
 * [UPPERCASE.JS-PHANTOM](#uppercasejs-phantom)
 * [UPPERCASE.JS-TITANIUM](#uppercasejs-titanium)
 
+## 설정
+###### BROWSER_CONFIG
+* isNotSupportingX2 : 레티나 디스플레이 등을 대응하기 위해 이미지 픽셀을 2배씩 늘려주는 설정을 사용하지 않을 경우 `true`로 지정합니다.
+* isUsingFlashCanvasPro : FlashCanvas Pro 버젼을 사용하고자 할 때 `true`로 지정합니다. FlashCanvas Pro의 라이센스를 구매하셔야 합니다. http://flashcanvas.net/purchase
+* fixScriptsFolderPath : BROWSER-FIX 스크립트들이 저장되어 있는 폴더의 경로를 지정합니다.
+* loadingBarColor : REQUEST 등 통신을 할 때 나타나는 로딩 바의 색상을 지정하는 설정입니다. 기본값은 `'#007aff'`입니다.
+
 ## UPPERCASE.JS-COMMON
 객체지향 프로그래밍 지원 및 다양한 기능을 제공하는 JavaScript 라이브러리입니다.
 JavaScript 유틸리티를 찾고 계신다면 UPPERCASE.JS-COMMON을 사용해보세요.
