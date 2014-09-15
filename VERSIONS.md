@@ -1,5 +1,11 @@
 VERSIONS
 ========
+1.4.12 (2014. 8. 15)
+- VALID check 시 허락되지 않은 property는 삭제
+- CHECK_IS_EXISTS_FILE 추가
+- CPU_CLUSTERING.getWorkerId() 추가, 기존 workerData 삭제
+- URI_MATCHER 추가
+
 1.4.11 (2014. 8. 18)
 - Add afterInit for code executed right after initialization in case of CLASS declaration
 - Switch overriding VIEW/close and onParamsChange to on('paramsChange', function(params) {...}) on('close', function() {...})

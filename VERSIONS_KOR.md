@@ -1,6 +1,6 @@
 VERSIONS
 ========
-1.4.12 (working)
+1.4.12 (2014. 8. 15)
 - VALID check 시 허락되지 않은 property는 삭제
 - CHECK_IS_EXISTS_FILE 추가
 - CPU_CLUSTERING.getWorkerId() 추가, 기존 workerData 삭제
