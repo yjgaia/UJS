@@ -78,6 +78,8 @@ global.LOADING_BAR = LOADING_BAR = CLASS({
 						}
 					}),
 					duration : 0.25
+				}, function() {
+					bar2.remove();
 				});
 			});
 		};

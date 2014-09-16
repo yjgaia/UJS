@@ -289,7 +289,7 @@ Support old browsers (IE5.5, Android 2.1 Browser, ...) with COMMON and BROWSER.
 			LOAD('UPPERCASE.JS-BROWSER-FIX/FIX.js');
 		</script>
 		<script>
-			global.onload = function() {
+			READY(function() {
 
 				// declare.
 				var
@@ -305,7 +305,7 @@ Support old browsers (IE5.5, Android 2.1 Browser, ...) with COMMON and BROWSER.
 
 				// execute.
 				method();
-			};
+			});
 		</script>
 	</body>
 </html>

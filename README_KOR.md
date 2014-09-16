@@ -286,7 +286,7 @@ COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1
 			LOAD('UPPERCASE.JS-BROWSER-FIX/FIX.js');
 		</script>
 		<script>
-			global.onload = function() {
+			READY(function() {
 
 				// 선언부
 				var
@@ -302,7 +302,7 @@ COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1
 
 				// 실행부
 				method();
-			};
+			});
 		</script>
 	</body>
 </html>

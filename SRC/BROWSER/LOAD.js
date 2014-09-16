@@ -42,7 +42,7 @@ global.LOAD = LOAD = METHOD({
 		errorHandler,
 
 		// current script
-		currentScript = document.currentScript,
+		currentScript,
 
 		// script els
 		scriptEls,
@@ -76,10 +76,8 @@ global.LOAD = LOAD = METHOD({
 
 		READY.readyLoad();
 
-		if (currentScript === undefined || currentScript === TO_DELETE) {
-			scriptEls = document.getElementsByTagName('script');
-			currentScript = scriptEls[scriptEls.length - 1];
-		}
+		scriptEls = document.getElementsByTagName('script');
+		currentScript = scriptEls[scriptEls.length - 1];
 
 		scriptEl = document.createElement('script');
 		scriptEl.src = (url.indexOf('?') === -1 ? url + '?' : url + '&') + (isNoCache !== true ? (CONFIG.version !== undefined ? 'version=' + CONFIG.version : '') : (new Date()).getTime());
