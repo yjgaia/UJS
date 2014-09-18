@@ -13,11 +13,11 @@ Easy, Clear, and Powerful Full-stack (server-to-client) JavaScript Library for D
 
 ## Configuration
 ###### BROWSER_CONFIG
-각 설정은 `BROWSER_CONFIG.isNotSupportingX2 = true;` 와 같이 설정합니다.
-* `isNotSupportingX2` 레티나 디스플레이 등을 대응하기 위해 이미지 픽셀을 2배씩 늘려주는 설정을 사용하지 않을 경우 `true`로 지정합니다.
-* `isUsingFlashCanvasPro` FlashCanvas Pro 버젼을 사용하고자 할 때 `true`로 지정합니다. FlashCanvas Pro의 라이센스를 구매하셔야 합니다. http://flashcanvas.net/purchase
-* `fixScriptsFolderPath` BROWSER-FIX 스크립트들이 저장되어 있는 폴더의 경로를 지정합니다.
-* `loadingBarColor` REQUEST 등 통신을 할 때 나타나는 로딩 바의 색상을 지정하는 설정입니다. 기본값은 `'#007aff'`입니다.
+Each configuration is set as a form of `BROWSER_CONFIG.isNotSupportingX2 = true;`.
+* `isNotSupportingX2` Set `true` in case of disabling scaling image pixels twice to support retina displays.
+* `isUsingFlashCanvasPro` Set `true` to use FlashCanvas Pro. Purchase of FlashCanvas Pro license is required. http://flashcanvas.net/purchase
+* `fixScriptsFolderPath` Set the folder where BROWSER-FIX scripts are stored.
+* `loadingBarColor` Set the color of the loading bar during networking such as REQUEST. Its default value is `'#007aff'`.
 
 ## UPPERCASE.JS-COMMON
 Provides OOP support and various features.
