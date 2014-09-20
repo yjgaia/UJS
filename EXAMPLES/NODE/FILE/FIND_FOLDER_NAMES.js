@@ -13,6 +13,10 @@ TEST('FIND_FOLDER_NAMES', function(ok) {
 	}, {
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
+		},
+
+		notExists : function() {
+			console.log('NOT EXISTS!');
 		}
 	}), ['subFolder1', 'subFolder2']]));
 
@@ -20,6 +24,10 @@ TEST('FIND_FOLDER_NAMES', function(ok) {
 
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
+		},
+
+		notExists : function() {
+			console.log('NOT EXISTS!');
 		},
 
 		success : function(fileNames) {

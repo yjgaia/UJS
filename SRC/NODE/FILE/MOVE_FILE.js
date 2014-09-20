@@ -11,6 +11,7 @@ global.MOVE_FILE = MOVE_FILE = METHOD({
 		//OPTIONAL: params.isSync
 		//REQUIRED: callbackOrHandlers
 		//REQUIRED: callbackOrHandlers.success
+		//OPTIONAL: callbackOrHandlers.notExistsHandler
 		//OPTIONAL: callbackOrHandlers.error
 
 		var
@@ -23,6 +24,9 @@ global.MOVE_FILE = MOVE_FILE = METHOD({
 		// callback.
 		callback,
 
+		// not exists handler.
+		notExistsHandler,
+
 		// error handler.
 		errorHandler;
 
@@ -30,11 +34,13 @@ global.MOVE_FILE = MOVE_FILE = METHOD({
 			callback = callbackOrHandlers;
 		} else {
 			callback = callbackOrHandlers.success;
+			notExistsHandler = callbackOrHandlers.notExists;
 			errorHandler = callbackOrHandlers.error;
 		}
 
 		COPY_FILE(params, {
 			error : errorHandler,
+			notExists : notExistsHandler,
 			success : function() {
 
 				REMOVE_FILE({
@@ -42,6 +48,7 @@ global.MOVE_FILE = MOVE_FILE = METHOD({
 					isSync : isSync
 				}, {
 					error : errorHandler,
+					notExists : notExistsHandler,
 					success : callback
 				});
 			}

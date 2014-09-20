@@ -12,8 +12,13 @@ TEST('MOVE_FILE', function(ok) {
 		to : 'testFolder/test2.txt',
 		isSync : true
 	}, {
+
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
+		},
+
+		notExists : function() {
+			console.log('NOT EXISTS!');
 		}
 	});
 
@@ -29,6 +34,10 @@ TEST('MOVE_FILE', function(ok) {
 
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
+		},
+
+		notExists : function() {
+			console.log('NOT EXISTS!');
 		},
 
 		success : function() {

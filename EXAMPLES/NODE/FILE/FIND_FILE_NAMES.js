@@ -13,6 +13,10 @@ TEST('FIND_FILE_NAMES', function(ok) {
 	}, {
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
+		},
+
+		notExists : function() {
+			console.log('NOT EXISTS!');
 		}
 	}), ['test1']]));
 
@@ -20,6 +24,10 @@ TEST('FIND_FILE_NAMES', function(ok) {
 
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
+		},
+
+		notExists : function() {
+			console.log('NOT EXISTS!');
 		},
 
 		success : function(fileNames) {

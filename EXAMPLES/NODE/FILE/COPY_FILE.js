@@ -12,8 +12,13 @@ TEST('COPY_FILE', function(ok) {
 		to : 'test2.txt',
 		isSync : true
 	}, {
+
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
+		},
+
+		notExists : function() {
+			console.log('NOT EXISTS!');
 		}
 	});
 
@@ -29,6 +34,10 @@ TEST('COPY_FILE', function(ok) {
 
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
+		},
+
+		notExists : function() {
+			console.log('NOT EXISTS!');
 		},
 
 		success : function() {

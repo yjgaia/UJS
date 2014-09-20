@@ -20,6 +20,7 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 			//OPTIONAL: params.isSync
 			//OPTIONAL: callbackOrHandlers
 			//OPTIONAL: callbackOrHandlers.success
+			//OPTIONAL: callbackOrHandlers.notExistsHandler
 			//OPTIONAL: callbackOrHandlers.error
 
 			var
@@ -35,6 +36,9 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 			// callback.
 			callback,
 
+			// not exists handler.
+			notExistsHandler,
+
 			// error handler.
 			errorHandler;
 
@@ -43,6 +47,7 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 					callback = callbackOrHandlers;
 				} else {
 					callback = callbackOrHandlers.success;
+					notExistsHandler = callbackOrHandlers.notExists;
 					errorHandler = callbackOrHandlers.error;
 				}
 			}
@@ -59,32 +64,45 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 					// when normal mode
 					if (isSync !== true) {
 
-						RUN(function() {
+						CHECK_IS_EXISTS_FILE(path, function(isExists) {
 
 							var
 							// reader
-							reader = fs.createReadStream(from);
+							reader;
 
-							reader.pipe(fs.createWriteStream(to));
+							if (isExists === true) {
 
-							reader.on('error', function(error) {
+								reader = fs.createReadStream(from);
 
-								var
-								// error msg
-								errorMsg = error.toString();
+								reader.pipe(fs.createWriteStream(to));
 
-								if (errorHandler !== undefined) {
-									errorHandler(errorMsg);
+								reader.on('error', function(error) {
+
+									var
+									// error msg
+									errorMsg = error.toString();
+
+									if (errorHandler !== undefined) {
+										errorHandler(errorMsg);
+									} else {
+										console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR:' + errorMsg));
+									}
+								});
+
+								reader.on('end', function() {
+									if (callback !== undefined) {
+										callback();
+									}
+								});
+
+							} else {
+
+								if (notExistsHandler !== undefined) {
+									notExistsHandler(path);
 								} else {
-									console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR:' + errorMsg));
+									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-COPY_FILE] NOT EXISTS! <' + path + '>'));
 								}
-							});
-
-							reader.on('end', function() {
-								if (callback !== undefined) {
-									callback();
-								}
-							});
+							}
 						});
 					}
 
@@ -99,7 +117,24 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 
 							try {
 
-								fs.writeFileSync(to, fs.readFileSync(from));
+								if (CHECK_IS_EXISTS_FILE({
+									path : path,
+									isSync : true
+								}) === true) {
+
+									fs.writeFileSync(to, fs.readFileSync(from));
+
+								} else {
+
+									if (notExistsHandler !== undefined) {
+										notExistsHandler(path);
+									} else {
+										console.log(CONSOLE_YELLOW('[UPPERCASE.JS-COPY_FILE] NOT EXISTS! <' + path + '>'));
+									}
+
+									// do not run callback.
+									return;
+								}
 
 							} catch(error) {
 
