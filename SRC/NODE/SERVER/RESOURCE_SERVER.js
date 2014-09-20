@@ -87,7 +87,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 			//OPTIONAL: portOrParams.securedPort
 			//OPTIONAL: portOrParams.securedKeyFilePath
 			//OPTIONAL: portOrParams.securedCertFilePath
-			//OPTIONAL: portOrParams.noParsingNativeReqURIs
+			//OPTIONAL: portOrParams.noParsingParamsURI
 			//OPTIONAL: portOrParams.rootPath
 			//OPTIONAL: portOrParams.version
 			//OPTIONAL: requestListenerOrHandlers

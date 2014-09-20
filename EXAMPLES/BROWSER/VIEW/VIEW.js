@@ -6,12 +6,10 @@ TEST('VIEW', function(ok) {
 	TestView = CLASS({
 
 		preset : function() {
-			'use strict';
 			return VIEW;
 		},
 
 		init : function(inner, self) {
-			'use strict';
 
 			var
 			// change params.
