@@ -64,7 +64,7 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 					// when normal mode
 					if (isSync !== true) {
 
-						CHECK_IS_EXISTS_FILE(path, function(isExists) {
+						CHECK_IS_EXISTS_FILE(from, function(isExists) {
 
 							var
 							// reader
@@ -98,9 +98,9 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 							} else {
 
 								if (notExistsHandler !== undefined) {
-									notExistsHandler(path);
+									notExistsHandler(from);
 								} else {
-									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-COPY_FILE] NOT EXISTS! <' + path + '>'));
+									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-COPY_FILE] NOT EXISTS! <' + from + '>'));
 								}
 							}
 						});
@@ -118,7 +118,7 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 							try {
 
 								if (CHECK_IS_EXISTS_FILE({
-									path : path,
+									path : from,
 									isSync : true
 								}) === true) {
 
@@ -127,9 +127,9 @@ global.COPY_FILE = COPY_FILE = METHOD(function() {
 								} else {
 
 									if (notExistsHandler !== undefined) {
-										notExistsHandler(path);
+										notExistsHandler(from);
 									} else {
-										console.log(CONSOLE_YELLOW('[UPPERCASE.JS-COPY_FILE] NOT EXISTS! <' + path + '>'));
+										console.log(CONSOLE_YELLOW('[UPPERCASE.JS-COPY_FILE] NOT EXISTS! <' + from + '>'));
 									}
 
 									// do not run callback.
