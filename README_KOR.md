@@ -439,6 +439,39 @@ Titanium 기반 프로젝트에서 사용 가능한 다양한 기능들을 제�
 Titanium를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-TITANIUM를 사용해보세요.
 
 * UPPERCASE.JS-COMMON.js가 필요합니다.
+
+### Titanium에서 사용하기
+* 스크립트를 불러오기 이전에 `global = {};`로 글로벌 변수를 설정합니다.
+* `INIT_OBJECTS();`은 한번만 실행합니다.
+
+```javascript
+// global
+global = {};
+
+// load UPPERCASE.JS.
+require('UPPERCASE.JS-COMMON');
+require('UPPERCASE.JS-TITANIUM');
+
+if (Ti.Platform.name === 'mobileweb') {
+	require('UPPERCASE.JS-BROWSER');
+}
+
+// declare.
+var
+// method
+method = METHOD({
+	run : function() {
+		console.log('HELLO UPPERCASE.JS!');
+	}
+});
+
+// init all singleton classes.
+INIT_OBJECTS();
+
+// execute.
+method();
+```
+
 * 상세 명세는 준비중입니다.
 
 ## License

@@ -442,6 +442,39 @@ Provide enormous features useful for Titanium-based projects.
 UPPERCASE.JS-TITANIUM is for those who look for utilities on Titanium.
 
 * UPPERCASE.JS-COMMON.js is required.
+
+### How to use on Titanium
+* Set `global = window;` to prepare a global variable prior to loading scripts.
+* `INIT_OBJECTS();` is executed once.
+
+```javascript
+// global
+global = {};
+
+// load UPPERCASE.JS.
+require('UPPERCASE.JS-COMMON');
+require('UPPERCASE.JS-TITANIUM');
+
+if (Ti.Platform.name === 'mobileweb') {
+	require('UPPERCASE.JS-BROWSER');
+}
+
+// declare.
+var
+// method
+method = METHOD({
+	run : function() {
+		console.log('HELLO UPPERCASE.JS!');
+	}
+});
+
+// init all singleton classes.
+INIT_OBJECTS();
+
+// execute.
+method();
+```
+
 * More details are coming soon.
 
 ## License
