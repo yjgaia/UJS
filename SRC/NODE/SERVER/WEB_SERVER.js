@@ -282,7 +282,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 
 									headers['Content-Encoding'] = 'gzip';
 
-									zlib.gzip(buffer !== undefined ? buffer : content, function(error, buffer) {
+									zlib.gzip(buffer !== undefined ? buffer : String(content), function(error, buffer) {
 										nativeRes.writeHead(statusCode, headers);
 										nativeRes.end(buffer, encoding);
 									});
@@ -291,7 +291,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 								// when not encoding
 								else {
 									nativeRes.writeHead(statusCode, headers);
-									nativeRes.end(buffer !== undefined ? buffer : content, encoding);
+									nativeRes.end(buffer !== undefined ? buffer : String(content), encoding);
 								}
 
 								requestInfo.isResponsed = true;
