@@ -6,7 +6,7 @@ global.SOUND = SOUND = CLASS(function(cls) {
 
 	var
 	// Audio Context
-	AudioContext = window.webkitAudioContext || window.mozAudioContext || window.oAudioContext || window.msAudioContext || window.AudioContext,
+	AudioContext = global.webkitAudioContext || global.mozAudioContext || global.oAudioContext || global.msAudioContext || global.AudioContext,
 
 	// audio context
 	audioContext;

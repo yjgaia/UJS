@@ -18,10 +18,10 @@ global.REQUEST = REQUEST = METHOD({
 
 		var
 		// host
-		host = params.host === undefined ? global.location.hostname : params.host,
+		host = params.host === undefined ? BROWSER_CONFIG.host : params.host,
 
 		// port
-		port = params.port === undefined ? global.location.port : params.port,
+		port = params.port === undefined ? BROWSER_CONFIG.host : params.port,
 
 		// is secure
 		isSecure = params.isSecure,

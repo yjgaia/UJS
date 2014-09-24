@@ -61,8 +61,8 @@ global.LOAD = LOAD = METHOD({
 
 			if (url === undefined) {
 
-				host = urlOrParams.host === undefined ? global.location.hostname : urlOrParams.host;
-				port = urlOrParams.port === undefined ? global.location.port : urlOrParams.port;
+				host = urlOrParams.host === undefined ? BROWSER_CONFIG.host : urlOrParams.host;
+				port = urlOrParams.port === undefined ? BROWSER_CONFIG.port : urlOrParams.port;
 				isSecure = urlOrParams.isSecure;
 				uri = urlOrParams.uri;
 				paramStr = urlOrParams.paramStr;
