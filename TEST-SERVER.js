@@ -37,13 +37,23 @@ RUN(function() {
 
 			console.log(method, params);
 
-			response('Request DONE!');
+			response({
+				content : 'Request DONE!',
+				headers : {
+					'Access-Control-Allow-Origin' : '*'
+				}
+			});
 
 		} else if (uri === 'AJAX_JSON_TEST') {
 
 			console.log(method, params);
 
-			response('{ "thisis" : "JSON" }');
+			response({
+				content : '{ "thisis" : "JSON" }',
+				headers : {
+					'Access-Control-Allow-Origin' : '*'
+				}
+			});
 		}
 	});
 
