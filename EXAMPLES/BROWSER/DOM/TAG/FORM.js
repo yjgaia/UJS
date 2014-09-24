@@ -62,6 +62,13 @@ TEST('FORM', function(ok) {
 				}), TEXTAREA({
 					name : 'profile'
 				})]
+			}), A({
+				c : 'Clear Name',
+				on : {
+					tap : function() {
+						input.setValue('');
+					}
+				}
 			})]
 		})
 	}).appendTo(BODY);

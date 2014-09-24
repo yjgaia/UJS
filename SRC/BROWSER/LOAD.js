@@ -82,14 +82,22 @@ global.LOAD = LOAD = METHOD({
 		scriptEl = document.createElement('script');
 		scriptEl.src = (url.indexOf('?') === -1 ? url + '?' : url + '&') + (isNoCache !== true ? (CONFIG.version !== undefined ? 'version=' + CONFIG.version : '') : (new Date()).getTime());
 
-		scriptEl.onload = function(e) {
+		scriptEl.onload = function() {
 			READY.loaded();
 		};
 
 		scriptEl.onreadystatechange = function() {
-			DELAY(function() {
-				READY.loaded();
-			});
+
+			var
+			// ready state
+			readyState = this.readyState;
+
+			if (readyState === 'loaded' || readyState === 'complete') {
+
+				DELAY(function() {
+					READY.loaded();
+				});
+			}
 		};
 
 		try {

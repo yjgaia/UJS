@@ -36,26 +36,23 @@ OVERRIDE(IFRAME, function(origin) {
 				src = params.src;
 			}
 
-			if (IE.version <= 7) {
+			if (name !== undefined) {
 
-				if (name !== undefined) {
+				inner.setEl(document.createElement('<iframe name="' + name + '" />'));
 
-					inner.setEl(document.createElement('<iframe name="' + name + '" />'));
+				inner.setAttr({
+					name : 'allowTransparency',
+					value : true
+				});
 
-					inner.setAttr({
-						name : 'allowTransparency',
-						value : true
-					});
+				inner.setAttr({
+					name : 'frameBorder',
+					value : 0
+				});
+			}
 
-					inner.setAttr({
-						name : 'frameBorder',
-						value : 0
-					});
-				}
-
-				if (style !== undefined) {
-					self.addStyle(style);
-				}
+			if (style !== undefined) {
+				self.addStyle(style);
 			}
 
 			OVERRIDE(self.setSrc, function(origin) {
