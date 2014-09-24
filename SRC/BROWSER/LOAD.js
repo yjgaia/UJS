@@ -48,7 +48,10 @@ global.LOAD = LOAD = METHOD({
 		scriptEls,
 
 		// script el
-		scriptEl;
+		scriptEl,
+
+		// is loaded
+		isLoaded;
 
 		if (CHECK_IS_DATA(urlOrParams) !== true) {
 			url = urlOrParams;
@@ -83,7 +86,12 @@ global.LOAD = LOAD = METHOD({
 		scriptEl.src = (url.indexOf('?') === -1 ? url + '?' : url + '&') + (isNoCache !== true ? (CONFIG.version !== undefined ? 'version=' + CONFIG.version : '') : (new Date()).getTime());
 
 		scriptEl.onload = function() {
-			READY.loaded();
+
+			if (isLoaded !== true) {
+				isLoaded = true;
+
+				READY.loaded();
+			}
 		};
 
 		scriptEl.onreadystatechange = function() {
@@ -92,7 +100,8 @@ global.LOAD = LOAD = METHOD({
 			// ready state
 			readyState = this.readyState;
 
-			if (readyState === 'loaded' || readyState === 'complete') {
+			if (isLoaded !== true && (readyState === 'loaded' || readyState === 'complete')) {
+				isLoaded = true;
 
 				DELAY(function() {
 					READY.loaded();

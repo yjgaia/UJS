@@ -120,16 +120,19 @@ RUN(function() {
 	if (IE.version <= 5.5) {
 		loadFixScript('BROWSER/DOM/TAG/TEXTAREA');
 	}
-	
+
 	// fix IFRAME.
 	if (IE.version <= 7) {
 		loadFixScript('BROWSER/DOM/TAG/IFRAME');
 	}
-	
+
 	// fix FORM.
 	if (IE.version <= 7) {
 		loadFixScript('BROWSER/DOM/TAG/FORM');
 	}
+
+	// fix REQUEST.
+	loadFixScript('BROWSER/REQUEST/REQUEST');
 
 	// load flash canvas and fix CANVAS.
 	if (RUN(function() {
@@ -165,7 +168,7 @@ RUN(function() {
 	 */
 
 	// fix EXPORT_IMG_TYPE.
-	if (IE.version <= 6) {
+	if (IE.version <= 10) {
 		loadFixScript('BROWSER/GRAPHIC/EXPORT_IMG_TYPE');
 	}
 

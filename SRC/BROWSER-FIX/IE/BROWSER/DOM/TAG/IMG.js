@@ -43,10 +43,12 @@ OVERRIDE(IMG, function(origin) {
 					};
 				});
 
-				setSrc(self.getSrc());
+				if (self.getSrc() !== undefined) {
+					setSrc(self.getSrc());
+				}
 			}
 
-			if (IE.version <= 6 && self.getSrc().indexOf('.gif') === -1) {
+			if (IE.version <= 6 && self.getSrc() !== undefined && self.getSrc().indexOf('.gif') === -1) {
 
 				// fix IE PNG transparent background bug.
 				ADD_STYLE({

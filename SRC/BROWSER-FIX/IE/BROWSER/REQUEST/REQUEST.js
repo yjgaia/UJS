@@ -82,7 +82,11 @@ global.REQUEST = REQUEST = METHOD({
 			loadingBar = LOADING_BAR();
 		}
 
-		req = new XMLHttpRequest();
+		try {
+			req = new ActiveXObject('Msxml2.XMLHTTP');
+		} catch (e1) {
+			req = new ActiveXObject('Microsoft.XMLHTTP');
+		}
 
 		req.onreadystatechange = function() {
 
