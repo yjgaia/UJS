@@ -21,7 +21,7 @@ global.REQUEST = REQUEST = METHOD({
 		host = params.host === undefined ? BROWSER_CONFIG.host : params.host,
 
 		// port
-		port = params.port === undefined ? BROWSER_CONFIG.host : params.port,
+		port = params.port === undefined ? BROWSER_CONFIG.port : params.port,
 
 		// is secure
 		isSecure = params.isSecure,
