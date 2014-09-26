@@ -10,12 +10,12 @@ OVERRIDE(EVENT_LOW, function(origin) {
 			return origin;
 		},
 
-		init : function(inner, self, nameOrParams, func) {
+		init : function(inner, self, nameOrParams, eventHandler) {
 			//REQUIRED: nameOrParams
 			//OPTIONAL: nameOrParams.node
 			//OPTIONAL: nameOrParams.lowNode
 			//REQUIRED: nameOrParams.name
-			//REQUIRED: func
+			//REQUIRED: eventHandler
 
 			var
 			// name
@@ -44,7 +44,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				hashchangeInterval = setInterval(function() {
 					if (location.hash !== hash) {
 						hash = location.hash;
-						func(EMPTY_E());
+						eventHandler(EMPTY_E());
 					}
 				}, 100);
 

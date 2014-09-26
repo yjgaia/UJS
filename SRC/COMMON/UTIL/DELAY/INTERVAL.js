@@ -3,7 +3,8 @@
  */
 global.INTERVAL = INTERVAL = CLASS({
 
-	init : function(inner, self, seconds, func) {'use strict';
+	init : function(inner, self, seconds, func) {
+		'use strict';
 		//REQUIRED: seconds
 		//OPTIONAL: func
 
@@ -20,7 +21,9 @@ global.INTERVAL = INTERVAL = CLASS({
 		}
 
 		interval = setInterval(function() {
-			func(self);
+			if (func(self) === false) {
+				remove();
+			}
 		}, seconds === 0 ? 1 : seconds * 1000);
 
 		self.remove = remove = function() {

@@ -12,7 +12,10 @@ global.EVENT = EVENT = CLASS(function(cls) {
 	fireAll,
 
 	// remove all.
-	removeAll;
+	removeAll,
+
+	// remove.
+	remove;
 
 	cls.fireAll = fireAll = function(nameOrParams) {
 		//REQUIRED: nameOrParams
@@ -137,14 +140,59 @@ global.EVENT = EVENT = CLASS(function(cls) {
 		}
 	};
 
+	cls.remove = remove = function(params, eventHandler) {
+		//REQUIRED: params
+		//OPTIONAL: params.node
+		//REQUIRED: params.name
+		//REQUIRED: eventHandler
+
+		var
+		// node
+		node = params.node,
+
+		// name
+		name = params.name,
+
+		// node id
+		nodeId,
+
+		// event map
+		eventMap,
+
+		// events
+		events;
+
+		if (node === undefined) {
+			nodeId = 'body';
+		} else {
+			nodeId = node.id;
+		}
+
+		eventMap = eventMaps[nodeId];
+
+		if (eventMap !== undefined) {
+
+			events = eventMap[name];
+
+			if (events !== undefined) {
+
+				EACH(events, function(evt) {
+					if (evt.getEventHandler() === eventHandler) {
+						evt.remove();
+					}
+				});
+			}
+		}
+	};
+
 	return {
 
-		init : function(inner, self, nameOrParams, func) {
+		init : function(inner, self, nameOrParams, eventHandler) {
 			//REQUIRED: nameOrParams
 			//OPTIONAL: nameOrParams.node
 			//OPTIONAL: nameOrParams.lowNode
 			//REQUIRED: nameOrParams.name
-			//REQUIRED: func
+			//REQUIRED: eventHandler
 
 			var
 			// node
@@ -178,7 +226,10 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			remove,
 
 			// fire.
-			fire;
+			fire,
+			
+			// get event handler.
+			getEventHandler;
 
 			// init params.
 			if (CHECK_IS_DATA(nameOrParams) !== true) {
@@ -268,7 +319,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 								e.stopDefault();
 
-								return func(e, node);
+								return eventHandler(e, node);
 							}
 						}
 					});
@@ -289,7 +340,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 						node : node,
 						lowNode : lowNode,
 						name : 'click'
-					}, func);
+					}, eventHandler);
 
 					self.remove = remove = function() {
 
@@ -314,7 +365,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					} else {
 
 						if (Date.now() - lastTapTime < 600) {
-							func(e, node);
+							eventHandler(e, node);
 						}
 
 						lastTapTime = undefined;
@@ -339,7 +390,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					node : node,
 					lowNode : lowNode,
 					name : 'mousedown'
-				}, func);
+				}, eventHandler);
 
 				self.remove = remove = function() {
 
@@ -356,7 +407,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					node : node,
 					lowNode : lowNode,
 					name : 'mousemove'
-				}, func);
+				}, eventHandler);
 
 				self.remove = remove = function() {
 
@@ -373,7 +424,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					node : node,
 					lowNode : lowNode,
 					name : 'mouseup'
-				}, func);
+				}, eventHandler);
 
 				self.remove = remove = function() {
 
@@ -391,14 +442,14 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					node : node,
 					lowNode : lowNode,
 					name : 'touchstart'
-				}, func);
+				}, eventHandler);
 
 				// by mouse
 				eventLow2 = EVENT_LOW({
 					node : node,
 					lowNode : lowNode,
 					name : 'mouseover'
-				}, func);
+				}, eventHandler);
 
 				self.remove = remove = function() {
 
@@ -417,14 +468,14 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					node : node,
 					lowNode : lowNode,
 					name : 'touchend'
-				}, func);
+				}, eventHandler);
 
 				// by mouse
 				eventLow2 = EVENT_LOW({
 					node : node,
 					lowNode : lowNode,
 					name : 'mouseout'
-				}, func);
+				}, eventHandler);
 
 				self.remove = remove = function() {
 
@@ -446,7 +497,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			// other events
 			else {
 
-				eventLow1 = EVENT_LOW(nameOrParams, func);
+				eventLow1 = EVENT_LOW(nameOrParams, eventHandler);
 
 				self.remove = remove = function() {
 
@@ -459,7 +510,11 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			self.fire = fire = function() {
 
 				// pass empty e object.
-				return func(EMPTY_E(), node);
+				return eventHandler(EMPTY_E(), node);
+			};
+
+			self.getEventHandler = getEventHandler = function() {
+				return eventHandler;
 			};
 		}
 	};

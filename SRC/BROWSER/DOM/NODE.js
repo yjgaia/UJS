@@ -106,6 +106,9 @@ global.NODE = NODE = CLASS(function() {
 			// on.
 			on,
 
+			// off.
+			off,
+
 			// add style.
 			addStyle,
 
@@ -538,6 +541,16 @@ global.NODE = NODE = CLASS(function() {
 				//REQUIRED: eventHandler
 
 				EVENT({
+					node : self,
+					name : eventName
+				}, eventHandler);
+			};
+
+			self.off = off = function(eventName, eventHandler) {
+				//REQUIRED: eventName
+				//OPTIONAL: eventHandler
+
+				EVENT.remove({
 					node : self,
 					name : eventName
 				}, eventHandler);

@@ -3,13 +3,13 @@
  */
 global.EVENT_LOW = EVENT_LOW = CLASS({
 
-	init : function(inner, self, nameOrParams, func) {
+	init : function(inner, self, nameOrParams, eventHandler) {
 		'use strict';
 		//REQUIRED: nameOrParams
 		//OPTIONAL: nameOrParams.node
 		//OPTIONAL: nameOrParams.lowNode
 		//REQUIRED: nameOrParams.name
-		//REQUIRED: func
+		//REQUIRED: eventHandler
 
 		var
 		// node
@@ -24,8 +24,8 @@ global.EVENT_LOW = EVENT_LOW = CLASS({
 		// el
 		el,
 
-		// inner func.
-		innerFunc,
+		// inner handler.
+		innerHandler,
 
 		// remove.
 		remove;
@@ -51,19 +51,19 @@ global.EVENT_LOW = EVENT_LOW = CLASS({
 			el = global;
 		}
 
-		inner.innerFunc = innerFunc = function(e) {
+		inner.innerHandler = innerHandler = function(e) {
 			//REQUIRED: e
 
-			return func(E({
+			return eventHandler(E({
 				e : e,
 				el : el
 			}), node);
 		};
 
-		el.addEventListener(name, innerFunc, false);
+		el.addEventListener(name, innerHandler, false);
 
 		self.remove = remove = function() {
-			el.removeEventListener(name, innerFunc, false);
+			el.removeEventListener(name, innerHandler, false);
 		};
 	}
 });

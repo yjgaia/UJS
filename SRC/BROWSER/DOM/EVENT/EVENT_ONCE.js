@@ -3,18 +3,18 @@
  */
 global.EVENT_ONCE = EVENT_ONCE = CLASS({
 
-	init : function(inner, self, nameOrParams, func) {
+	init : function(inner, self, nameOrParams, eventHandler) {
 		'use strict';
 		//REQUIRED: nameOrParams
 		//OPTIONAL: nameOrParams.node
 		//OPTIONAL: nameOrParams.lowNode
 		//REQUIRED: nameOrParams.name
-		//REQUIRED: func
+		//REQUIRED: eventHandler
 
 		var
 		// evt
 		evt = EVENT(nameOrParams, function(e, node) {
-			func(e, node);
+			eventHandler(e, node);
 			evt.remove();
 		}),
 

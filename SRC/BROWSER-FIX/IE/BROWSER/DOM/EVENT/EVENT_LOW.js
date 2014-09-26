@@ -48,20 +48,20 @@ OVERRIDE(EVENT_LOW, function(origin) {
 
 			// if is not exists addEventListener, link to attachEvent.
 			if (el.addEventListener === undefined) {
-				el.addEventListener = function(name, func, b) {
-					el.attachEvent('on' + name, func);
+				el.addEventListener = function(name, eventHandler, b) {
+					el.attachEvent('on' + name, eventHandler);
 				};
 			}
 
 			return origin;
 		},
 
-		init : function(inner, self, nameOrParams, func) {
+		init : function(inner, self, nameOrParams, eventHandler) {
 			//REQUIRED: nameOrParams
 			//OPTIONAL: nameOrParams.node
 			//OPTIONAL: nameOrParams.lowNode
 			//REQUIRED: nameOrParams.name
-			//REQUIRED: func
+			//REQUIRED: eventHandler
 
 			var
 			// node
@@ -82,8 +82,8 @@ OVERRIDE(EVENT_LOW, function(origin) {
 			// hashchange interval
 			hashchangeInterval,
 
-			// inner func.
-			innerFunc = inner.innerFunc,
+			// inner handler.
+			innerHandler = inner.innerHandler,
 
 			// remove.
 			remove;
@@ -124,7 +124,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 							clearInterval(interval);
 
 							try {
-								innerFunc();
+								innerHandler();
 							} catch(e) {
 								// ignore.
 							}
@@ -143,7 +143,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 						if (name === 'hashchange' && global.onhashchange === undefined) {
 							origin();
 						} else {
-							el.detachEvent('on' + name, innerFunc);
+							el.detachEvent('on' + name, innerHandler);
 						}
 					};
 				});
@@ -155,12 +155,12 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				// touchstart link to MSPointerDown
 				if (name === 'touchstart') {
 
-					el.addEventListener('MSPointerDown', innerFunc);
+					el.addEventListener('MSPointerDown', innerHandler);
 
 					OVERRIDE(self.remove, function(origin) {
 
 						self.remove = remove = function() {
-							el.removeEventListener('MSPointerDown', innerFunc);
+							el.removeEventListener('MSPointerDown', innerHandler);
 						};
 					});
 				}
@@ -168,12 +168,12 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				// touchmove link to MSPointerMove
 				else if (name === 'touchmove') {
 
-					el.addEventListener('MSPointerMove', innerFunc);
+					el.addEventListener('MSPointerMove', innerHandler);
 
 					OVERRIDE(self.remove, function(origin) {
 
 						self.remove = remove = function() {
-							el.removeEventListener('MSPointerMove', innerFunc);
+							el.removeEventListener('MSPointerMove', innerHandler);
 						};
 					});
 				}
@@ -181,12 +181,12 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				// touchend link to MSPointerUp
 				else if (name === 'touchend') {
 
-					el.addEventListener('MSPointerUp', innerFunc);
+					el.addEventListener('MSPointerUp', innerHandler);
 
 					OVERRIDE(self.remove, function(origin) {
 
 						self.remove = remove = function() {
-							el.removeEventListener('MSPointerUp', innerFunc);
+							el.removeEventListener('MSPointerUp', innerHandler);
 						};
 					});
 				}
@@ -199,7 +199,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				hashchangeInterval = setInterval(function() {
 					if (location.hash !== hash) {
 						hash = location.hash;
-						func();
+						handler();
 					}
 				}, 100);
 
