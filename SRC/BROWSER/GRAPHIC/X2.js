@@ -10,6 +10,9 @@ global.X2 = X2 = OBJECT({
 		// X2 img data set
 		x2ImgDataSet = {},
 
+		// check is cached.
+		checkIsCached,
+
 		// export X2 img data.
 		exportX2ImgData,
 
@@ -19,48 +22,53 @@ global.X2 = X2 = OBJECT({
 		// switch background.
 		switchBG;
 
+		self.checkIsCached = checkIsCached = function(uri) {
+			return x2ImgDataSet[uri] !== undefined;
+		};
+
 		exportX2ImgData = function(img, callback) {
 
-			EXPORT_IMG_DATA(img, function(imgData) {
+			var
+			// uri
+			uri = img.getSrc();
 
-				var
-				// uri
-				uri = img.getSrc(),
+			// aleady exported.
+			if (checkIsCached(uri) === true) {
+				callback(x2ImgDataSet[uri]);
+			}
 
-				// X2 img data
-				x2ImgData = x2ImgDataSet[uri],
+			// export.
+			else {
 
-				// width
-				width,
+				EXPORT_IMG_DATA(img, function(imgData) {
 
-				// height
-				height,
+					var
+					// X2 img data
+					x2ImgData,
 
-				// data
-				data,
+					// width
+					width,
 
-				// X2 canvas
-				x2Canvas,
+					// height
+					height,
 
-				// X2 context
-				x2Context,
+					// data
+					data,
 
-				// X2 data
-				x2Data,
+					// X2 canvas
+					x2Canvas,
 
-				// X2 img data url
-				x2ImgDataURL,
+					// X2 context
+					x2Context,
 
-				// extras
-				i, j, k, l;
+					// X2 data
+					x2Data,
 
-				// aleady exported.
-				if (x2ImgData !== undefined) {
-					callback(x2ImgData);
-				}
+					// X2 img data url
+					x2ImgDataURL,
 
-				// export.
-				else {
+					// extras
+					i, j, k, l;
 
 					width = imgData.width;
 					height = imgData.height;
@@ -117,8 +125,8 @@ global.X2 = X2 = OBJECT({
 						width : width,
 						height : height
 					});
-				}
-			});
+				});
+			}
 		};
 
 		self.switchImg = switchImg = function(img) {

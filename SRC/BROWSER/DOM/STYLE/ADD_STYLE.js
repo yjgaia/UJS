@@ -66,19 +66,30 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 			// switch bg to X2.
 			switchBGToX2 = function(uri) {
 
-				EXPORT_IMG_TYPE(IMG({
-					src : uri
-				}), function(type) {
+				if (X2.checkIsCached(uri) === true) {
 
-					if (type === 'png' || type === 'gif' || type === 'bmp') {
+					// background switch to X2 image.
+					X2.switchBG({
+						node : node,
+						uri : uri
+					});
 
-						// background switch to X2 image.
-						X2.switchBG({
-							node : node,
-							uri : uri
-						});
-					}
-				});
+				} else {
+
+					EXPORT_IMG_TYPE(IMG({
+						src : uri
+					}), function(type) {
+
+						if (type === 'png' || type === 'gif' || type === 'bmp') {
+
+							// background switch to X2 image.
+							X2.switchBG({
+								node : node,
+								uri : uri
+							});
+						}
+					});
+				}
 			};
 
 			EACH(style, function(value, name) {
@@ -213,7 +224,20 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 
 							// assume number value is px value.
 							else if ( typeof value === 'number' && name !== 'zIndex' && name !== 'opacity') {
+
 								el.style[name] = value + 'px';
+
+								// X2 support.
+								if (BROWSER_CONFIG.isNotSupportingX2 !== true &&
+
+								// after INIT_OBJECTS(), check is hd display.
+								INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {
+
+									if (name === 'width' || name === 'height') {
+										el.removeAttribute('width');
+										el.removeAttribute('height');
+									}
+								}
 							}
 
 							// set background X2 image.
@@ -246,13 +270,14 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 								if (BROWSER_CONFIG.isNotSupportingX2 !== true &&
 
 								// after INIT_OBJECTS(), check is hd display.
-								INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true
+								INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {
 
-								// when background.
-								&& name === 'background' && value.length >= 7 && value.substring(0, 4) === 'url(') {
+									// when background.
+									if (name === 'background' && value.length >= 7 && value.substring(0, 4) === 'url(') {
 
-									// background switch to X2 image.
-									switchBGToX2(value.charAt(4) === '\'' || value.charAt(4) === '"' ? value.substring(5, value.length - 2) : value.substring(4, value.length - 1));
+										// background switch to X2 image.
+										switchBGToX2(value.charAt(4) === '\'' || value.charAt(4) === '"' ? value.substring(5, value.length - 2) : value.substring(4, value.length - 1));
+									}
 								}
 
 								// cross browser transform

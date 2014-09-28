@@ -113,16 +113,24 @@ global.IMG = IMG = CLASS({
 			// after INIT_OBJECTS(), check is hd display.
 			INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {
 
-				EXPORT_IMG_TYPE(self, function(type) {
+				if (X2.checkIsCached(src) === true) {
 
-					if (type === 'png' || type === 'gif' || type === 'bmp') {
+					// switch X2 img.
+					X2.switchImg(self);
 
-						isX2Switched = true;
+				} else {
 
-						// switch X2 img.
-						X2.switchImg(self);
-					}
-				});
+					EXPORT_IMG_TYPE(self, function(type) {
+
+						if (type === 'png' || type === 'gif' || type === 'bmp') {
+
+							isX2Switched = true;
+
+							// switch X2 img.
+							X2.switchImg(self);
+						}
+					});
+				}
 			}
 		};
 
