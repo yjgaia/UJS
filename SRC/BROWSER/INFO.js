@@ -81,7 +81,10 @@ global.INFO = INFO = OBJECT({
 
 		self.getBrowserInfo = getBrowserInfo = function() {
 			// using bowser. (https://github.com/ded/bowser)
-			return bowser;
+			return {
+				name : bowser.name,
+				version : REAL(bowser.version)
+			};
 		};
 	}
 });
