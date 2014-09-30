@@ -33,6 +33,8 @@ global.INPUT = INPUT = CLASS(function(cls) {
 			//OPTIONAL: params.type
 			//OPTIONAL: params.placeholder
 			//OPTIONAL: params.value
+			//OPTIONAL: params.capture
+			//OPTIONAL: params.accept
 			//OPTIONAL: params.isMultiple
 
 			var
@@ -44,6 +46,12 @@ global.INPUT = INPUT = CLASS(function(cls) {
 
 			// placeholder
 			placeholder,
+
+			// capture
+			capture,
+
+			// accept
+			accept,
 
 			// is multiple
 			isMultiple,
@@ -77,6 +85,8 @@ global.INPUT = INPUT = CLASS(function(cls) {
 				name = params.name;
 				type = params.type;
 				placeholder = params.placeholder;
+				capture = params.capture;
+				accept = params.accept;
 				isMultiple = params.isMultiple;
 			}
 
@@ -100,6 +110,20 @@ global.INPUT = INPUT = CLASS(function(cls) {
 					inner.setAttr({
 						name : 'placeholder',
 						value : placeholder
+					});
+				}
+				
+				if (capture !== undefined) {
+					inner.setAttr({
+						name : 'capture',
+						value : capture
+					});
+				}
+				
+				if (accept !== undefined) {
+					inner.setAttr({
+						name : 'accept',
+						value : accept
 					});
 				}
 
