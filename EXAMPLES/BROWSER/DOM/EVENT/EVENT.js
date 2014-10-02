@@ -51,6 +51,11 @@ TEST('EVENT', function(ok) {
 
 		console.log('tap:', e.getLeft(), e.getTop());
 
+		EVENT.removeAll({
+			node : div,
+			name : 'touchmove'
+		});
+
 		// remove div after 1 second.
 		DELAY(1, function() {
 			div.remove();

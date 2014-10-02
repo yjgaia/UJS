@@ -353,7 +353,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			}
 
 			// double tap event (not exists, simulate.)
-			if (name === 'doubletap') {
+			else if (name === 'doubletap') {
 
 				event1 = EVENT({
 					node : node,

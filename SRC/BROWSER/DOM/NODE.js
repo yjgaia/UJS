@@ -550,10 +550,20 @@ global.NODE = NODE = CLASS(function() {
 				//REQUIRED: eventName
 				//OPTIONAL: eventHandler
 
-				EVENT.remove({
-					node : self,
-					name : eventName
-				}, eventHandler);
+				if (eventHandler !== undefined) {
+
+					EVENT.remove({
+						node : self,
+						name : eventName
+					}, eventHandler);
+
+				} else {
+
+					EVENT.removeAll({
+						node : self,
+						name : eventName
+					});
+				}
 			};
 
 			self.addStyle = addStyle = function(style) {
