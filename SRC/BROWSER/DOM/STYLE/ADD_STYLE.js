@@ -272,7 +272,13 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 								// after INIT_OBJECTS(), check is hd display.
 								INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {
 
-									// when background.
+									// when image
+									if (name === 'width' || name === 'height') {
+										el.removeAttribute('width');
+										el.removeAttribute('height');
+									}
+
+									// when background
 									if (name === 'background' && value.length >= 7 && value.substring(0, 4) === 'url(') {
 
 										// background switch to X2 image.
