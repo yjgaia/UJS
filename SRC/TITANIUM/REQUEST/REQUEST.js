@@ -10,7 +10,7 @@ global.REQUEST = REQUEST = METHOD({
 		//REQUIRED: params.port
 		//OPTIONAL: params.isSecure
 		//REQUIRED: params.method
-		//REQUIRED: params.uri
+		//OPTIONAL: params.uri
 		//OPTIONAL: params.paramStr
 		//OPTIONAL: params.data
 		//REQUIRED: responseListenerOrListeners
@@ -32,7 +32,10 @@ global.REQUEST = REQUEST = METHOD({
 		uri = params.uri,
 
 		// param str
-		paramStr = params.data !== undefined ? 'data=' + encodeURIComponent(STRINGIFY(params.data)) : params.paramStr,
+		paramStr = params.paramStr,
+
+		// data
+		data = params.data,
 
 		// response listener
 		responseListener,
@@ -41,10 +44,23 @@ global.REQUEST = REQUEST = METHOD({
 		errorListener,
 
 		// url
-		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + uri,
+		url,
 
 		// http request
 		req;
+
+		method = method.toUpperCase();
+
+		if (uri !== undefined && uri.indexOf('?') !== -1) {
+			paramStr = uri.substring(uri.indexOf('?') + 1) + (paramStr === undefined ? '' : '&' + paramStr);
+			uri = uri.substring(0, uri.indexOf('?'));
+		}
+
+		if (data !== undefined) {
+			paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(data));
+		}
+
+		paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
 
 		if (CHECK_IS_DATA(responseListenerOrListeners) !== true) {
 			responseListener = responseListenerOrListeners;
@@ -53,7 +69,7 @@ global.REQUEST = REQUEST = METHOD({
 			errorListener = responseListenerOrListeners.error;
 		}
 
-		paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
+		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + (uri === undefined ? '' : uri);
 
 		req = Ti.Network.createHTTPClient({
 

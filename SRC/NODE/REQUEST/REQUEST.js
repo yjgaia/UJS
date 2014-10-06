@@ -19,7 +19,7 @@ global.REQUEST = REQUEST = METHOD(function() {
 			//OPTIONAL: params.port
 			//OPTIONAL: params.isSecure
 			//REQUIRED: params.method
-			//REQUIRED: params.uri
+			//OPTIONAL: params.uri
 			//OPTIONAL: params.paramStr
 			//OPTIONAL: params.data
 			//REQUIRED: responseListenerOrListeners
@@ -57,13 +57,13 @@ global.REQUEST = REQUEST = METHOD(function() {
 
 			method = method.toUpperCase();
 
-			if (uri.indexOf('?') !== -1) {
+			if (uri !== undefined && uri.indexOf('?') !== -1) {
 				paramStr = uri.substring(uri.indexOf('?') + 1) + (paramStr === undefined ? '' : '&' + paramStr);
 				uri = uri.substring(0, uri.indexOf('?'));
 			}
 
 			if (data !== undefined) {
-				paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(params.data));
+				paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(data));
 			}
 
 			paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
@@ -81,12 +81,12 @@ global.REQUEST = REQUEST = METHOD(function() {
 				req = (isSecure !== true ? http : https).get({
 					hostname : host,
 					port : port,
-					path : '/' + uri + '?' + paramStr
+					path : '/' + (uri === undefined ? '' : uri) + '?' + paramStr
 				}, function(httpResponse) {
 
 					httpResponse.setEncoding('utf-8');
 					httpResponse.on('data', function(content) {
-						responseListener(content);
+						responseListener(content, httpResponse.headers);
 					});
 				});
 			}
@@ -97,13 +97,13 @@ global.REQUEST = REQUEST = METHOD(function() {
 				req = (isSecure !== true ? http : https).request({
 					hostname : host,
 					port : port,
-					path : '/' + uri,
+					path : '/' + (uri === undefined ? '' : uri),
 					method : method
 				}, function(httpResponse) {
 
 					httpResponse.setEncoding('utf-8');
 					httpResponse.on('data', function(content) {
-						responseListener(content);
+						responseListener(content, httpResponse.headers);
 					});
 				});
 

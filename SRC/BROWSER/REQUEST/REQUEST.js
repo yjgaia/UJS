@@ -10,7 +10,7 @@ global.REQUEST = REQUEST = METHOD({
 		//OPTIONAL: params.port
 		//OPTIONAL: params.isSecure
 		//REQUIRED: params.method
-		//REQUIRED: params.uri
+		//OPTIONAL: params.uri
 		//OPTIONAL: params.paramStr
 		//OPTIONAL: params.data
 		//OPTIONAL: params.isNotUsingLoadingBar
@@ -58,13 +58,13 @@ global.REQUEST = REQUEST = METHOD({
 
 		method = method.toUpperCase();
 
-		if (uri.indexOf('?') !== -1) {
+		if (uri !== undefined && uri.indexOf('?') !== -1) {
 			paramStr = uri.substring(uri.indexOf('?') + 1) + (paramStr === undefined ? '' : '&' + paramStr);
 			uri = uri.substring(0, uri.indexOf('?'));
 		}
 
 		if (data !== undefined) {
-			paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(params.data));
+			paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(data));
 		}
 
 		paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
@@ -76,7 +76,7 @@ global.REQUEST = REQUEST = METHOD({
 			errorListener = responseListenerOrListeners.error;
 		}
 
-		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + uri;
+		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + (uri === undefined ? '' : uri);
 
 		if (isNotUsingLoadingBar !== true) {
 			loadingBar = LOADING_BAR();
