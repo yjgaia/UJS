@@ -195,7 +195,7 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 								overrideResponseInfo = _overrideResponseInfo;
 							}
 
-							next();
+							DELAY(next);
 						});
 
 						// init properties again.
@@ -223,22 +223,28 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 						headers['if-none-match'] !== undefined)) {
 
 							// response cached.
-							response({
-								statusCode : 304
-							});
+							response(EXTEND({
+								origin : {
+									statusCode : 304
+								},
+								extend : overrideResponseInfo
+							}));
 						}
 
 						// redirect correct version uri.
 						else if (CONFIG.isDevMode !== true && overrideResponseInfo.isFinal !== true && version !== undefined && originalURI !== '' && params.version !== version) {
 
-							response({
-								statusCode : 302,
-								headers : {
-									'Location' : '/' + originalURI + '?' + querystring.stringify(COMBINE([params, {
-										version : version
-									}]))
-								}
-							});
+							response(EXTEND({
+								origin : {
+									statusCode : 302,
+									headers : {
+										'Location' : '/' + originalURI + '?' + querystring.stringify(COMBINE([params, {
+											version : version
+										}]))
+									}
+								},
+								extend : overrideResponseInfo
+							}));
 						}
 
 						// response resource file.
@@ -252,9 +258,12 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 
 								if (requestInfo.isResponsed !== true) {
 
-									response({
-										statusCode : 404
-									});
+									response(EXTEND({
+										origin : {
+											statusCode : 404
+										},
+										extend : overrideResponseInfo
+									}));
 								}
 							};
 
@@ -268,9 +277,12 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 
 								if (requestInfo.isResponsed !== true) {
 
-									response({
-										statusCode : 500
-									});
+									response(EXTEND({
+										origin : {
+											statusCode : 500
+										},
+										extend : overrideResponseInfo
+									}));
 								}
 							};
 
@@ -334,9 +346,12 @@ global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
 							}]);
 
 						} else {
-							response({
-								statusCode : 404
-							});
+							response(EXTEND({
+								origin : {
+									statusCode : 404
+								},
+								extend : overrideResponseInfo
+							}));
 						}
 					};
 				}]);
