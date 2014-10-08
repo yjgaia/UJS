@@ -477,6 +477,12 @@ method();
 
 * More details are coming soon.
 
+## Build UPPERCASE.JS
+```
+cd SRC
+node __BUILD.js
+```
+
 ## License
 [MIT](LICENSE)
 

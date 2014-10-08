@@ -474,6 +474,12 @@ method();
 
 * 상세 명세는 준비중입니다.
 
+## Build UPPERCASE.JS
+```
+cd SRC
+node __BUILD.js
+```
+
 ## License
 [MIT](LICENSE)
 
