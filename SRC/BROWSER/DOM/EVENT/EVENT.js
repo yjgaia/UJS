@@ -131,7 +131,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 
 			} else {
 
-				EVENT(eventMap, function(events) {
+				EACH(eventMap, function(events) {
 					EACH(events, function(evt) {
 						evt.remove();
 					});
