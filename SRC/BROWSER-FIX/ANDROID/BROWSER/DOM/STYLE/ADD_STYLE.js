@@ -39,7 +39,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 					_style[name] = value;
 
 					origin({
-						dom : dom,
+						node : node,
 						style : _style
 					});
 
@@ -53,7 +53,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 							if (name === 'overflow') {
 
 								EVENT({
-									node : dom,
+									node : node,
 									name : 'touchmove'
 								}, function(e) {
 
@@ -73,7 +73,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 								});
 
 								EVENT({
-									node : dom,
+									node : node,
 									name : 'touchend'
 								}, function(e) {
 									scrollStartLeft = undefined;
@@ -85,7 +85,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 							else if (name === 'overflowX') {
 
 								EVENT({
-									node : dom,
+									node : node,
 									name : 'touchmove'
 								}, function(e) {
 
@@ -99,7 +99,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 								});
 
 								EVENT({
-									node : dom,
+									node : node,
 									name : 'touchend'
 								}, function(e) {
 									scrollStartLeft = undefined;
@@ -110,7 +110,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 							else if (name === 'overflowY') {
 
 								EVENT({
-									node : dom,
+									node : node,
 									name : 'touchmove'
 								}, function(e) {
 
@@ -124,7 +124,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 								});
 
 								EVENT({
-									node : dom,
+									node : node,
 									name : 'touchend'
 								}, function(e) {
 									scrollStartTop = undefined;
@@ -136,7 +136,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 						_style[name] = value;
 
 						origin({
-							dom : dom,
+							node : node,
 							style : _style
 						});
 
