@@ -132,7 +132,9 @@ RUN(function() {
 	}
 
 	// fix REQUEST.
-	loadFixScript('BROWSER/REQUEST/REQUEST');
+	if (IE.version <= 9) {
+		loadFixScript('BROWSER/REQUEST/REQUEST');
+	}
 
 	// load flash canvas and fix CANVAS.
 	if (RUN(function() {

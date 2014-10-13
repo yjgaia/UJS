@@ -113,7 +113,7 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 					}
 
 					// when receive data
-					if (e.buffer) {
+					else if (e.buffer !== undefined && e.buffer !== TO_DELETE) {
 
 						var
 						// str

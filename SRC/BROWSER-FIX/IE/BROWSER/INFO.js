@@ -15,6 +15,9 @@ OVERRIDE(INFO, function(origin) {
 			var
 			// get lang.
 			getLang,
+			
+			// check is HD display.
+			checkIsHDDisplay,
 
 			// check is touchable display.
 			checkIsTouchableDisplay;
@@ -41,6 +44,12 @@ OVERRIDE(INFO, function(origin) {
 					return lang;
 				};
 			}
+
+			// IE not support HD display force.
+			// because many IE are low performance.
+			self.checkIsHDDisplay = checkIsHDDisplay = function() {
+				return false;
+			};
 
 			self.checkIsTouchableDisplay = checkIsTouchableDisplay = function() {
 				return navigator.msPointerEnabled !== undefined;

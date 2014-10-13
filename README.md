@@ -9,7 +9,7 @@ Easy, Clear, and Powerful Full-stack (server-to-client) JavaScript Library for D
 * [UPPERCASE.JS-TITANIUM](#uppercasejs-titanium)
 
 ###### TRANSLATION
-* [한국어 문서](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/README_KOR.md)
+* [Korean](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/README_KOR.md)
 
 ## Configuration
 ###### BROWSER_CONFIG
