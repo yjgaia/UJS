@@ -84,8 +84,15 @@ global.REQUEST = REQUEST = METHOD(function() {
 					path : '/' + (uri === undefined ? '' : uri) + '?' + paramStr
 				}, function(httpResponse) {
 
+					var
+					// content
+					content = '';
+
 					httpResponse.setEncoding('utf-8');
-					httpResponse.on('data', function(content) {
+					httpResponse.on('data', function(str) {
+						content += str;
+					});
+					httpResponse.on('end', function() {
 						responseListener(content, httpResponse.headers);
 					});
 				});
@@ -101,8 +108,15 @@ global.REQUEST = REQUEST = METHOD(function() {
 					method : method
 				}, function(httpResponse) {
 
+					var
+					// content
+					content = '';
+
 					httpResponse.setEncoding('utf-8');
-					httpResponse.on('data', function(content) {
+					httpResponse.on('data', function(str) {
+						content += str;
+					});
+					httpResponse.on('end', function() {
 						responseListener(content, httpResponse.headers);
 					});
 				});
