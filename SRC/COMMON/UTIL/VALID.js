@@ -397,11 +397,8 @@ global.VALID = VALID = CLASS(function(cls) {
 
 								if (name !== 'notEmpty' && notEmpty(value) !== true) {
 
-									if (name === 'integer' || name === 'real' || name === 'bool' || name === 'date') {
-
-										// 만약 value가 ''일 경우 그냥 두면 엄한 값이 들어갈테고, undefined로 하면 update시 해당 변수가 삭제되지 않는다.
-										data[attr] = TO_DELETE;
-									}
+									// set TO_DELETE(null).
+									data[attr] = TO_DELETE;
 
 									// continue.
 									return true;
