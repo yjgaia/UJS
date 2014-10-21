@@ -33,31 +33,41 @@ global.PARALLEL = PARALLEL = METHOD({
 
 		if (count !== undefined) {
 
-			REPEAT(count, function(i) {
+			if (count === 0) {
+				funcs[1]();
+			} else {
 
-				funcs[0](i, function() {
+				REPEAT(count, function(i) {
 
-					doneCount += 1;
+					funcs[0](i, function() {
 
-					if (doneCount === count) {
-						funcs[1]();
-					}
+						doneCount += 1;
+
+						if (doneCount === count) {
+							funcs[1]();
+						}
+					});
 				});
-			});
+			}
 
 		} else if (array !== undefined) {
 
-			EACH(array, function(value, i) {
+			if (array.length === 0) {
+				funcs[1]();
+			} else {
 
-				funcs[0](value, function() {
+				EACH(array, function(value, i) {
 
-					doneCount += 1;
+					funcs[0](value, function() {
 
-					if (doneCount === array.length) {
-						funcs[1]();
-					}
-				}, i);
-			});
+						doneCount += 1;
+
+						if (doneCount === array.length) {
+							funcs[1]();
+						}
+					}, i);
+				});
+			}
 
 		} else {
 
