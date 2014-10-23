@@ -66,6 +66,7 @@ global.LOADING_BAR = LOADING_BAR = CLASS({
 			DELAY(0.25, function() {
 
 				bar1.remove();
+				bar1 = undefined;
 
 				ANIMATE({
 					node : bar2,
@@ -80,8 +81,35 @@ global.LOADING_BAR = LOADING_BAR = CLASS({
 					duration : 0.25
 				}, function() {
 					bar2.remove();
+					bar2 = undefined;
 				});
 			});
 		};
+
+		// timeout
+		DELAY(5, function() {
+
+			if (bar1 !== undefined) {
+
+				bar1.remove();
+				bar1 = undefined;
+
+				ANIMATE({
+					node : bar2,
+					keyframes : KEYFRAMES({
+						from : {
+							width : '50%'
+						},
+						to : {
+							width : '0%'
+						}
+					}),
+					duration : 0.5
+				}, function() {
+					bar2.remove();
+					bar2 = undefined;
+				});
+			}
+		});
 	}
 });
