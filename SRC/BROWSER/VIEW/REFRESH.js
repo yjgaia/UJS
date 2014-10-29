@@ -1,22 +1,36 @@
 /**
  * refresh view.
  */
-global.REFRESH = REFRESH = METHOD({
+global.REFRESH = REFRESH = METHOD(function() {
+	'use strict';
 
-	run : function(uri) {
-		'use strict';
-		//OPTIONAL: uri
+	var
+	// saved hash
+	savedHash;
 
-		var
-		// saved hash
-		savedHash = uri !== undefined ? '#' + uri : location.hash;
+	EVENT({
+		name : 'hashchange'
+	}, function() {
+		if (savedHash === undefined && location.hash === '#__REFRESING') {
+			history.back();
+		}
+	});
 
-		EVENT_ONCE({
-			name : 'hashchange'
-		}, function() {
-			location.href = savedHash === '' ? '#' : savedHash;
-		});
+	return {
 
-		location.href = '#__REFRESING';
-	}
+		run : function(uri) {
+			//OPTIONAL: uri
+
+			savedHash = uri !== undefined ? '#' + uri : location.hash;
+
+			EVENT_ONCE({
+				name : 'hashchange'
+			}, function() {
+				location.href = savedHash === '' ? '#' : savedHash;
+				savedHash = undefined;
+			});
+
+			location.href = '#__REFRESING';
+		}
+	};
 });
