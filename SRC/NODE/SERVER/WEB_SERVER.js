@@ -33,7 +33,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 		}
 
 		if (contentType === 'text/plain') {
-			return 'binary';
+			return 'utf-8';
 		}
 
 		if (contentType === 'text/html') {
