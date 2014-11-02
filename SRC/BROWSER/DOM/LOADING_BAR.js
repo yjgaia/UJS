@@ -50,40 +50,43 @@ global.LOADING_BAR = LOADING_BAR = CLASS({
 
 		self.done = done = function() {
 
-			ANIMATE({
-				node : bar2,
-				keyframes : KEYFRAMES({
-					from : {
-						width : '0%'
-					},
-					to : {
-						width : '100%'
-					}
-				}),
-				duration : 0.5
-			});
-
-			DELAY(0.25, function() {
-
-				bar1.remove();
-				bar1 = undefined;
+			if (bar1 !== undefined) {
 
 				ANIMATE({
 					node : bar2,
 					keyframes : KEYFRAMES({
 						from : {
-							opacity : 1
+							width : '0%'
 						},
 						to : {
-							opacity : 0
+							width : '100%'
 						}
 					}),
-					duration : 0.25
-				}, function() {
-					bar2.remove();
-					bar2 = undefined;
+					duration : 0.5
 				});
-			});
+
+				DELAY(0.25, function() {
+
+					bar1.remove();
+					bar1 = undefined;
+
+					ANIMATE({
+						node : bar2,
+						keyframes : KEYFRAMES({
+							from : {
+								opacity : 1
+							},
+							to : {
+								opacity : 0
+							}
+						}),
+						duration : 0.25
+					}, function() {
+						bar2.remove();
+						bar2 = undefined;
+					});
+				});
+			}
 		};
 
 		// timeout
