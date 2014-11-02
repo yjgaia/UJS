@@ -7,6 +7,7 @@ Easy, Clear, and Powerful Full-stack (server-to-client) JavaScript Library for D
 * [UPPERCASE.JS-BROWSER](#uppercasejs-browser)
 * [UPPERCASE.JS-PHANTOM](#uppercasejs-phantom)
 * [UPPERCASE.JS-TITANIUM](#uppercasejs-titanium)
+* [UPPERCASE.JS-CORDOVA](#uppercasejs-cordova)
 
 ###### TRANSLATION
 * [Korean](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/README_KOR.md)
@@ -475,6 +476,14 @@ INIT_OBJECTS();
 method();
 ```
 
+* More details are coming soon.
+
+## UPPERCASE.JS-CORDOVA
+Provide a number of features useful for Cordova-based projects.
+UPPERCASE.JS-CORDOVA is for those who seek for utilities on Apache Cordova.
+
+* UPPERCASE.JS-COMMON.js is required.
+* UPPERCASE.JS-BROWSER.js is required.
 * More details are coming soon.
 
 ## Build UPPERCASE.JS

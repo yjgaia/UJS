@@ -138,6 +138,7 @@ RUN(function() {
 	buildFolder('NODE');
 	buildFolder('PHANTOM');
 	buildFolder('TITANIUM');
+	buildFolder('CORDOVA');
 
 	log('DONE.');
 });

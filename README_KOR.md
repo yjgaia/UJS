@@ -7,6 +7,7 @@
 * [UPPERCASE.JS-BROWSER](#uppercasejs-browser)
 * [UPPERCASE.JS-PHANTOM](#uppercasejs-phantom)
 * [UPPERCASE.JS-TITANIUM](#uppercasejs-titanium)
+* [UPPERCASE.JS-CORDOVA](#uppercasejs-cordova)
 
 ## Configuration
 ###### BROWSER_CONFIG
@@ -472,6 +473,14 @@ INIT_OBJECTS();
 method();
 ```
 
+* 상세 명세는 준비중입니다.
+
+## UPPERCASE.JS-CORDOVA
+Cordova 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
+Cordova를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-CORDOVA를 사용해보세요.
+
+* UPPERCASE.JS-COMMON.js가 필요합니다.
+* UPPERCASE.JS-BROWSER.js가 필요합니다.
 * 상세 명세는 준비중입니다.
 
 ## Build UPPERCASE.JS
