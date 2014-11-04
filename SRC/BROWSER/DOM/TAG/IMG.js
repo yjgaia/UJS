@@ -108,7 +108,7 @@ global.IMG = IMG = CLASS({
 			});
 
 			// X2 support.
-			if (isX2Switched !== true && BROWSER_CONFIG.isNotSupportingX2 !== true &&
+			if (isX2Switched !== true && BROWSER_CONFIG.isSupportingX2 === true &&
 
 			// after INIT_OBJECTS(), check is hd display.
 			INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {

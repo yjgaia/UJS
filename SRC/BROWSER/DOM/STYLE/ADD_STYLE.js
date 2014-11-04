@@ -228,7 +228,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 								el.style[name] = value + 'px';
 
 								// X2 support.
-								if (BROWSER_CONFIG.isNotSupportingX2 !== true &&
+								if (BROWSER_CONFIG.isSupportingX2 === true &&
 
 								// after INIT_OBJECTS(), check is hd display.
 								INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {
@@ -251,7 +251,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 								el.style[name] = 'url(' + value + ')';
 
 								// X2 support.
-								if (BROWSER_CONFIG.isNotSupportingX2 !== true &&
+								if (BROWSER_CONFIG.isSupportingX2 === true &&
 
 								// after INIT_OBJECTS(), check is hd display.
 								INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {
@@ -267,7 +267,7 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 								el.style[name] = value;
 
 								// X2 support.
-								if (BROWSER_CONFIG.isNotSupportingX2 !== true &&
+								if (BROWSER_CONFIG.isSupportingX2 === true &&
 
 								// after INIT_OBJECTS(), check is hd display.
 								INFO.checkIsHDDisplay !== undefined && INFO.checkIsHDDisplay() === true) {

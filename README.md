@@ -14,8 +14,8 @@ Easy, Clear, and Powerful Full-stack (server-to-client) JavaScript Library for D
 
 ## Configuration
 ###### BROWSER_CONFIG
-Each configuration is set as a form of `BROWSER_CONFIG.isNotSupportingX2 = true;`.
-* `isNotSupportingX2` Set `true` in case of disabling scaling image pixels twice to support retina displays.
+Each configuration is set as a form of `BROWSER_CONFIG.isSupportingX2 = true;`.
+* `isSupportingX2` Set `true` in case of enabling scaling image pixels twice to support retina displays.
 * `isUsingFlashCanvasPro` Set `true` to use FlashCanvas Pro. Purchase of FlashCanvas Pro license is required. http://flashcanvas.net/purchase
 * `fixScriptsFolderPath` Set the folder where BROWSER-FIX scripts are stored.
 * `loadingBarColor` Set the color of the loading bar during networking such as REQUEST. Its default value is `'#007aff'`.
