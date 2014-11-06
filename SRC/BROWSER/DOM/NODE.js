@@ -486,7 +486,7 @@ global.NODE = NODE = CLASS(function() {
 
 			self.remove = remove = function() {
 
-				if (wrapperEl.parentNode !== TO_DELETE) {
+				if (wrapperEl !== undefined && wrapperEl.parentNode !== TO_DELETE) {
 
 					// empty children.
 					empty();
@@ -527,7 +527,7 @@ global.NODE = NODE = CLASS(function() {
 			};
 
 			self.setParent = setParent = function(node) {
-				//REQUIRED: node
+				//OPTIONAL: node
 
 				parentNode = node;
 			};
