@@ -1,5 +1,5 @@
 /**
- * SHA1 encrypt.
+ * HMAC SHA1 encrypt.
  */
 global.SHA1 = SHA1 = METHOD({
 
