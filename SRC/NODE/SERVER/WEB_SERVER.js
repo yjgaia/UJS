@@ -128,7 +128,7 @@ global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
 				method = nativeReq.method.toUpperCase(),
 
 				// ip
-				ip = headers['X-Forwarded-For'],
+				ip = headers['x-forwarded-for'],
 
 				// accept encoding
 				acceptEncoding = headers['accept-encoding'],
