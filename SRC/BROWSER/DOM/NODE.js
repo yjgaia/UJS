@@ -118,8 +118,14 @@ global.NODE = NODE = CLASS(function() {
 			// get width.
 			getWidth,
 
+			// get inner width.
+			getInnerWidth,
+
 			// get height.
 			getHeight,
+
+			// get inner height.
+			getInnerHeight,
 
 			// get left.
 			getLeft,
@@ -602,8 +608,16 @@ global.NODE = NODE = CLASS(function() {
 				return wrapperEl.offsetWidth;
 			};
 
+			self.getInnerWidth = getInnerWidth = function() {
+				return wrapperEl.clientWidth;
+			};
+
 			self.getHeight = getHeight = function() {
 				return wrapperEl.offsetHeight;
+			};
+
+			self.getInnerHeight = getInnerHeight = function() {
+				return wrapperEl.clientHeight;
 			};
 
 			self.getLeft = getLeft = function() {
