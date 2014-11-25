@@ -499,5 +499,6 @@ node __BUILD.js
 [Young Jae Sim](https://github.com/Hanul)
 
 ## Contact
+* [Official Web Site](http://UPPERCASE.IO/#UPPERCASE.JS)
 * [Facebook UPPERCASE.IO User Group](https://www.facebook.com/groups/UPPERCASE.IO/)
 * [GitHub Issues](https://github.com/UPPERCASE-Series/UPPERCASE.JS/issues)
