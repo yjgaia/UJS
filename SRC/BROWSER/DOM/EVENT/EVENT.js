@@ -282,7 +282,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			if (name === 'tap') {
 
 				// when is touchable display or when is exists tap delay (300ms)
-				if (INFO.checkIsTouchableDisplay() === true && INFO.checkIsNotExistsTapDelay() !== true) {
+				if (INFO.checkIsTouchableDisplay() === true && INFO.checkIsExistsTapDelay() === true) {
 
 					eventLow1 = EVENT_LOW({
 						node : node,

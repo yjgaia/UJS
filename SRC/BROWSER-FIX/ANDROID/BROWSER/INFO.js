@@ -17,7 +17,10 @@ OVERRIDE(INFO, function(origin) {
 			getLang,
 
 			// check is HD display.
-			checkIsHDDisplay;
+			checkIsHDDisplay,
+			
+			// check is exists tap delay.
+			checkIsExistsTapDelay;
 
 			self.getLang = getLang = function() {
 
@@ -54,6 +57,20 @@ OVERRIDE(INFO, function(origin) {
 			// android not support HD display force.
 			// because many android devices are low end machine.
 			self.checkIsHDDisplay = checkIsHDDisplay = function() {
+				return false;
+			};
+			
+			// android chrome above 32 version, not exists tap delay.
+			self.checkIsExistsTapDelay = checkIsExistsTapDelay = function() {
+	
+				var
+				// browser info
+				browserInfo = getBrowserInfo();
+	
+				if (browserInfo.name !== 'Chrome' || INTEGER(browserInfo.version) < 32) {
+					return true;
+				}
+				
 				return false;
 			};
 		}

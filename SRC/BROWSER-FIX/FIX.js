@@ -105,4 +105,9 @@ RUN(function() {
 	if (navigator.userAgent !== undefined && navigator.userAgent.toLowerCase().indexOf('android') !== -1) {
 		loadFixScript('FIX_ANDROID');
 	}
+	
+	// fix for iOS.
+	if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent) === true) {
+		loadFixScript('FIX_IOS');
+	}
 });

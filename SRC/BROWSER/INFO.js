@@ -22,8 +22,8 @@ global.INFO = INFO = OBJECT({
 		// check is touchable display.
 		checkIsTouchableDisplay,
 
-		// check is not exists tap delay.
-		checkIsNotExistsTapDelay,
+		// check is exists tap delay.
+		checkIsExistsTapDelay,
 
 		// get browser info.
 		getBrowserInfo;
@@ -67,15 +67,7 @@ global.INFO = INFO = OBJECT({
 			return global.ontouchstart !== undefined;
 		};
 
-		self.checkIsNotExistsTapDelay = checkIsNotExistsTapDelay = function() {
-
-			var
-			// browser info
-			browserInfo = getBrowserInfo();
-
-			if (browserInfo.name === 'Chrome' && INTEGER(browserInfo.version) >= 32) {
-				return true;
-			}
+		self.checkIsExistsTapDelay = checkIsExistsTapDelay = function() {
 			return false;
 		};
 
