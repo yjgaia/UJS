@@ -25,9 +25,6 @@ global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 			// received string
 			receivedStr = '',
 
-			// is force disconnecting
-			isForceDisconnecting,
-
 			// on.
 			on,
 
@@ -97,11 +94,9 @@ global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 
 			// when disconnected
 			conn.on('close', function() {
-
-				if (isForceDisconnecting !== true) {
-					runMethods('__DISCONNECTED');
-				}
-
+				
+				runMethods('__DISCONNECTED');
+				
 				// free method map.
 				methodMap = undefined;
 			});
@@ -198,9 +193,6 @@ global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
 
 			// disconnect.
 			function() {
-
-				isForceDisconnecting = true;
-
 				conn.end();
 			});
 		});

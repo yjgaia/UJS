@@ -38,9 +38,6 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 		// received string
 		receivedStr = '',
 
-		// is force disconnecting
-		isForceDisconnecting,
-
 		// on.
 		on,
 
@@ -103,9 +100,7 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 					// when disconnected
 					if (e.bytesProcessed < 0) {
 
-						if (isForceDisconnecting !== true) {
-							runMethods('__DISCONNECTED');
-						}
+						runMethods('__DISCONNECTED');
 
 						conn.close();
 
@@ -202,16 +197,9 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
 					sendKey += 1;
 
-					try {
-						socket.write(Ti.createBuffer({
-							value : STRINGIFY(params) + '\r\n'
-						}));
-					}
-
-					// when error!
-					catch(e) {
-						runMethods('__DISCONNECTED');
-					}
+					socket.write(Ti.createBuffer({
+						value : STRINGIFY(params) + '\r\n'
+					}));
 
 					if (callback !== undefined) {
 
@@ -229,9 +217,9 @@ global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
 
 				// disconnect.
 				function() {
-
-					isForceDisconnecting = true;
-
+					
+					runMethods('__DISCONNECTED');
+					
 					conn.close();
 				});
 			},
