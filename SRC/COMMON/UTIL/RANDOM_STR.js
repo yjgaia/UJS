@@ -9,7 +9,7 @@ global.RANDOM_STR = RANDOM_STR = METHOD({
 
 		var
 		// random string
-		randomString = '',
+		randomStr = '',
 
 		// characters
 		characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
@@ -20,11 +20,11 @@ global.RANDOM_STR = RANDOM_STR = METHOD({
 		REPEAT(length, function() {
 
 			// add random character to random string.
-			randomString += characters.charAt(RANDOM({
+			randomStr += characters.charAt(RANDOM({
 				limit : characters.length
 			}));
 		});
 
-		return randomString;
+		return randomStr;
 	}
 });
