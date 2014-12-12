@@ -19,8 +19,8 @@ OVERRIDE(INFO, function(origin) {
 			// check is HD display.
 			checkIsHDDisplay,
 
-			// check is touchable display.
-			checkIsTouchableDisplay;
+			// check is touch mode.
+			checkIsTouchMode;
 
 			if (navigator.language === undefined) {
 
@@ -51,7 +51,7 @@ OVERRIDE(INFO, function(origin) {
 				return false;
 			};
 
-			self.checkIsTouchableDisplay = checkIsTouchableDisplay = function() {
+			self.checkIsTouchMode = checkIsTouchMode = function() {
 				return navigator.msPointerEnabled !== undefined;
 			};
 		}

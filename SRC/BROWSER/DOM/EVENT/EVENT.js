@@ -281,8 +281,8 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			// tap event (for remove click delay, simulate click event.)
 			if (name === 'tap') {
 
-				// when is touchable display or when is exists tap delay (300ms)
-				if (INFO.checkIsTouchableDisplay() === true && INFO.checkIsExistsTapDelay() === true) {
+				// when is touch mode or when is exists tap delay (300ms)
+				if (INFO.checkIsTouchMode() === true && INFO.checkIsExistsTapDelay() === true) {
 
 					eventLow1 = EVENT_LOW({
 						node : node,
@@ -333,7 +333,7 @@ global.EVENT = EVENT = CLASS(function(cls) {
 					};
 				}
 
-				// when is not touchable display or when is not exists tap delay (300ms)
+				// when is not touch mode or when is not exists tap delay (300ms)
 				else {
 
 					eventLow1 = EVENT_LOW({
@@ -383,9 +383,9 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// when is not touchable display, touchmove link to mousedown event
-			else if (name === 'touchstart' && INFO.checkIsTouchableDisplay() !== true) {
-
+			// when is not touch mode, touchmove link to mousedown event
+			else if (name === 'touchstart' && INFO.checkIsTouchMode() !== true) {
+				
 				eventLow1 = EVENT_LOW({
 					node : node,
 					lowNode : lowNode,
@@ -400,8 +400,8 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// when is not touchable display, touchmove link to mousemove event
-			else if (name === 'touchmove' && INFO.checkIsTouchableDisplay() !== true) {
+			// when is not touch mode, touchmove link to mousemove event
+			else if (name === 'touchmove' && INFO.checkIsTouchMode() !== true) {
 
 				eventLow1 = EVENT_LOW({
 					node : node,
@@ -417,8 +417,8 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// when is not touchable display, touchend link to mouseup event
-			else if (name === 'touchend' && INFO.checkIsTouchableDisplay() !== true) {
+			// when is not touch mode, touchend link to mouseup event
+			else if (name === 'touchend' && INFO.checkIsTouchMode() !== true) {
 
 				eventLow1 = EVENT_LOW({
 					node : node,
@@ -434,8 +434,8 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// mouse over event (when is touchable display, link to touchstart event.)
-			else if (name === 'mouseover' && INFO.checkIsTouchableDisplay() === true) {
+			// mouse over event (when is touch mode, link to touchstart event.)
+			else if (name === 'mouseover' && INFO.checkIsTouchMode() === true) {
 
 				// by touch
 				eventLow1 = EVENT_LOW({
@@ -460,8 +460,8 @@ global.EVENT = EVENT = CLASS(function(cls) {
 				};
 			}
 
-			// mouse out event (when is touchable display, link to touchend event.)
-			else if (name === 'mouseout' && INFO.checkIsTouchableDisplay() === true) {
+			// mouse out event (when is touch mode, link to touchend event.)
+			else if (name === 'mouseout' && INFO.checkIsTouchMode() === true) {
 
 				// by touch
 				eventLow1 = EVENT_LOW({

@@ -74,8 +74,8 @@ global.E = E = CLASS({
 			// touch page x
 			touchPageX;
 
-			// if is touchable display
-			if (INFO.checkIsTouchableDisplay() === true) {
+			// if is touch mode
+			if (INFO.checkIsTouchMode() === true) {
 
 				if (e.touches !== undefined && e.touches[0] !== undefined) {
 
@@ -127,8 +127,8 @@ global.E = E = CLASS({
 			// touch page y
 			touchPageY;
 
-			// if is touchable display
-			if (INFO.checkIsTouchableDisplay() === true) {
+			// if is touch mode
+			if (INFO.checkIsTouchMode() === true) {
 
 				if (e.touches !== undefined && e.touches[0] !== undefined) {
 

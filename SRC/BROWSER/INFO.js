@@ -7,6 +7,9 @@ global.INFO = INFO = OBJECT({
 		'use strict';
 
 		var
+		// is touch mode
+		isTouchMode,
+		
 		// browser info
 		browserInfo,
 
@@ -19,8 +22,8 @@ global.INFO = INFO = OBJECT({
 		// check is HD display.
 		checkIsHDDisplay,
 
-		// check is touchable display.
-		checkIsTouchableDisplay,
+		// check is touch mode.
+		checkIsTouchMode,
 
 		// check is exists tap delay.
 		checkIsExistsTapDelay,
@@ -63,8 +66,8 @@ global.INFO = INFO = OBJECT({
 			return global.devicePixelRatio !== undefined && devicePixelRatio > 1 ? true : false;
 		};
 
-		self.checkIsTouchableDisplay = checkIsTouchableDisplay = function() {
-			return global.ontouchstart !== undefined;
+		self.checkIsTouchMode = checkIsTouchMode = function() {
+			return isTouchMode;
 		};
 
 		self.checkIsExistsTapDelay = checkIsExistsTapDelay = function() {
@@ -78,5 +81,13 @@ global.INFO = INFO = OBJECT({
 				version : REAL(bowser.version)
 			};
 		};
+		
+		EVENT('mousemove', function() {
+			isTouchMode = false;
+		});
+		
+		EVENT('touchstart', function() {
+			isTouchMode = true;
+		});
 	}
 });

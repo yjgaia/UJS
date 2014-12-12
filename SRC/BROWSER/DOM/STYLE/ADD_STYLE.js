@@ -48,7 +48,6 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 	return {
 
 		run : function(params) {
-			'use strict';
 			//REQUIRED: params
 			//REQUIRED: params.node
 			//REQUIRED: params.style
