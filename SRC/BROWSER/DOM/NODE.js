@@ -257,14 +257,14 @@ global.NODE = NODE = CLASS(function() {
 
 					append(DOM({
 						tag : '__STRING',
-						__TEXT : String(node)
+						__TEXT : String(node === undefined ? '' : node)
 					}));
 				}
 
 				// append string.
 				else {
 
-					splits = String(node).split('\n');
+					splits = String(node === undefined ? '' : node).split('\n');
 
 					EACH(splits, function(text, i) {
 
@@ -307,14 +307,14 @@ global.NODE = NODE = CLASS(function() {
 
 					prepend(DOM({
 						tag : '__STRING',
-						__TEXT : String(node)
+						__TEXT : String(node === undefined ? '' : node)
 					}));
 				}
 
 				// prepend string.
 				else {
 
-					splits = String(node).split('\n');
+					splits = String(node === undefined ? '' : node).split('\n');
 
 					REPEAT({
 						start : splits.length - 1,
@@ -381,14 +381,14 @@ global.NODE = NODE = CLASS(function() {
 
 						after(DOM({
 							tag : '__STRING',
-							__TEXT : String(node)
+							__TEXT : String(node === undefined ? '' : node)
 						}));
 					}
 
 					// after string.
 					else {
 
-						splits = String(node).split('\n');
+						splits = String(node === undefined ? '' : node).split('\n');
 
 						REPEAT({
 							start : splits.length - 1,
@@ -452,14 +452,14 @@ global.NODE = NODE = CLASS(function() {
 
 						before(DOM({
 							tag : '__STRING',
-							__TEXT : String(node)
+							__TEXT : String(node === undefined ? '' : node)
 						}));
 					}
 
 					// before string.
 					else {
 
-						splits = String(node).split('\n');
+						splits = String(node === undefined ? '' : node).split('\n');
 
 						EACH(splits, function(text, i) {
 

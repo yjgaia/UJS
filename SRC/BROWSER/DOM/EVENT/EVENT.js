@@ -208,10 +208,10 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			nodeId,
 
 			// event lows
-			eventLow1, eventLow2,
+			eventLows = [],
 
-			// events
-			event1,
+			// sub event
+			subEvent,
 
 			// touch start left, top
 			startLeft, startTop,
@@ -282,80 +282,60 @@ global.EVENT = EVENT = CLASS(function(cls) {
 			if (name === 'tap') {
 
 				// when is touch mode or when is exists tap delay (300ms)
-				if (INFO.checkIsTouchMode() === true && INFO.checkIsExistsTapDelay() === true) {
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'touchstart'
+				}, function(e) {
+					if (INFO.checkIsTouchMode() === true && INFO.checkIsExistsTapDelay() === true && e !== undefined) {
+						startLeft = e.getLeft();
+						startTop = e.getTop();
+					}
+				}));
 
-					eventLow1 = EVENT_LOW({
-						node : node,
-						lowNode : lowNode,
-						name : 'touchstart'
-					}, function(e) {
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'touchend'
+				}, function(e, node) {
 
-						if (e !== undefined) {
+					var
+					// left
+					left,
 
-							startLeft = e.getLeft();
-							startTop = e.getTop();
+					// top
+					top;
+
+					if (INFO.checkIsTouchMode() === true && INFO.checkIsExistsTapDelay() === true && e !== undefined) {
+
+						left = e.getLeft();
+						top = e.getTop();
+
+						if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
+
+							e.stopDefault();
+
+							return eventHandler(e, node);
 						}
-					});
-
-					eventLow2 = EVENT_LOW({
-						node : node,
-						lowNode : lowNode,
-						name : 'touchend'
-					}, function(e, node) {
-
-						var
-						// left
-						left,
-
-						// top
-						top;
-
-						if (e !== undefined) {
-
-							left = e.getLeft();
-							top = e.getTop();
-
-							if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
-
-								e.stopDefault();
-
-								return eventHandler(e, node);
-							}
-						}
-					});
-
-					self.remove = remove = function() {
-
-						eventLow1.remove();
-						eventLow2.remove();
-
-						removeFromMap();
-					};
-				}
+					}
+				}));
 
 				// when is not touch mode or when is not exists tap delay (300ms)
-				else {
-
-					eventLow1 = EVENT_LOW({
-						node : node,
-						lowNode : lowNode,
-						name : 'click'
-					}, eventHandler);
-
-					self.remove = remove = function() {
-
-						eventLow1.remove();
-
-						removeFromMap();
-					};
-
-				}
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'click'
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() !== true || INFO.checkIsExistsTapDelay() !== true) {
+						eventHandler(e, node);
+					}
+				}));
 			}
 
 			// double tap event (not exists, simulate.)
 			else if (name === 'doubletap') {
 
-				event1 = EVENT({
+				subEvent = EVENT({
 					node : node,
 					name : 'tap'
 				}, function(e) {
@@ -374,138 +354,155 @@ global.EVENT = EVENT = CLASS(function(cls) {
 						getSelection().removeAllRanges();
 					}
 				});
-
-				self.remove = remove = function() {
-
-					event1.remove();
-
-					removeFromMap();
-				};
 			}
 
 			// when is not touch mode, touchmove link to mousedown event
-			else if (name === 'touchstart' && INFO.checkIsTouchMode() !== true) {
+			else if (name === 'touchstart') {
 				
-				eventLow1 = EVENT_LOW({
-					node : node,
-					lowNode : lowNode,
-					name : 'mousedown'
-				}, eventHandler);
-
-				self.remove = remove = function() {
-
-					eventLow1.remove();
-
-					removeFromMap();
-				};
-			}
-
-			// when is not touch mode, touchmove link to mousemove event
-			else if (name === 'touchmove' && INFO.checkIsTouchMode() !== true) {
-
-				eventLow1 = EVENT_LOW({
-					node : node,
-					lowNode : lowNode,
-					name : 'mousemove'
-				}, eventHandler);
-
-				self.remove = remove = function() {
-
-					eventLow1.remove();
-
-					removeFromMap();
-				};
-			}
-
-			// when is not touch mode, touchend link to mouseup event
-			else if (name === 'touchend' && INFO.checkIsTouchMode() !== true) {
-
-				eventLow1 = EVENT_LOW({
-					node : node,
-					lowNode : lowNode,
-					name : 'mouseup'
-				}, eventHandler);
-
-				self.remove = remove = function() {
-
-					eventLow1.remove();
-
-					removeFromMap();
-				};
-			}
-
-			// mouse over event (when is touch mode, link to touchstart event.)
-			else if (name === 'mouseover' && INFO.checkIsTouchMode() === true) {
-
 				// by touch
-				eventLow1 = EVENT_LOW({
+				eventLows.push(EVENT_LOW({
 					node : node,
 					lowNode : lowNode,
 					name : 'touchstart'
-				}, eventHandler);
-
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() === true) {
+						eventHandler(e, node);
+					}
+				}));
+				
 				// by mouse
-				eventLow2 = EVENT_LOW({
+				eventLows.push(EVENT_LOW({
 					node : node,
 					lowNode : lowNode,
-					name : 'mouseover'
-				}, eventHandler);
-
-				self.remove = remove = function() {
-
-					eventLow1.remove();
-					eventLow2.remove();
-
-					removeFromMap();
-				};
+					name : 'mousedown'
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() !== true) {
+						eventHandler(e, node);
+					}
+				}));
 			}
 
-			// mouse out event (when is touch mode, link to touchend event.)
-			else if (name === 'mouseout' && INFO.checkIsTouchMode() === true) {
+			// when is not touch mode, touchmove link to mousemove event
+			else if (name === 'touchmove') {
 
 				// by touch
-				eventLow1 = EVENT_LOW({
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'touchmove'
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() === true) {
+						eventHandler(e, node);
+					}
+				}));
+				
+				// by mouse
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'mousemove'
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() !== true) {
+						eventHandler(e, node);
+					}
+				}));
+			}
+
+			// when is not touch mode, touchend link to mouseup event
+			else if (name === 'touchend') {
+
+				// by touch
+				eventLows.push(EVENT_LOW({
 					node : node,
 					lowNode : lowNode,
 					name : 'touchend'
-				}, eventHandler);
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() === true) {
+						eventHandler(e, node);
+					}
+				}));
+				
+				// by mouse
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'mouseup'
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() !== true) {
+						eventHandler(e, node);
+					}
+				}));
+			}
+
+			// mouse over event (when is touch mode, link to touchstart event.)
+			else if (name === 'mouseover') {
+
+				// by touch
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'touchstart'
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() === true) {
+						eventHandler(e, node);
+					}
+				}));
 
 				// by mouse
-				eventLow2 = EVENT_LOW({
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'mouseover'
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() !== true) {
+						eventHandler(e, node);
+					}
+				}));
+			}
+
+			// mouse out event (when is touch mode, link to touchend event.)
+			else if (name === 'mouseout') {
+
+				// by touch
+				eventLows.push(EVENT_LOW({
+					node : node,
+					lowNode : lowNode,
+					name : 'touchend'
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() === true) {
+						eventHandler(e, node);
+					}
+				}));
+
+				// by mouse
+				eventLows.push(EVENT_LOW({
 					node : node,
 					lowNode : lowNode,
 					name : 'mouseout'
-				}, eventHandler);
-
-				self.remove = remove = function() {
-
-					eventLow1.remove();
-					eventLow2.remove();
-
-					removeFromMap();
-				};
+				}, function(e, node) {
+					if (INFO.checkIsTouchMode() !== true) {
+						eventHandler(e, node);
+					}
+				}));
 			}
 
 			// other events
-			else if (name === 'attach' || name === 'show' || name === 'remove') {
-
-				self.remove = remove = function() {
-					removeFromMap();
-				};
+			else if (name !== 'attach' && name !== 'show' && name !== 'remove') {
+				eventLows.push(EVENT_LOW(nameOrParams, eventHandler));
 			}
+			
+			self.remove = remove = function() {
 
-			// other events
-			else {
+				EACH(eventLows, function(eventLow) {
+					eventLow.remove();
+				});
+					
+				if (subEvent !== undefined) {
+					subEvent.remove();
+				}
 
-				eventLow1 = EVENT_LOW(nameOrParams, eventHandler);
-
-				self.remove = remove = function() {
-
-					eventLow1.remove();
-
-					removeFromMap();
-				};
-			}
+				removeFromMap();
+			};
 
 			self.fire = fire = function() {
 
