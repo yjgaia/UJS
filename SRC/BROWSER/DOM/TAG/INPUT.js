@@ -280,7 +280,6 @@ global.INPUT = INPUT = CLASS(function(cls) {
 		},
 
 		afterInit : function(inner, self, params) {
-			'use strict';
 			//OPTIONAL: params
 			//OPTIONAL: params.name
 			//OPTIONAL: params.type

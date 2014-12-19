@@ -490,7 +490,7 @@ node __BUILD.js
 ```
 
 ## License
-[MIT](LICENSE)
+[MIT](../../LICENSE)
 
 ## Author
 [Young Jae Sim](https://github.com/Hanul)

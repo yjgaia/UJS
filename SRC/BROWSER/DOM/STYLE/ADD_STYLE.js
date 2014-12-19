@@ -5,6 +5,12 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 	'use strict';
 
 	var
+	// venders
+	venders = ['Webkit', 'Moz', 'O', 'Ms'],
+	
+	// cross browser style names
+	crossBrowserStyleNames = ['transform', 'transformOrigin', 'animation', 'touchCallout', 'userSelect', 'backgroundSize', 'backgroundPosition'],
+	
 	// is support fixed
 	isSupportFixed;
 
@@ -285,60 +291,15 @@ global.ADD_STYLE = ADD_STYLE = METHOD(function(m) {
 									}
 								}
 
-								// cross browser transform
-								if (name === 'transform') {
-									el.style.WebkitTransform = value;
-									el.style.MozTransform = value;
-									el.style.OTransform = value;
-									el.style.MsTransform = value;
-								}
-
-								// cross browser transformOrigin
-								else if (name === 'transformOrigin') {
-									el.style.WebkitTransformOrigin = value;
-									el.style.MozTransformOrigin = value;
-									el.style.OTransformOrigin = value;
-									el.style.MsTransformOrigin = value;
-								}
-
-								// cross browser animation
-								else if (name === 'animation') {
-									el.style.WebkitAnimation = value;
-									el.style.MozAnimation = value;
-									el.style.OAnimation = value;
-									el.style.MsAnimation = value;
-								}
-
-								// cross browser touchCallout
-								else if (name === 'touchCallout') {
-									el.style.WebkitTouchCallout = value;
-									el.style.MozTouchCallout = value;
-									el.style.OTouchCallout = value;
-									el.style.MsTouchCallout = value;
-								}
-
-								// cross browser userSelect
-								else if (name === 'userSelect') {
-									el.style.WebkitUserSelect = value;
-									el.style.MozUserSelect = value;
-									el.style.OUserSelect = value;
-									el.style.MsUserSelect = value;
-								}
-
-								// cross browser backgroundSize
-								else if (name === 'backgroundSize') {
-									el.style.WebkitBackgroundSize = value;
-									el.style.MozBackgroundSize = value;
-									el.style.OBackgroundSize = value;
-									el.style.MsBackgroundSize = value;
-								}
-
-								// cross browser backgroundPosition
-								else if (name === 'backgroundPosition') {
-									el.style.WebkitBackgroundPosition = value;
-									el.style.MozBackgroundPosition = value;
-									el.style.OBackgroundPosition = value;
-									el.style.MsBackgroundPosition = value;
+								// cross browser styles
+								if (CHECK_IS_IN({
+									array : crossBrowserStyleNames,
+									value : name
+								}) === true) {
+								
+									EACH(venders, function(vender) {
+										el.style[vender + name.charAt(0).toUpperCase() + name.slice(1)] = value;
+									});
 								}
 							}
 
