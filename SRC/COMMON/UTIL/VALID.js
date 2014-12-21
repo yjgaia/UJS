@@ -604,9 +604,7 @@ global.VALID = VALID = CLASS(function(cls) {
 									}
 								}
 
-								if (notEmpty(value) !== true) {
-									data[attr] = undefined;
-								} else if (typeof value === 'string') {
+								if (notEmpty(value) === true && typeof value === 'string') {
 									if (name === 'integer') {
 										data[attr] = INTEGER(value);
 									} else if (name === 'real') {
