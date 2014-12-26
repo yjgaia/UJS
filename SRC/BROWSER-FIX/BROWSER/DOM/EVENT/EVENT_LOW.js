@@ -51,6 +51,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				OVERRIDE(self.remove, function(origin) {
 
 					self.remove = remove = function() {
+						origin();
 						clearInterval(hashchangeInterval);
 					};
 				});

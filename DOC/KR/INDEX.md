@@ -1,6 +1,8 @@
 # ![ScreenShot](https://raw.githubusercontent.com/UPPERCASE-Series/UPPERCASE.JS/master/LOGO.png)
 동적인 웹 사이트 및 웹 애플리케이션 개발을 위한 쉽고 명확하면서 강력한 풀스택 (server-to-client) JavaScript 라이브러입니다. 모든 API가 대문자로 이루어져 있습니다. [UPPERCASE.IO](http://UPPERCASE.IO)에서 사용되고 있습니다.
 
+단일 파일로 패키징 되는 유틸리티의 성격이 강합니다. 따라서 npm등의 의존성을 띠고 있지 않습니다. 더 강력한 기능을 원하시면 [UPPERCASE.IO](http://UPPERCASE.IO) 문서를 참고하시기 바랍니다.
+
 ###### UPPERCASE.JS-COMMON
 객체지향 프로그래밍 지원 및 다양한 기능을 제공하는 JavaScript 라이브러리입니다. JavaScript 유틸리티를 찾고 계신다면 UPPERCASE.JS-COMMON을 사용해보세요.
 
@@ -16,6 +18,10 @@
 * 객체지향의 상속을 활용한 구버젼 브라우저 지원
 * 브라우저를 위한 유틸리티
 * 순수 JS 기반 DOM 엔진
+
+## 튜토리얼
+* 웹 서버 만들기
+* 웹 사이트 만들기
 
 ###### COMPONENTS
 * [UPPERCASE.JS-COMMON](#uppercasejs-common)

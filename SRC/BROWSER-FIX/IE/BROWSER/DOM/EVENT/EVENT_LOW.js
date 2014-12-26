@@ -139,10 +139,9 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				OVERRIDE(self.remove, function(origin) {
 
 					self.remove = remove = function() {
+						origin();
 
-						if (name === 'hashchange' && global.onhashchange === undefined) {
-							origin();
-						} else {
+						if (name !== 'hashchange' || global.onhashchange !== undefined) {
 							el.detachEvent('on' + name, innerHandler);
 						}
 					};
@@ -160,6 +159,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 					OVERRIDE(self.remove, function(origin) {
 
 						self.remove = remove = function() {
+							origin();
 							el.removeEventListener('MSPointerDown', innerHandler);
 						};
 					});
@@ -173,6 +173,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 					OVERRIDE(self.remove, function(origin) {
 
 						self.remove = remove = function() {
+							origin();
 							el.removeEventListener('MSPointerMove', innerHandler);
 						};
 					});
@@ -186,6 +187,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 					OVERRIDE(self.remove, function(origin) {
 
 						self.remove = remove = function() {
+							origin();
 							el.removeEventListener('MSPointerUp', innerHandler);
 						};
 					});
@@ -199,13 +201,14 @@ OVERRIDE(EVENT_LOW, function(origin) {
 				hashchangeInterval = setInterval(function() {
 					if (location.hash !== hash) {
 						hash = location.hash;
-						handler();
+						eventHandler();
 					}
 				}, 100);
 
 				OVERRIDE(self.remove, function(origin) {
 
 					self.remove = remove = function() {
+						origin();
 						clearInterval(hashchangeInterval);
 					};
 				});
