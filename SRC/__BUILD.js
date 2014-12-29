@@ -137,7 +137,6 @@ RUN(function() {
 
 	buildFolder('NODE');
 	buildFolder('PHANTOM');
-	buildFolder('CORDOVA');
-
+	
 	log('DONE.');
 });

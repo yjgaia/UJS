@@ -6,8 +6,6 @@ Easy, Clear, and Powerful Full-stack (server-to-client) JavaScript Library for D
 * [UPPERCASE.JS-NODE](#uppercasejs-node)
 * [UPPERCASE.JS-BROWSER](#uppercasejs-browser)
 * [UPPERCASE.JS-PHANTOM](#uppercasejs-phantom)
-* [UPPERCASE.JS-TITANIUM](#uppercasejs-titanium)
-* [UPPERCASE.JS-CORDOVA](#uppercasejs-cordova)
 
 ###### TRANSLATION
 * [Korean](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/README_KOR.md)
@@ -438,53 +436,6 @@ UPPERCASE.JS-PHANTOM is for those who seek for utilities on PhantomJS.
 * UPPERCASE.JS-COMMON.js is required.
 * More details are coming soon.
 
-## UPPERCASE.JS-TITANIUM
-Provide enormous features useful for Titanium-based projects.
-UPPERCASE.JS-TITANIUM is for those who look for utilities on Titanium.
-
-* UPPERCASE.JS-COMMON.js is required.
-
-### How to use on Titanium
-* Set `global = window;` to prepare a global variable prior to loading scripts.
-* `INIT_OBJECTS();` is executed once.
-
-```javascript
-// global
-global = {};
-
-// load UPPERCASE.JS.
-require('UPPERCASE.JS-COMMON');
-require('UPPERCASE.JS-TITANIUM');
-
-if (Ti.Platform.name === 'mobileweb') {
-	require('UPPERCASE.JS-BROWSER');
-}
-
-// declare.
-var
-// method
-method = METHOD({
-	run : function() {
-		console.log('HELLO UPPERCASE.JS!');
-	}
-});
-
-// init all singleton classes.
-INIT_OBJECTS();
-
-// execute.
-method();
-```
-
-* More details are coming soon.
-
-## UPPERCASE.JS-CORDOVA
-Provide a number of features useful for Cordova-based projects.
-UPPERCASE.JS-CORDOVA is for those who seek for utilities on Apache Cordova.
-
-* UPPERCASE.JS-COMMON.js is required.
-* UPPERCASE.JS-BROWSER.js is required.
-* More details are coming soon.
 
 ## Build UPPERCASE.JS
 ```

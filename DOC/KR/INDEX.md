@@ -19,6 +19,12 @@
 * 브라우저를 위한 유틸리티
 * 순수 JS 기반 DOM 엔진
 
+###### UPPERCASE.JS-NODE
+보통은 서버의 용도로 사용됩니다.
+
+###### UPPERCASE.JS-PHANTOM
+서버에서 브라우저 환경이 필요할 때 사용됩니다. (웹 사이트 캡쳐 등)
+
 ## 튜토리얼
 * 웹 서버 만들기
 * 웹 사이트 만들기
@@ -28,7 +34,6 @@
 * [UPPERCASE.JS-NODE](#uppercasejs-node)
 * [UPPERCASE.JS-BROWSER](#uppercasejs-browser)
 * [UPPERCASE.JS-PHANTOM](#uppercasejs-phantom)
-* [UPPERCASE.JS-TITANIUM](#uppercasejs-titanium)
 * [UPPERCASE.JS-CORDOVA](#uppercasejs-cordova)
 
 ## Configuration
@@ -457,53 +462,6 @@ PhantomJS를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-NODE를 사
 * UPPERCASE.JS-COMMON.js가 필요합니다.
 * 상세 명세는 준비중입니다.
 
-## UPPERCASE.JS-TITANIUM
-Titanium 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-Titanium를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-TITANIUM를 사용해보세요.
-
-* UPPERCASE.JS-COMMON.js가 필요합니다.
-
-### Titanium에서 사용하기
-* 스크립트를 불러오기 이전에 `global = {};`로 글로벌 변수를 설정합니다.
-* `INIT_OBJECTS();`은 한번만 실행합니다.
-
-```javascript
-// global
-global = {};
-
-// load UPPERCASE.JS.
-require('UPPERCASE.JS-COMMON');
-require('UPPERCASE.JS-TITANIUM');
-
-if (Ti.Platform.name === 'mobileweb') {
-	require('UPPERCASE.JS-BROWSER');
-}
-
-// declare.
-var
-// method
-method = METHOD({
-	run : function() {
-		console.log('HELLO UPPERCASE.JS!');
-	}
-});
-
-// init all singleton classes.
-INIT_OBJECTS();
-
-// execute.
-method();
-```
-
-* 상세 명세는 준비중입니다.
-
-## UPPERCASE.JS-CORDOVA
-Cordova 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-Cordova를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-CORDOVA를 사용해보세요.
-
-* UPPERCASE.JS-COMMON.js가 필요합니다.
-* UPPERCASE.JS-BROWSER.js가 필요합니다.
-* 상세 명세는 준비중입니다.
 
 ## Build UPPERCASE.JS
 ```
