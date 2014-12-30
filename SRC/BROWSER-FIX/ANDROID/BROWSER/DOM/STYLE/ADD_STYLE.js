@@ -4,7 +4,7 @@ OVERRIDE(ADD_STYLE, function(origin) {
 	/**
 	 * add style. (fix for Android)
 	 */
-	global.ADD_STYLE = ADD_STYLE = METHOD({
+	global.ADD_STYLE = METHOD({
 
 		run : function(params) {
 			//REQUIRED: params

@@ -1,7 +1,7 @@
 /**
  * Event class
  */
-global.EVENT = EVENT = CLASS(function(cls) {
+global.EVENT = CLASS(function(cls) {
 	'use strict';
 
 	var

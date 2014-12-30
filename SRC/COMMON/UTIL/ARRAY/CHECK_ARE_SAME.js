@@ -1,7 +1,7 @@
 /**
  * check are same all elements in array.
  */
-global.CHECK_ARE_SAME = CHECK_ARE_SAME = METHOD({
+global.CHECK_ARE_SAME = METHOD({
 
 	run : function(array) {
 		'use strict';

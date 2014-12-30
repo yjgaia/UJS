@@ -1,7 +1,7 @@
 /**
  * check is empty data.
  */
-global.CHECK_IS_EMPTY_DATA = CHECK_IS_EMPTY_DATA = METHOD({
+global.CHECK_IS_EMPTY_DATA = METHOD({
 
 	run : function(data) {
 		'use strict';

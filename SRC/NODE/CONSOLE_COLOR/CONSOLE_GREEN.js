@@ -1,7 +1,7 @@
 /*
  * console green
  */
-global.CONSOLE_GREEN = CONSOLE_GREEN = METHOD({
+global.CONSOLE_GREEN = METHOD({
 
 	run : function(text) {
 		'use strict';

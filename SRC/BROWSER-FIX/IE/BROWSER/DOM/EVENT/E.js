@@ -4,7 +4,7 @@ OVERRIDE(E, function(origin) {
 	/**
 	 * Dom event object wrapper class (fix for IE)
 	 */
-	global.E = E = CLASS({
+	global.E = CLASS({
 
 		preset : function() {
 			return origin;

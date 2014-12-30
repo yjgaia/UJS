@@ -3,7 +3,7 @@
  *
  * use this if you need a code block.
  */
-global.RUN = RUN = METHOD({
+global.RUN = METHOD({
 
 	run : function(func) {
 		'use strict';

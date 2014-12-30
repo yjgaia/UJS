@@ -1,7 +1,7 @@
 /**
  * HMAC SHA1 encrypt.
  */
-global.SHA1 = SHA1 = METHOD({
+global.SHA1 = METHOD({
 
 	run : function(params) {
 		'use strict';

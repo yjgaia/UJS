@@ -4,7 +4,7 @@ OVERRIDE(EXPORT_IMG_TYPE, function(origin) {
 	/**
 	 * export img type. (fix for IE)
 	 */
-	global.EXPORT_IMG_TYPE = EXPORT_IMG_TYPE = METHOD({
+	global.EXPORT_IMG_TYPE = METHOD({
 
 		run : function(img, callback) {
 			//REQUIRED: img

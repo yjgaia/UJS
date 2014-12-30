@@ -1,7 +1,7 @@
 /**
  * Dom wrapper class
  */
-global.DOM = DOM = CLASS({
+global.DOM = CLASS({
 
 	preset : function() {
 		'use strict';

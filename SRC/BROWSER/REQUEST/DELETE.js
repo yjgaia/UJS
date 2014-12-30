@@ -1,7 +1,7 @@
 /**
  * ajax DELETE request.
  */
-global.DELETE = DELETE = METHOD({
+global.DELETE = METHOD({
 
 	run : function(uriOrParams, responseListenerOrListeners) {
 		'use strict';

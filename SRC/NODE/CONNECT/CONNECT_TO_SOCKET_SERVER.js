@@ -1,7 +1,7 @@
 /*
  * connect to socket server.
  */
-global.CONNECT_TO_SOCKET_SERVER = CONNECT_TO_SOCKET_SERVER = METHOD({
+global.CONNECT_TO_SOCKET_SERVER = METHOD({
 
 	run : function(params, connectionListenerOrListeners) {
 		'use strict';

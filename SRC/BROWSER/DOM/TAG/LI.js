@@ -1,7 +1,7 @@
 /**
  * LI class
  */
-global.LI = LI = CLASS({
+global.LI = CLASS({
 
 	preset : function() {
 		'use strict';

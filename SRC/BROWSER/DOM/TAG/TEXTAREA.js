@@ -1,7 +1,7 @@
 /**
  * Textarea class
  */
-global.TEXTAREA = TEXTAREA = CLASS({
+global.TEXTAREA = CLASS({
 
 	preset : function() {
 		'use strict';

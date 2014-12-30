@@ -4,7 +4,7 @@ OVERRIDE(CANVAS, function(origin) {
 	/**
 	 * Canvas class (fix for IE)
 	 */
-	global.CANVAS = CANVAS = CLASS({
+	global.CANVAS = CLASS({
 
 		preset : function() {
 			return origin;

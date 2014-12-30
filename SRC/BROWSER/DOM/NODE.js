@@ -1,7 +1,7 @@
 /**
  * Node interface
  */
-global.NODE = NODE = CLASS(function() {
+global.NODE = CLASS(function() {
 	'use strict';
 
 	var

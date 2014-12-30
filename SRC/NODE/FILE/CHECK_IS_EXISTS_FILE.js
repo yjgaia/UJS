@@ -1,7 +1,7 @@
 /*
  * check is exists file.
  */
-global.CHECK_IS_EXISTS_FILE = CHECK_IS_EXISTS_FILE = METHOD(function() {
+global.CHECK_IS_EXISTS_FILE = METHOD(function() {
 	'use strict';
 
 	var

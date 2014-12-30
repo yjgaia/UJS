@@ -4,7 +4,7 @@ OVERRIDE(PACK_DATA, function(origin) {
 	/**
 	 * Pack data. (fix for IE)
 	 */
-	global.PACK_DATA = PACK_DATA = METHOD({
+	global.PACK_DATA = METHOD({
 
 		run : function(data) {
 			//REQUIRED: data

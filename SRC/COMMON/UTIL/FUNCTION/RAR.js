@@ -1,7 +1,7 @@
 /**
  * run `func` and return it.
  */
-global.RAR = RAR = METHOD({
+global.RAR = METHOD({
 
 	run : function(params, func) {
 		'use strict';

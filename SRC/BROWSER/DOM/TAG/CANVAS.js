@@ -1,7 +1,7 @@
 /**
  * Canvas class
  */
-global.CANVAS = CANVAS = CLASS({
+global.CANVAS = CLASS({
 
 	preset : function() {
 		'use strict';

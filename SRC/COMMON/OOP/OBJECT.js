@@ -1,7 +1,7 @@
 /**
  * Create object.
  */
-global.OBJECT = OBJECT = METHOD(function(m) {
+global.OBJECT = METHOD(function(m) {
 	'use strict';
 
 	var

@@ -1,7 +1,7 @@
 /**
  * same as `foreach`.
  */
-global.EACH = EACH = METHOD({
+global.EACH = METHOD({
 
 	run : function(dataOrArray, func) {
 		'use strict';

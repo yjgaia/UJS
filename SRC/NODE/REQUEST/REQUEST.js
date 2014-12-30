@@ -1,7 +1,7 @@
 /**
  * http request.
  */
-global.REQUEST = REQUEST = METHOD(function() {
+global.REQUEST = METHOD(function() {
 	'use strict';
 
 	var

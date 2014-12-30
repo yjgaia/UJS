@@ -1,7 +1,7 @@
 /**
  * go another view.
  */
-global.GO = GO = METHOD({
+global.GO = METHOD({
 
 	run : function(uri) {
 		'use strict';

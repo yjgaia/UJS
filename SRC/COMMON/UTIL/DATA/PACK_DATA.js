@@ -1,7 +1,7 @@
 /**
  * pack data with Date type.
  */
-global.PACK_DATA = PACK_DATA = METHOD({
+global.PACK_DATA = METHOD({
 
 	run : function(data) {
 		'use strict';

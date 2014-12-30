@@ -1,7 +1,7 @@
 /*
  * create resourec server.
  */
-global.RESOURCE_SERVER = RESOURCE_SERVER = CLASS(function(cls) {
+global.RESOURCE_SERVER = CLASS(function(cls) {
 	'use strict';
 
 	var

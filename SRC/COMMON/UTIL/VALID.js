@@ -1,7 +1,7 @@
 /**
  * Data validation class
  */
-global.VALID = VALID = CLASS(function(cls) {
+global.VALID = CLASS(function(cls) {
 	'use strict';
 
 	var

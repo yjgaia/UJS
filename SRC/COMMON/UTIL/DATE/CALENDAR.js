@@ -1,7 +1,7 @@
 /**
  * Calendar class
  */
-global.CALENDAR = CALENDAR = CLASS({
+global.CALENDAR = CLASS({
 
 	init : function(inner, self, date) {
 		'use strict';

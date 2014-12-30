@@ -1,7 +1,7 @@
 /**
  * Option class
  */
-global.OPTION = OPTION = CLASS({
+global.OPTION = CLASS({
 
 	preset : function() {
 		'use strict';

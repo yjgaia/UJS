@@ -4,7 +4,7 @@ OVERRIDE(IFRAME, function(origin) {
 	/**
 	 * Iframe class. (fix for IE)
 	 */
-	global.IFRAME = IFRAME = CLASS({
+	global.IFRAME = CLASS({
 
 		preset : function() {
 			return origin;

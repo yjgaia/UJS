@@ -1,7 +1,7 @@
 /**
  * document ready.
  */
-global.READY = READY = METHOD(function(m) {
+global.READY = METHOD(function(m) {
 	'use strict';
 
 	var

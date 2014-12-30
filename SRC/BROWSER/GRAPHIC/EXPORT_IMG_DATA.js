@@ -1,7 +1,7 @@
 /**
  * export img data.
  */
-global.EXPORT_IMG_DATA = EXPORT_IMG_DATA = METHOD(function(m) {
+global.EXPORT_IMG_DATA = METHOD(function(m) {
 	'use strict';
 
 	var

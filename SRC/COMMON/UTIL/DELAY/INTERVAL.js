@@ -1,7 +1,7 @@
 /**
  * Interval class
  */
-global.INTERVAL = INTERVAL = CLASS({
+global.INTERVAL = CLASS({
 
 	init : function(inner, self, seconds, func) {
 		'use strict';

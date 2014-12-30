@@ -1,7 +1,7 @@
 /**
  * Th class
  */
-global.TH = TH = CLASS({
+global.TH = CLASS({
 
 	preset : function() {
 		'use strict';

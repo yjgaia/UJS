@@ -1,7 +1,7 @@
 /**
  * Cpu and server clustering shared store class
  */
-global.SHARED_STORE = SHARED_STORE = CLASS(function(cls) {
+global.SHARED_STORE = CLASS(function(cls) {
 	'use strict';
 
 	var

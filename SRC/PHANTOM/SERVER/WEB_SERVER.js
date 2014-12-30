@@ -1,7 +1,7 @@
 /*
  * create web server.
  */
-global.WEB_SERVER = WEB_SERVER = METHOD({
+global.WEB_SERVER = METHOD({
 
 	run : function(port, requestListener) {'use strict';
 		//REQUIRED: port

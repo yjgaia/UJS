@@ -1,7 +1,7 @@
 /**
  * Loop class (for game etc.)
  */
-global.LOOP = LOOP = CLASS(function(cls) {
+global.LOOP = CLASS(function(cls) {
 	'use strict';
 
 	var

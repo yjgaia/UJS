@@ -4,7 +4,7 @@ OVERRIDE(TD, function(origin) {
 	/**
 	 * Td class (fix for IE)
 	 */
-	global.TD = TD = CLASS({
+	global.TD = CLASS({
 
 		preset : function() {
 			return origin;

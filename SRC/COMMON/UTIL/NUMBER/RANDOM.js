@@ -1,7 +1,7 @@
 /**
  * generate random integer.
  */
-global.RANDOM = RANDOM = METHOD({
+global.RANDOM = METHOD({
 
 	run : function(maxOrParams) {
 		'use strict';

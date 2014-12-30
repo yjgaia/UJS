@@ -4,7 +4,7 @@ OVERRIDE(TEXTAREA, function(origin) {
 	/**
 	 * Textarea class (fix for IE 5.5)
 	 */
-	global.TEXTAREA = TEXTAREA = CLASS({
+	global.TEXTAREA = CLASS({
 
 		preset : function() {
 			return origin;

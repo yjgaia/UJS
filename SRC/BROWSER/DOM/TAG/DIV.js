@@ -1,7 +1,7 @@
 /**
  * Div class
  */
-global.DIV = DIV = CLASS({
+global.DIV = CLASS({
 
 	preset : function() {
 		'use strict';

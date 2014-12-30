@@ -1,7 +1,7 @@
 /**
  * Dom epmty event object class
  */
-global.EMPTY_E = EMPTY_E = CLASS({
+global.EMPTY_E = CLASS({
 
 	init : function(inner, self) {
 		'use strict';

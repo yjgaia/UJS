@@ -1,7 +1,7 @@
 /**
  * async control-flow method that makes stepping through logic easy.
  */
-global.NEXT = NEXT = METHOD({
+global.NEXT = METHOD({
 
 	run : function(countOrArray, funcs) {
 		'use strict';

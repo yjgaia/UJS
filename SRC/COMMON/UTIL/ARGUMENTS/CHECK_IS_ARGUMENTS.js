@@ -1,7 +1,7 @@
 /**
  * check it is arguments.
  */
-global.CHECK_IS_ARGUMENTS = CHECK_IS_ARGUMENTS = METHOD({
+global.CHECK_IS_ARGUMENTS = METHOD({
 
 	run : function(it) {'use strict';
 		//OPTIONAL: it

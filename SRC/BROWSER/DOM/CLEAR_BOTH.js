@@ -1,7 +1,7 @@
 /**
  * create clear:both div.
  */
-global.CLEAR_BOTH = CLEAR_BOTH = METHOD({
+global.CLEAR_BOTH = METHOD({
 
 	run : function() {
 		'use strict';

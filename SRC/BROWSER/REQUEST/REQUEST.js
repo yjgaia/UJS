@@ -1,7 +1,7 @@
 /**
  * ajax request.
  */
-global.REQUEST = REQUEST = METHOD({
+global.REQUEST = METHOD({
 
 	run : function(params, responseListenerOrListeners) {
 		'use strict';

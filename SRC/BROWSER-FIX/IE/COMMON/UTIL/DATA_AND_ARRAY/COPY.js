@@ -4,7 +4,7 @@ OVERRIDE(COPY, function(origin) {
 	/**
 	 * copy data or array. (fix for IE)
 	 */
-	global.COPY = COPY = METHOD({
+	global.COPY = METHOD({
 
 		run : function(data) {
 			//REQUIRED: data

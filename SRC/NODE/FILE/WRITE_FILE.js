@@ -1,7 +1,7 @@
 /*
  * write file.
  */
-global.WRITE_FILE = WRITE_FILE = METHOD(function() {
+global.WRITE_FILE = METHOD(function() {
 	'use strict';
 
 	var

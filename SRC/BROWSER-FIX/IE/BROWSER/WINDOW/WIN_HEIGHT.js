@@ -4,7 +4,7 @@ OVERRIDE(WIN_HEIGHT, function(origin) {
 	/**
 	 * get window height. (fix for IE)
 	 */
-	global.WIN_HEIGHT = WIN_HEIGHT = METHOD({
+	global.WIN_HEIGHT = METHOD({
 
 		run : function() {
 			return document.documentElement.offsetHeight;

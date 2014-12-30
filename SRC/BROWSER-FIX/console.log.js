@@ -1,7 +1,7 @@
 /**
  * console object (fix)
  */
-global.console = console = OBJECT({
+global.console = OBJECT({
 
 	init : function(inner, self) {
 		'use strict';

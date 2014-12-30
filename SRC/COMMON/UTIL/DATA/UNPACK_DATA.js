@@ -1,7 +1,7 @@
 /**
  * unpack data with Date type.
  */
-global.UNPACK_DATA = UNPACK_DATA = METHOD({
+global.UNPACK_DATA = METHOD({
 
 	run : function(data) {
 		'use strict';

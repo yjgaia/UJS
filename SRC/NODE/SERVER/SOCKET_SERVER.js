@@ -1,7 +1,7 @@
 /*
  * create socket server.
  */
-global.SOCKET_SERVER = SOCKET_SERVER = METHOD({
+global.SOCKET_SERVER = METHOD({
 
 	run : function(port, connectionListener) {
 		'use strict';

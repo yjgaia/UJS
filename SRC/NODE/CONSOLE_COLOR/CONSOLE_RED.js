@@ -1,7 +1,7 @@
 /*
  * console red
  */
-global.CONSOLE_RED = CONSOLE_RED = METHOD({
+global.CONSOLE_RED = METHOD({
 
 	run : function(text) {
 		'use strict';

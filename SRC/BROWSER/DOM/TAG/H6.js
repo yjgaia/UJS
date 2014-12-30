@@ -1,7 +1,7 @@
 /**
  * H6 class
  */
-global.H6 = H6 = CLASS({
+global.H6 = CLASS({
 
 	preset : function() {
 		'use strict';

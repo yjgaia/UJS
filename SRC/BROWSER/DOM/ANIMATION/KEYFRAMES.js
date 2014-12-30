@@ -1,7 +1,7 @@
 /**
  * Animation keyframes class
  */
-global.KEYFRAMES = KEYFRAMES = CLASS({
+global.KEYFRAMES = CLASS({
 
 	init : function(inner, self, keyframes) {
 		'use strict';

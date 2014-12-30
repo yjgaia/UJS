@@ -1,7 +1,7 @@
 /**
  * http POST request.
  */
-global.POST = POST = METHOD({
+global.POST = METHOD({
 
 	run : function(uriOrParams, responseListenerOrListeners) {
 		'use strict';

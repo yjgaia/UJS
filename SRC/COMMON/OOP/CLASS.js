@@ -1,7 +1,7 @@
 /**
  * Create class.
  */
-global.CLASS = CLASS = METHOD(function(m) {
+global.CLASS = METHOD(function(m) {
 	'use strict';
 
 	var

@@ -1,7 +1,7 @@
 /**
  * Form class
  */
-global.FORM = FORM = CLASS({
+global.FORM = CLASS({
 
 	preset : function() {
 		'use strict';

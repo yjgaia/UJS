@@ -1,7 +1,7 @@
 /**
  * Browser store class
  */
-global.STORE = STORE = CLASS({
+global.STORE = CLASS({
 
 	init : function(inner, self, storeName) {
 		'use strict';

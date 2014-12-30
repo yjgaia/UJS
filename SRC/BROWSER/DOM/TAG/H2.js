@@ -1,7 +1,7 @@
 /**
  * H2 class
  */
-global.H2 = H2 = CLASS({
+global.H2 = CLASS({
 
 	preset : function() {
 		'use strict';

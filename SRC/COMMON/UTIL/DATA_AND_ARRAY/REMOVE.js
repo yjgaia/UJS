@@ -1,7 +1,7 @@
 /**
  * remove at name or key or some value in data or array.
  */
-global.REMOVE = REMOVE = METHOD({
+global.REMOVE = METHOD({
 
 	run : function(dataOrArrayOrParams, filter) {
 		'use strict';

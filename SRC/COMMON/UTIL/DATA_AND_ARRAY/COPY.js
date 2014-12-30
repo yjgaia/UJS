@@ -1,7 +1,7 @@
 /**
  * copy data or array.
  */
-global.COPY = COPY = METHOD({
+global.COPY = METHOD({
 
 	run : function(dataOrArray) {
 		'use strict';

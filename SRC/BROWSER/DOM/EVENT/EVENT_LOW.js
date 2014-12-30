@@ -1,7 +1,7 @@
 /**
  * Low event class
  */
-global.EVENT_LOW = EVENT_LOW = CLASS({
+global.EVENT_LOW = CLASS({
 
 	init : function(inner, self, nameOrParams, eventHandler) {
 		'use strict';

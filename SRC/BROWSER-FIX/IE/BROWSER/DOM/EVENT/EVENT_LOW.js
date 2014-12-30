@@ -4,7 +4,7 @@ OVERRIDE(EVENT_LOW, function(origin) {
 	/**
 	 * Low event class (fix for IE)
 	 */
-	global.EVENT_LOW = EVENT_LOW = CLASS({
+	global.EVENT_LOW = CLASS({
 
 		preset : function(nameOrParams) {
 			//REQUIRED: nameOrParams

@@ -1,7 +1,7 @@
 /**
  * load JS file.
  */
-global.LOAD = LOAD = METHOD({
+global.LOAD = METHOD({
 
 	run : function(urlOrParams, handlers) {
 		'use strict';

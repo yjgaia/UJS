@@ -1,7 +1,7 @@
 /*
  * move file.
  */
-global.MOVE_FILE = MOVE_FILE = METHOD({
+global.MOVE_FILE = METHOD({
 
 	run : function(params, callbackOrHandlers) {
 		'use strict';

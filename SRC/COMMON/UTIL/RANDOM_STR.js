@@ -1,7 +1,7 @@
 /**
  * generate random string.
  */
-global.RANDOM_STR = RANDOM_STR = METHOD({
+global.RANDOM_STR = METHOD({
 
 	run : function(length) {
 		'use strict';

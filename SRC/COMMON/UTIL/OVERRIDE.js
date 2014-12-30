@@ -1,7 +1,7 @@
 /**
  * override something.
  */
-global.OVERRIDE = OVERRIDE = METHOD({
+global.OVERRIDE = METHOD({
 
 	run : function(origin, func) {
 		'use strict';

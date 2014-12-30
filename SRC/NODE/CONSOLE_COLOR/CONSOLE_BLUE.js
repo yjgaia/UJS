@@ -1,7 +1,7 @@
 /*
  * console blue
  */
-global.CONSOLE_BLUE = CONSOLE_BLUE = METHOD({
+global.CONSOLE_BLUE = METHOD({
 
 	run : function(text) {
 		'use strict';

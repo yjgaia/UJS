@@ -4,7 +4,7 @@ OVERRIDE(EXPORT_IMG_DATA, function(origin) {
 	/**
 	 * export img data. (fix for IE)
 	 */
-	global.EXPORT_IMG_DATA = EXPORT_IMG_DATA = METHOD(function(m) {
+	global.EXPORT_IMG_DATA = METHOD(function(m) {
 
 		var
 		// temp wrapper

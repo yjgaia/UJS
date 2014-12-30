@@ -1,7 +1,7 @@
 /**
  * H4 class
  */
-global.H4 = H4 = CLASS({
+global.H4 = CLASS({
 
 	preset : function() {
 		'use strict';

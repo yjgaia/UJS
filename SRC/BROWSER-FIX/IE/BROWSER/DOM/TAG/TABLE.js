@@ -4,7 +4,7 @@ OVERRIDE(TABLE, function(origin) {
 	/**
 	 * Table class (fix for IE<=7)
 	 */
-	global.TABLE = TABLE = CLASS({
+	global.TABLE = CLASS({
 
 		preset : function() {
 			return origin;

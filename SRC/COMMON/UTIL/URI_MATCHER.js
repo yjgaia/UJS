@@ -1,7 +1,7 @@
 /**
  * URI matcher class
  */
-global.URI_MATCHER = URI_MATCHER = CLASS({
+global.URI_MATCHER = CLASS({
 
 	init : function(inner, self, format) {
 		'use strict';

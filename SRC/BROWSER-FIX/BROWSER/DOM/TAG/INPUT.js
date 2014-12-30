@@ -4,7 +4,7 @@ OVERRIDE(INPUT, function(origin) {
 	/**
 	 * Input class (fix)
 	 */
-	global.INPUT = INPUT = CLASS(function(cls) {
+	global.INPUT = CLASS(function(cls) {
 
 		var
 		// get focusing input ids.

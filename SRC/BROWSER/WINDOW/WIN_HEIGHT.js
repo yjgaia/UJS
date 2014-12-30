@@ -1,7 +1,7 @@
 /**
  * get window height. (px)
  */
-global.WIN_HEIGHT = WIN_HEIGHT = METHOD({
+global.WIN_HEIGHT = METHOD({
 
 	run : function() {
 		'use strict';

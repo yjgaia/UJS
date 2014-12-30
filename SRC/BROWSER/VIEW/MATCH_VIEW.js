@@ -1,7 +1,7 @@
 /**
  * match view.
  */
-global.MATCH_VIEW = MATCH_VIEW = METHOD({
+global.MATCH_VIEW = METHOD({
 
 	run : function(params) {
 		'use strict';

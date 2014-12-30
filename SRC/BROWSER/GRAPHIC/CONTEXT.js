@@ -1,7 +1,7 @@
 /**
  * Context for canvas wrapper class
  */
-global.CONTEXT = CONTEXT = CLASS({
+global.CONTEXT = CLASS({
 
 	init : function(inner, self, canvas) {
 		'use strict';

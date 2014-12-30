@@ -1,7 +1,7 @@
 /**
  * Event once class
  */
-global.EVENT_ONCE = EVENT_ONCE = CLASS({
+global.EVENT_ONCE = CLASS({
 
 	init : function(inner, self, nameOrParams, eventHandler) {
 		'use strict';

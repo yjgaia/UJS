@@ -1,7 +1,7 @@
 /*
  * create web server.
  */
-global.WEB_SERVER = WEB_SERVER = CLASS(function(cls) {
+global.WEB_SERVER = CLASS(function(cls) {
 	'use strict';
 
 	var

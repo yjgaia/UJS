@@ -1,7 +1,7 @@
 /**
  * Br class
  */
-global.BR = BR = CLASS({
+global.BR = CLASS({
 
 	preset : function() {
 		'use strict';

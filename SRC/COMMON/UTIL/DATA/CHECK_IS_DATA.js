@@ -1,7 +1,7 @@
 /**
  * check it is data.
  */
-global.CHECK_IS_DATA = CHECK_IS_DATA = METHOD({
+global.CHECK_IS_DATA = METHOD({
 
 	run : function(it) {'use strict';
 		//OPTIONAL: it

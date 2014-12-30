@@ -1,7 +1,7 @@
 /**
  * extend data or array.
  */
-global.EXTEND = EXTEND = METHOD({
+global.EXTEND = METHOD({
 
 	run : function(params) {
 		'use strict';

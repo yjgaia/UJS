@@ -1,7 +1,7 @@
 /**
  * stringify.
  */
-global.STRINGIFY = STRINGIFY = METHOD({
+global.STRINGIFY = METHOD({
 
 	run : function(value) {
 		'use strict';

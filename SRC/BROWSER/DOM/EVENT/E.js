@@ -1,7 +1,7 @@
 /**
  * Dom event object wrapper class
  */
-global.E = E = CLASS({
+global.E = CLASS({
 
 	init : function(inner, self, params) {
 		'use strict';

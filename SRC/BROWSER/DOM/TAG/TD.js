@@ -1,7 +1,7 @@
 /**
  * Td class
  */
-global.TD = TD = CLASS({
+global.TD = CLASS({
 
 	preset : function() {
 		'use strict';

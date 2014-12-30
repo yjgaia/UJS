@@ -4,7 +4,7 @@ OVERRIDE(INFO, function(origin) {
 	/**
 	 * Browser information object (fix for IE)
 	 */
-	global.INFO = INFO = OBJECT({
+	global.INFO = OBJECT({
 
 		preset : function() {
 			return origin;

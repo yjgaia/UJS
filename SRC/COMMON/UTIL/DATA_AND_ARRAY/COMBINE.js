@@ -1,7 +1,7 @@
 /**
  * combine data set or arrays.
  */
-global.COMBINE = COMBINE = METHOD({
+global.COMBINE = METHOD({
 
 	run : function(dataSetOrArrays) {
 		'use strict';

@@ -4,7 +4,7 @@ OVERRIDE(REFRESH, function(origin) {
 	/**
 	 * refresh view. (fix for IE)
 	 */
-	global.REFRESH = REFRESH = METHOD({
+	global.REFRESH = METHOD({
 
 		run : function(uri) {
 			//OPTIONAL: uri

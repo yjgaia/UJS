@@ -1,7 +1,7 @@
 /**
  * check it is array.
  */
-global.CHECK_IS_ARRAY = CHECK_IS_ARRAY = METHOD({
+global.CHECK_IS_ARRAY = METHOD({
 
 	run : function(it) {
 		'use strict';

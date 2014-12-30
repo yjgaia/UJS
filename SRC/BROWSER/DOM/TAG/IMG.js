@@ -1,7 +1,7 @@
 /**
  * Img class
  */
-global.IMG = IMG = CLASS({
+global.IMG = CLASS({
 
 	preset : function() {
 		'use strict';

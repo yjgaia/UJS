@@ -1,7 +1,7 @@
 /*
  * read file.
  */
-global.READ_FILE = READ_FILE = METHOD(function() {
+global.READ_FILE = METHOD(function() {
 	'use strict';
 
 	var

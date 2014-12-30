@@ -1,7 +1,7 @@
 /**
  * get internationalization message.
  */
-global.MSG = MSG = METHOD({
+global.MSG = METHOD({
 
 	run : function(msgs) {
 		'use strict';

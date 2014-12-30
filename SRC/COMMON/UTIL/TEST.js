@@ -1,7 +1,7 @@
 /**
  * test.
  */
-global.TEST = TEST = METHOD(function(m) {
+global.TEST = METHOD(function(m) {
 	'use strict';
 
 	var

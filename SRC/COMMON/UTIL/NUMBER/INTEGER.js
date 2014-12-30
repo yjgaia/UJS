@@ -1,7 +1,7 @@
 /**
  * convert integer string to integer number.
  */
-global.INTEGER = INTEGER = METHOD({
+global.INTEGER = METHOD({
 
 	run : function(integerString) {
 		'use strict';

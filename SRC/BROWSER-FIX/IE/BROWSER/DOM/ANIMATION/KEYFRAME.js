@@ -4,7 +4,7 @@ OVERRIDE(KEYFRAMES, function(origin) {
 	/**
 	 * Animation keyframes class. (destory for IE)
 	 */
-	global.KEYFRAMES = KEYFRAMES = CLASS({
+	global.KEYFRAMES = CLASS({
 
 		init : function(inner, self, keyframes) {
 			//REQUIRED: keyframes

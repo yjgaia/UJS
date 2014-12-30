@@ -1,7 +1,7 @@
 /**
  * Span class
  */
-global.SPAN = SPAN = CLASS({
+global.SPAN = CLASS({
 
 	preset : function() {
 		'use strict';

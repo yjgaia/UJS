@@ -1,7 +1,7 @@
 /**
  * Body class
  */
-global.BODY = BODY = OBJECT({
+global.BODY = OBJECT({
 
 	preset : function() {
 		'use strict';

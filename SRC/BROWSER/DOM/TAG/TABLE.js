@@ -1,7 +1,7 @@
 /**
  * Table class
  */
-global.TABLE = TABLE = CLASS({
+global.TABLE = CLASS({
 
 	preset : function() {
 		'use strict';

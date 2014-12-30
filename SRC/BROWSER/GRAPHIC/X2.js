@@ -1,7 +1,7 @@
 /**
  * For image X2 object
  */
-global.X2 = X2 = OBJECT({
+global.X2 = OBJECT({
 
 	init : function(inner, self) {
 		'use strict';

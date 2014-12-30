@@ -1,7 +1,7 @@
 /**
  * get href.
  */
-global.HREF = HREF = METHOD({
+global.HREF = METHOD({
 
 	run : function(uri) {
 		'use strict';

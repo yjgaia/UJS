@@ -1,7 +1,7 @@
 /**
  * convert real string to real number.
  */
-global.REAL = REAL = METHOD({
+global.REAL = METHOD({
 
 	run : function(realString) {'use strict';
 		//OPTIONAL: realString

@@ -4,7 +4,7 @@ OVERRIDE(CLEAR_BOTH, function(origin) {
 	/**
 	 * Create clear:both div. (fix for IE)
 	 */
-	global.CLEAR_BOTH = CLEAR_BOTH = METHOD({
+	global.CLEAR_BOTH = METHOD({
 
 		run : function() {
 			return DIV({

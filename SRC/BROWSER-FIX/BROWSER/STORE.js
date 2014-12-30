@@ -4,7 +4,7 @@ OVERRIDE(STORE, function(origin) {
 	/**
 	 * Local Store class (fix)
 	 */
-	global.STORE = STORE = CLASS({
+	global.STORE = CLASS({
 
 		preset : function() {
 			return origin;

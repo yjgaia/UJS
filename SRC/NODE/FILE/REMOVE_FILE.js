@@ -1,7 +1,7 @@
 /*
  * remove file.
  */
-global.REMOVE_FILE = REMOVE_FILE = METHOD(function() {
+global.REMOVE_FILE = METHOD(function() {
 	'use strict';
 
 	var

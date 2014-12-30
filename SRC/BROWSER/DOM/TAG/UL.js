@@ -1,7 +1,7 @@
 /**
  * Ul class
  */
-global.UL = UL = CLASS({
+global.UL = CLASS({
 
 	preset : function() {
 		'use strict';

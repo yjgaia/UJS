@@ -3,4 +3,4 @@
  *
  * unique value only can be null.
  */
-global.TO_DELETE = TO_DELETE = null;
+global.TO_DELETE = null;

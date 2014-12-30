@@ -4,7 +4,7 @@ OVERRIDE(IMG, function(origin) {
 	/**
 	 * Img class (fix for IE)
 	 */
-	global.IMG = IMG = CLASS({
+	global.IMG = CLASS({
 
 		preset : function() {
 			return origin;

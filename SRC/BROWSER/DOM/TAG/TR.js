@@ -1,7 +1,7 @@
 /**
  * Tr class
  */
-global.TR = TR = CLASS({
+global.TR = CLASS({
 
 	preset : function() {
 		'use strict';

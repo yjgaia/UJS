@@ -1,7 +1,7 @@
 /*
  * server clustering work.
  */
-global.SERVER_CLUSTERING = SERVER_CLUSTERING = METHOD(function(m) {
+global.SERVER_CLUSTERING = METHOD(function(m) {
 	'use strict';
 
 	return {

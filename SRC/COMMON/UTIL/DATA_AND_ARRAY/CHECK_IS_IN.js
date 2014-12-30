@@ -1,7 +1,7 @@
 /**
  * check is exists value in data or array.
  */
-global.CHECK_IS_IN = CHECK_IS_IN = METHOD({
+global.CHECK_IS_IN = METHOD({
 
 	run : function(params) {
 		'use strict';

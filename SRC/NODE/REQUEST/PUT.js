@@ -1,7 +1,7 @@
 /**
  * http PUT request.
  */
-global.PUT = PUT = METHOD({
+global.PUT = METHOD({
 
 	run : function(uriOrParams, responseListenerOrListeners) {
 		'use strict';

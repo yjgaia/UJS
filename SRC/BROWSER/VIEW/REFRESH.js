@@ -1,7 +1,7 @@
 /**
  * refresh view.
  */
-global.REFRESH = REFRESH = METHOD({
+global.REFRESH = METHOD({
 
 	run : function(uri) {
 		'use strict';

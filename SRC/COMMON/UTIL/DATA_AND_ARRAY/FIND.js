@@ -1,7 +1,7 @@
 /**
  * find name or key in data or array.
  */
-global.FIND = FIND = METHOD({
+global.FIND = METHOD({
 
 	run : function(dataOrArrayOrParams, filter) {
 		'use strict';

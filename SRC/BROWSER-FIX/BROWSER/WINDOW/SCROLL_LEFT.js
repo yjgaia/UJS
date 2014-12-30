@@ -4,7 +4,7 @@ OVERRIDE(SCROLL_LEFT, function(origin) {
 	/**
 	 * get scroll left. (fix)
 	 */
-	global.SCROLL_LEFT = SCROLL_LEFT = METHOD({
+	global.SCROLL_LEFT = METHOD({
 
 		run : function() {
 

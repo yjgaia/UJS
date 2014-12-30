@@ -4,7 +4,7 @@ OVERRIDE(UNPACK_DATA, function(origin) {
 	/**
 	 * Unpack data. (fix for IE)
 	 */
-	global.UNPACK_DATA = UNPACK_DATA = METHOD({
+	global.UNPACK_DATA = METHOD({
 
 		run : function(data) {
 			//REQUIRED: data

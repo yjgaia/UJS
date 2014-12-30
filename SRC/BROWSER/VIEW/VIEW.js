@@ -1,7 +1,7 @@
 /**
  * View interface
  */
-global.VIEW = VIEW = CLASS({
+global.VIEW = CLASS({
 
 	init : function(inner, self) {
 		'use strict';

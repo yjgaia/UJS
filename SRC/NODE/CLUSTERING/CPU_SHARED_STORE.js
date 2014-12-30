@@ -1,7 +1,7 @@
 /**
  * Cpu clustering shared store class
  */
-global.CPU_SHARED_STORE = CPU_SHARED_STORE = CLASS(function(cls) {
+global.CPU_SHARED_STORE = CLASS(function(cls) {
 	'use strict';
 
 	var

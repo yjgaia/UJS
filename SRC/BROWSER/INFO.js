@@ -1,7 +1,7 @@
 /**
  * Browser information object
  */
-global.INFO = INFO = OBJECT({
+global.INFO = OBJECT({
 
 	init : function(inner, self) {
 		'use strict';

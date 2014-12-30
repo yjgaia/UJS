@@ -1,7 +1,7 @@
 /**
  * ajax GET request.
  */
-global.GET = GET = METHOD({
+global.GET = METHOD({
 
 	run : function(uriOrParams, responseListenerOrListeners) {
 		'use strict';

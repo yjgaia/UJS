@@ -1,7 +1,7 @@
 /**
  * Input class
  */
-global.INPUT = INPUT = CLASS(function(cls) {
+global.INPUT = CLASS(function(cls) {
 	'use strict';
 
 	var

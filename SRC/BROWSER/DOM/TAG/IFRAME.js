@@ -1,7 +1,7 @@
 /**
  * Iframe class
  */
-global.IFRAME = IFRAME = CLASS({
+global.IFRAME = CLASS({
 
 	preset : function() {
 		'use strict';

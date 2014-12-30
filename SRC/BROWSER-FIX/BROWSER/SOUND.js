@@ -4,7 +4,7 @@ OVERRIDE(SOUND, function(origin) {
 	/**
 	 * SOUND class (destroy)
 	 */
-	global.SOUND = SOUND = CLASS({
+	global.SOUND = CLASS({
 
 		init : function(inner, self) {
 			// destroy.

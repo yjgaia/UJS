@@ -1,7 +1,7 @@
 /**
  * parse stringified data.
  */
-global.PARSE_STR = PARSE_STR = METHOD({
+global.PARSE_STR = METHOD({
 
 	run : function(stringifiedData) {
 		'use strict';

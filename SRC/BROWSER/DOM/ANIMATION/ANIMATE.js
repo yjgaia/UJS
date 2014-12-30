@@ -1,7 +1,7 @@
 /**
  * animate node.
  */
-global.ANIMATE = ANIMATE = METHOD({
+global.ANIMATE = METHOD({
 
 	run : function(params, callback) {
 		'use strict';

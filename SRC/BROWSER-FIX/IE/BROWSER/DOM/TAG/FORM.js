@@ -4,7 +4,7 @@ OVERRIDE(FORM, function(origin) {
 	/**
 	 * Form class. (fix for IE)
 	 */
-	global.FORM = FORM = CLASS({
+	global.FORM = CLASS({
 
 		preset : function() {
 			return origin;

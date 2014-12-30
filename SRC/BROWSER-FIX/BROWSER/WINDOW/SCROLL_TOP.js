@@ -4,7 +4,7 @@ OVERRIDE(SCROLL_TOP, function(origin) {
 	/**
 	 * get scroll top. (fix)
 	 */
-	global.SCROLL_TOP = SCROLL_TOP = METHOD({
+	global.SCROLL_TOP = METHOD({
 
 		run : function() {
 

@@ -1,7 +1,7 @@
 /**
  * SOUND class
  */
-global.SOUND = SOUND = CLASS(function(cls) {
+global.SOUND = CLASS(function(cls) {
 	'use strict';
 
 	var

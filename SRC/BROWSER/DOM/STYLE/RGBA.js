@@ -1,7 +1,7 @@
 /**
  * get rgba style string.
  */
-global.RGBA = RGBA = METHOD({
+global.RGBA = METHOD({
 
 	run : function(rgba) {
 		'use strict';

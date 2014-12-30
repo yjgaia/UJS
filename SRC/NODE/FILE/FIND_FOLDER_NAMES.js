@@ -1,7 +1,7 @@
 /*
  * find folder names.
  */
-global.FIND_FOLDER_NAMES = FIND_FOLDER_NAMES = METHOD(function() {
+global.FIND_FOLDER_NAMES = METHOD(function() {
 	'use strict';
 
 	var

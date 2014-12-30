@@ -1,7 +1,7 @@
 /**
  * Loading bar class
  */
-global.LOADING_BAR = LOADING_BAR = CLASS({
+global.LOADING_BAR = CLASS({
 
 	init : function(inner, self) {
 		'use strict';

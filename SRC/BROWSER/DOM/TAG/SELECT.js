@@ -1,7 +1,7 @@
 /**
  * Select class
  */
-global.SELECT = SELECT = CLASS({
+global.SELECT = CLASS({
 
 	preset : function() {
 		'use strict';

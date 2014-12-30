@@ -4,7 +4,7 @@ OVERRIDE(ANIMATE, function(origin) {
 	/**
 	 * animate node. (destroy for IE)
 	 */
-	global.ANIMATE = ANIMATE = METHOD({
+	global.ANIMATE = METHOD({
 
 		run : function(params, callback) {
 			//REQUIRED: params

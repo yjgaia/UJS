@@ -1,7 +1,7 @@
 /*
  * copy file.
  */
-global.COPY_FILE = COPY_FILE = METHOD(function() {
+global.COPY_FILE = METHOD(function() {
 	'use strict';
 
 	var

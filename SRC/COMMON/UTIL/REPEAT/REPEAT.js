@@ -1,7 +1,7 @@
 /**
  * run `func` repeat `count` time, or same as `for`.
  */
-global.REPEAT = REPEAT = METHOD({
+global.REPEAT = METHOD({
 
 	run : function(countOrParams, func) {
 		'use strict';

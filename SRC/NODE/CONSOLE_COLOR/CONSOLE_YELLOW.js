@@ -1,7 +1,7 @@
 /*
  * console yellow
  */
-global.CONSOLE_YELLOW = CONSOLE_YELLOW = METHOD({
+global.CONSOLE_YELLOW = METHOD({
 
 	run : function(text) {
 		'use strict';

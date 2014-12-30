@@ -1,7 +1,7 @@
 /*
  * create folder.
  */
-global.CREATE_FOLDER = CREATE_FOLDER = METHOD(function() {
+global.CREATE_FOLDER = METHOD(function() {
 	'use strict';
 
 	var

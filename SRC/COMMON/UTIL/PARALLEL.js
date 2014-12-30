@@ -1,7 +1,7 @@
 /**
  * run funcs in parallel.
  */
-global.PARALLEL = PARALLEL = METHOD({
+global.PARALLEL = METHOD({
 
 	run : function(countOrArray, funcs) {
 		'use strict';
