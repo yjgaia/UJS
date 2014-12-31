@@ -18,4 +18,14 @@ RUN(function() {
 
 	// fix INFO.
 	loadFixScript('BROWSER/INFO');
+	
+	/**
+	 * fix BROWSER/DOM.
+	 */
+
+	// fix INPUT.
+	loadFixScript('BROWSER/DOM/TAG/INPUT');
+	
+	// fix TEXTAREA.
+	loadFixScript('BROWSER/DOM/TAG/TEXTAREA');
 });

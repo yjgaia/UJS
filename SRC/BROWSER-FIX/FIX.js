@@ -91,6 +91,22 @@ RUN(function() {
 	if (global.Audio === undefined) {
 		loadFixScript('BROWSER/SOUND');
 	}
+	
+	/**
+	 * fix BROWSER/VIEW.
+	 */
+
+	if (history.pushState === undefined) {
+		
+		// fix HREF.
+		loadFixScript('BROWSER/VIEW/HREF');
+		
+		// fix MATCH_VIEW.
+		loadFixScript('BROWSER/VIEW/MATCH_VIEW');
+		
+		// fix REFRESH.
+		loadFixScript('BROWSER/VIEW/REFRESH');
+	}
 
 	/**
 	 * fix specific browsers.

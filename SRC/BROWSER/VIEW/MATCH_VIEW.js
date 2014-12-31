@@ -1,75 +1,96 @@
 /**
  * match view.
  */
-global.MATCH_VIEW = METHOD({
+global.MATCH_VIEW = METHOD(function(m) {
+	'use strict';
+	
+	var
+	// change uri handlers
+	changeURIHandlers = [],
+	
+	// check all.
+	checkAll;
+	
+	m.checkAll = checkAll = function() {
+		EACH(changeURIHandlers, function(changeURIHandler) {
+			changeURIHandler();
+		});
+	};
+	
+	return {
 
-	run : function(params) {
-		'use strict';
-		//REQUIRED: params
-		//REQUIRED: params.uri
-		//REQUIRED: params.target
-
-		var
-		// uri
-		uri = params.uri,
-
-		// target
-		target = params.target,
-
-		// uri matcher
-		uriMatcher = URI_MATCHER(uri),
-
-		// view
-		view,
-
-		// pre params
-		preParams;
-
-		EVENT({
-			name : 'hashchange'
-		}, RAR(function() {
-
+		run : function(params) {
+			//REQUIRED: params
+			//REQUIRED: params.uri
+			//REQUIRED: params.target
+	
 			var
-			// hash
-			hash = location.hash,
-
-			// result
-			result,
-
-			// uri parmas
-			uriParams;
-
-			// when view founded
-			if (hash !== '#__REFRESING' && ( result = uriMatcher.check(hash.substring(1))).checkIsMatched() === true) {
-
-				uriParams = result.getURIParams();
-
-				// when before view not exists, create view.
-				if (view === undefined) {
-
-					view = target();
-					view.changeParams(uriParams);
-					target.lastView = view;
-
-					preParams = uriParams;
+			// uri
+			uri = params.uri,
+	
+			// target
+			target = params.target,
+	
+			// uri matcher
+			uriMatcher = URI_MATCHER(uri),
+	
+			// view
+			view,
+	
+			// pre params
+			preParams,
+			
+			// change uri handler.
+			changeURIHandler = RAR(function() {
+	
+				var
+				// uri
+				uri = location.pathname.substring(1),
+	
+				// result
+				result,
+	
+				// uri parmas
+				uriParams;
+	
+				// when view founded
+				if (uri !== REFRESH.getRefreshingURI() && ( result = uriMatcher.check(uri)).checkIsMatched() === true) {
+	
+					uriParams = result.getURIParams();
+	
+					// when before view not exists, create view.
+					if (view === undefined) {
+	
+						view = target();
+						view.changeParams(uriParams);
+						target.lastView = view;
+	
+						preParams = uriParams;
+					}
+	
+					// when before view exists, change params.
+					else if (CHECK_ARE_SAME([preParams, uriParams]) !== true) {
+	
+						view.changeParams(uriParams);
+						preParams = uriParams;
+					}
 				}
-
-				// when before view exists, change params.
-				else if (CHECK_ARE_SAME([preParams, uriParams]) !== true) {
-
-					view.changeParams(uriParams);
-					preParams = uriParams;
+	
+				// when view not founded, close before view
+				else if (view !== undefined) {
+	
+					view.close();
+	
+					view = undefined;
+					target.lastView = undefined;
 				}
-			}
-
-			// when view not founded, close before view
-			else if (view !== undefined) {
-
-				view.close();
-
-				view = undefined;
-				target.lastView = undefined;
-			}
-		}));
-	}
+			});
+			
+			changeURIHandlers.push(changeURIHandler);
+	
+			EVENT({
+				name : 'popstate'
+			}, changeURIHandler);
+		}
+	};
 });

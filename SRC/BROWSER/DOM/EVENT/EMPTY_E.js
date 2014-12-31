@@ -23,7 +23,10 @@ global.EMPTY_E = CLASS({
 		getTop,
 
 		// get key code.
-		getKeyCode;
+		getKeyCode,
+		
+		// get state.
+		getState;
 
 		self.stopDefault = stopDefault = function() {
 			// ignore.
@@ -53,6 +56,10 @@ global.EMPTY_E = CLASS({
 
 			// on heaven!
 			return -999999;
+		};
+		
+		self.getState = getState = function() {
+			// ignore.
 		};
 	}
 });

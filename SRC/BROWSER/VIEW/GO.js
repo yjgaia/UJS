@@ -7,6 +7,8 @@ global.GO = METHOD({
 		'use strict';
 		//OPTIONAL: uri
 
-		location.href = HREF(uri);
+		history.pushState(undefined, undefined, HREF(uri));
+		
+		MATCH_VIEW.checkAll();
 	}
 });

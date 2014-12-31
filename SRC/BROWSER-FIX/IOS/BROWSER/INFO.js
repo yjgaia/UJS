@@ -2,7 +2,7 @@ OVERRIDE(INFO, function(origin) {
 	'use strict';
 
 	/**
-	 * Browser information object (fix for Android)
+	 * Browser information object (fix for iOS)
 	 */
 	global.INFO = OBJECT({
 
