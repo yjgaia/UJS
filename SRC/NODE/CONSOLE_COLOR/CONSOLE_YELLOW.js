@@ -7,6 +7,6 @@ global.CONSOLE_YELLOW = METHOD({
 		'use strict';
 		//REQUIRED: text
 
-		return '\033[33m' + text + '\033[0m';
+		return '[33m' + text + '[0m';
 	}
 });

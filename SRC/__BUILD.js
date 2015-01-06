@@ -45,19 +45,47 @@ RUN(function() {
 	},
 
 	// save.
-	save = function(scripts, path) {
+	save = function(scriptPaths, path, isToSaveMin) {
 
 		var
-		// result
-		result = uglifyJS.minify(scripts, {
-			mangle : true
+		// content
+		content,
+		
+		// minify result
+		minifyResult;
+		
+		EACH(scriptPaths, function(scriptPath) {
+			
+			if (content === undefined) {
+				content = '';
+			} else {
+				content += '\n';
+			}
+			
+			content += READ_FILE({
+				path : scriptPath,
+				isSync : true
+			}).toString();
 		});
-
+		
 		WRITE_FILE({
-			path : '../' + path,
-			content : result.code,
+			path : '../' + path + '.js',
+			content : content,
 			isSync : true
 		});
+		
+		if (isToSaveMin === true) {
+		
+			minifyResult = uglifyJS.minify(scriptPaths, {
+				mangle : true
+			});
+	
+			WRITE_FILE({
+				path : '../' + path + '.MIN.js',
+				content : minifyResult.code,
+				isSync : true
+			});
+		}
 	},
 
 	// build folder.
@@ -71,7 +99,7 @@ RUN(function() {
 
 		scanFolder(scripts, name);
 
-		save(scripts, 'UPPERCASE.JS-' + name + '.js');
+		save(scripts, 'UPPERCASE.JS-' + name, true);
 	},
 
 	// copy folder.
@@ -82,15 +110,11 @@ RUN(function() {
 			isSync : true
 		}, function(fileNames) {
 			EACH(fileNames, function(fileName) {
-				if (path.extname(fileName) === '.js') {
-					save([from + '/' + fileName], to + '/' + fileName);
-				} else {
-					COPY_FILE({
-						from : from + '/' + fileName,
-						to : '../' + to + '/' + fileName,
-						isSync : true
-					});
-				}
+				COPY_FILE({
+					from : from + '/' + fileName,
+					to : '../' + to + '/' + fileName,
+					isSync : true
+				});
 			});
 		});
 
@@ -123,7 +147,7 @@ RUN(function() {
 
 		scanFolder(scripts, 'COMMON/UTIL');
 
-		save(scripts, 'UPPERCASE.JS-COMMON.js');
+		save(scripts, 'UPPERCASE.JS-COMMON', true);
 	});
 
 	buildFolder('BROWSER');

@@ -7,6 +7,6 @@ global.CONSOLE_BLUE = METHOD({
 		'use strict';
 		//REQUIRED: text
 
-		return '\033[36m' + text + '\033[0m';
+		return '[36m' + text + '[0m';
 	}
 });

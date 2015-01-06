@@ -7,6 +7,6 @@ global.CONSOLE_GREEN = METHOD({
 		'use strict';
 		//REQUIRED: text
 
-		return '\033[32m' + text + '\033[0m';
+		return '[32m' + text + '[0m';
 	}
 });

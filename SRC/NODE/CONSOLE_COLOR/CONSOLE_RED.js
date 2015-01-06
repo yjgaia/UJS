@@ -7,6 +7,6 @@ global.CONSOLE_RED = METHOD({
 		'use strict';
 		//REQUIRED: text
 
-		return '\033[31m' + text + '\033[0m';
+		return '[31m' + text + '[0m';
 	}
 });
