@@ -70,7 +70,6 @@ global.WEB_SERVER = CLASS(function(cls) {
 	return {
 
 		init : function(inner, self, portOrParams, requestListener) {
-			'use strict';
 			//REQUIRED: portOrParams
 			//OPTIONAL: portOrParams.port
 			//OPTIONAL: portOrParams.securedPort

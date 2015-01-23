@@ -25,6 +25,9 @@
 ###### UPPERCASE.JS-PHANTOM
 서버에서 브라우저 환경이 필요할 때 사용됩니다. (웹 사이트 캡쳐 등)
 
+## 코드 상 유의사항
+* false를 사용하지 않습니다. JavaScript 특성상 undefined 일 경우도 false로 인식하기 때문입니다. boolean 값을 체크하기 위해서는 `something === true` 나 `something !== true` 로 비교하시기 바랍니다. 
+
 ## 튜토리얼
 * 웹 서버 만들기
 * 웹 사이트 만들기

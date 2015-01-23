@@ -55,7 +55,7 @@ global.INFO = OBJECT({
 			//REQUIRED: lang
 
 			STORE('__INFO').save({
-				key : 'lang',
+				name : 'lang',
 				value : lang
 			});
 
