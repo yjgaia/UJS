@@ -13,7 +13,6 @@ global.REQUEST = METHOD({
 		//OPTIONAL: params.uri
 		//OPTIONAL: params.paramStr
 		//OPTIONAL: params.data
-		//OPTIONAL: params.isNotUsingLoadingBar
 		//REQUIRED: responseListenerOrListeners
 
 		var
@@ -38,9 +37,6 @@ global.REQUEST = METHOD({
 		// data
 		data = params.data,
 
-		// is not using loading bar
-		isNotUsingLoadingBar = params.isNotUsingLoadingBar,
-
 		// response listener
 		responseListener,
 
@@ -49,9 +45,6 @@ global.REQUEST = METHOD({
 
 		// url
 		url,
-
-		// loading bar
-		loadingBar,
 
 		// http request
 		req;
@@ -78,10 +71,6 @@ global.REQUEST = METHOD({
 
 		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + (uri === undefined ? '' : uri);
 
-		if (isNotUsingLoadingBar !== true) {
-			loadingBar = LOADING_BAR();
-		}
-
 		req = new XMLHttpRequest();
 
 		req.onreadystatechange = function() {
@@ -106,10 +95,6 @@ global.REQUEST = METHOD({
 					} else {
 						console.log('[UPPERCASE.JS-REQUEST] REQUEST FAILED:', params, error);
 					}
-				}
-
-				if (loadingBar !== undefined) {
-					loadingBar.done();
 				}
 			}
 		};

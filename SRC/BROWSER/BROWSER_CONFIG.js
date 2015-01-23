@@ -4,10 +4,9 @@
 global.BROWSER_CONFIG = {
 
 	host : location.hostname,
-	port : location.port,
+	port : location.port
 
 	// isSupportingX2
 	// isUsingFlashCanvasPro
 	// fixScriptsFolderPath
-	loadingBarColor : '#007aff'
 };

@@ -16,7 +16,6 @@ Each configuration is set as a form of `BROWSER_CONFIG.isSupportingX2 = true;`.
 * `isSupportingX2` Set `true` in case of enabling scaling image pixels twice to support retina displays.
 * `isUsingFlashCanvasPro` Set `true` to use FlashCanvas Pro. Purchase of FlashCanvas Pro license is required. http://flashcanvas.net/purchase
 * `fixScriptsFolderPath` Set the folder where BROWSER-FIX scripts are stored.
-* `loadingBarColor` Set the color of the loading bar during networking such as REQUEST. Its default value is `'#007aff'`.
 
 ## UPPERCASE.JS-COMMON
 Provides OOP support and various features.
@@ -386,7 +385,6 @@ form = FORM ->
 * `IFRAME({name:})` `IFRAME({src:})` `IFRAME({style:})` `IFRAME({c:})` `SELECT({on:})` Iframe class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/IFRAME.js)
 * `CANVAS()` `CANVAS({width:})` `CANVAS({height:})` `CANVAS({style:})` `CANVAS({c:})` `CANVAS({on:})` Canvas class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/TAG/CANVAS.js)
 * `CLEAR_BOTH()` create clear:both div. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/CLEAR_BOTH.js)
-* `LOADING_BAR()` Loading bar class [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/LOADING_BAR.js)
 
 ###### Styles
 * `ADD_STYLE({node:, style:})` add style. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/DOM/STYLE/ADD_STYLE.js)
@@ -414,7 +412,6 @@ sound.stop()
 ```
 
 ###### AJAX
-If you don't want to use loading bar, set `isNotUsingLoadingBar` parameter to true.
 * `REQUEST({method:, uri:}, responseListenerOrListeners)` `REQUEST({method:, uri:, paramStr:}, responseListenerOrListeners)` `REQUEST({host:, port:, isSecure:, method:, uri:, data:}, responseListenerOrListeners)` ajax request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/REQUEST.js)
 * `GET(uri, responseListenerOrListeners)` `GET({uri:, paramStr:}, responseListenerOrListeners)` `GET({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)` ajax GET request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/GET.js)
 * `POST(uri:, responseListenerOrListeners)` `POST({uri:, paramStr:}, responseListenerOrListeners)` `POST({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)` ajax POST request. [EXAMPLE](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/REQUEST/POST.js)
