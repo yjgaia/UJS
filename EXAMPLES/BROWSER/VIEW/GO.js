@@ -45,4 +45,7 @@ TEST('GO', function(ok) {
 
 	// go test view.
 	GO('go/1');
+	
+	// go back.
+	GO();
 });
