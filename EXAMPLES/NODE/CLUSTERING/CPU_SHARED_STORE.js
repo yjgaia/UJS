@@ -22,7 +22,12 @@ TEST('CPU_SHARED_STORE', function(ok) {
 		}
 
 		DELAY(1, function() {
+			
 			ok(sharedStore.get('msg') === 'Hello World!');
+			
+			ok(CHECK_ARE_SAME([sharedStore.list(), {
+				msg : 'Hello World!'
+			}]));
 		});
 	});
 });

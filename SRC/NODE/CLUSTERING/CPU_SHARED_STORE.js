@@ -1,5 +1,5 @@
 /**
- * Cpu clustering shared store class
+ * CPU clustering shared store class
  */
 global.CPU_SHARED_STORE = CLASS(function(cls) {
 	'use strict';
@@ -16,6 +16,9 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 
 	// get.
 	get,
+	
+	// list.
+	list,
 
 	// remove.
 	remove;
@@ -54,6 +57,10 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 
 		return storage[fullName];
 	};
+	
+	cls.list = list = function() {
+		return storage;
+	};
 
 	cls.remove = remove = function(fullName) {
 		//REQUIRED: fullName
@@ -80,6 +87,9 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 
 			// get.
 			get,
+			
+			// list.
+			list,
 
 			// remove.
 			remove;
@@ -131,6 +141,22 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 				//REQUIRED: name
 
 				return cls.get(getFullName(name));
+			};
+			
+			self.list = list = function() {
+				
+				var
+				// values
+				values = {};
+				
+				EACH(cls.list(), function(value, fullName) {
+					
+					if (fullName.substring(0, name.length + 1) === name + '.') {
+						values[fullName.substring(name.length + 1)] = value;
+					}
+				});
+				
+				return values;
 			};
 
 			self.remove = remove = function(name) {

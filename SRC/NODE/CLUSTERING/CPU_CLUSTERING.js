@@ -1,5 +1,5 @@
 /*
- * cpu clustering work.
+ * CPU clustering work.
  */
 global.CPU_CLUSTERING = METHOD(function(m) {
 	'use strict';
