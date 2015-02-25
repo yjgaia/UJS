@@ -5,7 +5,7 @@ global.GO = METHOD({
 
 	run : function(uri) {
 		'use strict';
-		//OPTIONAL: uri
+		//REQUIRED: uri
 
 		history.pushState(undefined, undefined, HREF(uri));
 		

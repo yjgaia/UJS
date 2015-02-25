@@ -5,8 +5,8 @@ global.HREF = METHOD({
 
 	run : function(uri) {
 		'use strict';
-		//OPTIONAL: uri
+		//REQUIRED: uri
 
-		return '/' + (uri === undefined ? '' : uri);
+		return '/' + uri;
 	}
 });
