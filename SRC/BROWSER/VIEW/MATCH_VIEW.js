@@ -45,7 +45,7 @@ global.MATCH_VIEW = METHOD(function(m) {
 	
 				var
 				// uri
-				uri = location.pathname.substring(1),
+				uri = decodeURIComponent(location.pathname.substring(1)),
 	
 				// result
 				result,
