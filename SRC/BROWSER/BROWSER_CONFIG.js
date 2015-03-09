@@ -4,9 +4,12 @@
 global.BROWSER_CONFIG = {
 
 	host : location.hostname,
-	port : location.port
+	
+	port : location.port,
 
-	// isSupportingX2
-	// isUsingFlashCanvasPro
+	isSupportingX2 : false,
+	
+	isUsingFlashCanvasPro : false
+	
 	// fixScriptsFolderPath
 };

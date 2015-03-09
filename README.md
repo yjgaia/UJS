@@ -3,7 +3,7 @@ Easy, Clear, and Powerful Full-stack (server-to-client) JavaScript Library for D
 
 ## Document
 * [한국어 문서](DOC/KR/INDEX.md)
-* [English](DOC/EN/INDEX.md)
+* 다른 언어로의 번역이 필요하여 참여를 기다리고 있습니다.
 
 ## License
 [MIT](LICENSE)

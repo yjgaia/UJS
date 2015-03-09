@@ -89,7 +89,7 @@ RUN(function() {
 	},
 
 	// build folder.
-	buildFolder = function(name) {
+	buildFolder = function(name, isToSaveMin) {
 
 		var
 		// scripts
@@ -99,7 +99,7 @@ RUN(function() {
 
 		scanFolder(scripts, name);
 
-		save(scripts, 'UPPERCASE.JS-' + name, true);
+		save(scripts, 'UPPERCASE.JS-' + name, isToSaveMin);
 	},
 
 	// copy folder.
@@ -150,7 +150,7 @@ RUN(function() {
 		save(scripts, 'UPPERCASE.JS-COMMON', true);
 	});
 
-	buildFolder('BROWSER');
+	buildFolder('BROWSER', true);
 
 	RUN(function() {
 
@@ -160,7 +160,6 @@ RUN(function() {
 	});
 
 	buildFolder('NODE');
-	buildFolder('PHANTOM');
 	
 	log('DONE.');
 });

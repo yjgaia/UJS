@@ -456,13 +456,6 @@ sound.stop()
 * `REFRESH()` refresh view. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/VIEW/REFRESH.js)
 
 
-## UPPERCASE.JS-PHANTOM
-PhantomJS 기반 프로젝트에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-PhantomJS를 위한 유틸리티를 찾고 계신다면 UPPERCASE.JS-NODE를 사용해보세요.
-
-* UPPERCASE.JS-COMMON.js가 필요합니다.
-* 상세 명세는 준비중입니다.
-
 
 ## Build UPPERCASE.JS
 ```

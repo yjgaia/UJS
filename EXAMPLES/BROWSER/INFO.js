@@ -14,8 +14,8 @@ TEST('INFO', function(ok) {
 	// check is hd display.
 	console.log(INFO.checkIsHDDisplay());
 
-	// check is touchable display.
-	console.log(INFO.checkIsTouchableDisplay());
+	// check is touch mode.
+	console.log(INFO.checkIsTouchMode());
 
 	// get browser info.
 	console.log(INFO.getBrowserInfo());
