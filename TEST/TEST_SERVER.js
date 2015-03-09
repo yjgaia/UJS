@@ -1,6 +1,6 @@
 // load UPPERCASE.JS.
-require('./UPPERCASE.JS-COMMON.js');
-require('./UPPERCASE.JS-NODE.js');
+require('../UPPERCASE.JS-COMMON.js');
+require('../UPPERCASE.JS-NODE.js');
 
 RUN(function() {
 	'use strict';
@@ -16,7 +16,7 @@ RUN(function() {
 
 	RESOURCE_SERVER({
 		port : port,
-		rootPath : __dirname
+		rootPath : __dirname + '/..'
 	}, function(requestInfo, response, onDisconnected, replaceRootPath, next) {
 
 		var
@@ -31,7 +31,7 @@ RUN(function() {
 
 		if (uri === '') {
 
-			requestInfo.uri = 'TEST.html';
+			requestInfo.uri = 'TEST/TEST.html';
 
 		} else if (uri === 'AJAX_TEST') {
 

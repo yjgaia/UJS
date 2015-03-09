@@ -194,15 +194,15 @@
 		<script>
 			global = window;
 		</script>
-		<script src="UPPERCASE.JS-COMMON.js"></script>
+		<script src="/UPPERCASE.JS-COMMON.js"></script>
 		<script>
 			CONFIG.version = 'V' + (new Date()).getTime();
 		</script>
-		<script src="UPPERCASE.JS-BROWSER.js"></script>
+		<script src="/UPPERCASE.JS-BROWSER.js"></script>
 		<script>
 			BROWSER_CONFIG.isUsingFlashCanvasPro = true;
-			BROWSER_CONFIG.fixScriptsFolderPath = 'UPPERCASE.JS-BROWSER-FIX';
-			LOAD('UPPERCASE.JS-BROWSER-FIX/FIX.js');
+			BROWSER_CONFIG.fixScriptsFolderPath = '/UPPERCASE.JS-BROWSER-FIX';
+			LOAD('/UPPERCASE.JS-BROWSER-FIX/FIX.js');
 		</script>
 		<script>
 			READY(function() {
@@ -215,7 +215,7 @@
 				test;
 
 				global.test = test = function(path) {
-					LOAD('EXAMPLES/' + path + '.js');
+					LOAD('/EXAMPLES/' + path + '.js');
 				};
 
 				console.log('[UPPERCASE.JS TEST START] BROWSER: ' + INFO.getBrowserInfo().name + ' ' + INFO.getBrowserInfo().version);
