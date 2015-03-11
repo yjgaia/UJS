@@ -1,4 +1,4 @@
-# ![ScreenShot](https://raw.githubusercontent.com/UPPERCASE-Series/UPPERCASE.JS/master/LOGO.png)
+# ![ScreenShot](https://raw.githubusercontent.com/Hanul/UPPERCASE.JS/master/LOGO.png)
 UPPERCASE.JS는 JavaScript 라이브러리입니다.
 * 이름에서 알 수 있듯이 모든 API가 대문자로 이루어져 있습니다.
 * [UPPERCASE.IO](http://UPPERCASE.IO)에서 사용되고 있습니다.
@@ -7,7 +7,7 @@ UPPERCASE.JS는 JavaScript 라이브러리입니다.
 * [프로젝트 구성요소 살펴보기](OVERVIEW.md)
 * [설치하기](INSTALL.md)
 * [초기화 하기](INIT.md)
-* [코딩 컨벤션 익히기](CONVENTION.md) (작성중)
+* [코드 컨벤션 규칙 익히기](CONVENTION.md)
 * [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md) (작성중)
 * [UPPERCASE.JS-BROWSER](UPPERCASE.JS-BROWSER.md) (작성중)
 * [UPPERCASE.JS-NODE](UPPERCASE.JS-NODE.md) (작성중)

@@ -24,15 +24,15 @@ UPPERCASE.JS를 설치하는 방법은 아주 쉽습니다. 사실, 설치과정
 Node.js는 [CommonJS](http://www.commonjs.org)를 따르므로 `require` 메소드를 제공합니다. `require`로 UPPERCASE.JS를 불러옵니다.
 ```javascript
 // 공통 라이브러리인 UPPERCASE.JS-COMMON.js와 UPPERCASE.JS-NODE.js를 불러옵니다.
-require('UPPERCASE.JS-COMMON.js');
-require('UPPERCASE.JS-NODE.js');
+require('./UPPERCASE.JS-COMMON.js');
+require('./UPPERCASE.JS-NODE.js');
 ```
 
 ## 다른 솔루션을 기반으로 하는 프로젝트에서
 다른 솔루션에서는 공통 라이브러리인 `UPPERCASE.JS-COMMON.js`만 사용할 수 있습니다. Node.js와 같이 [CommonJS](http://www.commonjs.org)를 따른다면 `require` 메소드를, 그 외에 경우라면 각 솔루션에 맞게 `UPPERCASE.JS-COMMON.js`를 불러옵니다.
 ```javascript
 // 공통 라이브러리인 UPPERCASE.JS-COMMON.js를 불러옵니다.
-require('UPPERCASE.JS-COMMON.js');
+require('./UPPERCASE.JS-COMMON.js');
 ```
 
 다음 문서: [초기화 하기](INIT.md)

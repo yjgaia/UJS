@@ -70,4 +70,4 @@ INIT_OBJECTS();
 someMethod();
 ```
 
-다음 문서: [코딩 컨벤션 익히기](CONVENTION.md)
+다음 문서: [코드 컨벤션 규칙 익히기](CONVENTION.md)
