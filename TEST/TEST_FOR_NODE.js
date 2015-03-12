@@ -1,10 +1,10 @@
 // load UPPERCASE.JS.
-require('./UPPERCASE.JS-COMMON.js');
+require('../UPPERCASE.JS-COMMON.js');
 
 var
 // test.
 test = function(path) {
-	require('./EXAMPLES/' + path + '.js');
+	require('../EXAMPLES/' + path + '.js');
 };
 
 test('COMMON/TO_DELETE');
