@@ -61,5 +61,7 @@ global.VIEW = CLASS({
 		inner.checkIsClosed = checkIsClosed = function() {
 			return isClosed;
 		};
+		
+		scrollTo(0, 0);
 	}
 });
