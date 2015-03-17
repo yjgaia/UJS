@@ -8,7 +8,7 @@ UPPERCASE.JS는 JavaScript 라이브러리입니다.
 * [설치하기](INSTALL.md)
 * [초기화 하기](INIT.md)
 * [코드 컨벤션 규칙 익히기](CONVENTION.md)
-* [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md) (작성중)
+* [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md)
 * [UPPERCASE.JS-BROWSER](UPPERCASE.JS-BROWSER.md) (작성중)
 * [UPPERCASE.JS-NODE](UPPERCASE.JS-NODE.md) (작성중)
 * [CONFIG 설정 상세보기](CONFIG.md) (작성중)

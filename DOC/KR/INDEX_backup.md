@@ -1,10 +1,4 @@
 
-###### UPPERCASE.JS-COMMON
-객체지향 프로그래밍 지원 및 다양한 기능을 제공하는 JavaScript 라이브러리입니다. JavaScript 유틸리티를 찾고 계신다면 UPPERCASE.JS-COMMON을 사용해보세요.
-
-* 객체지향 지원
-* 자바스크립트를 위한 유틸리티
-
 ###### UPPERCASE.JS-BROWSER
 웹 브라우저에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
 모든 브라우저와 호환되는 브라우저용 유틸리티와 웹 애플리케이션 개발용 템플릿 엔진을 찾으신다면 UPPERCASE.JS-BROWSER를 사용해보세요.
@@ -23,8 +17,6 @@
 * `fixScriptsFolderPath` BROWSER-FIX 스크립트들이 저장되어 있는 폴더의 경로를 지정합니다.
 
 ## UPPERCASE.JS-COMMON
-객체지향 프로그래밍 지원 및 다양한 기능을 제공하는 JavaScript 라이브러리입니다.
-JavaScript 유틸리티를 찾고 계신다면 UPPERCASE.JS-COMMON을 사용해보세요.
 
 * `METHOD` 메소드를 생성합니다. 메소드에 static 변수를 지정할 수 있습니다. [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/COMMON/METHOD.js)
 ```javascript

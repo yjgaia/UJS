@@ -1,5 +1,9 @@
 
 
+`UPPERCSE.JS-BROWSER.js`는 최신 웹 브라우저들에서 돌아가도록 구현되어 있습습니다.
+구버젼 웹 브라우저들을 지원하기 위해서는 `UPPERCASE.JS-BROWSER-FIX`를 함께 구동시키시기 바랍니다.
+
+
 EXPORT_IMG_DATA는 IE8 이하 버젼에서는 메모리 부족으로 제대로 처리되지 않을 수 있습니다.
 
 ###### UPPERCASE.JS-BROWSER
