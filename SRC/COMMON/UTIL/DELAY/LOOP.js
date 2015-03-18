@@ -110,7 +110,6 @@ global.LOOP = CLASS(function(cls) {
 	return {
 
 		init : function(inner, self, fps, intervalOrFuncs) {
-			'use strict';
 			//OPTIONAL: fps
 			//OPTIONAL: intervalOrFuncs
 			//OPTIONAL: intervalOrFuncs.start

@@ -1,11 +1,11 @@
 /**
- * convert real string to real number.
+ * convert real number string to real number.
  */
 global.REAL = METHOD({
 
-	run : function(realString) {'use strict';
-		//OPTIONAL: realString
+	run : function(realNumberString) {'use strict';
+		//OPTIONAL: realNumberString
 
-		return realString === undefined ? undefined : parseFloat(realString);
+		return realNumberString === undefined ? undefined : parseFloat(realNumberString);
 	}
 });

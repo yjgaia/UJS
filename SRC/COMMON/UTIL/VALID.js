@@ -86,7 +86,7 @@ global.VALID = CLASS(function(cls) {
 
 	cls.regex = regex = function(params) {
 		//REQUIRED: params
-		//REQUIRED: params.patten
+		//REQUIRED: params.pattern
 		//REQUIRED: params.value
 
 		var
@@ -100,7 +100,7 @@ global.VALID = CLASS(function(cls) {
 	};
 
 	cls.size = size = function(params) {
-		//REQUIRED: params.min
+		//OPTIONAL: params.min
 		//REQUIRED: params.max
 		//REQUIRED: params.value
 
@@ -230,15 +230,15 @@ global.VALID = CLASS(function(cls) {
 
 	cls.one = one = function(params) {
 		//REQUIRED: params
-		//REQUIRED: params.value
 		//REQUIRED: params.array
+		//REQUIRED: params.value
 
 		var
-		// value
-		value = params.value,
-
 		// array
-		array = params.array;
+		array = params.array,
+		
+		// value
+		value = params.value;
 
 		return EACH(array, function(_value) {
 			if (value === _value) {

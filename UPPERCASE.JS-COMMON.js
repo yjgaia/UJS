@@ -671,13 +671,13 @@ global.PARALLEL = METHOD({
 });
 
 /**
- * parse stringified data.
+ * parse stringified value.
  */
 global.PARSE_STR = METHOD({
 
-	run : function(stringifiedData) {
+	run : function(stringifiedValue) {
 		'use strict';
-		//REQUIRED: stringifiedData
+		//REQUIRED: stringifiedValue
 
 		var
 		// value
@@ -685,7 +685,7 @@ global.PARSE_STR = METHOD({
 
 		try {
 
-			value = JSON.parse(stringifiedData);
+			value = JSON.parse(stringifiedValue);
 
 			return CHECK_IS_DATA(value) === true ? UNPACK_DATA(value) : value;
 
@@ -982,7 +982,7 @@ global.VALID = CLASS(function(cls) {
 
 	cls.regex = regex = function(params) {
 		//REQUIRED: params
-		//REQUIRED: params.patten
+		//REQUIRED: params.pattern
 		//REQUIRED: params.value
 
 		var
@@ -996,7 +996,7 @@ global.VALID = CLASS(function(cls) {
 	};
 
 	cls.size = size = function(params) {
-		//REQUIRED: params.min
+		//OPTIONAL: params.min
 		//REQUIRED: params.max
 		//REQUIRED: params.value
 
@@ -1126,15 +1126,15 @@ global.VALID = CLASS(function(cls) {
 
 	cls.one = one = function(params) {
 		//REQUIRED: params
-		//REQUIRED: params.value
 		//REQUIRED: params.array
+		//REQUIRED: params.value
 
 		var
-		// value
-		value = params.value,
-
 		// array
-		array = params.array;
+		array = params.array,
+		
+		// value
+		value = params.value;
 
 		return EACH(array, function(_value) {
 			if (value === _value) {
@@ -2414,7 +2414,6 @@ global.LOOP = CLASS(function(cls) {
 	return {
 
 		init : function(inner, self, fps, intervalOrFuncs) {
-			'use strict';
 			//OPTIONAL: fps
 			//OPTIONAL: intervalOrFuncs
 			//OPTIONAL: intervalOrFuncs.start
@@ -2600,14 +2599,14 @@ global.RANDOM = METHOD({
 });
 
 /**
- * convert real string to real number.
+ * convert real number string to real number.
  */
 global.REAL = METHOD({
 
-	run : function(realString) {'use strict';
-		//OPTIONAL: realString
+	run : function(realNumberString) {'use strict';
+		//OPTIONAL: realNumberString
 
-		return realString === undefined ? undefined : parseFloat(realString);
+		return realNumberString === undefined ? undefined : parseFloat(realNumberString);
 	}
 });
 
