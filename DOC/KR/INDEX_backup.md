@@ -1,14 +1,4 @@
 
-###### UPPERCASE.JS-BROWSER
-웹 브라우저에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-모든 브라우저와 호환되는 브라우저용 유틸리티와 웹 애플리케이션 개발용 템플릿 엔진을 찾으신다면 UPPERCASE.JS-BROWSER를 사용해보세요.
-
-	UPPERCASE.JS-BROWSER는 웹 애플리케이션(하이브리드 앱이나 게임 등)을 제작하는데 최적화 되어 있습니다. 문서 기반의 웹 사이트 개발을 위해서는 jQuery나 AngluarJS 등 다른 훌륭한 라이브러리들을 사용하시는 편이 좋습니다.
-
-* 객체지향의 상속을 활용한 구버젼 브라우저 지원
-* 브라우저를 위한 유틸리티
-* 순수 JS 기반 DOM 엔진
-
 ## Configuration
 ###### BROWSER_CONFIG
 각 설정은 `BROWSER_CONFIG.isSupportingX2 = true;` 와 같이 설정합니다.
@@ -88,61 +78,21 @@ method();
 * `CONSOLE_YELLOW(text)` console yellow
 
 
-## UPPERCASE.JS-BROWSER
-웹 브라우저에서 사용 가능한 다양한 기능들을 제공하는 유틸리티 라이브러리입니다.
-모든 브라우저와 호환되는 브라우저용 유틸리티와 훌륭한 템플릿 엔진을 찾으신다면 UPPERCASE.JS-BROWSER를 사용해보세요.
 
-* UPPERCASE.JS-COMMON.js가 필요합니다.
 
-### UPPERCASE.JS-BROWSER-FIX
-COMMON, BROWSER와 함께 사용하는 구버젼 브라우저(IE5.5, Android 2.1 Browser 등)를 지원하는 라이브러리입니다.
 
-* UPPERCASE.JS-COMMON.js가 필요합니다.
-* UPPERCASE.JS-BROWSER.js가 필요합니다.
 
-### 브라우저에서 사용하기
-* 스크립트를 불러오기 이전에 `global = window;`로 글로벌 변수를 설정합니다.
-* `INIT_OBJECTS();`은 한번만 실행합니다.
 
-```html
-<!doctype html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>UPPERCASE.JS Example</title>
-	</head>
-	<body>
-		<script>
-			global = window;
-		</script>
-		<script src="UPPERCASE.JS-COMMON.js"></script>
-		<script src="UPPERCASE.JS-BROWSER.js"></script>
-		<script>
-			BROWSER_CONFIG.fixScriptsFolderPath = 'UPPERCASE.JS-BROWSER-FIX';
-			LOAD('UPPERCASE.JS-BROWSER-FIX/FIX.js');
-		</script>
-		<script>
-			READY(function() {
 
-				// 선언부
-				var
-				// method
-				method = METHOD({
-					run : function() {
-						console.log('HELLO UPPERCASE.JS!');
-					}
-				});
 
-				// init all singleton classes.
-				INIT_OBJECTS();
 
-				// 실행부
-				method();
-			});
-		</script>
-	</body>
-</html>
-```
+
+
+
+
+
+
+
 
 #### 브라우저 패키지
 * `INFO` Browser information object [예제보기](https://github.com/UPPERCASE-Series/UPPERCASE.JS/blob/master/EXAMPLES/BROWSER/INFO.js)

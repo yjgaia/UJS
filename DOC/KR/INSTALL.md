@@ -3,6 +3,9 @@ UPPERCASE.JS를 설치하는 방법은 아주 쉽습니다. 사실, 설치과정
 
 ## 웹 페이지에서
 웹 페이지에서는 `script` 태그로 UPPERCASE.JS를 불러옵니다.
+
+* 스크립트를 불러오기 이전에 `global = window;`로 글로벌 변수를 설정합니다.
+
 ```html
 <!-- 웹 브라우저 환경에서는 global이 최상위 객체인 window와 같습니다. -->
 <script>
