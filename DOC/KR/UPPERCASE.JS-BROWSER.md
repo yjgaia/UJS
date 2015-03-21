@@ -2,7 +2,7 @@
 웹 브라우저 환경에서 사용할 수 있는 유틸리티 라이브러리 및 DOM(Document Object Model) 템플릿 엔진입니다.
 
 * `UPPERCSE.JS-BROWSER`는 최신 웹 브라우저들에서 돌아가도록 구현되어 있습니다.
-구버젼 웹 브라우저들을 지원하기 위해서는 `UPPERCASE.JS-BROWSER-FIX`를 함께 구동시키시기 바랍니다. 관련 내용은 하단에 수록되어 있습니다.
+구버젼 웹 브라우저들을 지원하기 위해서는 `UPPERCASE.JS-BROWSER-FIX`를 함께 구동시키시기 바랍니다. 관련 내용은 [하단에 수록](#uppercasejs-browser-fix)되어 있습니다.
 
 ## 유틸리티
 웹 브라우저 환경에서 유용하게 사용될 수 있는 각종 기능들을 모아놓은 것입니다.
