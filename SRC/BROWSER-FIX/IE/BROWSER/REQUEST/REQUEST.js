@@ -2,7 +2,7 @@ OVERRIDE(REQUEST, function(origin) {
 	'use strict';
 
 	/**
-	 * ajax request. (fix for IE)
+	 * AJAX request. (fix for IE)
 	 */
 	global.REQUEST = METHOD({
 	

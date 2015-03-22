@@ -1,5 +1,5 @@
 /**
- * ajax DELETE request.
+ * AJAX DELETE request.
  */
 global.DELETE = METHOD({
 

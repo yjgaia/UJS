@@ -16,7 +16,7 @@ UPPERCASE.JS를 설치하는 방법은 아주 쉽습니다. 사실, 설치과정
 <script src="/UPPERCASE.JS-BROWSER.js"></script>
 <!-- 구버젼 브라우저에 대한 지원과, 각종 브라우저들이 갖고있는 버그를 고쳐주는 BROWSER-FIX를 불러옵니다. -->
 <script>
-	// BROWSER-FIX 폴더 지정
+	// UPPERCASE.JS-BROWSER-FIX 폴더 지정
     BROWSER_CONFIG.fixScriptsFolderPath = '/UPPERCASE.JS-BROWSER-FIX';
     // FIX.js를 불러옵니다.
     LOAD('/UPPERCASE.JS-BROWSER-FIX/FIX.js');

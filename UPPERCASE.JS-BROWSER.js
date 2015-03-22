@@ -6560,7 +6560,7 @@ ImageInfo.range = 10240;
 
 
 /**
- * ajax DELETE request.
+ * AJAX DELETE request.
  */
 global.DELETE = METHOD({
 
@@ -6584,7 +6584,7 @@ global.DELETE = METHOD({
 });
 
 /**
- * ajax GET request.
+ * AJAX GET request.
  */
 global.GET = METHOD({
 
@@ -6608,7 +6608,7 @@ global.GET = METHOD({
 });
 
 /**
- * ajax POST request.
+ * AJAX POST request.
  */
 global.POST = METHOD({
 
@@ -6632,7 +6632,7 @@ global.POST = METHOD({
 });
 
 /**
- * ajax PUT request.
+ * AJAX PUT request.
  */
 global.PUT = METHOD({
 
@@ -6656,7 +6656,7 @@ global.PUT = METHOD({
 });
 
 /**
- * ajax request.
+ * AJAX request.
  */
 global.REQUEST = METHOD({
 

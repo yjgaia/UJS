@@ -1,5 +1,5 @@
 /**
- * ajax POST request.
+ * AJAX POST request.
  */
 global.POST = METHOD({
 

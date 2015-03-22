@@ -1,5 +1,5 @@
 /**
- * ajax PUT request.
+ * AJAX PUT request.
  */
 global.PUT = METHOD({
 

@@ -1,5 +1,5 @@
 /**
- * ajax request.
+ * AJAX request.
  */
 global.REQUEST = METHOD({
 

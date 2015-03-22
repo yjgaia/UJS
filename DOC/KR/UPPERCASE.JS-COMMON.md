@@ -464,7 +464,12 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
     ```
 
 ### 반복문 관련 기능
-* `REPEAT(count, function(i) {})` `REPEAT({start:, end:}, function(i) {})` `REPEAT({start:, end:, step:}, function(i) {})` `REPEAT({start:, limit:}, function(i) {})` `REPEAT({start:, limit:, step:}, function(i) {})` 주어진 `count` 만큼 `i` 값을 0부터 1씩 증가시키면서 함수를 실행하거나, `start`에서 `end`까지 `i` 값을 1씩 증가시키면서 함수를 실행하거나, `start`에서 `limit` 이전까지 `i` 값을 1씩 증가시키면서 함수를 실행할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/REPEAT/REPEAT.js)
+* `REPEAT` 주어진 `count` 만큼 `i` 값을 0부터 1씩 증가시키면서 함수를 실행하거나, `start`에서 `end`까지 `i` 값을 1씩 증가시키면서 함수를 실행하거나, `start`에서 `limit` 이전까지 `i` 값을 1씩 증가시키면서 함수를 실행할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/REPEAT/REPEAT.js)
+    * `REPEAT(count, function(i) {})`
+    * `REPEAT({start:, end:}, function(i) {})`
+    * `REPEAT({start:, end:, step:}, function(i) {})`
+    * `REPEAT({start:, limit:}, function(i) {})`
+    * `REPEAT({start:, limit:, step:}, function(i) {})`
 
     ```javascript
     // run 5 times. i is 0 ~ 4.
@@ -483,7 +488,10 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
     }, function(i) {...})
     ```
 
-* `EACH(data, function(value, name) {})` `EACH(array, function(value, key) {})` `EACH(function(value) {})(array)` 데이터나 배열의 요소들을 하나씩 꺼내 함수에 넘겨 실행합니다. 도중에 멈추기 위해서는 함수에서 `false`를 반환합니다. 모든 요소들을 처리하였다면 `true`를, 중간에 멈추었다면 `false`를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/REPEAT/EACH.js)
+* `EACH` 데이터나 배열의 요소들을 하나씩 꺼내 함수에 넘겨 실행합니다. 도중에 멈추기 위해서는 함수에서 `false`를 반환합니다. 모든 요소들을 처리하였다면 `true`를, 중간에 멈추었다면 `false`를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/REPEAT/EACH.js)
+    * `EACH(data, function(value, name) {})`
+    * `EACH(array, function(value, key) {})`
+    * `EACH(function(value) {})(array)`
 
     ```javascript
     // 1
@@ -606,7 +614,10 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
     calculate(2, 3)
     ```
 
-* `NEXT([function(next) {}, function() { return function() {}; }, function() { return function() {}; }, ...])` `NEXT(count, [function(i, next) {}, function() { return function() {}; }, ...])` `NEXT(array, [function(element, next) {}, function() { return function() {}; }, ...])` 비동기 함수들을 처리할 때 순서대로 실행할 수 있도록 도와줍니다. 이를 통해 JavaScript 기반 프로젝트에서 흔히 겪을 수 있는 `callback 지옥 문제`를 해결할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/NEXT.js)
+* `NEXT` 비동기 함수들을 처리할 때 순서대로 실행할 수 있도록 도와줍니다. 이를 통해 JavaScript 기반 프로젝트에서 흔히 겪을 수 있는 `callback 지옥 문제`를 해결할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/NEXT.js)
+    * `NEXT([function(next) {}, function() { return function() {}; }, function() { return function() {}; }, ...])`
+    * `NEXT(count, [function(i, next) {}, function() { return function() {}; }, ...])`
+    * `NEXT(array, [function(element, next) {}, function() { return function() {}; }, ...])`
 
     ```
     async1(function() {
@@ -652,7 +663,10 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
     }])
     ```
 
-* `PARALLEL([function(done) {}, function(done) {}, ..., function() {}])` `PARALLEL(count, [function(done) {}, function() {}])` `PARALLEL(array, [function(value, done) {}, function() {}])` 함수들을 병렬로 처리합니다. 비동기 처리를 동시에 수행할 때 유용합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/PARALLEL.js)
+* `PARALLEL` 함수들을 병렬로 처리합니다. 비동기 처리를 동시에 수행할 때 유용합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/PARALLEL.js)
+    * `PARALLEL([function(done) {}, function(done) {}, ..., function() {}])`
+    * `PARALLEL(count, [function(done) {}, function() {}])`
+    * `PARALLEL(array, [function(value, done) {}, function() {}])`
 
     ```
     PARALLEL([
