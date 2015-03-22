@@ -354,7 +354,12 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
     })
     ```
 
-* `REMOVE({data:, name:})` `REMOVE({data:, value:})` `REMOVE({array:, key:})` `REMOVE({array:, value:})` `REMOVE(dataOrArray, function(value) {})` 데이터의 특정 값 혹은 특정 이름의 값이나, 배열의 특정 값이나 특정 위치의 값을 제거합니다. 또한, 값을 체크하기 위한 함수를 넘겨 함수가 true를 반환했을 때 해당 값을 제거할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/REMOVE.js)
+* `REMOVE` 데이터의 특정 값 혹은 특정 이름의 값이나, 배열의 특정 값이나 특정 위치의 값을 제거합니다. 또한, 값을 체크하기 위한 함수를 넘겨 함수가 true를 반환했을 때 해당 값을 제거할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/REMOVE.js)
+    * `REMOVE({data:, name:})`
+    * `REMOVE({data:, value:})`
+    * `REMOVE({array:, key:})`
+    * `REMOVE({array:, value:})`
+    * `REMOVE(dataOrArray, function(value) {})`
 
     ```javascript
     // { a : 1, b : 2 } -> { b : 2 }
