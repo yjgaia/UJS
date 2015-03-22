@@ -560,7 +560,7 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
     interval.remove()
     ```
 
-* `LOOP(fps, function() {})` 1초에 `fps`번 함수를 실행하는 클래스입니다. 게임 개발 등에서 유용하게 사용할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DELAY/LOOP.js)
+* `LOOP(fps, function() {})` 1초에 `fps`번 함수를 실행하는 클래스입니다. 게임 개발 등에서 유용하게 사용할 수 있습니다. `changeFPS`로 `fps`를 변경할 수 있고, `remove`로 멈출 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DELAY/LOOP.js)
 
     ```javascript
     var
