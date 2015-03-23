@@ -2,6 +2,8 @@
  * Browser-side Configuration
  */
 global.BROWSER_CONFIG = {
+	
+	// fixScriptsFolderPath
 
 	host : location.hostname,
 	
@@ -10,6 +12,4 @@ global.BROWSER_CONFIG = {
 	isSupportingX2 : false,
 	
 	isUsingFlashCanvasPro : false
-	
-	// fixScriptsFolderPath
 };

@@ -1044,15 +1044,15 @@ global.SHA1 = METHOD({
 	run : function(params) {
 		'use strict';
 		//REQUIRED: params
-		//REQUIRED: params.key
 		//REQUIRED: params.password
+		//REQUIRED: params.key
 
 		var
-		// key
-		key = params.key,
-
 		// password
 		password = params.password,
+
+		// key
+		key = params.key,
 
 		// crypto
 		crypto = require('crypto');
@@ -2369,7 +2369,7 @@ global.WRITE_FILE = METHOD(function() {
 });
 
 /**
- * http DELETE request.
+ * HTTP DELETE request.
  */
 global.DELETE = METHOD({
 
@@ -2393,7 +2393,7 @@ global.DELETE = METHOD({
 });
 
 /**
- * http GET request.
+ * HTTP GET request.
  */
 global.GET = METHOD({
 
@@ -2417,7 +2417,7 @@ global.GET = METHOD({
 });
 
 /**
- * http POST request.
+ * HTTP POST request.
  */
 global.POST = METHOD({
 
@@ -2441,7 +2441,7 @@ global.POST = METHOD({
 });
 
 /**
- * http PUT request.
+ * HTTP PUT request.
  */
 global.PUT = METHOD({
 
@@ -2465,7 +2465,7 @@ global.PUT = METHOD({
 });
 
 /**
- * http request.
+ * HTTP request.
  */
 global.REQUEST = METHOD(function() {
 	'use strict';
@@ -3192,7 +3192,7 @@ global.SOCKET_SERVER = METHOD({
 });
 
 /*
- * create udp server.
+ * create UDP server.
  */
 global.UDP_SERVER = METHOD({
 

@@ -1,5 +1,5 @@
 /**
- * http POST request.
+ * HTTP POST request.
  */
 global.POST = METHOD({
 

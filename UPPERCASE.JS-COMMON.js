@@ -8,7 +8,9 @@ global.TO_DELETE = null;
 /**
  * Configuration
  */
-global.CONFIG = {};
+global.CONFIG = {
+	isDevMode : false
+};
 
 /**
  * Create method.

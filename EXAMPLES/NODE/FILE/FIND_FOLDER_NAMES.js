@@ -30,8 +30,8 @@ TEST('FIND_FOLDER_NAMES', function(ok) {
 			console.log('NOT EXISTS!');
 		},
 
-		success : function(fileNames) {
-			ok(CHECK_ARE_SAME([fileNames, ['subFolder1', 'subFolder2']]));
+		success : function(folderNames) {
+			ok(CHECK_ARE_SAME([folderNames, ['subFolder1', 'subFolder2']]));
 		}
 	});
 });

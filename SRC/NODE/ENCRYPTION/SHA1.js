@@ -6,15 +6,15 @@ global.SHA1 = METHOD({
 	run : function(params) {
 		'use strict';
 		//REQUIRED: params
-		//REQUIRED: params.key
 		//REQUIRED: params.password
+		//REQUIRED: params.key
 
 		var
-		// key
-		key = params.key,
-
 		// password
 		password = params.password,
+
+		// key
+		key = params.key,
 
 		// crypto
 		crypto = require('crypto');

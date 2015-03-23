@@ -74,17 +74,38 @@ INFO.getBrowserInfo()
     sound.stop()
     ```
 
-## AJAX 통신 관련 기능
+## AJAX 요청 관련 기능
 * `REQUEST` AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/REQUEST.js)
     * `REQUEST({method:, uri:}, responseListenerOrListeners)`
     * `REQUEST({method:, uri:, paramStr:}, responseListenerOrListeners)`
     * `REQUEST({host:, port:, isSecure:, method:, uri:, data:}, responseListenerOrListeners)`
 
+    ```javascript
+    REQUEST({
+		host : 'localhost',
+		port : 8810,
+		method : 'GET',
+		uri : 'AJAX_TEST'
+	}, function(content) {
+		...
+	})
+	```
+	
 * `GET` `method`가 `GET`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/GET.js)
     * `GET(uri, responseListenerOrListeners)`
     * `GET({uri:, paramStr:}, responseListenerOrListeners)`
     * `GET({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)`
 
+    ```javascript
+    REQUEST({
+		host : 'localhost',
+		port : 8810,
+		uri : 'AJAX_TEST'
+	}, function(content) {
+		...
+	})
+	```
+	
 * `POST` `method`가 `POST`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/POST.js)
     * `POST(uri:, responseListenerOrListeners)`
     * `POST({uri:, paramStr:}, responseListenerOrListeners)`

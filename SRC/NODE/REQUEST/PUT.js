@@ -1,5 +1,5 @@
 /**
- * http PUT request.
+ * HTTP PUT request.
  */
 global.PUT = METHOD({
 

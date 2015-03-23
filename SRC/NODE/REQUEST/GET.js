@@ -1,5 +1,5 @@
 /**
- * http GET request.
+ * HTTP GET request.
  */
 global.GET = METHOD({
 

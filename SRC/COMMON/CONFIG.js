@@ -1,4 +1,6 @@
 /**
  * Configuration
  */
-global.CONFIG = {};
+global.CONFIG = {
+	isDevMode : false
+};

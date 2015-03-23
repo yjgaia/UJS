@@ -1,5 +1,5 @@
 /**
- * http request.
+ * HTTP request.
  */
 global.REQUEST = METHOD(function() {
 	'use strict';

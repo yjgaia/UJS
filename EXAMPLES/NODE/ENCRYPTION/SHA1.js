@@ -9,7 +9,7 @@ TEST('SHA1', function(ok) {
 
 	// generate SHA-1 hash.
 	ok(SHA1({
-		key : 'test',
-		password : '1234'
+		password : '1234',
+		key : 'test'
 	}) === '16dd1fdd7c595eab4586cebba6b34eaff41acc53');
 });

@@ -22,8 +22,8 @@ TEST('CONNECT_TO_SOCKET_SERVER', function(ok) {
 		host : 'localhost',
 		port : 8124
 	}, {
-		error : function(error) {
-			console.log('ERROR!');
+		error : function(errorMsg) {
+			console.log('ERROR!', errorMsg);
 		},
 		success : function(on, off, send, disconnect) {
 

@@ -1,5 +1,5 @@
 /**
- * http DELETE request.
+ * HTTP DELETE request.
  */
 global.DELETE = METHOD({
 

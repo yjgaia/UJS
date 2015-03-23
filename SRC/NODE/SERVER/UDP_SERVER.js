@@ -1,5 +1,5 @@
 /*
- * create udp server.
+ * create UDP server.
  */
 global.UDP_SERVER = METHOD({
 
