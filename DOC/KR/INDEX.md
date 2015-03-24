@@ -14,14 +14,15 @@ UPPERCASE.JS는 JavaScript 라이브러리입니다.
 * [Configuration](CONFIG.md)
 * [UPPERCASE.JS 업데이트](UPDATE.md)
 
-## 한걸음 더 (작성중)
-* [JavaScript 만으로 웹 페이지 만들기](JS_WEB_PAGE.md)
-* [도트 아트를 사용하는 프로젝트 만들기](DOT_ART.md)
+## 한걸음 더
+* [JavaScript 만으로 웹 페이지 만들기](JS_WEB_PAGE.md) (작성중)
+* [도트 아트를 사용하는 프로젝트 만들기](DOT_ART.md) (작성중)
+* [클러스터링 지원하기](CLUSTERING.md) (작성중)
 
-## 튜토리얼 (작성중)
-* [간단 웹 서버 만들기](TUTORIAL/WEB_SERVER.md)
-* [간단 웹 사이트 만들기](TUTORIAL/WEB_SITE.md)
-* [간단 게임 만들기](TUTORIAL/GAME.md)
+## 튜토리얼
+* [간단한 웹 서버 만들기](TUTORIAL/WEB_SERVER.md)
+* [간단한 웹 사이트 만들기](TUTORIAL/WEB_SITE.md)
+* [간단한 게임 만들기](TUTORIAL/GAME.md) (작성중)
 
 ## UPPERCASE.JS 개발에 참여하기
 * [UPPERCASE.JS 빌드](BUILD.md)
