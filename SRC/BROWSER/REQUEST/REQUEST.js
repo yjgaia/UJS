@@ -57,7 +57,7 @@ global.REQUEST = METHOD({
 		}
 
 		if (data !== undefined) {
-			paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(data));
+			paramStr = (paramStr === undefined ? '' : paramStr + '&') + '__DATA=' + encodeURIComponent(STRINGIFY(data));
 		}
 
 		paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();

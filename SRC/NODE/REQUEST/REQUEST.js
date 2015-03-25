@@ -63,7 +63,7 @@ global.REQUEST = METHOD(function() {
 			}
 
 			if (data !== undefined) {
-				paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(data));
+				paramStr = (paramStr === undefined ? '' : paramStr + '&') + '__DATA=' + encodeURIComponent(STRINGIFY(data));
 			}
 
 			paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
@@ -86,15 +86,30 @@ global.REQUEST = METHOD(function() {
 
 					var
 					// content
-					content = '';
+					content;
+					
+					// redirect.
+					if (httpResponse.statusCode === 301 || httpResponse.statusCode === 302) {
+						
+						GET(httpResponse.headers.location, {
+							success : responseListener,
+							error : errorListener
+						});
+						
+						httpResponse.destroy();
+						
+					} else {
+						
+						content = '';
 
-					httpResponse.setEncoding('utf-8');
-					httpResponse.on('data', function(str) {
-						content += str;
-					});
-					httpResponse.on('end', function() {
-						responseListener(content, httpResponse.headers);
-					});
+						httpResponse.setEncoding('utf-8');
+						httpResponse.on('data', function(str) {
+							content += str;
+						});
+						httpResponse.on('end', function() {
+							responseListener(content, httpResponse.headers);
+						});
+					}
 				});
 			}
 

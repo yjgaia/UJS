@@ -26,6 +26,7 @@ UPPERCASE.JS는 JavaScript 라이브러리입니다.
 
 ## UPPERCASE.JS 개발에 참여하기
 * [UPPERCASE.JS 빌드](BUILD.md)
+* [UPPERCASE.JS 테스트](TEST.md)
 
 ## 라이센스
 [MIT](../../LICENSE)

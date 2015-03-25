@@ -2,6 +2,8 @@
  * Browser-side Configuration
  */
 global.BROWSER_CONFIG = {
+	
+	// fixScriptsFolderPath
 
 	host : location.hostname,
 	
@@ -10,8 +12,6 @@ global.BROWSER_CONFIG = {
 	isSupportingX2 : false,
 	
 	isUsingFlashCanvasPro : false
-	
-	// fixScriptsFolderPath
 };
 
 /**
@@ -6714,7 +6714,7 @@ global.REQUEST = METHOD({
 		}
 
 		if (data !== undefined) {
-			paramStr = (paramStr === undefined ? '' : paramStr + '&') + 'data=' + encodeURIComponent(STRINGIFY(data));
+			paramStr = (paramStr === undefined ? '' : paramStr + '&') + '__DATA=' + encodeURIComponent(STRINGIFY(data));
 		}
 
 		paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();

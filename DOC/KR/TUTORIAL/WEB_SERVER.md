@@ -71,3 +71,26 @@ WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
     });
 });
 ```
+
+## 데이터 파라미터 처리하기
+`REQUEST` 기능 등에서 `data` 파라미터를 추가하면 서버에서는 `requestInfo.data`로 받아 올 수 있습니다. 만약 `data` 파라미터가 추가되지 않으면, *`requestInfo.data`는 `undefined`*라는 것에 주의하세요!
+
+```javascript
+GET({
+	port : 8123,
+	data : {
+		msg : 'test'
+	}
+}, function(content) {
+	console.log(content);
+});
+```
+
+```javascript
+WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
+
+	console.log(requestInfo.data);
+	
+	response('ok');
+});
+```

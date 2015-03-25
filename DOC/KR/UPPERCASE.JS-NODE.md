@@ -170,6 +170,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 	```
 	
 * `GET` `method`가 `GET`인 HTTP 요청을 보냅니다. [예제보기](../../EXAMPLES/NODE/REQUEST/GET.js)
+	* `GET(url, responseListenerOrListeners)`
     * `GET({host:, port:, uri:, paramStr:, data:}, responseListenerOrListeners)`
     * `GET({host:, port:, isSecure:, uri:}, responseListenerOrListeners)`
 
@@ -194,6 +195,20 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 * `DELETE` `method`가 `DELETE`인 HTTP 요청을 보냅니다. [예제보기](../../EXAMPLES/NODE/REQUEST/DELETE.js)
     * `DELETE({host:, port:, uri:, paramStr:}, responseListenerOrListeners)`
     * `DELETE({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)`
+
+* `DOWNLOAD` 웹 리소스를 다운로드 합니다. [예제보기](../../EXAMPLES/NODE/REQUEST/DOWNLOAD.js)
+    * `DOWNLOAD({url:, path:}, callbackOrHandlers)`
+    * `DOWNLOAD({host:, port:, uri:, paramStr:, data:, path:}, callbackOrHandlers)`
+    * `DOWNLOAD({host:, port:, isSecure:, uri:, path:}, callbackOrHandlers)`
+
+    ```javascript
+    DOWNLOAD({
+		host : 'github.com',
+		uri : 'Hanul/UPPERCASE.JS/archive/master.zip',
+		isSecure : true,
+		path : 'UPPERCASE.JS.zip'
+	})
+	```
 
 ## 각종 서버 구현체들
 * `SOCKET_SERVER(port, connectionListener)` 소켓 서버를 생성합니다. [예제보기](../../EXAMPLES/NODE/SERVER/SOCKET_SERVER.js)

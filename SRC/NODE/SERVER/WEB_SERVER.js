@@ -181,6 +181,20 @@ global.WEB_SERVER = CLASS(function(cls) {
 
 				function() {
 					return function() {
+						
+						var
+						// params
+						params = querystring.parse(paramStr),
+						
+						// data
+						data = params.__DATA;
+						
+						if (data !== undefined) {
+							
+							data = PARSE_STR(data);
+							
+							delete params.__DATA;
+						}
 
 						requestListener( requestInfo = {
 
@@ -190,7 +204,9 @@ global.WEB_SERVER = CLASS(function(cls) {
 
 							method : method,
 
-							params : querystring.parse(paramStr),
+							params : params,
+							
+							data : data,
 
 							ip : ip,
 

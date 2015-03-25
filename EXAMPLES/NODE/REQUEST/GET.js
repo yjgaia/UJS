@@ -8,6 +8,16 @@ TEST('GET', function(ok) {
 	'use strict';
 
 	INIT_OBJECTS();
+	
+	// test GET request with url.
+	GET('http://google.com', function(content) {
+		console.log(content);
+	});
+	
+	// test GET request with url.
+	GET('http://localhost:8810/AJAX_TEST', function(content) {
+		ok(content === 'Request DONE!');
+	});
 
 	// test GET request.
 	GET({

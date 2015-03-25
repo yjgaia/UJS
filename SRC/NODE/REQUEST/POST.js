@@ -3,20 +3,18 @@
  */
 global.POST = METHOD({
 
-	run : function(uriOrParams, responseListenerOrListeners) {
+	run : function(params, responseListenerOrListeners) {
 		'use strict';
-		//REQUIRED: uriOrParams
-		//REQUIRED: uriOrParams.host
-		//OPTIONAL: uriOrParams.port
-		//OPTIONAL: uriOrParams.isSecure
-		//OPTIONAL: uriOrParams.uri
-		//OPTIONAL: uriOrParams.paramStr
-		//OPTIONAL: uriOrParams.data
+		//REQUIRED: params
+		//REQUIRED: params.host
+		//OPTIONAL: params.port
+		//OPTIONAL: params.isSecure
+		//OPTIONAL: params.uri
+		//OPTIONAL: params.paramStr
+		//OPTIONAL: params.data
 		//REQUIRED: responseListenerOrListeners
 
-		REQUEST(COMBINE([CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
-			uri : uriOrParams
-		}, {
+		REQUEST(COMBINE([params, {
 			method : 'POST'
 		}]), responseListenerOrListeners);
 	}
