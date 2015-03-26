@@ -145,6 +145,7 @@ RUN(function() {
 		scripts.push('COMMON/OOP/OBJECT.js');
 		scripts.push('COMMON/OOP/INIT_OBJECTS.js');
 
+		scanFolder(scripts, 'COMMON/BOX');
 		scanFolder(scripts, 'COMMON/UTIL');
 
 		save(scripts, 'UPPERCASE.JS-COMMON', true);

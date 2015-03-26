@@ -155,4 +155,15 @@ if (value === undefined) {
 }
 ```
 
+## OBJECT로 생성한 객체의 이름은 대문자로, 클래스로 생성한 객체의 이름은 소문자로 시작합니다.
+
+```javascript
+// 대문자로 시작합니다.
+var SomeObject = OBJECT(...
+
+var SomeClass = CLASS(...
+// 소문자로 시작합니다.
+var someObject = SomeClass();
+```
+
 다음 문서: [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md)

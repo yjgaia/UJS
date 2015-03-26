@@ -599,6 +599,36 @@ global.STORE = CLASS({
 	}
 });
 
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.STORE = CLASS({
+
+		init : function(inner, self, storeName) {
+			//REQUIRED: storeName
+
+			var
+			// store
+			store = STORE(box.boxName + '.' + storeName),
+
+			// save.
+			save,
+
+			// get.
+			get,
+
+			// remove.
+			remove;
+
+			self.save = save = store.save;
+
+			self.get = get = store.get;
+
+			self.remove = remove = store.remove;
+		}
+	});
+});
+
 /**
  * create clear:both div.
  */
@@ -6583,6 +6613,28 @@ global.DELETE = METHOD({
 	}
 });
 
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.DELETE = METHOD({
+
+		run : function(params, responseListenerOrListeners) {
+			//REQUIRED: uriOrParams
+			//OPTIONAL: uriOrParams.host
+			//OPTIONAL: uriOrParams.port
+			//OPTIONAL: uriOrParams.isSecure
+			//REQUIRED: uriOrParams.uri
+			//OPTIONAL: uriOrParams.paramStr
+			//OPTIONAL: uriOrParams.data
+			//REQUIRED: responseListenerOrListeners
+
+			box.REQUEST(COMBINE([params, {
+				method : 'DELETE'
+			}]), responseListenerOrListeners);
+		}
+	});
+});
+
 /**
  * AJAX GET request.
  */
@@ -6605,6 +6657,28 @@ global.GET = METHOD({
 			method : 'GET'
 		}]), responseListenerOrListeners);
 	}
+});
+
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.GET = METHOD({
+
+		run : function(params, responseListenerOrListeners) {
+			//REQUIRED: uriOrParams
+			//OPTIONAL: uriOrParams.host
+			//OPTIONAL: uriOrParams.port
+			//OPTIONAL: uriOrParams.isSecure
+			//REQUIRED: uriOrParams.uri
+			//OPTIONAL: uriOrParams.paramStr
+			//OPTIONAL: uriOrParams.data
+			//REQUIRED: responseListenerOrListeners
+
+			box.REQUEST(COMBINE([params, {
+				method : 'GET'
+			}]), responseListenerOrListeners);
+		}
+	});
 });
 
 /**
@@ -6631,6 +6705,28 @@ global.POST = METHOD({
 	}
 });
 
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.POST = METHOD({
+
+		run : function(params, responseListenerOrListeners) {
+			//REQUIRED: uriOrParams
+			//OPTIONAL: uriOrParams.host
+			//OPTIONAL: uriOrParams.port
+			//OPTIONAL: uriOrParams.isSecure
+			//REQUIRED: uriOrParams.uri
+			//OPTIONAL: uriOrParams.paramStr
+			//OPTIONAL: uriOrParams.data
+			//REQUIRED: responseListenerOrListeners
+
+			box.REQUEST(COMBINE([params, {
+				method : 'POST'
+			}]), responseListenerOrListeners);
+		}
+	});
+});
+
 /**
  * AJAX PUT request.
  */
@@ -6653,6 +6749,28 @@ global.PUT = METHOD({
 			method : 'PUT'
 		}]), responseListenerOrListeners);
 	}
+});
+
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.PUT = METHOD({
+
+		run : function(params, responseListenerOrListeners) {
+			//REQUIRED: uriOrParams
+			//OPTIONAL: uriOrParams.host
+			//OPTIONAL: uriOrParams.port
+			//OPTIONAL: uriOrParams.isSecure
+			//REQUIRED: uriOrParams.uri
+			//OPTIONAL: uriOrParams.paramStr
+			//OPTIONAL: uriOrParams.data
+			//REQUIRED: responseListenerOrListeners
+
+			box.REQUEST(COMBINE([params, {
+				method : 'PUT'
+			}]), responseListenerOrListeners);
+		}
+	});
 });
 
 /**
@@ -6771,6 +6889,29 @@ global.REQUEST = METHOD({
 	}
 });
 
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.REQUEST = METHOD({
+
+		run : function(params, responseListenerOrListeners) {
+			//REQUIRED: params
+			//OPTIONAL: params.host
+			//OPTIONAL: params.port
+			//OPTIONAL: params.isSecure
+			//REQUIRED: params.method
+			//REQUIRED: params.uri
+			//OPTIONAL: params.paramStr
+			//OPTIONAL: params.data
+			//REQUIRED: responseListenerOrListeners
+
+			REQUEST(COMBINE([params, {
+				uri : box.boxName + '/' + params.uri
+			}]), responseListenerOrListeners);
+		}
+	});
+});
+
 /**
  * go another view.
  */
@@ -6786,6 +6927,19 @@ global.GO = METHOD({
 	}
 });
 
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.GO = METHOD({
+
+		run : function(uri) {
+			//REQUIRED: uri
+
+			GO((box.boxName === CONFIG.defaultBoxName ? '' : box.boxName + '/') + uri);
+		}
+	});
+});
+
 /**
  * go another view on new window.
  */
@@ -6799,6 +6953,19 @@ global.GO_NEW_WIN = METHOD({
 	}
 });
 
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.GO_NEW_WIN = METHOD({
+
+		run : function(uri) {
+			//REQUIRED: uri
+
+			GO_NEW_WIN((box.boxName === CONFIG.defaultBoxName ? '' : box.boxName + '/') + uri);
+		}
+	});
+});
+
 /**
  * get href.
  */
@@ -6810,6 +6977,19 @@ global.HREF = METHOD({
 
 		return '/' + uri;
 	}
+});
+
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.HREF = METHOD({
+
+		run : function(uri) {
+			//OPTIONAL: uri
+
+			return HREF((box.boxName === CONFIG.defaultBoxName ? '' : box.boxName + '/') + (uri === undefined ? '' : uri));
+		}
+	});
 });
 
 /**
@@ -6911,6 +7091,50 @@ global.MATCH_VIEW = METHOD(function(m) {
 	};
 });
 
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.MATCH_VIEW = METHOD({
+
+		run : function(params) {
+			//REQUIRED: params
+			//REQUIRED: params.uri
+			//REQUIRED: params.target
+
+			var
+			// uri
+			uri = params.uri,
+
+			// target
+			target = params.target,
+
+			// new uris
+			newURIs = [],
+
+			// push.
+			push = function(uri) {
+
+				if (box.boxName === CONFIG.defaultBoxName) {
+					newURIs.push(uri);
+				}
+
+				newURIs.push(box.boxName + '/' + uri);
+			};
+
+			if (CHECK_IS_ARRAY(uri) === true) {
+				EACH(uri, push);
+			} else {
+				push(uri);
+			}
+
+			MATCH_VIEW({
+				uri : newURIs,
+				target : target
+			});
+		}
+	});
+});
+
 /**
  * refresh view.
  */
@@ -6944,6 +7168,19 @@ global.REFRESH = METHOD(function(m) {
 			MATCH_VIEW.checkAll();
 		}
 	};
+});
+
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.REFRESH = METHOD({
+
+		run : function(uri) {
+			//OPTIONAL: uri
+			
+			REFRESH((box.boxName === CONFIG.defaultBoxName ? '' : box.boxName + '/') + (uri === undefined ? '' : uri));
+		}
+	});
 });
 
 /**

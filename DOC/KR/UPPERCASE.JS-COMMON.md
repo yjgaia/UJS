@@ -59,8 +59,6 @@ someMethod = METHOD(function(m) {
 someMethod.getString();
 ```
 
-그럼 이제, 객체지향 프로그래밍 지원 기능을 확인해 보겠습니다.
-
 ## 객체지향 프로그래밍 지원
 비록 JavaScript에서 Prototype 기반 객체지향 프로그래밍이 가능하다고는 하나, 표현력에 한계가 있어 [JSFace](https://github.com/tnhu/jsface)나 [oolib.js](http://idya.github.io/oolib/)등의 라이브러리를 사용하는것이 좋습니다.
 UPPERCASE.JS는 객체지향 언어들과 비슷한 방식으로 객체지향 프로그래밍을 지원합니다.
@@ -202,7 +200,33 @@ sampleObject.hello();
 
 이로써 UPPERCASE.JS의 객체지향까지 살펴보았습니다. **위에서 설명한 `METHOD`, `CLASS`, `OBJECT`는 모두 `선언부`에서 선언되어야 합니다.**
 
-그럼 이제, UPPERCASE.JS의 주요 기능 중 하나인 유틸리티 기능을 살펴보도록 하겠습니다.
+# BOX
+UPPERCASE.JS 기반 프로젝트에서, BOX는 모듈과 같은 개념입니다.
+
+### BOX 만들기
+`BOX`라는 명령으로 BOX를 만들 수 있습니다. 선언부에 작성합니다.
+
+```javascript
+// 선언부
+BOX('SomeBox');
+BOX('SmallBox');
+BOX('BigBox');
+```
+
+### BOX에 기능 추가하기
+만들어진 BOX에 기능을 추가해 보겠습니다. BOX 이름 뒤에 콤마(`.`)를, 그 뒤에 기능을 작성하면 됩니다.
+
+```javascript
+// 선언부
+SomeBox.SomeMethod = METHOD(...
+SomeBox.SomeClass = CLASS(...
+SomeBox.SomeObject = OBJECT(...
+
+// 실행부
+SomeBox.SomeMethod();
+```
+
+BOX 시스템을 통해 BOX 단위로 프로젝트를 나눌 수 있습니다. 이를 조합하여 큰 규모의 프로젝트를 제작할 수 있습니다.
 
 ## 유틸리티
 UPPERCASE.JS의 유틸리티 기능들은 JavaScript 기반 프로젝트 개발시 유용하게 사용될 수 있는 각종 기능들을 모아놓은 것입니다.

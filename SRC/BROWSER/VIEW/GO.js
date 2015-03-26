@@ -12,3 +12,16 @@ global.GO = METHOD({
 		MATCH_VIEW.checkAll();
 	}
 });
+
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.GO = METHOD({
+
+		run : function(uri) {
+			//REQUIRED: uri
+
+			GO((box.boxName === CONFIG.defaultBoxName ? '' : box.boxName + '/') + uri);
+		}
+	});
+});
