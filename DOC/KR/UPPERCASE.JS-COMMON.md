@@ -537,7 +537,7 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
         
         console.log(name + ' is ' + value + '.');
         
-        if (value === 3) {
+        if (value === 2) {
             // stop.
             return false;
         }
@@ -555,7 +555,7 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
         
         console.log('array[' + key + '] is ' + value + '.');
         
-        if (value === 3) {
+        if (value === 2) {
             // stop.
             return false;
         }
@@ -567,11 +567,46 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
         
         console.log('array[' + key + '] is ' + value + '.');
         
-        if (value === 3) {
+        if (value === 2) {
             // stop.
             return false;
         }
-    })([1, 2])
+    })([1, 2, 3])
+    ```
+* `REVERSE_EACH` 배열의 요소들을 뒤에서부터 하나씩 꺼내 함수에 넘겨 실행합니다. 도중에 멈추기 위해서는 함수에서 `false`를 반환합니다. 모든 요소들을 처리하였다면 `true`를, 중간에 멈추었다면 `false`를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/REPEAT/REVERSE_EACH.js)
+    * `REVERSE_EACH(array, function(value, key) {})`
+    * `REVERSE_EACH(function(value) {})(array)`
+
+    ```javascript
+    // 2
+    // 1
+    REVERSE_EACH([1, 2], function(value) {
+        console.log(value);
+    })
+    
+    // array[2] is 3.
+    // array[1] is 2.
+    REVERSE_EACH([1, 2, 3], function(value, key) {
+        
+        console.log('array[' + key + '] is ' + value + '.');
+        
+        if (value === 2) {
+            // stop.
+            return false;
+        }
+    })
+    
+    // array[2] is 3.
+    // array[1] is 2.
+    REVERSE_EACH(function(value, key) {
+        
+        console.log('array[' + key + '] is ' + value + '.');
+        
+        if (value === 2) {
+            // stop.
+            return false;
+        }
+    })([1, 2, 3])
     ```
 
 ### 시간 지연 관련 기능
@@ -746,7 +781,7 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
     PARSE_STR('{"a":1,"b":2}')
     ```
 
-* `VALID(validDataSet)` 데이터 검증 클래스입니다. 다음과 같은 다양한 검증을 처리할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/VALID.js)
+* `VALID(validDataSet)` 데이터를 검증 및 정제하는 클래스입니다. **만약 `validDataSet`에 정의되지 않은 값이 존재하는 경우, VALID는 해당 값을 지웁니다. 이에 주의하시기 바랍니다.** 다음과 같은 다양한 검증을 처리할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/VALID.js)
 
     * `VALID.notEmpty(value)` 값이 빈 값(`''`, `undefined`)인지 확인합니다.
     * `VALID.regex({pattern:, value:})` 값이 정규표현식을 통과하는지 확인합니다.
@@ -770,7 +805,7 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
 	* `VALID.detail({data:, validDataSet:})` 데이터를 검증합니다.
 	* `VALID.equal({value:, validValue:})` 값이 검증값과 같은지 확인합니다.
 	
-	VALID 클래스로 객체를 만들면, `check`와 `checkExceptUndefined`를 사용하여 데이터를 검증할 수 있습니다. `checkExceptUndefined`는 데이터의 값 중 `undefined`를 제외하고 검증을 수행합니다.
+	VALID 클래스로 객체를 만들면, `check`와 `checkForUpdate`를 사용하여 데이터를 검증할 수 있습니다. `checkForUpdate`는 데이터의 값 중 `undefined`를 제외하고 검증을 수행하며, `''`와 같이 빈 값이 넘어올 때는 `TO_DELETE`로 값을 변경합니다.
 
 	```javascript
 	var
@@ -802,7 +837,7 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
 	// { name : { type : 'size', validParams : { min : 3, max : 20 }, value : 'YJ' } }
 	validResult.getErrors()
 	
-	validResult = valid.checkExceptUndefined({
+	validResult = valid.checkForUpdate({
 		name : undefined,
 		age : 28
 	});
@@ -829,5 +864,19 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
 	// { name : 'TheLittlePrince' }
 	matchResult.getURIParams()
 	```
+
+# TO_DELETE
+데이터베이스 등에서 **삭제되어야 할 값**임을 나타내기 위해 대입하는 값입니다.
+
+```javascript
+var
+// data
+data = {
+	a : 1,
+	b : 2
+};
+
+data.a = TO_DELETE
+```
 
 다음 문서: [UPPERCASE.JS-BROWSER](UPPERCASE.JS-BROWSER.md)

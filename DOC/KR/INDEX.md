@@ -3,6 +3,7 @@ UPPERCASE.JS는 JavaScript 라이브러리입니다.
 * 이름에서 알 수 있듯이 모든 API가 대문자로 이루어져 있습니다.
 * BOX라는 모듈 시스템을 제공하고 있습니다. 자세한 내용은 [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md) 문서의 BOX 항목을 참고해주세요.
 * [UPPERCASE.IO](http://UPPERCASE.IO)에서 사용되고 있습니다.
+* 현대의 모든 웹 브라우저 및 구형 브라우저에 대한 호환성을 지니고 있습니다. (Internet Explorer 5.5나 Android 2.1 브라우저에서도 작동합니다.)
 
 ## 시작하기
 * [프로젝트 구성요소 살펴보기](OVERVIEW.md)

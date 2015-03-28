@@ -1386,14 +1386,14 @@ global.VALID = CLASS(function(cls) {
 				init : function(inner, self, params) {
 					//REQUIRED: params
 					//REQUIRED: params.data
-					//OPTIONAL: params.isExceptUndefined
+					//OPTIONAL: params.isForUpdate
 
 					var
 					// data
 					data = params.data,
 
-					// is except undefined
-					isExceptUndefined = params.isExceptUndefined,
+					// is for update
+					isForUpdate = params.isForUpdate,
 
 					// has error
 					hasError = false,
@@ -1418,17 +1418,16 @@ global.VALID = CLASS(function(cls) {
 								// value
 								value = data[attr];
 
-								if (isExceptUndefined === true && value === undefined) {
+								if (isForUpdate === true && value === undefined) {
 
 									// break.
 									return false;
 								}
 
 								if (name !== 'notEmpty' && notEmpty(value) !== true) {
-
-									// set TO_DELETE(null).
-									data[attr] = TO_DELETE;
-
+									
+									data[attr] = isForUpdate === true ? TO_DELETE : undefined;
+									
 									// continue.
 									return true;
 								}
@@ -1672,8 +1671,8 @@ global.VALID = CLASS(function(cls) {
 			// check.
 			check,
 
-			// check except undefined.
-			checkExceptUndefined,
+			// check for update.
+			checkForUpdate,
 			
 			// get valid data set.
 			getValidDataSet;
@@ -1684,10 +1683,10 @@ global.VALID = CLASS(function(cls) {
 				});
 			};
 
-			self.checkExceptUndefined = checkExceptUndefined = function(data) {
+			self.checkForUpdate = checkForUpdate = function(data) {
 				return Check({
 					data : data,
-					isExceptUndefined : true
+					isForUpdate : true
 				});
 			};
 			
@@ -2908,6 +2907,59 @@ global.REPEAT = METHOD({
 			return function(countOrParams) {
 				return REPEAT(countOrParams, func);
 			};
+		}
+
+		return true;
+	}
+});
+
+/**
+ * same as `foreach`, but reverse.
+ */
+global.REVERSE_EACH = METHOD({
+
+	run : function(array, func) {
+		'use strict';
+		//OPTIONAL: array
+		//REQUIRED: func
+
+		var
+		// length
+		length,
+
+		// name
+		name,
+
+		// extras
+		i;
+
+		// when array is undefined
+		if (array === undefined) {
+			return false;
+		}
+
+		// when array is func
+		else if (func === undefined) {
+
+			func = array;
+			array = undefined;
+
+			return function(array) {
+				return REVERSE_EACH(array, func);
+			};
+		}
+
+		// when array is not undefined
+		else {
+
+			length = array.length;
+
+			for ( i = length - 1; i >= 0; i -= 1) {
+
+				if (func(array[i], i) === false) {
+					return false;
+				}
+			}
 		}
 
 		return true;
