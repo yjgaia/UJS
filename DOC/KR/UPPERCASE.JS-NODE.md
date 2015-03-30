@@ -41,6 +41,27 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 	})
     ```
 
+* `GET_FILE_INFO` 파일의 정보를 읽어들입니다. 파일의 크기(`size`), 생성 시간(`createTime`), 최종 수정 시간(`lastUpdateTime`)을 불러옵니다. [예제보기](../../EXAMPLES/NODE/FILE/GET_FILE_INFO.js)
+    * `GET_FILE_INFO(path, callbackOrHandlers)`
+    * `GET_FILE_INFO({path:, isSync:})`
+    
+    ```javascript
+    GET_FILE_INFO('some.txt', {
+		error : function(errorMsg) {
+			console.log('error:', errorMsg);
+		},
+		notExists : function() {
+			console.log('not exists.');
+		},
+		success : function(info) {
+			// info.size
+			// info.createTime
+			// info.lastUpdateTime
+			console.log(info);
+		}
+	})
+    ```
+
 * `COPY_FILE` 파일을 복사합니다. [예제보기](../../EXAMPLES/NODE/FILE/COPY_FILE.js)
     * `COPY_FILE({from:, to:}, callbackOrHandlers)`
     * `COPY_FILE({from:, to:, isSync:})`

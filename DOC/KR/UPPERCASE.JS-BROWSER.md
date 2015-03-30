@@ -75,7 +75,7 @@ INFO.getBrowserInfo()
     ```
 
 ## AJAX 요청 관련 기능
-* `REQUEST` AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/REQUEST.js)
+* `REQUEST` `Box.REQUEST` AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/REQUEST.js)
     * `REQUEST({method:, uri:}, responseListenerOrListeners)`
     * `REQUEST({method:, uri:, paramStr:}, responseListenerOrListeners)`
     * `REQUEST({host:, port:, isSecure:, method:, uri:, data:}, responseListenerOrListeners)`
@@ -91,7 +91,7 @@ INFO.getBrowserInfo()
 	})
 	```
 	
-* `GET` `method`가 `GET`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/GET.js)
+* `GET` `Box.GET` `method`가 `GET`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/GET.js)
     * `GET(uri, responseListenerOrListeners)`
     * `GET({uri:, paramStr:}, responseListenerOrListeners)`
     * `GET({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)`
@@ -106,24 +106,24 @@ INFO.getBrowserInfo()
 	})
 	```
 	
-* `POST` `method`가 `POST`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/POST.js)
+* `POST` `Box.POST` `method`가 `POST`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/POST.js)
     * `POST(uri:, responseListenerOrListeners)`
     * `POST({uri:, paramStr:}, responseListenerOrListeners)`
     * `POST({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)`
 
-* `PUT` `method`가 `PUT`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/PUT.js)
+* `PUT` `Box.PUT` `method`가 `PUT`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/PUT.js)
     * `PUT(uri:, responseListenerOrListeners)`
     * `PUT({uri:, paramStr:}, responseListenerOrListeners)`
     * `PUT({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)`
 
-* `DELETE` `method`가 `DELETE`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/DELETE.js)
+* `DELETE` `Box.DELETE` `method`가 `DELETE`인 AJAX 요청을 보냅니다. [예제보기](../../EXAMPLES/BROWSER/REQUEST/DELETE.js)
     * `DELETE(uri:, responseListenerOrListeners)`
     * `DELETE({uri:, paramStr:}, responseListenerOrListeners)`
     * `DELETE({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)`
 
 ## 기타 기능
 
-* `STORE(name)` 저장소를 생성하여 데이터를 저장할 수 있는 클래스 입니다. 이를 이용해서 브라우저가 종료되더라도 특정 데이터를 저장할 수 있습니다. 저장할 때 `isToSession` 파라미터를 `true`로 지정하면 브라우저가 종료 될 때 데이터를 자동으로 지울수도 있습니다. [예제보기](../../EXAMPLES/BROWSER/STORE.js)
+* `STORE(name)` `Box.STORE(name)` 저장소를 생성하여 데이터를 저장할 수 있는 클래스 입니다. 이를 이용해서 브라우저가 종료되더라도 특정 데이터를 저장할 수 있습니다. 저장할 때 `isToSession` 파라미터를 `true`로 지정하면 브라우저가 종료 될 때 데이터를 자동으로 지울수도 있습니다. [예제보기](../../EXAMPLES/BROWSER/STORE.js)
 
     ```javascript
     var
@@ -570,7 +570,7 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
 	})
     ```
     
-* `MATCH_VIEW({uri:, target:})` URI와 뷰를 매치시킵니다. 해당 URI가 되면, VIEW 인터페이스로 만든 뷰가 실행됩니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/VIEW.js)
+* `MATCH_VIEW({uri:, target:})` `Box.MATCH_VIEW({uri:, target:})` URI와 뷰를 매치시킵니다. 해당 URI가 되면, VIEW 인터페이스로 만든 뷰가 실행됩니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/VIEW.js)
     
     ```javascript
     MATCH_VIEW({
@@ -579,20 +579,20 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
 	})
     ```
 
-* `HREF(uri)` URI에 맞는 주소를 생성합니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/HREF.js)
-* `GO(uri)` URI를 변경하여 다른 뷰로 이동합니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/GO.js)
+* `HREF(uri)` `Box.HREF(uri)` URI에 맞는 주소를 생성합니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/HREF.js)
+* `GO(uri)` `Box.GO(uri)` URI를 변경하여 다른 뷰로 이동합니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/GO.js)
     
     ```javascript
     GO('view/123')
     ```
 
-* `GO_NEW_WIN(uri)` 새 창에서 URI에 맞는 뷰를 띄웁니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/GO_NEW_WIN.js)
+* `GO_NEW_WIN(uri)` `Box.GO_NEW_WIN(uri)` 새 창에서 URI에 맞는 뷰를 띄웁니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/GO_NEW_WIN.js)
     
     ```javascript
     GO_NEW_WIN('view/123')
     ```
     
-* `REFRESH()` 뷰를 새로 불러옵니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/REFRESH.js)
+* `REFRESH()` `Box.REFRESH()` `REFRESH(uri)` `Box.REFRESH(uri)` 뷰를 새로 불러옵니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/REFRESH.js)
 
 ## UPPERCASE.JS-BROWSER-FIX
 구형 웹 브라우저들을 지원하기 위해, UPPERCASE.JS는 `UPPERCASE.JS-BROWSER-FIX`라는 패키지를 지원하고 있습니다. 이는 객체지향의 상속 기능을 활용하여 구버젼 브라우저에서는 잘 동작하지 않는 기능들을 재작성한 것입니다. *Internet Explorer 5.5*나, *Android 2.1 Browser* 등 현재는 거의 쓰이지 않는 브라우저들까지 지원하기 때문에, 개발자는 브라우저의 하위 호환성을 신경쓰지 않아도 됩니다.

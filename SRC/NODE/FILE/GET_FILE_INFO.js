@@ -1,7 +1,7 @@
 /*
- * read file.
+ * get file info.
  */
-global.READ_FILE = METHOD(function() {
+global.GET_FILE_INFO = METHOD(function() {
 	'use strict';
 
 	var
@@ -73,7 +73,7 @@ global.READ_FILE = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
+									console.log(CONSOLE_RED('[UPPERCASE.JS-GET_FILE_INFO] ERROR: ' + errorMsg));
 								}
 
 							} else if (stat.isDirectory() === true) {
@@ -81,30 +81,14 @@ global.READ_FILE = METHOD(function() {
 								if (notExistsHandler !== undefined) {
 									notExistsHandler(path);
 								} else {
-									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
+									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
 								}
 
-							} else {
-
-								fs.readFile(path, function(error, buffer) {
-
-									var
-									// error msg
-									errorMsg;
-
-									if (error !== TO_DELETE) {
-
-										errorMsg = error.toString();
-
-										if (errorHandler !== undefined) {
-											errorHandler(errorMsg);
-										} else {
-											console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
-										}
-
-									} else if (callback !== undefined) {
-										callback(buffer);
-									}
+							} else if (callback !== undefined) {
+								callback({
+									size : stat.size,
+									createTime : stat.birthtime,
+									lastUpdateTime : stat.mtime
 								});
 							}
 						});
@@ -114,7 +98,7 @@ global.READ_FILE = METHOD(function() {
 						if (notExistsHandler !== undefined) {
 							notExistsHandler(path);
 						} else {
-							console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
+							console.log(CONSOLE_YELLOW('[UPPERCASE.JS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
 						}
 					}
 				});
@@ -129,8 +113,8 @@ global.READ_FILE = METHOD(function() {
 					// error msg
 					errorMsg,
 
-					// buffer
-					buffer;
+					// stat
+					stat;
 
 					try {
 
@@ -138,24 +122,32 @@ global.READ_FILE = METHOD(function() {
 							path : path,
 							isSync : true
 						}) === true) {
+							
+							stat = fs.statSync(path);
 
-							if (fs.statSync(path).isDirectory() === true) {
+							if (stat.isDirectory() === true) {
 
 								if (notExistsHandler !== undefined) {
 									notExistsHandler(path);
 								} else {
-									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
+									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
 								}
 								
 							} else {
 								
-								buffer = fs.readFileSync(path);
-			
 								if (callback !== undefined) {
-									callback(buffer);
+									callback({
+										size : stat.size,
+										createTime : stat.birthtime,
+										lastUpdateTime : stat.mtime
+									});
 								}
-			
-								return buffer;
+								
+								return {
+									size : stat.size,
+									createTime : stat.birthtime,
+									lastUpdateTime : stat.mtime
+								};
 							}
 
 						} else {
@@ -163,7 +155,7 @@ global.READ_FILE = METHOD(function() {
 							if (notExistsHandler !== undefined) {
 								notExistsHandler(path);
 							} else {
-								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
+								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
 							}
 						}
 
@@ -176,7 +168,7 @@ global.READ_FILE = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
+								console.log(CONSOLE_RED('[UPPERCASE.JS-GET_FILE_INFO] ERROR: ' + errorMsg));
 							}
 						}
 					}
