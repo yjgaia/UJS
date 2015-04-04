@@ -564,7 +564,7 @@ div.getEl().addAttribute('class', 'sample');
 ## VIEW 관련 기능
 HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 수 있습니다. 이때 URI를 다루어 뷰를 표현할 수 있도록 하는 기능들입니다.
 
-* `VIEW` 뷰를 만들 수 있는 인터페이스입니다. 이를 상속하여 뷰를 생성합니다. 뷰의 파라미터가 변경되면 `changeParams` 함수가 실행되고, 뷰가 종료되면 `close` 함수가 실행됩니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/VIEW.js)
+* `VIEW` 뷰를 만들 수 있는 인터페이스입니다. 이를 상속하여 뷰를 생성합니다. `inner.on` 함수로 뷰에 변화가 생길 때를 감지하여 처리할 수 있습니다. 뷰의 파라미터가 변경되면 `paramsChange`에 설정된 함수가 실행되고, URI 변경되면 `uriChange`에 설정된 함수가 실행되며, 뷰가 종료되면 `close`에 설정된 함수가 실행됩니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/VIEW.js)
     
     ```javascript
     var
@@ -577,27 +577,26 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
 
 		init : function(inner, self) {
 
-			var
-			// change params.
-			changeParams,
-
-			// close.
-			close;
-
 			// on view.
 			console.log('View Opened!');
-
-			self.changeParams = changeParams = function(params) {
-
+			
+			inner.on('paramsChange', function(params) {
+				
 				// when change params.
 				console.log(params);
-			};
+			});
+			
+			inner.on('uriChange', function(uri) {
+				
+				// when change uri.
+				console.log(uri);
+			});
 
-			//OVERRIDE: self.close
-			self.close = close = function() {
+			inner.on('close', function() {
+			
 				// when close.
 				console.log('View Closed!');
-			};
+			});
 		}
 	})
     ```

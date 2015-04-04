@@ -74,6 +74,8 @@ global.MATCH_VIEW = METHOD(function(m) {
 						view.changeParams(uriParams);
 						preParams = uriParams;
 					}
+					
+					view.runURIChangeHandlers(uri);
 				}
 	
 				// when view not founded, close before view

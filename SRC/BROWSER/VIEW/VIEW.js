@@ -12,6 +12,9 @@ global.VIEW = CLASS({
 
 		// params change handlers
 		paramsChangeHandlers = [],
+		
+		// uri change handlers
+		uriChangeHandlers = [],
 
 		// close handlers
 		closeHandlers = [],
@@ -21,6 +24,9 @@ global.VIEW = CLASS({
 
 		// change params.
 		changeParams,
+		
+		// run uri change handlers.
+		runURIChangeHandlers,
 
 		// close.
 		close,
@@ -35,6 +41,11 @@ global.VIEW = CLASS({
 			if (methodName === 'paramsChange') {
 				paramsChangeHandlers.push(handler);
 			}
+			
+			// when change uri
+			if (methodName === 'uriChange') {
+				uriChangeHandlers.push(handler);
+			}
 
 			// when close
 			else if (methodName === 'close') {
@@ -46,6 +57,13 @@ global.VIEW = CLASS({
 
 			EACH(paramsChangeHandlers, function(handler) {
 				handler(params);
+			});
+		};
+		
+		self.runURIChangeHandlers = runURIChangeHandlers = function(uri) {
+			
+			EACH(uriChangeHandlers, function(handler) {
+				handler(uri);
 			});
 		};
 
