@@ -369,7 +369,7 @@ NODE 인터페이스를 사용하여 웹 페이지를 구성하는 NODE를 만�
     * `IFRAME({c:})`
     * `IFRAME({on:})`
 
-* `CANVAS` HTML의 canvas 태그와 대응되는 클래스입니다. [예제보기](../../EXAMPLES/BROWSER/DOM/TAG/CANVAS.js)
+* `CANVAS` HTML의 canvas 태그와 대응되는 클래스입니다. `CANVAS`에 대해 더 알고싶다면 [CANVAS에 그림 그리기](CANVAS.md) 문서를 참고해주시기 바랍니다. [예제보기](../../EXAMPLES/BROWSER/DOM/TAG/CANVAS.js)
     * `CANVAS()`
     * `CANVAS({width:})`
     * `CANVAS({height:})`

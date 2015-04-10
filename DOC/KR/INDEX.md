@@ -18,6 +18,7 @@ UPPERCASE.JS는 JavaScript 라이브러리입니다.
 
 ## 한걸음 더
 * [JavaScript 만으로 웹 페이지 만들기](JS_WEB_PAGE.md) (작성중)
+* [CANVAS에 그림 그리기](CANVAS.md) (작성중)
 * [도트 아트를 사용하는 프로젝트 만들기](DOT_ART.md) (작성중)
 * [클러스터링 지원하기](CLUSTERING.md) (작성중)
 
