@@ -65,11 +65,8 @@ global.EVENT = CLASS(function(cls) {
 
 				EACH(events, function(evt) {
 
-					var
-					// b
-					b = evt.fire();
-
-					if (b === false) {
+					if (evt.fire() === false) {
+						
 						ret = false;
 					}
 				});
