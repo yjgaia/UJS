@@ -46,20 +46,29 @@ global.OPTION = CLASS({
 		//OPTIONAL: params.name
 		//OPTIONAL: params.placeholder
 		//OPTIONAL: params.value
+		//OPTIONAL: params.c
 
 		var
 		// value
-		value;
+		value,
+		
+		// children
+		children;
 
 		// init params.
 		if (params !== undefined) {
 			value = params.value;
+			children = params.c;
 		}
 
 		if (value === undefined) {
 			self.setValue('');
 		} else {
 			self.setValue(value);
+			
+			if (children === undefined) {
+				self.append(value);
+			}
 		}
 	}
 });
