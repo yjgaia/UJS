@@ -3,9 +3,9 @@
  */
 global.EACH = METHOD({
 
-	run : function(dataOrArray, func) {
+	run : function(dataOrArrayOrString, func) {
 		'use strict';
-		//OPTIONAL: dataOrArray
+		//OPTIONAL: dataOrArrayOrString
 		//REQUIRED: func
 
 		var
@@ -18,51 +18,51 @@ global.EACH = METHOD({
 		// extras
 		i;
 
-		// when dataOrArray is undefined
-		if (dataOrArray === undefined) {
+		// when dataOrArrayOrString is undefined
+		if (dataOrArrayOrString === undefined) {
 			return false;
 		}
 
-		// when dataOrArray is data
-		else if (CHECK_IS_DATA(dataOrArray) === true) {
+		// when dataOrArrayOrString is data
+		else if (CHECK_IS_DATA(dataOrArrayOrString) === true) {
 
-			for (name in dataOrArray) {
-				if (dataOrArray.hasOwnProperty(name) === true) {
-					if (func(dataOrArray[name], name) === false) {
+			for (name in dataOrArrayOrString) {
+				if (dataOrArrayOrString.hasOwnProperty(name) === true) {
+					if (func(dataOrArrayOrString[name], name) === false) {
 						return false;
 					}
 				}
 			}
 		}
 
-		// when dataOrArray is array or arguments
-		else if (CHECK_IS_ARRAY(dataOrArray) === true || CHECK_IS_ARGUMENTS(dataOrArray) === true) {
+		// when dataOrArrayOrString is func
+		else if (func === undefined) {
 
-			length = dataOrArray.length;
+			func = dataOrArrayOrString;
+			dataOrArrayOrString = undefined;
+
+			return function(dataOrArrayOrString) {
+				return EACH(dataOrArrayOrString, func);
+			};
+		}
+
+		// when dataOrArrayOrString is array or arguments or string
+		else {
+
+			length = dataOrArrayOrString.length;
 
 			for ( i = 0; i < length; i += 1) {
 
-				if (func(dataOrArray[i], i) === false) {
+				if (func(dataOrArrayOrString[i], i) === false) {
 					return false;
 				}
 
 				// when shrink
-				if (dataOrArray.length === length - 1) {
+				if (dataOrArrayOrString.length === length - 1) {
 					i -= 1;
 					length -= 1;
 				}
 			}
-		}
-
-		// when dataOrArray is func
-		else if (func === undefined) {
-
-			func = dataOrArray;
-			dataOrArray = undefined;
-
-			return function(dataOrArray) {
-				return EACH(dataOrArray, func);
-			};
 		}
 
 		return true;

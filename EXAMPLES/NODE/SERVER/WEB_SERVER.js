@@ -8,15 +8,16 @@ TEST('WEB_SERVER', function(ok) {
 	INIT_OBJECTS();
 
 	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
+		
+		var
+		// session store
+		sessionStore = SHARED_STORE('sessionStore');
 
 		WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
 
 			var
 			// session key
 			sessionKey = requestInfo.cookies.__SESSION_KEY,
-
-			// session store
-			sessionStore = SHARED_STORE('sessionStore'),
 
 			// session
 			session;
@@ -30,9 +31,9 @@ TEST('WEB_SERVER', function(ok) {
 					sessionStore.save({
 						name : sessionKey,
 						value : {
-							data : 'This is session data.',
-							removeAfterSeconds : 30 * 60 // 30 minutes
-						}
+							data : 'This is session data.'
+						},
+						removeAfterSeconds : 30 * 60 // 30 minutes
 					});
 
 					console.log('create session.');

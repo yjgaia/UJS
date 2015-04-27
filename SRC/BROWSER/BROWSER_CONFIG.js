@@ -8,6 +8,8 @@ global.BROWSER_CONFIG = {
 	host : location.hostname,
 	
 	port : location.port,
+	
+	isSecure : location.protocol === 'https:',
 
 	isSupportingX2 : false,
 	

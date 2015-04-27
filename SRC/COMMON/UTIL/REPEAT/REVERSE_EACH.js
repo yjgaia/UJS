@@ -3,9 +3,9 @@
  */
 global.REVERSE_EACH = METHOD({
 
-	run : function(array, func) {
+	run : function(arrayOrString, func) {
 		'use strict';
-		//OPTIONAL: array
+		//OPTIONAL: arrayOrString
 		//REQUIRED: func
 
 		var
@@ -18,30 +18,30 @@ global.REVERSE_EACH = METHOD({
 		// extras
 		i;
 
-		// when array is undefined
-		if (array === undefined) {
+		// when arrayOrString is undefined
+		if (arrayOrString === undefined) {
 			return false;
 		}
 
-		// when array is func
+		// when arrayOrString is func
 		else if (func === undefined) {
 
-			func = array;
-			array = undefined;
+			func = arrayOrString;
+			arrayOrString = undefined;
 
-			return function(array) {
-				return REVERSE_EACH(array, func);
+			return function(arrayOrString) {
+				return REVERSE_EACH(arrayOrString, func);
 			};
 		}
 
-		// when array is not undefined
+		// when arrayOrString is array or arguments or string
 		else {
 
-			length = array.length;
+			length = arrayOrString.length;
 
 			for ( i = length - 1; i >= 0; i -= 1) {
 
-				if (func(array[i], i) === false) {
+				if (func(arrayOrString[i], i) === false) {
 					return false;
 				}
 			}

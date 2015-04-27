@@ -139,7 +139,7 @@ global.INPUT = CLASS(function(cls) {
 				};
 
 				self.getValue = getValue = function() {
-					if (type === 'checkbox') {
+					if (type === 'checkbox' || type === 'radio') {
 						return self.getEl().checked;
 					}
 					return self.getEl().value;
@@ -161,7 +161,7 @@ global.INPUT = CLASS(function(cls) {
 					self.getEl().blur();
 				};
 
-				if (type === 'checkbox') {
+				if (type === 'checkbox' || type === 'radio') {
 
 					self.toggleCheck = toggleCheck = function(e) {
 
@@ -202,7 +202,7 @@ global.INPUT = CLASS(function(cls) {
 			self.setValue = setValue = function(value) {
 				//REQUIRED: value
 
-				if (type === 'checkbox') {
+				if (type === 'checkbox' || type === 'radio') {
 
 					if (value === true) {
 
@@ -302,7 +302,7 @@ global.INPUT = CLASS(function(cls) {
 
 			if (value !== undefined) {
 
-				if (type === 'checkbox') {
+				if (type === 'checkbox' || type === 'radio') {
 
 					if (value === true) {
 

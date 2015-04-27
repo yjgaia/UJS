@@ -96,7 +96,8 @@ RUN(function() {
 	 * fix BROWSER/VIEW.
 	 */
 
-	if (history.pushState === undefined) {
+	// when protocol is 'file:', use hashbang.
+	if (history.pushState === undefined || location.protocol === 'file:') {
 		
 		// fix HREF.
 		loadFixScript('BROWSER/VIEW/HREF');
