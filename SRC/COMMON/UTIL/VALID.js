@@ -5,9 +5,6 @@ global.VALID = CLASS(function(cls) {
 	'use strict';
 
 	var
-	// ignore attrs
-	ignoreAttrs = [],
-
 	// not empty.
 	notEmpty,
 
@@ -69,10 +66,7 @@ global.VALID = CLASS(function(cls) {
 	detail,
 
 	// equal.
-	equal,
-
-	// add ignore attr.
-	addIgnoreAttr;
+	equal;
 
 	cls.notEmpty = notEmpty = function(value) {
 		//REQUIRED: value
@@ -339,10 +333,6 @@ global.VALID = CLASS(function(cls) {
 		validStr = String(validValue);
 
 		return str === validStr;
-	};
-
-	cls.addIgnoreAttr = addIgnoreAttr = function(attr) {
-		ignoreAttrs.push(attr);
 	};
 
 	return {
@@ -621,10 +611,7 @@ global.VALID = CLASS(function(cls) {
 					});
 
 					EACH(data, function(value, attr) {
-						if (CHECK_IS_IN({
-							array : ignoreAttrs,
-							value : attr
-						}) !== true && validDataSet[attr] === undefined) {
+						if (validDataSet[attr] === undefined) {
 							delete data[attr];
 						}
 					});
