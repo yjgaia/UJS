@@ -174,7 +174,7 @@ global.SOCKET_SERVER = METHOD({
 			send = function(params, callback) {
 				//REQUIRED: params
 				//REQUIRED: params.methodName
-				//REQUIRED: params.data
+				//OPTIONAL: params.data
 				//OPTIONAL: callback
 
 				var
