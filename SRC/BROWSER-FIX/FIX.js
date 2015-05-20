@@ -105,6 +105,9 @@ RUN(function() {
 		// fix GO.
 		loadFixScript('BROWSER/VIEW/GO');
 		
+		// fix URI.
+		loadFixScript('BROWSER/VIEW/URI');
+		
 		// fix MATCH_VIEW.
 		loadFixScript('BROWSER/VIEW/MATCH_VIEW');
 		
