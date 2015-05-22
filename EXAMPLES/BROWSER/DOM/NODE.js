@@ -38,7 +38,7 @@ TEST('NODE', function(ok) {
 	// node
 	iat = ImageAndText({
 		img : IMG({
-			src : 'EXAMPLES/test.png'
+			src : '/EXAMPLES/test.png'
 		}),
 		text : 'Hello, UPPERCASE.JS!'
 	});

@@ -34,7 +34,7 @@ TEST('CONTEXT', function(ok) {
 	// load image.
 	EVENT({
 		node : IMG({
-			src : 'LOGO.png'
+			src : '/LOGO.png'
 		}),
 		name : 'load'
 	}, function(e, img) {

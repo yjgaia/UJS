@@ -20,7 +20,7 @@ TEST('ADD_STYLE', function(ok) {
 			height : 200,
 
 			// background image
-			backgroundImage : 'EXAMPLES/test.png',
+			backgroundImage : '/EXAMPLES/test.png',
 
 			// position fixed (if not support fixed browser, simulate fixed.)
 			position : 'fixed',

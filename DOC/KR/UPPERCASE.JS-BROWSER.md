@@ -610,6 +610,7 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
 	})
     ```
 
+* `URI()` 현재 브라우저의 URI를 반환합니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/URI.js)
 * `HREF(uri)` `Box.HREF(uri)` URI에 맞는 주소를 생성합니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/HREF.js)
 * `GO(uri)` `Box.GO(uri)` URI를 변경하여 다른 뷰로 이동합니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/GO.js)
     

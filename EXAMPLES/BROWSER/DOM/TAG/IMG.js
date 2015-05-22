@@ -10,7 +10,7 @@ TEST('IMG', function(ok) {
 			left : 40,
 			top : 40
 		},
-		src : 'EXAMPLES/test.png'
+		src : '/EXAMPLES/test.png'
 	}).appendTo(BODY);
 
 	// remove img after 3 seconds.

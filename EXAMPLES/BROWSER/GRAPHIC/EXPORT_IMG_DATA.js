@@ -23,7 +23,7 @@ TEST('EXPORT_IMG_DATA', function(ok) {
 
 		// img
 		img = IMG({
-			src : 'EXAMPLES/test.png'
+			src : '/EXAMPLES/test.png'
 		})
 	}).appendTo(BODY);
 

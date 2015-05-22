@@ -5125,7 +5125,7 @@ global.EXPORT_IMG_DATA = METHOD(function(m) {
 					});
 
 					// get img data.
-					imgData = context.getImgData();
+					imgData = context.getImageData();
 
 					// cache.
 					exportedImgDataSet[uri] = imgData;

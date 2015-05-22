@@ -17,43 +17,49 @@ RUN(function() {
 	RESOURCE_SERVER({
 		port : port,
 		rootPath : __dirname + '/..'
-	}, function(requestInfo, response, onDisconnected, replaceRootPath, next) {
-
-		var
-		// uri
-		uri = requestInfo.uri,
-
-		// method
-		method = requestInfo.method,
-
-		// params
-		params = requestInfo.params;
-
-		if (uri === '') {
-
-			requestInfo.uri = 'TEST/TEST.html';
-
-		} else if (uri === 'AJAX_TEST') {
-
-			console.log(method, params);
-
-			response({
-				content : 'Request DONE!',
-				headers : {
-					'Access-Control-Allow-Origin' : '*'
-				}
+	}, {
+		notExistsResource : function(resourcePath, requestInfo, response) {
+			
+			READ_FILE(__dirname + '/TEST.html', function(content) {
+				response(content.toString());
 			});
-
-		} else if (uri === 'AJAX_JSON_TEST') {
-
-			console.log(method, params);
-
-			response({
-				content : '{ "thisis" : "JSON" }',
-				headers : {
-					'Access-Control-Allow-Origin' : '*'
-				}
-			});
+			
+			return false;
+		},
+		requestListener : function(requestInfo, response, onDisconnected, replaceRootPath, next) {
+	
+			var
+			// uri
+			uri = requestInfo.uri,
+	
+			// method
+			method = requestInfo.method,
+	
+			// params
+			params = requestInfo.params;
+	
+			if (uri === 'AJAX_TEST') {
+	
+				console.log(method, params);
+	
+				response({
+					content : 'Request DONE!',
+					headers : {
+						'Access-Control-Allow-Origin' : '*'
+					}
+				});
+	
+			} else if (uri === 'AJAX_JSON_TEST') {
+	
+				console.log(method, params);
+	
+				response({
+					content : '{ "thisis" : "JSON" }',
+					headers : {
+						'Access-Control-Allow-Origin' : '*'
+					}
+				});
+			}
 		}
 	});
 
