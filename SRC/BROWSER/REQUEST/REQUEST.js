@@ -69,7 +69,7 @@ global.REQUEST = METHOD({
 			errorListener = responseListenerOrListeners.error;
 		}
 
-		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + (uri === undefined ? '' : uri);
+		url = (isSecure === true ? 'https://' : 'http://') + host + ':' + port + '/' + (uri === undefined ? '' : (uri[0] === '/' ? uri.substring(1) : uri));
 
 		req = new XMLHttpRequest();
 

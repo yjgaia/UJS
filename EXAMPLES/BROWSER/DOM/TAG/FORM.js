@@ -36,12 +36,24 @@ TEST('FORM', function(ok) {
 					c : 'Gender'
 				}), SELECT({
 					name : 'gender',
-					c : [OPTION({
-						value : 'male',
-						c : 'Male'
-					}), OPTION({
-						value : 'female',
-						c : 'Female'
+					c : [OPTGROUP({
+						label : 'Male or Female',
+						c : [OPTION({
+							value : 'male',
+							c : 'Male'
+						}), OPTION({
+							value : 'female',
+							c : 'Female'
+						})]
+					}), OPTGROUP({
+						label : 'Man or Woman',
+						c : [OPTION({
+							value : 'male',
+							c : 'Man'
+						}), OPTION({
+							value : 'female',
+							c : 'Woman'
+						})]
 					})]
 				})]
 			}), DIV({

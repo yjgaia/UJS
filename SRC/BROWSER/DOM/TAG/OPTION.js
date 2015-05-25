@@ -21,6 +21,7 @@ global.OPTION = CLASS({
 		'use strict';
 		//OPTIONAL: params
 		//OPTIONAL: params.value
+		//OPTIONAL: params.c
 
 		var
 		// get value.
@@ -43,8 +44,6 @@ global.OPTION = CLASS({
 	afterInit : function(inner, self, params) {
 		'use strict';
 		//OPTIONAL: params
-		//OPTIONAL: params.name
-		//OPTIONAL: params.placeholder
 		//OPTIONAL: params.value
 		//OPTIONAL: params.c
 

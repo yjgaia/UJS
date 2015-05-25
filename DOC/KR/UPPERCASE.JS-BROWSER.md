@@ -217,7 +217,7 @@ DIV({
 NODE 인터페이스를 사용하여 웹 페이지를 구성하는 NODE를 만들어낼 수 있습니다. 아래 DOM 태그 구현에서도 사용되지만, 개발자가 직접 NODE의 종류를 추가할 때도 이를 상속하여 사용할 수 있습니다. [예제보기](../../EXAMPLES/BROWSER/DOM/NODE.js)
 
 ### DOM 태그 구현
-* `DOM` 새로 DOM을 만들어내는 클래스입니다. 이하 여러가지 태그와 대응되는 클래스들은 이를 상속합니다. 아래 만들어져 있는 태그들만으로도 보통의 웹 개발시에는 문제가 없으나, 필요에 의해 특정 태그를 추가로 더 만들고자 하는 경우에는 이 클래스를 상속하여 만들 수 있습니다. [예제보기](../../EXAMPLES/BROWSER/DOM/DOM.js)
+* `DOM` 새로 DOM을 만들어내는 클래스입니다. 이하 여러가지 태그와 대응되는 클래스들은 이를 상속합니다. 아래 만들어져 있는 태그들만으로도 보통의 웹 개발시에는 문제가 없다고 판단되나, 필요에 의해 특정 태그를 추가로 더 만들고자 하는 경우에는 이 클래스를 상속하여 만들 수 있습니다. [예제보기](../../EXAMPLES/BROWSER/DOM/DOM.js)
     * `DOM({tag:})`
     * `DOM({tag:, style:})`
     * `DOM({tag:, c:})`
@@ -356,11 +356,12 @@ NODE 인터페이스를 사용하여 웹 페이지를 구성하는 NODE를 만�
     * `SELECT({c:})`
     * `SELECT({on:})`
 
+* `OPTGROUP` HTML의 optgroup 태그와 대응되는 클래스입니다. [예제보기](../../EXAMPLES/BROWSER/DOM/TAG/FORM.js)
+    * `OPTGROUP({label:})`
+
 * `OPTION` HTML의 option 태그와 대응되는 클래스입니다. [예제보기](../../EXAMPLES/BROWSER/DOM/TAG/FORM.js)
     * `OPTION({value:})`
-    * `OPTION({style:})`
     * `OPTION({c:})`
-    * `OPTION({on:})`
 
 * `IFRAME` HTML의 iframe 태그와 대응되는 클래스입니다. [예제보기](../../EXAMPLES/BROWSER/DOM/TAG/IFRAME.js)
     * `IFRAME({name:})`
