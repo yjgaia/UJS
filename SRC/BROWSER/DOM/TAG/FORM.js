@@ -56,9 +56,19 @@ global.FORM = CLASS({
 		}
 
 		if (action !== undefined) {
+			
 			inner.setAttr({
 				name : 'action',
 				value : action
+			});
+			
+		} else {
+			
+			EVENT({
+				node : self,
+				name : 'submit'
+			}, function(e) {
+				e.stop();
 			});
 		}
 
@@ -133,13 +143,6 @@ global.FORM = CLASS({
 
 			f(self);
 		};
-
-		EVENT({
-			node : self,
-			name : 'submit'
-		}, function(e) {
-			e.stop();
-		});
 
 		self.submit = submit = function(isRealSubmit) {
 			//OPTIONAL: isRealSubmit
