@@ -10,7 +10,7 @@ TEST('SHARED_STORE', function(ok) {
 	CPU_CLUSTERING(function(workerData, on, off, broadcast) {
 
 		SERVER_CLUSTERING({
-			servers : {
+			hosts : {
 				serverA : '1.btncafe.com',
 				serverB : '2.btncafe.com'
 			},

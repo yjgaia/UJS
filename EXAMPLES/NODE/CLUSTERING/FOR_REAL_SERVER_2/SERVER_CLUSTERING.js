@@ -8,7 +8,7 @@ TEST('SERVER_CLUSTERING', function(ok) {
 	INIT_OBJECTS();
 
 	SERVER_CLUSTERING({
-		servers : {
+		hosts : {
 			serverA : '1.btncafe.com',
 			serverB : '2.btncafe.com'
 		},

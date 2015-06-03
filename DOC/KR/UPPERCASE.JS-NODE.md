@@ -374,11 +374,11 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 	})
     ```
 
-* `SERVER_CLUSTERING({servers:, thisServerName:, port:}, work)` 서버 클러스터링을 수행합니다. 이를 통해 분산 서버를 구성할 수 있습니다. [예제보기](../../EXAMPLES/NODE/CLUSTERING/SERVER_CLUSTERING.js)
+* `SERVER_CLUSTERING({hosts:, thisServerName:, port:}, work)` 서버 클러스터링을 수행합니다. 이를 통해 분산 서버를 구성할 수 있습니다. [예제보기](../../EXAMPLES/NODE/CLUSTERING/SERVER_CLUSTERING.js)
 
     ```javascript
     SERVER_CLUSTERING({
-		servers : {
+		hosts : {
 			serverA : '127.0.0.1',
 			serverB : '127.0.0.1'
 		},
@@ -395,7 +395,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
     CPU_CLUSTERING(function() {
 
 		SERVER_CLUSTERING({
-			servers : {
+			hosts : {
 				serverA : '127.0.0.1',
 				serverB : '127.0.0.1'
 			},

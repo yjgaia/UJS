@@ -10,7 +10,7 @@ TEST('SHARED_STORE', function(ok) {
 	CPU_CLUSTERING(function() {
 
 		SERVER_CLUSTERING({
-			servers : {
+			hosts : {
 				serverA : '127.0.0.1',
 				serverB : '127.0.0.1'
 			},
