@@ -2,7 +2,29 @@
 기본적으로 UPPERCASE.JS 기반 프로젝트는 [Douglas Crockford의 코드 컨벤션 규칙](http://javascript.crockford.com/code.html)을 따르지만, 몇가지 차이점이 있습니다.
 
 ## 세미콜론
-세미콜론을 생략하지 마십시오.
+문장의 끝에 세미콜론을 생략하지 마십시오. 다음의 예를 보면, 세미콜론의 생략으로 발생하는 문제를 알 수 있습니다.
+
+```javascript
+var func = function(something) {
+	console.log(something);
+} // 세미콜론 생략
+
+(function(msg) {
+	console.log(msg);
+})('good!'); // 오류 발생!
+```
+위의 예에서는 세미콜론이 생략되어 func에 선언되어야 할 함수가 그냥 실행되어 버리고 맙니다. 이와 같은 오류를 사전에 방지하고자 모든 문장의 끝에는 세미콜론을 추가합니다.
+
+```javascript
+var func = function(something) {
+	console.log(something);
+}; // 세미콜론 추가
+
+(function(msg) {
+	console.log(msg);
+})('good!'); // good!
+```
+위와 같이 세미콜론을 추가하면 잘 동작하는 것을 확인할 수 있습니다.
 
 ## 들여쓰기
 코드 들여쓰기는 `탭`을 사용합니다. 두 칸의 스페이스나, 네 칸의 스페이스를 사용하지 않습니다.
