@@ -7,7 +7,7 @@ global.BROWSER_CONFIG = {
 
 	host : location.hostname,
 	
-	port : location.port,
+	port : location.port === '' ? 80 : INTEGER(location.port),
 	
 	isSecure : location.protocol === 'https:',
 
