@@ -602,11 +602,18 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
 	})
     ```
     
-* `MATCH_VIEW({uri:, target:})` `Box.MATCH_VIEW({uri:, target:})` URI와 뷰를 매치시킵니다. 해당 URI가 되면, VIEW 인터페이스로 만든 뷰가 실행됩니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/VIEW.js)
+* `MATCH_VIEW({uri:, target:})` `MATCH_VIEW({uri:, excludeURI:, target:})` `Box.MATCH_VIEW({uri:, target:})` `Box.MATCH_VIEW({uri:, excludeURI:, target:})` URI와 뷰를 매치시킵니다. 현재 URI가 지정한 `uri`와 같으면, VIEW 인터페이스로 만든 뷰가 실행됩니다. `uri`가 패턴일 때 현재 URI가 `excludeURI`면 뷰를 실행하지 않습니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/VIEW.js)
     
     ```javascript
     MATCH_VIEW({
 		uri : ['view', 'view/{id}'],
+		target : SomeView
+	})
+    ```
+    ```javascript
+    MATCH_VIEW({
+		uri : ['view', 'view/{id}'],
+		excludeURI : ['view/1', 'view/2'],
 		target : SomeView
 	})
     ```

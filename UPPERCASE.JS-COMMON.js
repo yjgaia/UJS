@@ -1,3 +1,9 @@
+/*
+
+Welcome to UPPERCASE.JS! (http://uppercase.io)
+
+*/
+
 /**
  * when database update, set to delete value.
  *

@@ -1,3 +1,9 @@
+/*
+
+Welcome to UPPERCASE.JS! (http://uppercase.io)
+
+*/
+
 /**
  * Node-side Configuration
  */

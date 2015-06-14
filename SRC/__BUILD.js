@@ -9,6 +9,9 @@ RUN(function() {
 	'use strict';
 
 	var
+	// BASE_CONTENT
+	BASE_CONTENT = '/*\n\nWelcome to UPPERCASE.JS! (http://uppercase.io)\n\n*/\n\n',
+	
 	//IMPORT: path
 	path = require('path'),
 
@@ -57,7 +60,7 @@ RUN(function() {
 		EACH(scriptPaths, function(scriptPath) {
 			
 			if (content === undefined) {
-				content = '';
+				content = BASE_CONTENT;
 			} else {
 				content += '\n';
 			}
