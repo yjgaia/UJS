@@ -35,6 +35,10 @@ global.WEB_SERVER = CLASS(function(cls) {
 		if (contentType === 'text/plain') {
 			return 'utf-8';
 		}
+		
+		if (contentType === 'text/x-markdown') {
+			return 'utf-8';
+		}
 
 		if (contentType === 'text/html') {
 			return 'utf-8';

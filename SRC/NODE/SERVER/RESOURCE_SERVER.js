@@ -61,6 +61,11 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 			return 'text/plain';
 		}
 
+		// markdown
+		if (extname === '.markdown' || extname === '.md') {
+			return 'text/x-markdown';
+		}
+
 		// html document
 		if (extname === '.html') {
 			return 'text/html';
