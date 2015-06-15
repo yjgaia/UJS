@@ -449,21 +449,31 @@ UPPERCASE.JS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이�
     
     // 3
     cal.getMonth()
+    // '03'
+    cal.getMonth(true)
     
     // 15
     cal.getDate()
+    // '15'
+    cal.getDate(true)
     
     // 0 is sunday.
     cal.getDay()
     
     // 16
     cal.getHour()
+    // '16'
+    cal.getHour(true)
     
     // 7
     cal.getMinute()
+    // '07'
+    cal.getMinute(true)
     
     // 12
     cal.getSecond()
+    // '12'
+    cal.getSecond(true)
     ```
 
 ### 함수 관련 기능
