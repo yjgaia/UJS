@@ -309,6 +309,11 @@ global.EVENT = CLASS(function(cls) {
 						top = e.getTop();
 
 						if (startLeft - 5 <= left && left <= startLeft + 5 && startTop - 5 <= top && top <= startTop + 5) {
+							
+							if (nodeId !== 'body') {
+								e.stopDefault();
+							}
+							
 							return eventHandler(e, node);
 						}
 					}
@@ -321,7 +326,12 @@ global.EVENT = CLASS(function(cls) {
 					name : 'click'
 				}, function(e, node) {
 					if (INFO.checkIsTouchMode() !== true || INFO.checkIsExistsTapDelay() !== true) {
-						eventHandler(e, node);
+						
+						if (nodeId !== 'body') {
+							e.stopDefault();
+						}
+						
+						return eventHandler(e, node);
 					}
 				}));
 			}
