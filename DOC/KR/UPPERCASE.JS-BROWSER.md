@@ -215,6 +215,42 @@ DIV({
 
 ### NODE 인터페이스
 NODE 인터페이스를 사용하여 웹 페이지를 구성하는 NODE를 만들어낼 수 있습니다. 아래 DOM 태그 구현에서도 사용되지만, 개발자가 직접 NODE의 종류를 추가할 때도 이를 상속하여 사용할 수 있습니다. [예제보기](../../EXAMPLES/BROWSER/DOM/NODE.js)
+#### 제공하는 메소드
+- `inner.setWrapperDom(dom)` 감싸는 DOM을 지정합니다.
+- `inner.setContentDom(dom)` 내부 DOM을 지정합니다.
+- `inner.setDom(dom)` 감싸는 DOM과 내부 DOM이 동일한 경우 둘을 같은 DOM으로 지정합니다.
+- `getWrapperDom` 감싸는 DOM을 반환합니다.
+- `getContentDom` 내부 DOM을 반환합니다.
+- `getWrapperEl` 감싸는 DOM의 HTML element를 반환합니다.
+- `getContentEl` 내부 DOM의 HTML element를 반환합니다.
+- `append(node)` 자식 노드를 맨 뒤에 붙힙니다.
+- `appendTo(node)` 특정 노드의 맨 뒤에 자식 노드로 붙습니다.
+- `prepend(node)` 자식 노드를 맨 앞에 붙힙니다.
+- `prependTo(node)` 특정 노드의 맨 앞에 자식 노드로 붙습니다.
+- `after(node)` 특정 노드를 바로 뒤에 붙힙니다.
+- `insertAfter(node)` 특정 노드의 바로 뒤에 붙습니다.
+- `before(node)` 특정 노드를 바로 앞에 붙힙니다.
+- `insertBefore(node)` 특정 노드의 바로 앞에 붙습니다.
+- `remove()` 노드를 지웁니다.
+- `empty()` 모든 자식 노드들을 지웁니다.
+- `setParent(node)` 부모 노드를 지정합니다.
+- `getParent()` 부모 노드를 반환합니다.
+- `getChildren()` 모든 자식 노드들을 반환합니다.
+- `on(eventName, eventHandler)` 이벤트를 지정합니다.
+- `off(eventName)` `off(eventName, eventHandler)` 이벤트를 제거합니다.
+- `addStyle(style)` 스타일을 지정합니다.
+- `getStyle()` 노드의 스타일 정보를 반환합니다.
+- `getWidth()` 가로 길이를 반환합니다.
+- `getInnerWidth()` 여백을 제외한 가로 길이를 반환합니다.
+- `getHeight()` 세로 길이를 반환합니다.
+- `getInnerHeight()` 여백을 제외한 세로 길이를 반환합니다.
+- `getLeft()` 화면에서 왼쪽으로부터 얼마나 떨어져 있는지 반환합니다.
+- `getTop()` 화면에서 위쪽으로부터 얼마나 떨어져 있는지 반환합니다.
+- `hide()` 노드를 숨깁니다.
+- `show()` 노드를 숨기지 않습니다.
+- `checkIsShowing()` 노드가 보여지고 있는지 확인합니다.
+- `setData(data)` 노드에 데이터를 저장합니다.
+- `getData()` 저장된 데이터를 반환합니다.
 
 ### DOM 태그 구현
 * `DOM` 새로 DOM을 만들어내는 클래스입니다. 이하 여러가지 태그와 대응되는 클래스들은 이를 상속합니다. 아래 만들어져 있는 태그들만으로도 보통의 웹 개발시에는 문제가 없다고 판단되나, 필요에 의해 특정 태그를 추가로 더 만들고자 하는 경우에는 이 클래스를 상속하여 만들 수 있습니다. [예제보기](../../EXAMPLES/BROWSER/DOM/DOM.js)

@@ -33,6 +33,9 @@ global.NODE = CLASS({
 
 		// origin display
 		originDisplay,
+		
+		// data
+		data,
 
 		// set wrapper dom.
 		setWrapperDom,
@@ -88,11 +91,11 @@ global.NODE = CLASS({
 		// empty.
 		empty,
 
-		// get parent.
-		getParent,
-
 		// set parent.
 		setParent,
+
+		// get parent.
+		getParent,
 
 		// get children.
 		getChildren,
@@ -134,7 +137,13 @@ global.NODE = CLASS({
 		show,
 
 		// check is showing.
-		checkIsShowing;
+		checkIsShowing,
+		
+		// set data.
+		setData,
+		
+		// get data.
+		getData;
 
 		inner.setWrapperDom = setWrapperDom = function(dom) {
 			//REQUIRED: dom
@@ -515,9 +524,13 @@ global.NODE = CLASS({
 					node : self
 				});
 
+				// free memory.
 				wrapperEl = undefined;
 				contentEl = undefined;
 			}
+			
+			// free memory.
+			data = undefined;
 		};
 
 		self.empty = empty = function() {
@@ -526,14 +539,14 @@ global.NODE = CLASS({
 			});
 		};
 
-		self.getParent = getParent = function() {
-			return parentNode;
-		};
-
 		self.setParent = setParent = function(node) {
 			//OPTIONAL: node
 
 			parentNode = node;
+		};
+		
+		self.getParent = getParent = function() {
+			return parentNode;
 		};
 
 		self.getChildren = getChildren = function() {
@@ -686,6 +699,16 @@ global.NODE = CLASS({
 			} else {
 				return parentNode !== undefined && parentNode.checkIsShowing() === true && getStyle('display') !== 'none';
 			}
+		};
+		
+		self.setData = setData = function(_data) {
+			//REQUIRED: _data
+			
+			data = _data;
+		};
+		
+		self.getData = getData = function() {
+			return data;
 		};
 	},
 
