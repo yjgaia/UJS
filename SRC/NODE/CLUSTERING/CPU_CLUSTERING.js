@@ -134,6 +134,24 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 					// remove cpu shared value.
 					on('__CPU_SHARED_STORE_REMOVE', CPU_SHARED_STORE.remove);
 
+					// create shared data.
+					on('__SHARED_DB_CREATE', SHARED_DB.create);
+					
+					// update shared data.
+					on('__SHARED_DB_UPDATE', SHARED_DB.update);
+
+					// remove shared data.
+					on('__SHARED_DB_REMOVE', SHARED_DB.remove);
+
+					// create cpu shared data.
+					on('__CPU_SHARED_DB_CREATE', CPU_SHARED_DB.create);
+					
+					// update cpu shared data.
+					on('__CPU_SHARED_DB_UPDATE', CPU_SHARED_DB.update);
+
+					// remove cpu shared data.
+					on('__CPU_SHARED_DB_REMOVE', CPU_SHARED_DB.remove);
+
 					m.off = off = function(methodName) {
 						delete methodMap[methodName];
 					};

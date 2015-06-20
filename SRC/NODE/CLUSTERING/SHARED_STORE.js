@@ -5,11 +5,11 @@ global.SHARED_STORE = CLASS(function(cls) {
 	'use strict';
 
 	var
-	// static storage
-	storage = {},
+	// storages
+	storages = {},
 
-	// remove delays
-	removeDelays = {},
+	// remove delay map
+	removeDelayMap = {},
 
 	// save.
 	save,
@@ -25,63 +25,115 @@ global.SHARED_STORE = CLASS(function(cls) {
 
 	cls.save = save = function(params, remove) {
 		//REQUIRED: params
-		//REQUIRED: params.fullName
+		//REQUIRED: params.storeName
+		//REQUIRED: params.name
 		//REQUIRED: params.value
 		//OPTIONAL: params.removeAfterSeconds
 		//OPTIONAL: remove
 
 		var
-		// full name
-		fullName = params.fullName,
+		// store name
+		storeName = params.storeName,
+
+		// name
+		name = params.name,
 
 		// value
 		value = params.value,
 
 		// remove after seconds
-		removeAfterSeconds = params.removeAfterSeconds;
+		removeAfterSeconds = params.removeAfterSeconds,
+		
+		// storage
+		storage = storages[storeName],
+		
+		// remove delays
+		removeDelays = removeDelayMap[storeName];
+		
+		if (storage === undefined) {
+			storage = storages[storeName] = {};
+		}
 
-		storage[fullName] = value;
+		storage[name] = value;
 
-		if (removeDelays[fullName] !== undefined) {
-			removeDelays[fullName].remove();
-			delete removeDelays[fullName];
+		if (removeDelays === undefined) {
+			removeDelays = removeDelayMap[storeName] = {};
+		}
+
+		if (removeDelays[name] !== undefined) {
+			removeDelays[name].remove();
+			delete removeDelays[name];
 		}
 
 		if (removeAfterSeconds !== undefined) {
-			removeDelays[fullName] = DELAY(removeAfterSeconds, remove);
+			removeDelays[name] = DELAY(removeAfterSeconds, remove);
 		}
 	};
 
-	cls.get = get = function(fullName) {
-		//REQUIRED: fullName
-
-		return storage[fullName];
+	cls.get = get = function(params) {
+		//REQUIRED: params
+		//REQUIRED: params.storeName
+		//REQUIRED: params.name
+		
+		var
+		// store name
+		storeName = params.storeName,
+		
+		// name
+		name = params.name,
+		
+		// storage
+		storage = storages[storeName];
+		
+		if (storage !== undefined) {
+			return storage[name];
+		}
 	};
 	
-	cls.list = list = function() {
-		return storage;
+	cls.list = list = function(storeName) {
+		//REQUIRED: storeName
+		
+		var
+		// storage
+		storage = storages[storeName];
+		
+		return storage === undefined ? {} : storage;
 	};
 
-	cls.remove = remove = function(fullName) {
-		//REQUIRED: fullName
+	cls.remove = remove = function(params) {
+		//REQUIRED: params
+		//REQUIRED: params.storeName
+		//REQUIRED: params.name
+		
+		var
+		// store name
+		storeName = params.storeName,
+		
+		// name
+		name = params.name,
+		
+		// storage
+		storage = storages[storeName],
+		
+		// remove delays
+		removeDelays = removeDelayMap[storeName];
+		
+		if (storage !== undefined) {
+			delete storage[name];
+		}
 
-		delete storage[fullName];
-
-		if (removeDelays[fullName] !== undefined) {
-			removeDelays[fullName].remove();
-			delete removeDelays[fullName];
+		if (removeDelays !== undefined && removeDelays[name] !== undefined) {
+			removeDelays[name].remove();
+			delete removeDelays[name];
 		}
 	};
 
 	return {
 
-		init : function(inner, self, name) {
-			//REQUIRED: name
+		init : function(inner, self, storeName) {
+			//REQUIRED: storeName
 
 			var
-			// gen full name.
-			genFullName,
-
 			// save.
 			save,
 
@@ -94,10 +146,6 @@ global.SHARED_STORE = CLASS(function(cls) {
 			// remove.
 			remove;
 
-			genFullName = function(_name) {
-				return name + '.' + _name;
-			};
-
 			self.save = save = function(params) {
 				//REQUIRED: params
 				//REQUIRED: params.name
@@ -108,9 +156,6 @@ global.SHARED_STORE = CLASS(function(cls) {
 				// name
 				name = params.name,
 
-				// full name
-				fullName = genFullName(name),
-
 				// value
 				value = params.value,
 
@@ -118,7 +163,8 @@ global.SHARED_STORE = CLASS(function(cls) {
 				removeAfterSeconds = params.removeAfterSeconds;
 
 				cls.save({
-					fullName : fullName,
+					storeName : storeName,
+					name : name,
 					value : value,
 					removeAfterSeconds : removeAfterSeconds
 				}, function() {
@@ -130,7 +176,8 @@ global.SHARED_STORE = CLASS(function(cls) {
 					CPU_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_SAVE',
 						data : {
-							fullName : fullName,
+							storeName : storeName,
+							name : name,
 							value : value
 						}
 					});
@@ -141,7 +188,8 @@ global.SHARED_STORE = CLASS(function(cls) {
 					SERVER_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_SAVE',
 						data : {
-							fullName : fullName,
+							storeName : storeName,
+							name : name,
 							value : value
 						}
 					});
@@ -151,39 +199,32 @@ global.SHARED_STORE = CLASS(function(cls) {
 			self.get = get = function(name) {
 				//REQUIRED: name
 
-				return cls.get(genFullName(name));
+				return cls.get({
+					storeName : storeName,
+					name : name
+				});
 			};
 			
 			self.list = list = function() {
-				
-				var
-				// values
-				values = {};
-				
-				EACH(cls.list(), function(value, fullName) {
-					
-					if (fullName.substring(0, name.length + 1) === name + '.') {
-						values[fullName.substring(name.length + 1)] = value;
-					}
-				});
-				
-				return values;
+				return cls.list(storeName);
 			};
 
 			self.remove = remove = function(name) {
 				//REQUIRED: name
-
-				var
-				// full name
-				fullName = genFullName(name);
-
-				cls.remove(fullName);
+				
+				cls.remove({
+					storeName : storeName,
+					name : name
+				});
 
 				if (CPU_CLUSTERING.broadcast !== undefined) {
 
 					CPU_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_REMOVE',
-						data : fullName
+						data : {
+							storeName : storeName,
+							name : name
+						}
 					});
 				}
 
@@ -191,7 +232,10 @@ global.SHARED_STORE = CLASS(function(cls) {
 
 					SERVER_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_REMOVE',
-						data : fullName
+						data : {
+							storeName : storeName,
+							name : name
+						}
 					});
 				}
 			};

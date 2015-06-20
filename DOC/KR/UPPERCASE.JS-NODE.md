@@ -389,7 +389,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 	})
     ```
 
-* `SHARED_STORE(name)` 클러스터링 된 CPU들과 서버들이 공유하는 저장소입니다. 저장할 때 `removeAfterSeconds` 파라미터를 지정하면 특정 시간 이후 데이터를 자동으로 지울수도 있습니다. [예제보기](../../EXAMPLES/NODE/CLUSTERING/SHARED_STORE.js)
+* `SHARED_STORE(name)` 클러스터링 된 CPU들과 서버들이 공유하는 저장소입니다. 저장할 때 `removeAfterSeconds` 파라미터를 지정하면 특정 시간 이후 값을 자동으로 지울수도 있습니다. [예제보기](../../EXAMPLES/NODE/CLUSTERING/SHARED_STORE.js)
 
     ```javascript
     CPU_CLUSTERING(function() {
@@ -422,6 +422,121 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 		});
 	});
     ```
+
+* `CPU_SHARED_STORE(name)` CPU들이 공유하는 저장소입니다. 사용법은 `SHARED_STORE`와 같습니다. [예제보기](../../EXAMPLES/NODE/CLUSTERING/CPU_SHARED_STORE.js)
+
+* `SHARED_DB(name)` 클러스터링 된 CPU들과 서버들이 공유하는 데이터베이스입니다. 저장할 때 `removeAfterSeconds` 파라미터를 지정하면 특정 시간 이후 데이터를 자동으로 지울수도 있습니다. [예제보기](../../EXAMPLES/NODE/CLUSTERING/SHARED_DB.js)
+
+    ```javascript
+    CPU_CLUSTERING(function() {
+
+		SERVER_CLUSTERING({
+			hosts : {
+				serverA : '127.0.0.1',
+				serverB : '127.0.0.1'
+			},
+			thisServerName : 'serverA',
+			port : 8125
+		}, function() {
+
+			var
+			// shared db
+			sharedDB = TestBox.CPU_SHARED_DB('test');
+
+			if (CPU_CLUSTERING.getWorkerId() === 1) {
+
+				sharedDB.create({
+					id : '1234',
+					data : {
+						msg : 'Hello World!'
+					},
+					removeAfterSeconds : 2
+				});
+			}
+			
+			sharedDB.get('1234')
+			
+			sharedDB.remove('1234')
+		});
+	});
+    ```
+    
+    `update` 명령의 `data`에 다음과 같은 특수기호를 사용하여 데이터를 가공할 수 있습니다. 이를 통해 분산 프로세스 간 *데이터 동시성*을 유지할 수 있습니다.
+    * `$inc`
+    ```javascript
+    // num이 2 증가합니다.
+    sharedDB.update({
+        ...
+        data : {
+            $inc : {
+                num : 2
+            }
+        }
+    })
+    ```
+    ```javascript
+    // num이 2 감소합니다.
+    sharedDB.update({
+        ...
+        data : {
+            $inc : {
+                num : -2
+            }
+        }
+    })
+    ```
+    * `$addToSet`
+    ```javascript
+    // 배열 array에 3이 없는 경우에만 3을 추가합니다.
+    sharedDB.update({
+        ...
+        data : {
+            $addToSet : {
+                array : 3
+            }
+        }
+    })
+    ```
+    * `$push`
+    ```javascript
+    // 배열 array에 3을 추가합니다.
+    sharedDB.update({
+        ...
+        data : {
+            $push : {
+                array : 3
+            }
+        }
+    })
+    ```
+    * `$pull`
+    ```javascript
+    // 배열 array에서 3을 제거합니다.
+    sharedDB.update({
+        ...
+        data : {
+            $pull : {
+                array : 3
+            }
+        }
+    })
+    ```
+    * `$pull`
+    ```javascript
+    // 배열 array에서 a가 3인 데이터를 제거합니다.
+    sharedDB.update({
+        ...
+        data : {
+            $pull : {
+                array : {
+                    a : 3
+                }
+            }
+        }
+    })
+    ```
+    
+* `CPU_SHARED_DB(name)` CPU들이 공유하는 데이터베이스입니다. 사용법은 `SHARED_DB`와 같습니다. [예제보기](../../EXAMPLES/NODE/CLUSTERING/CPU_SHARED_DB.js)
 
 ### 주의사항
 클러스터링 된 CPU와 서버들 간에 데이터를 동기화 하는데 시간이 걸릴 수 있습니다. 예를들어, A 서버와 B 서버에서 각각 `sample`이라는 값을 동시에 변경하였을때 A 서버에서 제공하는 값이 될지 B 서버에서 제공하는 값이 될지 확실하지 않습니다. 주의하시기 바랍니다.

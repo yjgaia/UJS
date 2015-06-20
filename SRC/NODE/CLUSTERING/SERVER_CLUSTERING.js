@@ -169,15 +169,57 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 			});
 
 			// remove shared value.
-			on('__SHARED_STORE_REMOVE', function(fullName) {
+			on('__SHARED_STORE_REMOVE', function(params) {
 
-				SHARED_STORE.remove(fullName);
+				SHARED_STORE.remove(params);
 
 				if (CPU_CLUSTERING.broadcast !== undefined) {
 
 					CPU_CLUSTERING.broadcast({
 						methodName : '__SHARED_STORE_REMOVE',
-						data : fullName
+						data : params
+					});
+				}
+			});
+
+			// create shared data.
+			on('__SHARED_DB_CREATE', function(params) {
+
+				SHARED_DB.create(params);
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__SHARED_DB_CREATE',
+						data : params
+					});
+				}
+			});
+			
+			// update shared data.
+			on('__SHARED_DB_UPDATE', function(params) {
+
+				SHARED_DB.update(params);
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__SHARED_DB_UPDATE',
+						data : params
+					});
+				}
+			});
+
+			// remove shared data.
+			on('__SHARED_DB_REMOVE', function(params) {
+
+				SHARED_DB.remove(params);
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__SHARED_DB_REMOVE',
+						data : params
 					});
 				}
 			});

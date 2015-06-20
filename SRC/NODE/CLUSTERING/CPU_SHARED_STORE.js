@@ -5,11 +5,11 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 	'use strict';
 
 	var
-	// static storage
-	storage = {},
+	// storages
+	storages = {},
 
-	// remove delays
-	removeDelays = {},
+	// remove delay map
+	removeDelayMap = {},
 
 	// save.
 	save,
@@ -25,62 +25,212 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 
 	cls.save = save = function(params, remove) {
 		//REQUIRED: params
-		//REQUIRED: params.fullName
+		//REQUIRED: params.storeName
+		//REQUIRED: params.name
 		//REQUIRED: params.value
 		//OPTIONAL: params.removeAfterSeconds
 		//OPTIONAL: remove
 
 		var
-		// full name
-		fullName = params.fullName,
+		// store name
+		storeName = params.storeName,
+
+		// name
+		name = params.name,
 
 		// value
 		value = params.value,
 
 		// remove after seconds
-		removeAfterSeconds = params.removeAfterSeconds;
+		removeAfterSeconds = params.removeAfterSeconds,
+		
+		// storage
+		storage = storages[storeName],
+		
+		// remove delays
+		removeDelays = removeDelayMap[storeName];
+		
+		if (storage === undefined) {
+			storage = storages[storeName] = {};
+		}
 
-		storage[fullName] = value;
+		storage[name] = value;
 
-		if (removeDelays[fullName] !== undefined) {
-			removeDelays[fullName].remove();
-			delete removeDelays[fullName];
+		if (removeDelays === undefined) {
+			removeDelays = removeDelayMap[storeName] = {};
+		}
+
+		if (removeDelays[name] !== undefined) {
+			removeDelays[name].remove();
+			delete removeDelays[name];
 		}
 
 		if (removeAfterSeconds !== undefined) {
-			removeDelays[fullName] = DELAY(removeAfterSeconds, remove);
+			removeDelays[name] = DELAY(removeAfterSeconds, remove);
 		}
 	};
 
-	cls.get = get = function(fullName) {
-		//REQUIRED: fullName
-
-		return storage[fullName];
+	cls.get = get = function(params) {
+		//REQUIRED: params
+		//REQUIRED: params.storeName
+		//REQUIRED: params.name
+		
+		var
+		// store name
+		storeName = params.storeName,
+		
+		// name
+		name = params.name,
+		
+		// storage
+		storage = storages[storeName];
+		
+		if (storage !== undefined) {
+			return storage[name];
+		}
 	};
 	
-	cls.list = list = function() {
-		return storage;
+	cls.list = list = function(storeName) {
+		//REQUIRED: storeName
+		
+		var
+		// storage
+		storage = storages[storeName];
+		
+		return storage === undefined ? {} : storage;
 	};
 
-	cls.remove = remove = function(fullName) {
-		//REQUIRED: fullName
+	cls.remove = remove = function(params) {
+		//REQUIRED: params
+		//REQUIRED: params.storeName
+		//REQUIRED: params.name
+		
+		var
+		// store name
+		storeName = params.storeName,
+		
+		// name
+		name = params.name,
+		
+		// storage
+		storage = storages[storeName],
+		
+		// remove delays
+		removeDelays = removeDelayMap[storeName];
+		
+		if (storage !== undefined) {
+			delete storage[name];
+		}
 
-		delete storage[fullName];
-
-		if (removeDelays[fullName] !== undefined) {
-			removeDelays[fullName].remove();
-			delete removeDelays[fullName];
+		if (removeDelays !== undefined && removeDelays[name] !== undefined) {
+			removeDelays[name].remove();
+			delete removeDelays[name];
 		}
 	};
 
 	return {
 
+		init : function(inner, self, storeName) {
+			//REQUIRED: storeName
+
+			var
+			// save.
+			save,
+
+			// get.
+			get,
+			
+			// list.
+			list,
+
+			// remove.
+			remove;
+
+			self.save = save = function(params) {
+				//REQUIRED: params
+				//REQUIRED: params.name
+				//REQUIRED: params.value
+				//OPTIONAL: params.removeAfterSeconds
+
+				var
+				// name
+				name = params.name,
+
+				// value
+				value = params.value,
+
+				// remove after seconds
+				removeAfterSeconds = params.removeAfterSeconds;
+
+				cls.save({
+					storeName : storeName,
+					name : name,
+					value : value,
+					removeAfterSeconds : removeAfterSeconds
+				}, function() {
+					remove(name);
+				});
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__CPU_SHARED_STORE_SAVE',
+						data : {
+							storeName : storeName,
+							name : name,
+							value : value
+						}
+					});
+				}
+			};
+
+			self.get = get = function(name) {
+				//REQUIRED: name
+
+				return cls.get({
+					storeName : storeName,
+					name : name
+				});
+			};
+			
+			self.list = list = function() {
+				return cls.list(storeName);
+			};
+
+			self.remove = remove = function(name) {
+				//REQUIRED: name
+
+				cls.remove({
+					storeName : storeName,
+					name : name
+				});
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__CPU_SHARED_STORE_REMOVE',
+						data : {
+							storeName : storeName,
+							name : name
+						}
+					});
+				}
+			};
+		}
+	};
+});
+
+FOR_BOX(function(box) {
+	'use strict';
+
+	box.CPU_SHARED_STORE = CLASS({
+
 		init : function(inner, self, name) {
 			//REQUIRED: name
 
 			var
-			// gen full name.
-			getFullName,
+			// shared store
+			sharedStore = CPU_SHARED_STORE(box.boxName + '.' + name),
 
 			// save.
 			save,
@@ -94,88 +244,13 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 			// remove.
 			remove;
 
-			inner.getFullName = getFullName = function(_name) {
-				return name + '.' + _name;
-			};
+			self.save = save = sharedStore.save;
 
-			self.save = save = function(params) {
-				//REQUIRED: params
-				//REQUIRED: params.name
-				//REQUIRED: params.value
-				//OPTIONAL: params.removeAfterSeconds
-
-				var
-				// name
-				name = params.name,
-
-				// full name
-				fullName = getFullName(name),
-
-				// value
-				value = params.value,
-
-				// remove after seconds
-				removeAfterSeconds = params.removeAfterSeconds;
-
-				cls.save({
-					fullName : fullName,
-					value : value,
-					removeAfterSeconds : removeAfterSeconds
-				}, function() {
-					remove(name);
-				});
-
-				if (CPU_CLUSTERING.broadcast !== undefined) {
-
-					CPU_CLUSTERING.broadcast({
-						methodName : '__CPU_SHARED_STORE_SAVE',
-						data : {
-							fullName : fullName,
-							value : value
-						}
-					});
-				}
-			};
-
-			self.get = get = function(name) {
-				//REQUIRED: name
-
-				return cls.get(getFullName(name));
-			};
+			self.get = get = sharedStore.get;
 			
-			self.list = list = function() {
-				
-				var
-				// values
-				values = {};
-				
-				EACH(cls.list(), function(value, fullName) {
-					
-					if (fullName.substring(0, name.length + 1) === name + '.') {
-						values[fullName.substring(name.length + 1)] = value;
-					}
-				});
-				
-				return values;
-			};
+			self.list = list = sharedStore.list;
 
-			self.remove = remove = function(name) {
-				//REQUIRED: name
-
-				var
-				// full name
-				fullName = getFullName(name);
-
-				cls.remove(fullName);
-
-				if (CPU_CLUSTERING.broadcast !== undefined) {
-
-					CPU_CLUSTERING.broadcast({
-						methodName : '__CPU_SHARED_STORE_REMOVE',
-						data : fullName
-					});
-				}
-			};
+			self.remove = remove = sharedStore.remove;
 		}
-	};
+	});
 });
