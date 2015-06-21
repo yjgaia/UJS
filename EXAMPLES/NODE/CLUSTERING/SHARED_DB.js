@@ -26,7 +26,7 @@ TEST('SHARED_DB', function(ok) {
 
 			if (CPU_CLUSTERING.getWorkerId() === 1) {
 
-				sharedDB.create({
+				sharedDB.save({
 					id : '1234',
 					data : {
 						msg : 'Hello World!'

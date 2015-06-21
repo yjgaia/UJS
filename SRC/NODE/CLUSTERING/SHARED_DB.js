@@ -11,8 +11,8 @@ global.SHARED_DB = CLASS(function(cls) {
 	// remove delay map
 	removeDelayMap = {},
 
-	// create.
-	create,
+	// save.
+	save,
 	
 	// update.
 	update,
@@ -26,7 +26,7 @@ global.SHARED_DB = CLASS(function(cls) {
 	// remove.
 	remove;
 
-	cls.create = create = function(params, remove) {
+	cls.save = save = function(params, remove) {
 		//REQUIRED: params
 		//REQUIRED: params.dbName
 		//REQUIRED: params.id
@@ -294,8 +294,8 @@ global.SHARED_DB = CLASS(function(cls) {
 			//REQUIRED: dbName
 
 			var
-			// create.
-			create,
+			// save.
+			save,
 			
 			// update.
 			update,
@@ -309,7 +309,7 @@ global.SHARED_DB = CLASS(function(cls) {
 			// remove.
 			remove;
 
-			self.create = create = function(params) {
+			self.save = save = function(params) {
 				//REQUIRED: params
 				//REQUIRED: params.id
 				//REQUIRED: params.data
@@ -325,7 +325,7 @@ global.SHARED_DB = CLASS(function(cls) {
 				// remove after seconds
 				removeAfterSeconds = params.removeAfterSeconds;
 
-				cls.create({
+				cls.save({
 					dbName : dbName,
 					id : id,
 					data : data,
@@ -337,7 +337,7 @@ global.SHARED_DB = CLASS(function(cls) {
 				if (CPU_CLUSTERING.broadcast !== undefined) {
 
 					CPU_CLUSTERING.broadcast({
-						methodName : '__SHARED_DB_CREATE',
+						methodName : '__SHARED_DB_SAVE',
 						data : {
 							dbName : dbName,
 							id : id,
@@ -349,7 +349,7 @@ global.SHARED_DB = CLASS(function(cls) {
 				if (SERVER_CLUSTERING.broadcast !== undefined) {
 
 					SERVER_CLUSTERING.broadcast({
-						methodName : '__SHARED_DB_CREATE',
+						methodName : '__SHARED_DB_SAVE',
 						data : {
 							dbName : dbName,
 							id : id,
@@ -472,8 +472,8 @@ FOR_BOX(function(box) {
 			// shared db
 			sharedDB = SHARED_DB(box.boxName + '.' + name),
 
-			// create.
-			create,
+			// save.
+			save,
 			
 			// update.
 			update,
@@ -487,7 +487,7 @@ FOR_BOX(function(box) {
 			// remove.
 			remove;
 
-			self.create = create = sharedDB.create;
+			self.save = save = sharedDB.save;
 
 			self.update = update = sharedDB.update;
 

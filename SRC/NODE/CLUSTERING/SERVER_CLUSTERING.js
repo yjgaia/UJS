@@ -182,15 +182,15 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 				}
 			});
 
-			// create shared data.
-			on('__SHARED_DB_CREATE', function(params) {
+			// save shared data.
+			on('__SHARED_DB_SAVE', function(params) {
 
-				SHARED_DB.create(params);
+				SHARED_DB.save(params);
 
 				if (CPU_CLUSTERING.broadcast !== undefined) {
 
 					CPU_CLUSTERING.broadcast({
-						methodName : '__SHARED_DB_CREATE',
+						methodName : '__SHARED_DB_SAVE',
 						data : params
 					});
 				}
