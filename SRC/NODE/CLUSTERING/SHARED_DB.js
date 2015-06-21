@@ -93,7 +93,7 @@ global.SHARED_DB = CLASS(function(cls) {
 		id = params.id,
 
 		// data
-		data = params.data,
+		data = COPY(params.data),
 		
 		// $inc
 		$inc = data.$inc,
@@ -129,7 +129,7 @@ global.SHARED_DB = CLASS(function(cls) {
 		delete data.$pull;
 		
 		savedData = storage[id];
-		savedData = storage[id] = savedData === undefined ? COPY(data) : COMBINE([savedData, data]);
+		savedData = storage[id] = savedData === undefined ? data : COMBINE([savedData, data]);
 		
 		if ($inc !== undefined) {
 			EACH($inc, function(value, name) {
