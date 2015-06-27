@@ -99,9 +99,14 @@ OVERRIDE(MATCH_VIEW, function(origin) {
 		
 				changeURIHandlers.push(changeURIHandler);
 	
-				EVENT({
-					name : 'hashchange'
-				}, changeURIHandler);
+				EVENT('hashchange', function() {
+					
+					changeURIHandler();
+					
+					if (decodeURIComponent(location.hash) === '#!/' + REFRESH.getRefreshingURI()) {
+						history.back();
+					}
+				});
 			}
 		};
 	});

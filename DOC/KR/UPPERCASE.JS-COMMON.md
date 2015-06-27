@@ -93,7 +93,7 @@ SomeClass = CLASS({
 }),
 
 // some object
-someObject = SampleClass({
+someObject = SomeClass({
 	name: 'YJ Sim',
 	age: 28
 }, function() {

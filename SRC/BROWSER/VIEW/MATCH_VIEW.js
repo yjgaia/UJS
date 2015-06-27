@@ -97,9 +97,14 @@ global.MATCH_VIEW = METHOD(function(m) {
 			
 			changeURIHandlers.push(changeURIHandler);
 	
-			EVENT({
-				name : 'popstate'
-			}, changeURIHandler);
+			EVENT('popstate', function() {
+				
+				changeURIHandler();
+				
+				if (URI() === REFRESH.getRefreshingURI()) {
+					history.back();
+				}
+			});
 			
 			changeURIHandler();
 		}
