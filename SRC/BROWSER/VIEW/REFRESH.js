@@ -27,7 +27,7 @@ global.REFRESH = METHOD(function(m) {
 			history.pushState(undefined, undefined, '/' + refreshingURI);
 			MATCH_VIEW.checkAll();
 			
-			history.pushState(undefined, undefined, '/' + savedURI);
+			history.replaceState(undefined, undefined, '/' + savedURI);
 			MATCH_VIEW.checkAll();
 		}
 	};
