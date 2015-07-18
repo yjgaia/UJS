@@ -44,6 +44,11 @@ global.REVERSE_EACH = METHOD({
 				if (func(arrayOrString[i], i) === false) {
 					return false;
 				}
+				
+				// when shrink
+				if (arrayOrString.length < length) {
+					i += length - arrayOrString.length;
+				}
 			}
 		}
 
