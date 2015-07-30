@@ -6,6 +6,6 @@ global.WIN_WIDTH = METHOD({
 	run : function() {
 		'use strict';
 
-		return global.innerWidth;
+		return document.documentElement.clientWidth;
 	}
 });

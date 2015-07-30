@@ -6,6 +6,6 @@ global.WIN_HEIGHT = METHOD({
 	run : function() {
 		'use strict';
 
-		return global.innerHeight;
+		return document.documentElement.clientHeight;
 	}
 });
