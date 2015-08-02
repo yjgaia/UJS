@@ -8,7 +8,7 @@ global.VIEW = CLASS({
 
 		var
 		// is closed
-		isClosed,
+		isClosed = false,
 
 		// params change handlers
 		paramsChangeHandlers = [],
