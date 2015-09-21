@@ -188,4 +188,11 @@ var SomeClass = CLASS(...
 var someObject = SomeClass();
 ```
 
+## METHOD, CLASS, OBJECT는 한 파일에 하나씩 생성합니다. 이 때, 파일명도 동일하게 작성합니다.
+
+```javascript
+// file name is SomeClass.js.
+var SomeClass = CLASS(...
+```
+
 다음 문서: [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md)
