@@ -398,7 +398,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
     ```
 
 ## 암호화
-* `SHA1({password:, key:})` HMAC-SHA1 암호화 알고리즘을 거친 문자열을 생성합니다. 암호화에는 암호화가 될 대상이되는 `password`와, 암호화에 필요한 `key`가 필요합니다. [예제보기](../../EXAMPLES/NODE/ENCRYPTION/SHA1.js)
+* `SHA1({password:, key:})` HMAC-SHA1 암호화 알고리즘을 거친 문자열을 생성합니다. 암호화에는 암호화 될 대상이 되는 `password`와, 암호화에 필요한 `key`가 필요합니다. [예제보기](../../EXAMPLES/NODE/ENCRYPTION/SHA1.js)
 
     ```javascript
     // '16dd1fdd7c595eab4586cebba6b34eaff41acc53'
