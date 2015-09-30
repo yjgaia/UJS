@@ -12,7 +12,10 @@ global.PACK_DATA = METHOD({
 		result = COPY(data),
 
 		// date attribute names
-		dateAttrNames = [];
+		dateAttrNames = [],
+		
+		// regex attribute names
+		regexAttrNames = [];
 
 		EACH(result, function(value, name) {
 
@@ -22,6 +25,14 @@ global.PACK_DATA = METHOD({
 				// change to timestamp integer.
 				result[name] = INTEGER(value.getTime());
 				dateAttrNames.push(name);
+			}
+			
+			// when value is RegExp type
+			else if ( value instanceof RegExp === true) {
+
+				// change to string.
+				result[name] = value.toString();
+				regexAttrNames.push(name);
 			}
 
 			// when value is data
@@ -42,6 +53,7 @@ global.PACK_DATA = METHOD({
 		});
 
 		result.__DATE_ATTR_NAMES = dateAttrNames;
+		result.__REGEX_ATTR_NAMES = regexAttrNames;
 
 		return result;
 	}

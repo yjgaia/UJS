@@ -10,11 +10,12 @@ TEST('STRINGIFY', function(ok) {
 		name : 'Yong Jae Sim',
 		age : 27,
 		country : 'Korea',
-		now : now
+		now : now,
+		regex : /test/g
 	},
 
 	// data str
 	dataStr = STRINGIFY(data);
 
-	ok(dataStr === '{"name":"Yong Jae Sim","age":27,"country":"Korea","now":' + now.getTime() + ',"__DATE_ATTR_NAMES":["now"]}');
+	ok(dataStr === '{"name":"Yong Jae Sim","age":27,"country":"Korea","now":' + now.getTime() + ',"regex":"/test/g","__DATE_ATTR_NAMES":["now"],"__REGEX_ATTR_NAMES":["regex"]}');
 });

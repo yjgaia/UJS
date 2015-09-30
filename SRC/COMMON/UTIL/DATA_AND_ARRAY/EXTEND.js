@@ -20,12 +20,41 @@ global.EXTEND = METHOD({
 		if (CHECK_IS_DATA(origin) === true) {
 
 			EACH(extend, function(value, name) {
-
+				
+				var
+				// pattern
+				pattern,
+				
+				// flags
+				flags,
+				
+				// j
+				i;
+				
 				if ( value instanceof Date === true) {
 					origin[name] = new Date(value.getTime());
-				} else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
+				}
+				
+				else if ( value instanceof RegExp === true) {
+					
+					pattern = value.toString();
+					
+					for (i = pattern.length - 1; i >= 0; i -= 1) {
+						if (pattern[i] === '/') {
+							flags = pattern.substring(i + 1);
+							pattern = pattern.substring(1, i);
+							break;
+						}
+					}
+					
+					origin[name] = new RegExp(pattern, flags);
+				}
+				
+				else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
 					origin[name] = COPY(value);
-				} else {
+				}
+				
+				else {
 					origin[name] = value;
 				}
 			});
@@ -35,12 +64,41 @@ global.EXTEND = METHOD({
 		else if (CHECK_IS_ARRAY(origin) === true) {
 
 			EACH(extend, function(value) {
+				
+				var
+				// pattern
+				pattern,
+				
+				// flags
+				flags,
+				
+				// j
+				i;
 
 				if ( value instanceof Date === true) {
 					origin.push(new Date(value.getTime()));
-				} else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
+				}
+				
+				else if ( value instanceof RegExp === true) {
+					
+					pattern = value.toString();
+					
+					for (i = pattern.length - 1; i >= 0; i -= 1) {
+						if (pattern[i] === '/') {
+							flags = pattern.substring(i + 1);
+							pattern = pattern.substring(1, i);
+							break;
+						}
+					}
+					
+					origin.push(new RegExp(pattern, flags));
+				}
+				
+				else if (CHECK_IS_DATA(value) === true || CHECK_IS_ARRAY(value) === true) {
 					origin.push(COPY(value));
-				} else {
+				}
+				
+				else {
 					origin.push(value);
 				}
 			});

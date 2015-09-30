@@ -18,6 +18,11 @@ global.CHECK_ARE_SAME = METHOD({
 			if ( a instanceof Date === true && b instanceof Date === true) {
 				return a.getTime() === b.getTime();
 			}
+			
+			// when a, b are regex
+			else if ( a instanceof RegExp === true && b instanceof RegExp === true) {
+				return a.toString() === b.toString();
+			}
 
 			// when a, b are data (JS object)
 			else if (CHECK_IS_DATA(a) === true && CHECK_IS_DATA(b) === true) {

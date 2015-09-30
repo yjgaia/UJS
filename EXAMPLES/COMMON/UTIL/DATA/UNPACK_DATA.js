@@ -15,7 +15,8 @@ TEST('UNPACK_DATA', function(ok) {
 		now : new Date(),
 		o : {
 			d : new Date()
-		}
+		},
+		r : new RegExp('test', 'g')
 	};
 
 	packedData = PACK_DATA(data);
