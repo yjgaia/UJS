@@ -1,5 +1,5 @@
-# ![ScreenShot](https://raw.githubusercontent.com/Hanul/UPPERCASE.JS/master/LOGO.png)
-UPPERCASE.JS는 JavaScript 라이브러리입니다.
+# UPPERCASE.JS
+UPPERCASE.JS는 풀스택 JavaScript 라이브러리입니다.
 * 이름에서 알 수 있듯이 모든 API가 대문자로 이루어져 있습니다.
 * BOX라는 모듈 시스템을 제공하고 있습니다. 자세한 내용은 [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md) 문서의 BOX 항목을 참고해주세요.
 * [UPPERCASE.IO](http://UPPERCASE.IO)에서 사용되고 있습니다.
