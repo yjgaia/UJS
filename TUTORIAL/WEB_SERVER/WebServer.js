@@ -10,6 +10,6 @@ WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
 	uri = requestInfo.uri;
 	
 	if (uri === '') {
-		response('Wellcome!');
+		response('Welcome!');
 	}
 });

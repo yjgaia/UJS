@@ -1,7 +1,7 @@
 # 간단한 웹 서버 만들기
 
 UPPERCASE.JS를 이용하여 웹 서버를 쉽게 만들 수 있습니다.
-이하는 간단히 웹 서버를 구동하는 코드입니다. http://localhost:8123 으로 접속하면 Wellcome! 이라는 메시지를 출력합니다.
+이하는 간단히 웹 서버를 구동하는 코드입니다. http://localhost:8123 으로 접속하면 Welcome! 이라는 메시지를 출력합니다.
 ```javascript
 require('UPPERCASE.JS-COMMON.js');
 require('UPPERCASE.JS-NODE.js');
@@ -16,12 +16,12 @@ WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
 	uri = requestInfo.uri;
 	
 	if (uri === '') {
-		response('Wellcome!');
+		response('Welcome!');
 	}
 });
 ```
 1. WEB_SERVER 메소드를 이용해 8123 포트로 웹 서버를 구동시켰습니다.
-2. requestInfo에 담긴 uri 정보를 불러와, uri가 '' 일 경우(단순히 http://localhost:8123 으로 접속 시) Wellcome! 이라는 메시지를 출력하도록 구성하였습니다.
+2. requestInfo에 담긴 uri 정보를 불러와, uri가 '' 일 경우(단순히 http://localhost:8123 으로 접속 시) Welcome! 이라는 메시지를 출력하도록 구성하였습니다.
 
 이를 발전시켜 다양한 기능을 하는 웹 서버를 만들 수 있습니다.
 
