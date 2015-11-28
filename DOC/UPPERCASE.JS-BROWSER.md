@@ -1,8 +1,8 @@
-# UPPERCASE.JS-BROWSER
+# UJS-BROWSER
 웹 브라우저 환경에서 사용할 수 있는 유틸리티 라이브러리 및 DOM(Document Object Model) 템플릿 엔진입니다.
 
 * `UPPERCSE.JS-BROWSER`는 최신 웹 브라우저에서 돌아가도록 구현되어 있습니다.
-구버젼 웹 브라우저들을 지원하기 위해서는 `UPPERCASE.JS-BROWSER-FIX`를 함께 구동시키시기 바랍니다. 관련 내용은 [하단에 수록](#uppercasejs-browser-fix)되어 있습니다.
+구버젼 웹 브라우저들을 지원하기 위해서는 `UJS-BROWSER-FIX`를 함께 구동시키시기 바랍니다. 관련 내용은 [하단에 수록](#uppercasejs-browser-fix)되어 있습니다.
 
 ## INFO
 브라우저의 정보들을 담고 있는 OBJECT입니다.
@@ -156,7 +156,7 @@ INFO.getBrowserInfo()
     ```
 
 ## DOM(Document Object Model) 템플릿 엔진
-UPPERCASE.JS의 DOM 템플릿 엔진은 순수 JavaScript만을 기반으로 합니다. 따라서 HTML이나 CSS 코드를 작성하지 않습니다. 모든 구현은 JavaScript로 이루어집니다. 그러나 기본적인 Font-end 개발 방법을 알고 있어야 합니다.
+UJS의 DOM 템플릿 엔진은 순수 JavaScript만을 기반으로 합니다. 따라서 HTML이나 CSS 코드를 작성하지 않습니다. 모든 구현은 JavaScript로 이루어집니다. 그러나 기본적인 Font-end 개발 방법을 알고 있어야 합니다.
 
 아래는 DOM 태그들로 폼 화면을 구성하는 예제입니다.
 ```javascript
@@ -679,31 +679,31 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
     
 * `REFRESH()` `Box.REFRESH()` `REFRESH(uri)` `Box.REFRESH(uri)` 뷰를 새로 불러옵니다. [예제보기](../../EXAMPLES/BROWSER/VIEW/REFRESH.js)
 
-## UPPERCASE.JS-BROWSER-FIX
-구형 웹 브라우저들을 지원하기 위해, UPPERCASE.JS는 `UPPERCASE.JS-BROWSER-FIX`라는 패키지를 지원하고 있습니다. 이는 객체지향의 상속 기능을 활용하여 구버젼 브라우저에서는 잘 동작하지 않는 기능들을 재작성한 것입니다. *Internet Explorer 5.5*나, *Android 2.1 Browser* 등 현재는 거의 쓰이지 않는 브라우저들까지 지원하기 때문에, 개발자는 브라우저의 하위 호환성을 신경쓰지 않아도 됩니다.
+## UJS-BROWSER-FIX
+구형 웹 브라우저들을 지원하기 위해, UJS는 `UJS-BROWSER-FIX`라는 패키지를 지원하고 있습니다. 이는 객체지향의 상속 기능을 활용하여 구버젼 브라우저에서는 잘 동작하지 않는 기능들을 재작성한 것입니다. *Internet Explorer 5.5*나, *Android 2.1 Browser* 등 현재는 거의 쓰이지 않는 브라우저들까지 지원하기 때문에, 개발자는 브라우저의 하위 호환성을 신경쓰지 않아도 됩니다.
 
 ### 설치하기
-[UPPERCASE.JS 설치하기](INSTALL.md) 문서에도 잘 나와 있듯이, UPPERCASE.JS-BROWSER-FIX를 설치하려면 UPPERCASE.JS-BROWSER-FIX 폴더를 지정하고, `FIX.js`를 불러와야 합니다.
+[UJS 설치하기](INSTALL.md) 문서에도 잘 나와 있듯이, UJS-BROWSER-FIX를 설치하려면 UJS-BROWSER-FIX 폴더를 지정하고, `FIX.js`를 불러와야 합니다.
 
 ```html
 <!-- 웹 브라우저 환경에서는 global이 최상위 객체인 window와 같습니다. -->
 <script>
     global = window;
 </script>
-<!-- 공통 라이브러리인 UPPERCASE.JS-COMMON.js와 UPPERCASE.JS-BROWSER.js를 불러옵니다. -->
-<script src="/UPPERCASE.JS-COMMON.js"></script>
-<script src="/UPPERCASE.JS-BROWSER.js"></script>
+<!-- 공통 라이브러리인 UJS-COMMON.js와 UJS-BROWSER.js를 불러옵니다. -->
+<script src="/UJS-COMMON.js"></script>
+<script src="/UJS-BROWSER.js"></script>
 <!-- 구버젼 브라우저에 대한 지원과, 각종 브라우저들이 갖고있는 버그를 고쳐주는 BROWSER-FIX를 불러옵니다. -->
 <script>
-	// UPPERCASE.JS-BROWSER-FIX 폴더 지정
-    BROWSER_CONFIG.fixScriptsFolderPath = '/UPPERCASE.JS-BROWSER-FIX';
+	// UJS-BROWSER-FIX 폴더 지정
+    BROWSER_CONFIG.fixScriptsFolderPath = '/UJS-BROWSER-FIX';
     // FIX.js를 불러옵니다.
-    LOAD('/UPPERCASE.JS-BROWSER-FIX/FIX.js');
+    LOAD('/UJS-BROWSER-FIX/FIX.js');
 </script>
 ```
 
 ### 구버젼 브라우저에서 작동하지 않는 기능들
-아래 기능들은 구버젼 브라우저에서는 작동하지 않는 기능들입니다. 다만, 호환성을 중요시하는 UPPERCASE.JS 특성상 오류를 발생시키지는 않습니다.
+아래 기능들은 구버젼 브라우저에서는 작동하지 않는 기능들입니다. 다만, 호환성을 중요시하는 UJS 특성상 오류를 발생시키지는 않습니다.
 
 * AUDIO
 * VIDEO
@@ -717,7 +717,7 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
 ## HTML5 Canvas 지원
 FlashCanvas를 이용해 구버젼 브라우저에서도 플래시를 통한 HTML5 Canvas가 지원됩니다.
 그러나 제공하는 기능에 제약이 있으므로, 제대로 된 Canvas 기능을 사용하시려면 `CANVAS`의 `getEl` 메소드로 element를 가져 온 뒤에 처리하시기 바랍니다.
-그러나 이럴 경우, UPPERCASE.JS가 제공하는 하위 호환성은 무시됩니다.
+그러나 이럴 경우, UJS가 제공하는 하위 호환성은 무시됩니다.
 
 ```javascript
 var
@@ -728,4 +728,4 @@ canvas = CANVAS(),
 canvasEl = canvas.getEl();
 ```
 
-다음 문서: [UPPERCASE.JS-NODE](UPPERCASE.JS-NODE.md)
+다음 문서: [UJS-NODE](UJS-NODE.md)

@@ -1,5 +1,5 @@
 # 코드 컨벤션 규칙 익히기
-기본적으로 UPPERCASE.JS 기반 프로젝트는 [Douglas Crockford의 코드 컨벤션 규칙](http://javascript.crockford.com/code.html)을 따르지만, 몇가지 차이점이 있습니다.
+기본적으로 UJS 기반 프로젝트는 [Douglas Crockford의 코드 컨벤션 규칙](http://javascript.crockford.com/code.html)을 따르지만, 몇가지 차이점이 있습니다.
 
 ## 세미콜론
 문장의 끝에 세미콜론을 생략하지 마십시오. 다음의 예를 보면, 세미콜론의 생략으로 발생하는 문제를 알 수 있습니다.
@@ -166,7 +166,7 @@ for (i = 0; i < 10; i += 1) {
 	```
 
 ## null을 사용하지 않습니다.
-JavaScript에는 `값이 존재하지 않음`을 표현하는 두가지 방식이 있습니다. 바로 `null`과 `undefined` 입니다. 그러나 `null`은 엄밀히 말하면 빈 값이 아닙니다. `값이 존재하지 않음`이라는 정보를 지니는 특수한 `값`인 것 입니다. 어떤 변수에 아무런 값도 대입하지 않은 상태가 `undefined` 이므로, UPPERCASE.JS 기반 프로젝트에서는 `undefined`만을 사용합니다.
+JavaScript에는 `값이 존재하지 않음`을 표현하는 두가지 방식이 있습니다. 바로 `null`과 `undefined` 입니다. 그러나 `null`은 엄밀히 말하면 빈 값이 아닙니다. `값이 존재하지 않음`이라는 정보를 지니는 특수한 `값`인 것 입니다. 어떤 변수에 아무런 값도 대입하지 않은 상태가 `undefined` 이므로, UJS 기반 프로젝트에서는 `undefined`만을 사용합니다.
 
 ```javascript
 var value = null; // X
@@ -195,4 +195,4 @@ var someObject = SomeClass();
 var SomeClass = CLASS(...
 ```
 
-다음 문서: [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md)
+다음 문서: [UJS-COMMON](UJS-COMMON.md)

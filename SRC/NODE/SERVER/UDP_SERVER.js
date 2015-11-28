@@ -65,7 +65,7 @@ global.UDP_SERVER = METHOD({
 		});
 		
 		server.on('listening', function() {
-			console.log('[UPPERCASE.JS-UDP_SERVER] RUNNING UDP SERVER... (PORT:' + port + ')');
+			console.log('[UJS-UDP_SERVER] RUNNING UDP SERVER... (PORT:' + port + ')');
 		});
 		
 		server.bind(port);

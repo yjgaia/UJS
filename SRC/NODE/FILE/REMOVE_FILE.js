@@ -71,7 +71,7 @@ global.REMOVE_FILE = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UPPERCASE.JS-REMOVE_FILE] ERROR: ' + errorMsg));
+									console.log(CONSOLE_RED('[UJS-REMOVE_FILE] ERROR: ' + errorMsg));
 								}
 
 							} else {
@@ -87,7 +87,7 @@ global.REMOVE_FILE = METHOD(function() {
 						if (notExistsHandler !== undefined) {
 							notExistsHandler(path);
 						} else {
-							console.log(CONSOLE_YELLOW('[UPPERCASE.JS-REMOVE_FILE] NOT EXISTS! <' + path + '>'));
+							console.log(CONSOLE_YELLOW('[UJS-REMOVE_FILE] NOT EXISTS! <' + path + '>'));
 						}
 					}
 				});
@@ -116,7 +116,7 @@ global.REMOVE_FILE = METHOD(function() {
 							if (notExistsHandler !== undefined) {
 								notExistsHandler(path);
 							} else {
-								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-REMOVE_FILE] NOT EXISTS! <' + path + '>'));
+								console.log(CONSOLE_YELLOW('[UJS-REMOVE_FILE] NOT EXISTS! <' + path + '>'));
 							}
 
 							// do not run callback.
@@ -132,7 +132,7 @@ global.REMOVE_FILE = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UPPERCASE.JS-REMOVE_FILE] ERROR: ' + errorMsg));
+								console.log(CONSOLE_RED('[UJS-REMOVE_FILE] ERROR: ' + errorMsg));
 							}
 						}
 					}

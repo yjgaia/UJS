@@ -73,7 +73,7 @@ global.GET_FILE_INFO = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UPPERCASE.JS-GET_FILE_INFO] ERROR: ' + errorMsg));
+									console.log(CONSOLE_RED('[UJS-GET_FILE_INFO] ERROR: ' + errorMsg));
 								}
 
 							} else if (stat.isDirectory() === true) {
@@ -81,7 +81,7 @@ global.GET_FILE_INFO = METHOD(function() {
 								if (notExistsHandler !== undefined) {
 									notExistsHandler(path);
 								} else {
-									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
+									console.log(CONSOLE_YELLOW('[UJS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
 								}
 
 							} else if (callback !== undefined) {
@@ -98,7 +98,7 @@ global.GET_FILE_INFO = METHOD(function() {
 						if (notExistsHandler !== undefined) {
 							notExistsHandler(path);
 						} else {
-							console.log(CONSOLE_YELLOW('[UPPERCASE.JS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
+							console.log(CONSOLE_YELLOW('[UJS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
 						}
 					}
 				});
@@ -130,7 +130,7 @@ global.GET_FILE_INFO = METHOD(function() {
 								if (notExistsHandler !== undefined) {
 									notExistsHandler(path);
 								} else {
-									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
+									console.log(CONSOLE_YELLOW('[UJS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
 								}
 								
 							} else {
@@ -155,7 +155,7 @@ global.GET_FILE_INFO = METHOD(function() {
 							if (notExistsHandler !== undefined) {
 								notExistsHandler(path);
 							} else {
-								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
+								console.log(CONSOLE_YELLOW('[UJS-GET_FILE_INFO] NOT EXISTS! <' + path + '>'));
 							}
 						}
 
@@ -168,7 +168,7 @@ global.GET_FILE_INFO = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UPPERCASE.JS-GET_FILE_INFO] ERROR: ' + errorMsg));
+								console.log(CONSOLE_RED('[UJS-GET_FILE_INFO] ERROR: ' + errorMsg));
 							}
 						}
 					}

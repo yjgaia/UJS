@@ -1,6 +1,6 @@
-// load UPPERCASE.JS.
-require('../../../UPPERCASE.JS-COMMON.js');
-require('../../../UPPERCASE.JS-NODE.js');
+// load UJS.
+require('../../../UJS-COMMON.js');
+require('../../../UJS-NODE.js');
 
 TEST('DOWNLOAD', function(ok) {
 	'use strict';
@@ -8,14 +8,14 @@ TEST('DOWNLOAD', function(ok) {
 	INIT_OBJECTS();
 
 	DOWNLOAD({
-		url : 'https://github.com/Hanul/UPPERCASE.JS/archive/master.zip',
-		path : 'UPPERCASE.JS.zip'
+		url : 'https://github.com/Hanul/UJS/archive/master.zip',
+		path : 'UJS.zip'
 	});
 	
 	DOWNLOAD({
 		host : 'github.com',
-		uri : 'Hanul/UPPERCASE.JS/archive/master.zip',
+		uri : 'Hanul/UJS/archive/master.zip',
 		isSecure : true,
-		path : 'UPPERCASE.JS.zip'
+		path : 'UJS.zip'
 	});
 });

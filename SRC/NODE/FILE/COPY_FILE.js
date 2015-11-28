@@ -85,7 +85,7 @@ global.COPY_FILE = METHOD(function() {
 									if (errorHandler !== undefined) {
 										errorHandler(errorMsg);
 									} else {
-										console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR:' + errorMsg));
+										console.log(CONSOLE_RED('[UJS-COPY_FILE] ERROR:' + errorMsg));
 									}
 								});
 
@@ -100,7 +100,7 @@ global.COPY_FILE = METHOD(function() {
 								if (notExistsHandler !== undefined) {
 									notExistsHandler(from);
 								} else {
-									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-COPY_FILE] NOT EXISTS! <' + from + '>'));
+									console.log(CONSOLE_YELLOW('[UJS-COPY_FILE] NOT EXISTS! <' + from + '>'));
 								}
 							}
 						});
@@ -129,7 +129,7 @@ global.COPY_FILE = METHOD(function() {
 									if (notExistsHandler !== undefined) {
 										notExistsHandler(from);
 									} else {
-										console.log(CONSOLE_YELLOW('[UPPERCASE.JS-COPY_FILE] NOT EXISTS! <' + from + '>'));
+										console.log(CONSOLE_YELLOW('[UJS-COPY_FILE] NOT EXISTS! <' + from + '>'));
 									}
 
 									// do not run callback.
@@ -145,7 +145,7 @@ global.COPY_FILE = METHOD(function() {
 									if (errorHandler !== undefined) {
 										errorHandler(errorMsg);
 									} else {
-										console.log(CONSOLE_RED('[UPPERCASE.JS-COPY_FILE] ERROR: ' + errorMsg));
+										console.log(CONSOLE_RED('[UJS-COPY_FILE] ERROR: ' + errorMsg));
 									}
 								}
 							}

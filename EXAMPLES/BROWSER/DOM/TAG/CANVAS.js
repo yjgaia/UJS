@@ -9,7 +9,7 @@ TEST('CANVAS', function(ok) {
 	// canvas
 	canvas,
 
-	// context (this is not UPPERCASE.JS's CONTEXT, but native HTML5 canvas context.)
+	// context (this is not UJS's CONTEXT, but native HTML5 canvas context.)
 	ctx,
 
 	// test div

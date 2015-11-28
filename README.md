@@ -1,7 +1,7 @@
-# UPPERCASE.JS
-UPPERCASE.JS는 풀스택 JavaScript 라이브러리입니다.
+# Uppercase JavaScript Library
+UJS는 풀스택 JavaScript 라이브러리입니다.
 * 대문자 API
-* 모듈 시스템 [BOX](https://github.com/Hanul/UPPERCASE.JS/blob/master/DOC/KR/UPPERCASE.JS-COMMON.md#box) 제공
+* 모듈 시스템 [BOX](https://github.com/Hanul/UJS/blob/master/DOC/KR/UJS-COMMON.md#box) 제공
 * 구형 브라우저 호환
 
 ## 시작하기
@@ -9,11 +9,11 @@ UPPERCASE.JS는 풀스택 JavaScript 라이브러리입니다.
 * [설치하기](INSTALL.md)
 * [초기화 하기](INIT.md)
 * [코드 컨벤션 규칙 익히기](CONVENTION.md)
-* [UPPERCASE.JS-COMMON](UPPERCASE.JS-COMMON.md)
-* [UPPERCASE.JS-BROWSER](UPPERCASE.JS-BROWSER.md)
-* [UPPERCASE.JS-NODE](UPPERCASE.JS-NODE.md)
+* [UJS-COMMON](UJS-COMMON.md)
+* [UJS-BROWSER](UJS-BROWSER.md)
+* [UJS-NODE](UJS-NODE.md)
 * [Configuration](CONFIG.md)
-* [UPPERCASE.JS 업데이트](UPDATE.md)
+* [UJS 업데이트](UPDATE.md)
 
 ## 한걸음 더
 * [JavaScript 만으로 웹 페이지 만들기](JS_WEB_PAGE.md)
@@ -39,8 +39,8 @@ UPPERCASE.JS는 풀스택 JavaScript 라이브러리입니다.
 - [UPPERCASE.GML](https://github.com/Hanul/UPPERCASE.GML)
 
 ## 기타
-* [UPPERCASE.JS 빌드](BUILD.md)
-* [UPPERCASE.JS 테스트](TEST.md)
+* [UJS 빌드](BUILD.md)
+* [UJS 테스트](TEST.md)
 
 ## 라이센스
 [MIT](LICENSE)
@@ -50,4 +50,4 @@ UPPERCASE.JS는 풀스택 JavaScript 라이브러리입니다.
 
 ## 문의하기
 * [UPPERCASE 페이스북 그룹](https://www.facebook.com/groups/uppercase/)
-* [GitHub Issues](https://github.com/Hanul/UPPERCASE.JS/issues)
+* [GitHub Issues](https://github.com/Hanul/UJS/issues)

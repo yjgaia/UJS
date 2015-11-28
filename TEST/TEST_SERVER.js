@@ -1,6 +1,6 @@
-// load UPPERCASE.JS.
-require('../UPPERCASE.JS-COMMON.js');
-require('../UPPERCASE.JS-NODE.js');
+// load UJS.
+require('../UJS-COMMON.js');
+require('../UJS-NODE.js');
 
 RUN(function() {
 	'use strict';
@@ -63,5 +63,5 @@ RUN(function() {
 		}
 	});
 
-	console.log('UPPERCASE.JS test server running. - http://localhost:' + port);
+	console.log('UJS test server running. - http://localhost:' + port);
 });

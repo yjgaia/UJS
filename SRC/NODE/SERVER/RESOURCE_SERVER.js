@@ -277,7 +277,7 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 								if (errorHandler !== undefined) {
 									isGoingOn = errorHandler(errorMsg, requestInfo, response);
 								} else {
-									console.log(CONSOLE_RED('[UPPERCASE.JS-RESOURCE_SERVER] ERROR: ' + errorMsg));
+									console.log(CONSOLE_RED('[UJS-RESOURCE_SERVER] ERROR: ' + errorMsg));
 								}
 
 								if (isGoingOn !== false && requestInfo.isResponsed !== true) {
@@ -364,7 +364,7 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 				}]);
 			});
 
-			console.log('[UPPERCASE.JS-RESOURCE_SERVER] RUNNING RESOURCE SERVER...' + (port === undefined ? '' : (' (PORT:' + port + ')')) + (securedPort === undefined ? '' : (' (SECURED PORT:' + securedPort + ')')));
+			console.log('[UJS-RESOURCE_SERVER] RUNNING RESOURCE SERVER...' + (port === undefined ? '' : (' (PORT:' + port + ')')) + (securedPort === undefined ? '' : (' (SECURED PORT:' + securedPort + ')')));
 
 			self.getNativeHTTPServer = getNativeHTTPServer = function() {
 				return webServer.getNativeHTTPServer();

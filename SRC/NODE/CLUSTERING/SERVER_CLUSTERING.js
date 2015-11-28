@@ -90,7 +90,7 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 								delete isConnectings[serverName];
 							});
 
-							console.log('[UPPERCASE.JS-SERVER_CLUSTERING] CONNECTED CLUSTERING SERVER. (SERVER NAME:' + serverName + ')');
+							console.log('[UJS-SERVER_CLUSTERING] CONNECTED CLUSTERING SERVER. (SERVER NAME:' + serverName + ')');
 
 							if (CPU_CLUSTERING.broadcast !== undefined) {
 
@@ -242,7 +242,7 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 				work();
 			}
 
-			console.log(CONSOLE_BLUE('[UPPERCASE.JS-SERVER_CLUSTERING] RUNNING CLUSTERING SERVER... (THIS SERVER NAME:' + thisServerName + ', PORT:' + port + ')'));
+			console.log(CONSOLE_BLUE('[UJS-SERVER_CLUSTERING] RUNNING CLUSTERING SERVER... (THIS SERVER NAME:' + thisServerName + ', PORT:' + port + ')'));
 		}
 	};
 });

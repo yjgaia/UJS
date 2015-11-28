@@ -72,7 +72,7 @@ global.WRITE_FILE = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR:' + errorMsg));
+								console.log(CONSOLE_RED('[UJS-WRITE_FILE] ERROR:' + errorMsg));
 							}
 
 						} else if (callback !== undefined) {
@@ -103,7 +103,7 @@ global.WRITE_FILE = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UPPERCASE.JS-WRITE_FILE] ERROR: ' + errorMsg));
+									console.log(CONSOLE_RED('[UJS-WRITE_FILE] ERROR: ' + errorMsg));
 								}
 							}
 						}

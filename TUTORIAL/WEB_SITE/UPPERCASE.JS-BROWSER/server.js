@@ -1,6 +1,6 @@
-// load UPPERCASE.JS.
-require('../../../UPPERCASE.JS-COMMON.js');
-require('../../../UPPERCASE.JS-NODE.js');
+// load UJS.
+require('../../../UJS-COMMON.js');
+require('../../../UJS-NODE.js');
 
 WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
 	'use strict';
@@ -13,8 +13,8 @@ WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
 		uri = 'index.html';
 	}
 	
-	// load UPPERCASE.JS
-	else if (uri.substring(0, 'UPPERCASE.JS-'.length) === 'UPPERCASE.JS-') {
+	// load UJS
+	else if (uri.substring(0, 'UJS-'.length) === 'UJS-') {
 		uri = '../../../' + uri;
 	}
 	

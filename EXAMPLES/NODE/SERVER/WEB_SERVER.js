@@ -1,6 +1,6 @@
-// load UPPERCASE.JS.
-require('../../../UPPERCASE.JS-COMMON.js');
-require('../../../UPPERCASE.JS-NODE.js');
+// load UJS.
+require('../../../UJS-COMMON.js');
+require('../../../UJS-NODE.js');
 
 TEST('WEB_SERVER', function(ok) {
 	'use strict';
@@ -45,7 +45,7 @@ TEST('WEB_SERVER', function(ok) {
 			}
 
 			response({
-				content : 'Welcome to UPPERCASE.JS web server! (WORKER #' + workerData.id + ')',
+				content : 'Welcome to UJS web server! (WORKER #' + workerData.id + ')',
 
 				headers : sessionKey !== undefined ? undefined : {
 

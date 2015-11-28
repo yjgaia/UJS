@@ -79,7 +79,7 @@ global.FIND_FOLDER_NAMES = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER_NAMES] ERROR:' + errorMsg));
+									console.log(CONSOLE_RED('[UJS-FIND_FOLDER_NAMES] ERROR:' + errorMsg));
 								}
 
 							} else if (callback !== undefined) {
@@ -102,7 +102,7 @@ global.FIND_FOLDER_NAMES = METHOD(function() {
 												if (errorHandler !== undefined) {
 													errorHandler(errorMsg);
 												} else {
-													console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER_NAMES] ERROR:' + errorMsg));
+													console.log(CONSOLE_RED('[UJS-FIND_FOLDER_NAMES] ERROR:' + errorMsg));
 												}
 
 											} else {
@@ -133,7 +133,7 @@ global.FIND_FOLDER_NAMES = METHOD(function() {
 						if (notExistsHandler !== undefined) {
 							notExistsHandler(path);
 						} else {
-							console.log(CONSOLE_YELLOW('[UPPERCASE.JS-FIND_FOLDER_NAMES] NOT EXISTS! <' + path + '>'));
+							console.log(CONSOLE_YELLOW('[UJS-FIND_FOLDER_NAMES] NOT EXISTS! <' + path + '>'));
 						}
 					}
 				});
@@ -171,7 +171,7 @@ global.FIND_FOLDER_NAMES = METHOD(function() {
 							if (notExistsHandler !== undefined) {
 								notExistsHandler(path);
 							} else {
-								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-FIND_FOLDER_NAMES] NOT EXISTS! <' + path + '>'));
+								console.log(CONSOLE_YELLOW('[UJS-FIND_FOLDER_NAMES] NOT EXISTS! <' + path + '>'));
 							}
 
 							// do not run callback.
@@ -187,7 +187,7 @@ global.FIND_FOLDER_NAMES = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UPPERCASE.JS-FIND_FOLDER_NAMES] ERROR: ' + errorMsg));
+								console.log(CONSOLE_RED('[UJS-FIND_FOLDER_NAMES] ERROR: ' + errorMsg));
 							}
 						}
 					}
