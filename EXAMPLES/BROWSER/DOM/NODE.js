@@ -40,7 +40,7 @@ TEST('NODE', function(ok) {
 		img : IMG({
 			src : '/EXAMPLES/test.png'
 		}),
-		text : 'Hello, UPPERCASE.JS!'
+		text : 'Hello, UJS!'
 	});
 
 	iat.appendTo(BODY);

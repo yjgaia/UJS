@@ -1,6 +1,6 @@
-// load UPPERCASE.JS.
-require('../../UPPERCASE.JS-COMMON.js');
-require('../../UPPERCASE.JS-NODE.js');
+// load UJS.
+require('../../UJS-COMMON.js');
+require('../../UJS-NODE.js');
 
 var
 // sessions
@@ -36,7 +36,7 @@ WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
     }
 
     response({
-        content : 'Welcome to UPPERCASE.JS web server!',
+        content : 'Welcome to UJS web server!',
 		// 세션키가 없으면 세션 키 생성
         headers : sessionKey !== undefined ? undefined : {
             'Set-Cookie' : CREATE_COOKIE_STR_ARRAY({

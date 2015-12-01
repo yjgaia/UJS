@@ -152,7 +152,7 @@ global.DOWNLOAD = METHOD(function() {
 				if (errorHandler !== undefined) {
 					errorHandler(errorMsg);
 				} else {
-					console.log(CONSOLE_RED('[UPPERCASE.JS-NODE] DOWNLOAD FAILED: ' + errorMsg), params);
+					console.log(CONSOLE_RED('[UJS-NODE] DOWNLOAD FAILED: ' + errorMsg), params);
 				}
 			});
 		}

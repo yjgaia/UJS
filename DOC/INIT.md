@@ -1,7 +1,7 @@
 # 초기화 하기
-UPPERCASE.JS를 기반으로 프로젝트를 제작할 때는, 네 부분으로 코드를 나눕니다.
+UJS를 기반으로 프로젝트를 제작할 때는, 네 부분으로 코드를 나눕니다.
 
-1. `UPPERCASE.JS를 불러오는 부분`
+1. `UJS를 불러오는 부분`
 2. `선언부` 모든 METHOD와 CLASS, OBJECT들을 선언합니다.
 3. `OBJECT 초기화 부분` OBJECT는 초기화가 필요하기 때문에, `INIT_OBJECTS` 메소드로 위에서 선언한 OBJECT들을 모두 초기화 합니다. **초기화는 프로젝트 전체에서 *단 한번만* 수행해야 합니다.**
 4. `실행부` 여기서부터 코드가 시작됩니다.
@@ -12,18 +12,18 @@ UPPERCASE.JS를 기반으로 프로젝트를 제작할 때는, 네 부분으로 
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>UPPERCASE.JS Example</title>
+		<title>UJS Example</title>
 	</head>
 	<body>
-    	<!-- UPPERCASE.JS를 불러오는 부분 -->
+    	<!-- UJS를 불러오는 부분 -->
 		<script>
 			global = window;
 		</script>
-		<script src="/UPPERCASE.JS-COMMON.js"></script>
-		<script src="/UPPERCASE.JS-BROWSER.js"></script>
+		<script src="/UJS-COMMON.js"></script>
+		<script src="/UJS-BROWSER.js"></script>
 		<script>
-			BROWSER_CONFIG.fixScriptsFolderPath = '/UPPERCASE.JS-BROWSER-FIX';
-			LOAD('/UPPERCASE.JS-BROWSER-FIX/FIX.js');
+			BROWSER_CONFIG.fixScriptsFolderPath = '/UJS-BROWSER-FIX';
+			LOAD('/UJS-BROWSER-FIX/FIX.js');
 		</script>
 		<script>
 			READY(function() {
@@ -33,7 +33,7 @@ UPPERCASE.JS를 기반으로 프로젝트를 제작할 때는, 네 부분으로 
 				// some method
 				someMethod = METHOD({
 					run : function() {
-						console.log('HELLO UPPERCASE.JS!');
+						console.log('HELLO UJS!');
 					}
 				});
 
@@ -50,16 +50,16 @@ UPPERCASE.JS를 기반으로 프로젝트를 제작할 때는, 네 부분으로 
 
 ## Node.js기반 프로젝트에서
 ```javascript
-// UPPERCASE.JS를 불러오는 부분
-require('UPPERCASE.JS-COMMON.js');
-require('UPPERCASE.JS-NODE.js');
+// UJS를 불러오는 부분
+require('UJS-COMMON.js');
+require('UJS-NODE.js');
 
 // 선언부
 var
 // some method
 someMethod = METHOD({
 	run : function() {
-		console.log('HELLO UPPERCASE.JS!');
+		console.log('HELLO UJS!');
 	}
 });
 

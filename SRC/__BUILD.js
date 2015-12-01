@@ -1,16 +1,16 @@
-// load UPPERCASE.JS.
-require('../UPPERCASE.JS-COMMON.js');
-require('../UPPERCASE.JS-NODE.js');
+// load UJS.
+require('../UJS-COMMON.js');
+require('../UJS-NODE.js');
 
 /*
- * build UPPERCASE.JS.
+ * build UJS.
  */
 RUN(function() {
 	'use strict';
 
 	var
 	// BASE_CONTENT
-	BASE_CONTENT = '/*\n\nWelcome to UPPERCASE.JS! (http://uppercase.io)\n\n*/\n\n',
+	BASE_CONTENT = '/*\n\nWelcome to UJS! (http://uppercase.io)\n\n*/\n\n',
 	
 	//IMPORT: path
 	path = require('path'),
@@ -20,7 +20,7 @@ RUN(function() {
 
 	// log.
 	log = function(msg) {
-		console.log('UPPERCASE.JS BUILD: ' + msg);
+		console.log('UJS BUILD: ' + msg);
 	},
 
 	// scan folder.
@@ -102,7 +102,7 @@ RUN(function() {
 
 		scanFolder(scripts, name);
 
-		save(scripts, 'UPPERCASE.JS-' + name, isToSaveMin);
+		save(scripts, 'UJS-' + name, isToSaveMin);
 	},
 
 	// copy folder.
@@ -151,7 +151,7 @@ RUN(function() {
 		scanFolder(scripts, 'COMMON/BOX');
 		scanFolder(scripts, 'COMMON/UTIL');
 
-		save(scripts, 'UPPERCASE.JS-COMMON', true);
+		save(scripts, 'UJS-COMMON', true);
 	});
 
 	buildFolder('BROWSER', true);
@@ -160,7 +160,7 @@ RUN(function() {
 
 		log('BUILD [BROWSER-FIX]');
 
-		copyFolder('BROWSER-FIX', 'UPPERCASE.JS-BROWSER-FIX');
+		copyFolder('BROWSER-FIX', 'UJS-BROWSER-FIX');
 	});
 
 	buildFolder('NODE');

@@ -54,7 +54,7 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 					});
 
 					cluster.on('exit', function(worker, code, signal) {
-						console.log(CONSOLE_RED('[UPPERCASE.JS-CPU_CLUSTERING] WORKER #' + worker.id + ' died. (' + (signal !== undefined ? signal : code) + '). restarting...'));
+						console.log(CONSOLE_RED('[UJS-CPU_CLUSTERING] WORKER #' + worker.id + ' died. (' + (signal !== undefined ? signal : code) + '). restarting...'));
 						fork();
 					});
 				});
@@ -166,7 +166,7 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 
 					work();
 
-					console.log(CONSOLE_GREEN('[UPPERCASE.JS-CPU_CLUSTERING] RUNNING WORKER... (ID:' + workerId + ')'));
+					console.log(CONSOLE_GREEN('[UJS-CPU_CLUSTERING] RUNNING WORKER... (ID:' + workerId + ')'));
 				});
 			}
 		}

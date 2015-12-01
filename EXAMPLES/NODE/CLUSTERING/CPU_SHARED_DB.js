@@ -1,6 +1,6 @@
-// load UPPERCASE.JS.
-require('../../../UPPERCASE.JS-COMMON.js');
-require('../../../UPPERCASE.JS-NODE.js');
+// load UJS.
+require('../../../UJS-COMMON.js');
+require('../../../UJS-NODE.js');
 
 TEST('CPU_SHARED_DB', function(ok) {
 	'use strict';

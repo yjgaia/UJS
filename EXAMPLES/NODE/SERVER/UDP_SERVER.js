@@ -1,6 +1,6 @@
-// load UPPERCASE.JS.
-require('../../../UPPERCASE.JS-COMMON.js');
-require('../../../UPPERCASE.JS-NODE.js');
+// load UJS.
+require('../../../UJS-COMMON.js');
+require('../../../UJS-NODE.js');
 
 TEST('UDP_SERVER', function(ok) {
 	'use strict';
@@ -13,7 +13,7 @@ TEST('UDP_SERVER', function(ok) {
 
 			console.log('IP: ' + requestInfo.ip + ', Port: ' + requestInfo.port + ', Content: ' + requestInfo.content);
 
-			response('Welcome to UPPERCASE.JS UDP server! (WORKER #' + workerData.id + ')');
+			response('Welcome to UJS UDP server! (WORKER #' + workerData.id + ')');
 		});
 	});
 });

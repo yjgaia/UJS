@@ -1,10 +1,10 @@
 # 간단한 웹 서버 만들기
 
-UPPERCASE.JS를 이용하여 웹 서버를 쉽게 만들 수 있습니다.
+UJS를 이용하여 웹 서버를 쉽게 만들 수 있습니다.
 이하는 간단히 웹 서버를 구동하는 코드입니다. http://localhost:8123 으로 접속하면 Welcome! 이라는 메시지를 출력합니다.
 ```javascript
-require('UPPERCASE.JS-COMMON.js');
-require('UPPERCASE.JS-NODE.js');
+require('UJS-COMMON.js');
+require('UJS-NODE.js');
 
 INIT_OBJECTS();
 
@@ -61,7 +61,7 @@ WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {
     }
 
     response({
-        content : 'Welcome to UPPERCASE.JS web server!',
+        content : 'Welcome to UJS web server!',
 		// 세션키가 없으면 세션 키 생성
         headers : sessionKey !== undefined ? undefined : {
             'Set-Cookie' : CREATE_COOKIE_STR_ARRAY({

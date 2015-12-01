@@ -69,7 +69,7 @@ global.SOCKET_SERVER = METHOD({
 				
 				// if catch error
 				catch(error) {
-					console.log(CONSOLE_RED('[UPPERCASE.JS-SOCEKT_SERVER] ERROR:'), error.toString());
+					console.log(CONSOLE_RED('[UJS-SOCEKT_SERVER] ERROR:'), error.toString());
 				}
 			};
 
@@ -118,7 +118,7 @@ global.SOCKET_SERVER = METHOD({
 				// error msg
 				errorMsg = error.toString();
 
-				console.log(CONSOLE_RED('[UPPERCASE.JS-SOCEKT_SERVER] ERROR:'), errorMsg);
+				console.log(CONSOLE_RED('[UJS-SOCEKT_SERVER] ERROR:'), errorMsg);
 
 				runMethods('__ERROR', errorMsg);
 			});
@@ -214,6 +214,6 @@ global.SOCKET_SERVER = METHOD({
 		// listen.
 		server.listen(port);
 
-		console.log('[UPPERCASE.JS-SOCKET_SERVER] RUNNING SOCKET SERVER... (PORT:' + port + ')');
+		console.log('[UJS-SOCKET_SERVER] RUNNING SOCKET SERVER... (PORT:' + port + ')');
 	}
 });

@@ -1,4 +1,4 @@
-# UPPERCASE.JS-NODE
+# UJS-NODE
 Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 
 ## 파일 처리
@@ -184,7 +184,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 		host : 'github.com',
 		isSecure : true,
 		method : 'GET',
-		uri : 'Hanul/UPPERCASE.JS'
+		uri : 'Hanul/UJS'
 	}, function(content) {
 		...
 	})
@@ -199,7 +199,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
     GET({
 		host : 'github.com',
 		isSecure : true,
-		uri : 'Hanul/UPPERCASE.JS'
+		uri : 'Hanul/UJS'
 	}, function(content) {
 		...
 	})
@@ -225,9 +225,9 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
     ```javascript
     DOWNLOAD({
 		host : 'github.com',
-		uri : 'Hanul/UPPERCASE.JS/archive/master.zip',
+		uri : 'Hanul/UJS/archive/master.zip',
 		isSecure : true,
-		path : 'UPPERCASE.JS.zip'
+		path : 'UJS.zip'
 	})
 	```
 
@@ -356,7 +356,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
         // ip
         requestInfo.ip
 
-		response('Welcome to UPPERCASE.JS web server!');
+		response('Welcome to UJS web server!');
 		// or
 		response({
 			buffer : ...,
@@ -393,7 +393,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
         requestInfo.port
         requestInfo.content
 
-		response('Welcome to UPPERCASE.JS UDP server!');
+		response('Welcome to UJS UDP server!');
 	})
     ```
 

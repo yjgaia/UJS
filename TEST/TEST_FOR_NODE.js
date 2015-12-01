@@ -1,5 +1,5 @@
-// load UPPERCASE.JS.
-require('../UPPERCASE.JS-COMMON.js');
+// load UJS.
+require('../UJS-COMMON.js');
 
 var
 // test.

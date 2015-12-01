@@ -1,1 +1,1 @@
-# UPPERCASE.JS 변경 내역
+# UJS 변경 내역

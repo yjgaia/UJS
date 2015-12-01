@@ -19,7 +19,7 @@ global.Home = CLASS({
 		TITLE('Welcome to Tutorial Site.');
 
 		wrapper = DIV({
-			c : 'UPPERCASE.JS-BROWSER Web Site Tutorial'
+			c : 'UJS-BROWSER Web Site Tutorial'
 		}).appendTo(BODY);
 
 		//OVERRIDE: self.close

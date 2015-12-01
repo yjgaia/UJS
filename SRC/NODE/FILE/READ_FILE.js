@@ -73,7 +73,7 @@ global.READ_FILE = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
+									console.log(CONSOLE_RED('[UJS-READ_FILE] ERROR: ' + errorMsg));
 								}
 
 							} else if (stat.isDirectory() === true) {
@@ -81,7 +81,7 @@ global.READ_FILE = METHOD(function() {
 								if (notExistsHandler !== undefined) {
 									notExistsHandler(path);
 								} else {
-									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
+									console.log(CONSOLE_YELLOW('[UJS-READ_FILE] NOT EXISTS! <' + path + '>'));
 								}
 
 							} else {
@@ -99,7 +99,7 @@ global.READ_FILE = METHOD(function() {
 										if (errorHandler !== undefined) {
 											errorHandler(errorMsg);
 										} else {
-											console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
+											console.log(CONSOLE_RED('[UJS-READ_FILE] ERROR: ' + errorMsg));
 										}
 
 									} else if (callback !== undefined) {
@@ -114,7 +114,7 @@ global.READ_FILE = METHOD(function() {
 						if (notExistsHandler !== undefined) {
 							notExistsHandler(path);
 						} else {
-							console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
+							console.log(CONSOLE_YELLOW('[UJS-READ_FILE] NOT EXISTS! <' + path + '>'));
 						}
 					}
 				});
@@ -144,7 +144,7 @@ global.READ_FILE = METHOD(function() {
 								if (notExistsHandler !== undefined) {
 									notExistsHandler(path);
 								} else {
-									console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
+									console.log(CONSOLE_YELLOW('[UJS-READ_FILE] NOT EXISTS! <' + path + '>'));
 								}
 								
 							} else {
@@ -163,7 +163,7 @@ global.READ_FILE = METHOD(function() {
 							if (notExistsHandler !== undefined) {
 								notExistsHandler(path);
 							} else {
-								console.log(CONSOLE_YELLOW('[UPPERCASE.JS-READ_FILE] NOT EXISTS! <' + path + '>'));
+								console.log(CONSOLE_YELLOW('[UJS-READ_FILE] NOT EXISTS! <' + path + '>'));
 							}
 						}
 
@@ -176,7 +176,7 @@ global.READ_FILE = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UPPERCASE.JS-READ_FILE] ERROR: ' + errorMsg));
+								console.log(CONSOLE_RED('[UJS-READ_FILE] ERROR: ' + errorMsg));
 							}
 						}
 					}

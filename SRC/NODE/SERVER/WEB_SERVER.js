@@ -351,7 +351,7 @@ global.WEB_SERVER = CLASS(function(cls) {
 				}, serve).listen(securedPort);
 			}
 
-			console.log('[UPPERCASE.JS-WEB_SERVER] RUNNING WEB SERVER...' + (port === undefined ? '' : (' (PORT:' + port + ')')) + (securedPort === undefined ? '' : (' (SECURED PORT:' + securedPort + ')')));
+			console.log('[UJS-WEB_SERVER] RUNNING WEB SERVER...' + (port === undefined ? '' : (' (PORT:' + port + ')')) + (securedPort === undefined ? '' : (' (SECURED PORT:' + securedPort + ')')));
 
 			self.getNativeHTTPServer = getNativeHTTPServer = function() {
 				return nativeHTTPServer;
