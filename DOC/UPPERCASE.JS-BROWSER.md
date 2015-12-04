@@ -686,12 +686,7 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
 [UJS 설치하기](INSTALL.md) 문서에도 잘 나와 있듯이, UJS-BROWSER-FIX를 설치하려면 UJS-BROWSER-FIX 폴더를 지정하고, `FIX.js`를 불러와야 합니다.
 
 ```html
-<!-- 웹 브라우저 환경에서는 global이 최상위 객체인 window와 같습니다. -->
-<script>
-    global = window;
-</script>
-<!-- 공통 라이브러리인 UJS-COMMON.js와 UJS-BROWSER.js를 불러옵니다. -->
-<script src="/UJS-COMMON.js"></script>
+<!-- UJS-BROWSER.js를 불러옵니다. -->
 <script src="/UJS-BROWSER.js"></script>
 <!-- 구버젼 브라우저에 대한 지원과, 각종 브라우저들이 갖고있는 버그를 고쳐주는 BROWSER-FIX를 불러옵니다. -->
 <script>

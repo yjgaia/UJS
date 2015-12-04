@@ -1,5 +1,4 @@
 // load UJS.
-require('../../../UJS-COMMON.js');
 require('../../../UJS-NODE.js');
 
 WEB_SERVER(8123, function(requestInfo, response, onDisconnected) {

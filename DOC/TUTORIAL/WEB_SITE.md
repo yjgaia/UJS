@@ -86,11 +86,7 @@ UJS 및 각종 JavaScript 파일들을 불러오고, 프로젝트를 초기화�
 		<title>UJS-BROWSER Web Site Tutorial</title>
 	</head>
 	<body>
-		<script>
-		    global = window;
-		</script>
-		<!-- 공통 라이브러리인 UJS-COMMON.js와 UJS-BROWSER.js를 불러옵니다. -->
-		<script src="/UJS-COMMON.js"></script>
+		<!-- UJS-BROWSER.js를 불러옵니다. -->
 		<script src="/UJS-BROWSER.js"></script>
 		<!-- 구버젼 브라우저에 대한 지원과, 각종 브라우저들이 갖고있는 버그를 고쳐주는 BROWSER-FIX를 불러옵니다. -->
 		<script>

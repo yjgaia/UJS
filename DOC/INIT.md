@@ -16,10 +16,6 @@ UJS를 기반으로 프로젝트를 제작할 때는, 네 부분으로 코드를
 	</head>
 	<body>
     	<!-- UJS를 불러오는 부분 -->
-		<script>
-			global = window;
-		</script>
-		<script src="/UJS-COMMON.js"></script>
 		<script src="/UJS-BROWSER.js"></script>
 		<script>
 			BROWSER_CONFIG.fixScriptsFolderPath = '/UJS-BROWSER-FIX';
@@ -51,7 +47,6 @@ UJS를 기반으로 프로젝트를 제작할 때는, 네 부분으로 코드를
 ## Node.js기반 프로젝트에서
 ```javascript
 // UJS를 불러오는 부분
-require('UJS-COMMON.js');
 require('UJS-NODE.js');
 
 // 선언부

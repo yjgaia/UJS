@@ -18,14 +18,11 @@ UJS는 풀스택 JavaScript 라이브러리입니다.
 ## 한걸음 더
 * [JavaScript 만으로 웹 페이지 만들기](DOC/JS_WEB_PAGE.md)
 * [다국어 설정](DOC/I18N.md)
-* [CANVAS에 그림 그리기](DOC/CANVAS.md) (작성중)
-* [도트 아트를 사용하는 프로젝트 만들기](DOC/DOT_ART.md) (작성중)
 * [클러스터링](DOC/CLUSTERING.md)
 
 ## 튜토리얼
 * [간단한 웹 서버 만들기](DOC/TUTORIAL/WEB_SERVER.md)
 * [간단한 웹 사이트 만들기](DOC/TUTORIAL/WEB_SITE.md)
-* [간단한 게임 만들기](DOC/TUTORIAL/GAME.md) (작성중)
 
 ## 공식 지원 BOX
 - [UUI](https://github.com/Hanul/UUI)

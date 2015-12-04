@@ -1,5 +1,4 @@
 // load UJS.
-require('../../../UJS-COMMON.js');
 require('../../../UJS-NODE.js');
 
 //!! run SERVER/SOCKET_SERVER.js before this test.

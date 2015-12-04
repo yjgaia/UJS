@@ -2,12 +2,7 @@
 아래 설정들로, UJS 기반 애플리케이션의 작동 방식을 설정할 수 있습니다. 설정은 다음과 같이, UJS를 불러온 이후에 작성하면 됩니다.
 
 ```html
-<!-- 웹 브라우저 환경에서는 global이 최상위 객체인 window와 같습니다. -->
-<script>
-    global = window;
-</script>
-<!-- 공통 라이브러리인 UJS-COMMON.js와 UJS-BROWSER.js를 불러옵니다. -->
-<script src="/UJS-COMMON.js"></script>
+<!-- UJS-BROWSER.js를 불러옵니다. -->
 <script src="/UJS-BROWSER.js"></script>
 <!-- 구버젼 브라우저에 대한 지원과, 각종 브라우저들이 갖고있는 버그를 고쳐주는 BROWSER-FIX를 불러옵니다. -->
 <script>
@@ -27,8 +22,7 @@ BROWSER_CONFIG.port = 8010;
 ```
 
 ```javascript
-// 공통 라이브러리인 UJS-COMMON.js와 UJS-NODE.js를 불러옵니다.
-require('./UJS-COMMON.js');
+// UJS-NODE.js를 불러옵니다.
 require('./UJS-NODE.js');
 
 // 개발 모드

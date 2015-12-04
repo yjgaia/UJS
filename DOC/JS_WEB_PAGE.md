@@ -59,7 +59,6 @@ HTML 코드와 CSS 코드, JS 코드가 분리되어 있던 기존 웹 애플리
 <!-- UJS의 DOM 패키지를 사용하는 방식 -->
 <html>
     <body>
-        <script src="UJS-COMMON.js"></script>
         <script src="UJS-BROWSER.js"></script>
         <script>
         

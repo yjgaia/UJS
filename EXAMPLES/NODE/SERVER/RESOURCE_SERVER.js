@@ -1,5 +1,4 @@
 // load UJS.
-require('../../../UJS-COMMON.js');
 require('../../../UJS-NODE.js');
 
 TEST('RESOURCE_SERVER', function(ok) {
