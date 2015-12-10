@@ -3,7 +3,6 @@
 UJS를 이용하여 웹 서버를 쉽게 만들 수 있습니다.
 이하는 간단히 웹 서버를 구동하는 코드입니다. http://localhost:8123 으로 접속하면 Welcome! 이라는 메시지를 출력합니다.
 ```javascript
-require('UJS-COMMON.js');
 require('UJS-NODE.js');
 
 INIT_OBJECTS();

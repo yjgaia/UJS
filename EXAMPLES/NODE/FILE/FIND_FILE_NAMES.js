@@ -1,5 +1,4 @@
 // load UJS
-require('../../../UJS-COMMON.js');
 require('../../../UJS-NODE.js');
 
 TEST('FIND_FILE_NAMES', function(ok) {

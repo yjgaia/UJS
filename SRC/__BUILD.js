@@ -1,5 +1,4 @@
 // load UJS.
-require('../UJS-COMMON.js');
 require('../UJS-NODE.js');
 
 /*
@@ -60,7 +59,13 @@ RUN(function() {
 		EACH(scriptPaths, function(scriptPath) {
 			
 			if (content === undefined) {
+				
 				content = BASE_CONTENT;
+				
+				if (path === 'UJS-BROWSER') {
+					content += 'global = window;\n\n';
+				}
+				
 			} else {
 				content += '\n';
 			}
@@ -92,7 +97,7 @@ RUN(function() {
 	},
 
 	// build folder.
-	buildFolder = function(name, isToSaveMin) {
+	buildFolder = function(commonScripts, name, isToSaveMin) {
 
 		var
 		// scripts
@@ -102,7 +107,7 @@ RUN(function() {
 
 		scanFolder(scripts, name);
 
-		save(scripts, 'UJS-' + name, isToSaveMin);
+		save(COMBINE([commonScripts, scripts]), 'UJS-' + name, isToSaveMin);
 	},
 
 	// copy folder.
@@ -136,34 +141,34 @@ RUN(function() {
 	RUN(function() {
 
 		var
-		// scripts
-		scripts = [];
+		// common scripts
+		commonScripts = [];
 
 		log('BUILD [COMMON]');
 
-		scripts.push('COMMON/TO_DELETE.js');
-		scripts.push('COMMON/CONFIG.js');
-		scripts.push('COMMON/METHOD.js');
-		scripts.push('COMMON/OOP/CLASS.js');
-		scripts.push('COMMON/OOP/OBJECT.js');
-		scripts.push('COMMON/OOP/INIT_OBJECTS.js');
+		commonScripts.push('COMMON/TO_DELETE.js');
+		commonScripts.push('COMMON/CONFIG.js');
+		commonScripts.push('COMMON/METHOD.js');
+		commonScripts.push('COMMON/OOP/CLASS.js');
+		commonScripts.push('COMMON/OOP/OBJECT.js');
+		commonScripts.push('COMMON/OOP/INIT_OBJECTS.js');
 
-		scanFolder(scripts, 'COMMON/BOX');
-		scanFolder(scripts, 'COMMON/UTIL');
+		scanFolder(commonScripts, 'COMMON/BOX');
+		scanFolder(commonScripts, 'COMMON/UTIL');
 
-		save(scripts, 'UJS-COMMON', true);
-	});
-
-	buildFolder('BROWSER', true);
-
-	RUN(function() {
-
-		log('BUILD [BROWSER-FIX]');
-
-		copyFolder('BROWSER-FIX', 'UJS-BROWSER-FIX');
-	});
-
-	buildFolder('NODE');
+		save(commonScripts, 'UJS-COMMON', true);
+		
+		buildFolder(commonScripts, 'BROWSER', true);
 	
-	log('DONE.');
+		RUN(function() {
+	
+			log('BUILD [BROWSER-FIX]');
+	
+			copyFolder('BROWSER-FIX', 'UJS-BROWSER-FIX');
+		});
+	
+		buildFolder(commonScripts, 'NODE');
+		
+		log('DONE.');
+	});
 });

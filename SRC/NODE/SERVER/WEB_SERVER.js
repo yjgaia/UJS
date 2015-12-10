@@ -270,6 +270,10 @@ global.WEB_SERVER = CLASS(function(cls) {
 									version = contentOrParams.version;
 									isFinal = contentOrParams.isFinal;
 								}
+								
+								if (content === undefined) {
+									content = '';
+								}
 
 								if (statusCode === undefined) {
 									statusCode = 200;
@@ -295,7 +299,7 @@ global.WEB_SERVER = CLASS(function(cls) {
 										headers['ETag'] = version;
 									}
 								}
-
+								
 								// when gzip encoding
 								if (acceptEncoding.match(/\bgzip\b/) !== TO_DELETE) {
 

@@ -1,5 +1,5 @@
 // load UJS.
-require('../UJS-COMMON.js');
+require('../UJS-NODE.js');
 
 var
 // test.
@@ -43,7 +43,5 @@ test('COMMON/UTIL/OVERRIDE');
 test('COMMON/UTIL/NUMBER/RANDOM');
 test('COMMON/UTIL/RANDOM_STR');
 test('COMMON/UTIL/FUNCTION/RAR');
-
-test('COMMON/UTIL/AAENCODE');
 
 test('NODE/ENCRYPTION/SHA1');
