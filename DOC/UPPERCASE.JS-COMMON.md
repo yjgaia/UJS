@@ -293,6 +293,17 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     CHECK_IS_EMPTY_DATA({})
     ```
 
+* `COUNT_PROPERTIES(data)` 데이터의 모든 요소들의 개수를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA/COUNT_PROPERTIES.js)
+
+    ```javascript
+    // 3
+    COUNT_PROPERTIES({
+    	a : 1,
+    	b : 2,
+    	c : 3
+    })
+    ```
+
 * `CHECK_IS_ARRAY(it)` `it`이 배열인지 확인합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/ARRAY/CHECK_IS_ARRAY.js)
 
     ```javascript
@@ -823,7 +834,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
 	* `VALID.array(value)` 값이 배열인지 확인합니다.
 	* `VALID.data(value)` 값이 데이터인지 확인합니다.
 	* `VALID.element({array:, validData:})` 배열의 모든 값을 검증하여 모두 통과하는지 확인합니다.
-	* `VALID.property({data:, validData:})` 데이터의 모든 값을 검증하여 모두 통과하는지 확인합니다.
+	* `VALID.property({data:, validData:})` 데이터의 모든 요소들을 검증하여 모두 통과하는지 확인합니다.
 	* `VALID.detail({data:, validDataSet:})` 데이터를 검증합니다.
 	* `VALID.equal({value:, validValue:})` 값이 검증값과 같은지 확인합니다.
 	
