@@ -28,8 +28,7 @@ UJS는 풀스택 JavaScript 라이브러리입니다.
 - [UUI](https://github.com/Hanul/UUI)
 - [UANI](https://github.com/Hanul/UANI)
 - [Yogurt](https://github.com/Hanul/Yogurt)
-- [Facebook-BOX](https://github.com/Hanul/Facebook-BOX)
-- [USCREEN](https://github.com/Hanul/USCREEN)
+- [USOCIAL](https://github.com/Hanul/USOCIAL)
 
 ## 파생 프로젝트
 - [EXTREME.js](https://github.com/Hanul/EXTREME.js)
