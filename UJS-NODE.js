@@ -1789,7 +1789,8 @@ global.CHECK_IS_ARRAY = METHOD({
  */
 global.CHECK_IS_DATA = METHOD({
 
-	run : function(it) {'use strict';
+	run : function(it) {
+		'use strict';
 		//OPTIONAL: it
 
 		if (it !== undefined && it !== TO_DELETE && CHECK_IS_ARGUMENTS(it) !== true && CHECK_IS_ARRAY(it) !== true && it instanceof Date !== true && it instanceof RegExp !== true && typeof it === 'object') {
@@ -1810,6 +1811,27 @@ global.CHECK_IS_EMPTY_DATA = METHOD({
 		//REQUIRED: data
 
 		return CHECK_ARE_SAME([data, {}]);
+	}
+});
+
+/**
+ * count data's properties
+ */
+global.COUNT_PROPERTIES = METHOD({
+
+	run : function(data) {
+		'use strict';
+		//OPTIONAL: data
+
+		var
+		// count
+		count = 0;
+		
+		EACH(data, function() {
+			count += 1;
+		});
+		
+		return count;
 	}
 });
 
@@ -8592,4 +8614,75 @@ global.CREATE_COOKIE_STR_ARRAY = CREATE_COOKIE_STR_ARRAY = METHOD({
 
 		return strs;
 	}
+});
+
+/**
+ * get CPU_USAGES.
+ */
+global.CPU_USAGES = METHOD(function(m) {
+	
+	var
+	//IMPORT: os
+	os = require('os');
+	
+	return {
+		
+		run : function() {
+			'use strict';
+			
+			var
+			// cpu infos
+			cpuInfos = os.cpus(),
+			
+			// usages
+			usages = [];
+			
+			EACH(cpuInfos, function(cpuInfo) {
+				
+				var
+				// total
+				total = 0,
+				
+				// idle time
+				idleTime;
+				
+				EACH(cpuInfo.times, function(time, type) {
+					total += time;
+					if (type === 'idle') {
+						idleTime = time;
+					}
+				});
+				
+				usages.push((1 - idleTime / total) * 100);
+			});
+			
+			return usages;
+		}
+	};
+});
+
+/**
+ * get MEMORY_USAGE.
+ */
+global.MEMORY_USAGE = METHOD(function(m) {
+	
+	var
+	//IMPORT: os
+	os = require('os'),
+	
+	// total memory
+	totalMemory = os.totalmem();
+	
+	return {
+		
+		run : function() {
+			'use strict';
+			
+			var
+			// free memory
+			freeMemory = os.freemem();
+			
+			return (1 - freeMemory / totalMemory) * 100;
+		}
+	};
 });
