@@ -4,7 +4,7 @@
 우선 UJS의 가장 기본적인 기능인 `METHOD`를 살펴보도록 하겠습니다.
 
 # METHOD
-메소드를 생성합니다. 메소드에 static 함수를 지정할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/METHOD.js)
+메소드를 생성합니다. 메소드에 static 함수를 지정할 수 있습니다. [예제보기](../EXAMPLES/COMMON/METHOD.js)
 
 ```javascript
 var
@@ -64,7 +64,7 @@ someMethod.getString();
 UJS는 객체지향 언어들과 비슷한 방식으로 객체지향 프로그래밍을 지원합니다.
 
 ### CLASS
-클래스를 선언합니다. 이렇게 선언된 클래스는 상속이 가능하고, private 및 public, protected 변수를 지정할 수 있습니다. 또한 파라미터를 객체가 생성되기 이전에 변경할 수도 있으며 static 함수를 지정할 수도 있습니다. [예제보기](../../EXAMPLES/COMMON/OOP/CLASS.js)
+클래스를 선언합니다. 이렇게 선언된 클래스는 상속이 가능하고, private 및 public, protected 변수를 지정할 수 있습니다. 또한 파라미터를 객체가 생성되기 이전에 변경할 수도 있으며 static 함수를 지정할 수도 있습니다. [예제보기](../EXAMPLES/COMMON/OOP/CLASS.js)
 
 ```javascript
 var
@@ -165,7 +165,7 @@ SomeClass.getString();
 
 ### OBJECT
 
-CLASS를 만들지 않고 객체를 바로 선언합니다. 설정 및 내용은 CLASS와 동일하지만, 만들어진 결과는 클래스가 아니라 객체입니다. 모든 객체가 선언된 이후에는 `INIT_OBJECTS()`로 초기화합니다. [예제보기](../../EXAMPLES/COMMON/OOP/OBJECT.js)
+CLASS를 만들지 않고 객체를 바로 선언합니다. 설정 및 내용은 CLASS와 동일하지만, 만들어진 결과는 클래스가 아니라 객체입니다. 모든 객체가 선언된 이후에는 `INIT_OBJECTS()`로 초기화합니다. [예제보기](../EXAMPLES/COMMON/OOP/OBJECT.js)
 
 * `INIT_OBJECTS`는 애플리케이션 전체에서 한번만 실행합니다. 이후에 선언한 OBJECT는 선언 즉시 초기화 됩니다.
 
@@ -244,19 +244,19 @@ BOX 시스템을 통해 BOX 단위로 프로젝트를 나눌 수 있습니다. �
 UJS의 유틸리티 기능들은 JavaScript 기반 프로젝트 개발시 유용하게 사용될 수 있는 각종 기능들을 모아놓은 것입니다.
 
 ### 숫자 관련 기능
-* `INTEGER(integerString)` 정수 문자열을 정수로 변환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/NUMBER/INTEGER.js)
+* `INTEGER(integerString)` 정수 문자열을 정수로 변환합니다. [예제보기](../EXAMPLES/COMMON/UTIL/NUMBER/INTEGER.js)
 
     ```javascript
     INTEGER('7') === 7
     ```
 
-* `REAL(realNumberString)` 실수 문자열을 실수로 변환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/NUMBER/REAL.js)
+* `REAL(realNumberString)` 실수 문자열을 실수로 변환합니다. [예제보기](../EXAMPLES/COMMON/UTIL/NUMBER/REAL.js)
 
     ```javascript
     REAL('7.7') === 7.7
     ```
 
-* `RANDOM(max)` `RANDOM({min:, max:})` `RANDOM({min:, limit:})` 임의의 정수를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/NUMBER/RANDOM.js)
+* `RANDOM(max)` `RANDOM({min:, max:})` `RANDOM({min:, limit:})` 임의의 정수를 반환합니다. [예제보기](../EXAMPLES/COMMON/UTIL/NUMBER/RANDOM.js)
 
     ```javascript
     // 0 ~ 5 사이의 임의의 정수
@@ -278,7 +278,7 @@ UJS의 유틸리티 기능들은 JavaScript 기반 프로젝트 개발시 유용
 ### 데이터(`{...}`) 및 배열(`[...]`) 관련 기능
 UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부르고, `[...]`로 표현되는 값을 배열이라 부릅니다.
 
-* `CHECK_IS_DATA(it)` `it`이 데이터인지 확인합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA/CHECK_IS_DATA.js)
+* `CHECK_IS_DATA(it)` `it`이 데이터인지 확인합니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA/CHECK_IS_DATA.js)
 
     ```javascript
     CHECK_IS_DATA({
@@ -287,13 +287,13 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     })
     ```
 
-* `CHECK_IS_EMPTY_DATA(data)` 데이터가 빈 데이터(`{}`)인지 확인합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA/CHECK_IS_EMPTY_DATA.js)
+* `CHECK_IS_EMPTY_DATA(data)` 데이터가 빈 데이터(`{}`)인지 확인합니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA/CHECK_IS_EMPTY_DATA.js)
 
     ```javascript
     CHECK_IS_EMPTY_DATA({})
     ```
 
-* `COUNT_PROPERTIES(data)` 데이터의 모든 요소들의 개수를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA/COUNT_PROPERTIES.js)
+* `COUNT_PROPERTIES(data)` 데이터의 모든 요소들의 개수를 반환합니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA/COUNT_PROPERTIES.js)
 
     ```javascript
     // 3
@@ -304,13 +304,13 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     })
     ```
 
-* `CHECK_IS_ARRAY(it)` `it`이 배열인지 확인합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/ARRAY/CHECK_IS_ARRAY.js)
+* `CHECK_IS_ARRAY(it)` `it`이 배열인지 확인합니다. [예제보기](../EXAMPLES/COMMON/UTIL/ARRAY/CHECK_IS_ARRAY.js)
 
     ```javascript
     CHECK_IS_ARRAY([1, 2, 3])
     ```
 
-* `CHECK_ARE_SAME(array)` 배열의 모든 요소들이 같은 값인지 확인합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/ARRAY/CHECK_ARE_SAME.js)
+* `CHECK_ARE_SAME(array)` 배열의 모든 요소들이 같은 값인지 확인합니다. [예제보기](../EXAMPLES/COMMON/UTIL/ARRAY/CHECK_ARE_SAME.js)
 
     ```javascript
     CHECK_ARE_SAME([1, 1, 1])
@@ -327,7 +327,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     })
     ```
 
-* `CHECK_IS_IN({data:, value:})` `CHECK_IS_IN({array:, value:})` 데이터나 배열 안에 값이 존재하는지 확인합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/CHECK_IS_IN.js)
+* `CHECK_IS_IN({data:, value:})` `CHECK_IS_IN({array:, value:})` 데이터나 배열 안에 값이 존재하는지 확인합니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/CHECK_IS_IN.js)
 
     ```javascript
     CHECK_IS_IN({
@@ -343,7 +343,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     })
     ```
 
-* `COMBINE(dataSet)` `COMBINE(arrays)` 데이터 셋이나 배열들을 합쳐서 새로운 데이터나 배열을 만듭니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/COMBINE.js)
+* `COMBINE(dataSet)` `COMBINE(arrays)` 데이터 셋이나 배열들을 합쳐서 새로운 데이터나 배열을 만듭니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/COMBINE.js)
 
     ```javascript
     // { a : 1, b : 2, c : 3, d : 4 }
@@ -358,7 +358,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     COMBINE([[1, 2], [2, 3]])
     ```
 
-* `COPY(data)` `COPY(array)` 데이터나 배열을 복사합니다. 복사된 데이터나 배열을 수정하여도 원래 데이터나 배열에 반영되지 않습니다. 함수에 데이터나 배열을 넘겨 함수 내에서 수정하게 되면 *원래 데이터나 배열이 수정*되기 때문에, 원하지 않는 결과를 만들 수 있습니다. 이런 경우 유용합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/COPY.js)
+* `COPY(data)` `COPY(array)` 데이터나 배열을 복사합니다. 복사된 데이터나 배열을 수정하여도 원래 데이터나 배열에 반영되지 않습니다. 함수에 데이터나 배열을 넘겨 함수 내에서 수정하게 되면 *원래 데이터나 배열이 수정*되기 때문에, 원하지 않는 결과를 만들 수 있습니다. 이런 경우 유용합니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/COPY.js)
 
     ```javascript
     COPY({
@@ -368,7 +368,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     COPY([1, 2])
     ```
 
-* `EXTEND({origin:, extend:})` 데이터나 배열을 확장합니다. *원래 데이터나 배열이 확장*되는 것이므로, 유의하시기 바랍니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/EXTEND.js)
+* `EXTEND({origin:, extend:})` 데이터나 배열을 확장합니다. *원래 데이터나 배열이 확장*되는 것이므로, 유의하시기 바랍니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/EXTEND.js)
 
     ```javascript
     // { a : 1, b : 2 } -> { a : 1, b : 2, c : 3, d : 4 }
@@ -383,7 +383,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     EXTEND([[1, 2], [2, 3]])
     ```
 
-* `FIND({data:, value:})` `FIND({array:, value:})` 데이터에서는 특정 값의 이름을, 배열에서는 특정 값이 존재하는 위치를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/FIND.js)
+* `FIND({data:, value:})` `FIND({array:, value:})` 데이터에서는 특정 값의 이름을, 배열에서는 특정 값이 존재하는 위치를 반환합니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/FIND.js)
 
     ```javascript
     // a
@@ -401,7 +401,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     })
     ```
 
-* `REMOVE` 데이터의 특정 값 혹은 특정 이름의 값이나, 배열의 특정 값이나 특정 위치의 값을 제거합니다. 또한, 값을 체크하기 위한 함수를 넘겨 함수가 true를 반환했을 때 해당 값을 제거할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/REMOVE.js)
+* `REMOVE` 데이터의 특정 값 혹은 특정 이름의 값이나, 배열의 특정 값이나 특정 위치의 값을 제거합니다. 또한, 값을 체크하기 위한 함수를 넘겨 함수가 true를 반환했을 때 해당 값을 제거할 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATA_AND_ARRAY/REMOVE.js)
     * `REMOVE({data:, name:})`
     * `REMOVE({data:, value:})`
     * `REMOVE({array:, key:})`
@@ -449,7 +449,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     ```
 
 ### 날짜 관련 기능
-* `CALENDAR()` `CALENDAR(date)` 직접 Date 클래스를 사용하는 것 보다 편리하게 날짜를 다룰 수 있는 클래스입니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DATE/CALENDAR.js)
+* `CALENDAR()` `CALENDAR(date)` 직접 Date 클래스를 사용하는 것 보다 편리하게 날짜를 다룰 수 있는 클래스입니다. [예제보기](../EXAMPLES/COMMON/UTIL/DATE/CALENDAR.js)
 
     ```javascript
     // 2015-03-15 16:07:12
@@ -488,7 +488,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     ```
 
 ### 함수 관련 기능
-* `RUN(function() {})` 함수를 실행하고, 결과값을 반환합니다. 코드 블록이 필요한 경우 유용하게 사용할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/FUNCTION/RUN.js)
+* `RUN(function() {})` 함수를 실행하고, 결과값을 반환합니다. 코드 블록이 필요한 경우 유용하게 사용할 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/FUNCTION/RUN.js)
 
     ```javascript
     // a is 1.
@@ -502,7 +502,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     })
     ```
 
-* `RAR(function() {})` `RAR(params, function(params) {})` 함수를 실행하고, 함수를 반환합니다. 선언과 즉시 실행해야 하는 함수를 선언할 때 유용합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/FUNCTION/RAR.js)
+* `RAR(function() {})` `RAR(params, function(params) {})` 함수를 실행하고, 함수를 반환합니다. 선언과 즉시 실행해야 하는 함수를 선언할 때 유용합니다. [예제보기](../EXAMPLES/COMMON/UTIL/FUNCTION/RAR.js)
 
     ```javascript
     var
@@ -521,7 +521,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     ```
 
 ### 반복문 관련 기능
-* `REPEAT` 주어진 `count` 만큼 `i` 값을 0부터 1씩 증가시키면서 함수를 실행하거나, `start`에서 `end`까지 `i` 값을 1씩 증가시키면서 함수를 실행하거나, `start`에서 `limit` 이전까지 `i` 값을 1씩 증가시키면서 함수를 실행할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/REPEAT/REPEAT.js)
+* `REPEAT` 주어진 `count` 만큼 `i` 값을 0부터 1씩 증가시키면서 함수를 실행하거나, `start`에서 `end`까지 `i` 값을 1씩 증가시키면서 함수를 실행하거나, `start`에서 `limit` 이전까지 `i` 값을 1씩 증가시키면서 함수를 실행할 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/REPEAT/REPEAT.js)
     * `REPEAT(count, function(i) {})`
     * `REPEAT({start:, end:}, function(i) {})`
     * `REPEAT({start:, end:, step:}, function(i) {})`
@@ -545,7 +545,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     }, function(i) {...})
     ```
 
-* `EACH` 데이터나 배열의 요소들을 하나씩 꺼내 함수에 넘겨 실행합니다. 도중에 멈추기 위해서는 함수에서 `false`를 반환합니다. 모든 요소들을 처리하였다면 `true`를, 중간에 멈추었다면 `false`를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/REPEAT/EACH.js)
+* `EACH` 데이터나 배열의 요소들을 하나씩 꺼내 함수에 넘겨 실행합니다. 도중에 멈추기 위해서는 함수에서 `false`를 반환합니다. 모든 요소들을 처리하였다면 `true`를, 중간에 멈추었다면 `false`를 반환합니다. [예제보기](../EXAMPLES/COMMON/UTIL/REPEAT/EACH.js)
     * `EACH(data, function(value, name) {})`
     * `EACH(array, function(value, key) {})`
     * `EACH(function(value) {})(array)`
@@ -606,7 +606,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
         }
     })([1, 2, 3])
     ```
-* `REVERSE_EACH` 배열의 요소들을 뒤에서부터 하나씩 꺼내 함수에 넘겨 실행합니다. 도중에 멈추기 위해서는 함수에서 `false`를 반환합니다. 모든 요소들을 처리하였다면 `true`를, 중간에 멈추었다면 `false`를 반환합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/REPEAT/REVERSE_EACH.js)
+* `REVERSE_EACH` 배열의 요소들을 뒤에서부터 하나씩 꺼내 함수에 넘겨 실행합니다. 도중에 멈추기 위해서는 함수에서 `false`를 반환합니다. 모든 요소들을 처리하였다면 `true`를, 중간에 멈추었다면 `false`를 반환합니다. [예제보기](../EXAMPLES/COMMON/UTIL/REPEAT/REVERSE_EACH.js)
     * `REVERSE_EACH(array, function(value, key) {})`
     * `REVERSE_EACH(function(value) {})(array)`
 
@@ -643,7 +643,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     ```
 
 ### 시간 지연 관련 기능
-* `DELAY(seconds, function(delay) {})` `seconds` 초 이후에 함수를 실행하는 클래스입니다. `remove`로 함수 실행을 취소할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DELAY/DELAY.js)
+* `DELAY(seconds, function(delay) {})` `seconds` 초 이후에 함수를 실행하는 클래스입니다. `remove`로 함수 실행을 취소할 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/DELAY/DELAY.js)
 
     ```javascript
     var
@@ -654,7 +654,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     delay.remove()
     ```
 
-* `INTERVAL(seconds, function(interval) {})` `seconds` 초 마다 함수를 실행하는 클래스입니다. `remove`로 멈출 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DELAY/INTERVAL.js)
+* `INTERVAL(seconds, function(interval) {})` `seconds` 초 마다 함수를 실행하는 클래스입니다. `remove`로 멈출 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/DELAY/INTERVAL.js)
 
     ```javascript
     var
@@ -665,7 +665,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     interval.remove()
     ```
 
-* `LOOP(fps, function() {})` 1초에 `fps`번 함수를 실행하는 클래스입니다. 게임 개발 등에서 유용하게 사용할 수 있습니다. `changeFPS`로 `fps`를 변경할 수 있고, `remove`로 멈출 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/DELAY/LOOP.js)
+* `LOOP(fps, function() {})` 1초에 `fps`번 함수를 실행하는 클래스입니다. 게임 개발 등에서 유용하게 사용할 수 있습니다. `changeFPS`로 `fps`를 변경할 수 있고, `remove`로 멈출 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/DELAY/LOOP.js)
 
     ```javascript
     var
@@ -680,14 +680,14 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     ```
 
 ### 기타 기능
-* `RANDOM_STR(length)` 영어 대소문자와 숫자로 이루어진 `length` 길이의 임의의 문자열을 생성합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/RANDOM_STR.js)
+* `RANDOM_STR(length)` 영어 대소문자와 숫자로 이루어진 `length` 길이의 임의의 문자열을 생성합니다. [예제보기](../EXAMPLES/COMMON/UTIL/RANDOM_STR.js)
 
     ```javascript
     // ex) b9hSosKhvl
     RANDOM_STR(10)
     ```
 
-* `OVERRIDE(origin, function(origin) {})` 특정 클래스나 함수 등을 재지정 할 때 유용한 기능입니다. [예제보기](../../EXAMPLES/COMMON/UTIL/OVERRIDE.js)
+* `OVERRIDE(origin, function(origin) {})` 특정 클래스나 함수 등을 재지정 할 때 유용한 기능입니다. [예제보기](../EXAMPLES/COMMON/UTIL/OVERRIDE.js)
 
     ```javascript
     var
@@ -706,7 +706,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     calculate(2, 3)
     ```
 
-* `NEXT` 비동기 함수들을 처리할 때 순서대로 실행할 수 있도록 도와줍니다. 이를 통해 JavaScript 기반 프로젝트에서 흔히 겪을 수 있는 `callback 지옥 문제`를 해결할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/NEXT.js)
+* `NEXT` 비동기 함수들을 처리할 때 순서대로 실행할 수 있도록 도와줍니다. 이를 통해 JavaScript 기반 프로젝트에서 흔히 겪을 수 있는 `callback 지옥 문제`를 해결할 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/NEXT.js)
     * `NEXT([function(next) {}, function() { return function() {}; }, function() { return function() {}; }, ...])`
     * `NEXT(count, [function(i, next) {}, function() { return function() {}; }, ...])`
     * `NEXT(array, [function(element, next) {}, function() { return function() {}; }, ...])`
@@ -755,7 +755,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     }])
     ```
 
-* `PARALLEL` 함수들을 병렬로 처리합니다. 비동기 처리를 동시에 수행할 때 유용합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/PARALLEL.js)
+* `PARALLEL` 함수들을 병렬로 처리합니다. 비동기 처리를 동시에 수행할 때 유용합니다. [예제보기](../EXAMPLES/COMMON/UTIL/PARALLEL.js)
     * `PARALLEL([function(done) {}, function(done) {}, ..., function() {}])`
     * `PARALLEL(count, [function(done) {}, function() {}])`
     * `PARALLEL(array, [function(value, done) {}, function() {}])`
@@ -782,7 +782,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     }])
     ```
 
-* `STRINGIFY(value)` 특정 값을 문자열로 변경합니다. 데이터의 경우, `Date`형 값 또한 처리할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/STRINGIFY.js)
+* `STRINGIFY(value)` 특정 값을 문자열로 변경합니다. 데이터의 경우, `Date`형 값 또한 처리할 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/STRINGIFY.js)
 
     ```
     // '1'
@@ -798,7 +798,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     })
     ```
 
-* `PARSE_STR(stringifiedValue)` `STRINGIFY`로 처리된 문자열을 다시 값으로 변경합니다. [예제보기](../../EXAMPLES/COMMON/UTIL/PARSE_STR.js)
+* `PARSE_STR(stringifiedValue)` `STRINGIFY`로 처리된 문자열을 다시 값으로 변경합니다. [예제보기](../EXAMPLES/COMMON/UTIL/PARSE_STR.js)
 
     ```
     // 1
@@ -814,7 +814,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
     PARSE_STR('{"a":1,"b":2}')
     ```
 
-* `VALID(validDataSet)` 데이터를 검증 및 정제하는 클래스입니다. **만약 `validDataSet`에 정의되지 않은 값이 존재하는 경우, VALID는 해당 값을 지웁니다. 이에 주의하시기 바랍니다.** 다음과 같은 다양한 검증을 처리할 수 있습니다. [예제보기](../../EXAMPLES/COMMON/UTIL/VALID.js)
+* `VALID(validDataSet)` 데이터를 검증 및 정제하는 클래스입니다. **만약 `validDataSet`에 정의되지 않은 값이 존재하는 경우, VALID는 해당 값을 지웁니다. 이에 주의하시기 바랍니다.** 다음과 같은 다양한 검증을 처리할 수 있습니다. [예제보기](../EXAMPLES/COMMON/UTIL/VALID.js)
 
     * `VALID.notEmpty(value)` 값이 빈 값(`''`, `undefined`)인지 확인합니다.
     * `VALID.regex({pattern:, value:})` 값이 정규표현식을 통과하는지 확인합니다.
@@ -879,7 +879,7 @@ UJS 기반 프로젝트에서는 `{...}`로 표현되는 값을 데이터라 부
 	validResult.checkHasError()
 	```
 
-* `URI_MATCHER(format)` `format`에 맞는 URI인지 확인하는 클래스입니다. [예제보기](../../EXAMPLES/COMMON/UTIL/URI_MATCHER.js)
+* `URI_MATCHER(format)` `format`에 맞는 URI인지 확인하는 클래스입니다. [예제보기](../EXAMPLES/COMMON/UTIL/URI_MATCHER.js)
 
 	```javascript
 	var
