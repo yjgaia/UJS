@@ -435,6 +435,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
     CPU_CLUSTERING(function() {
     
         // 1, 2, 3, 4, ... (CPU count)
+        // 만약 싱글코어로 실행하는 경우에는 1
         CPU_CLUSTERING.getWorkerId()
         
         ...
