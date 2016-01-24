@@ -1,5 +1,5 @@
 /**
- * get CPU_USAGES.
+ * get cpu usages.
  */
 global.CPU_USAGES = METHOD(function(m) {
 	

@@ -136,7 +136,25 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 		}
 	})
     ```
-    
+	
+* `REMOVE_FOLDER` 폴더를 삭제합니다. 폴더 내의 모든 파일 및 폴더를 삭제하므로, 주의하여 사용해야 합니다. [예제보기](../EXAMPLES/NODE/FILE/REMOVE_FOLDER.js)
+    * `REMOVE_FOLDER(path, callbackOrHandlers)`
+    * `REMOVE_FOLDER({path:, isSync:})`
+
+    ```javascript
+    REMOVE_FOLDER('someFolder', {
+		error : function(errorMsg) {
+			console.log('error:', errorMsg);
+		},
+		notExists : function() {
+			console.log('not exists.');
+		},
+		success : function() {
+			console.log('success.');
+		}
+	})
+    ```
+
 * `FIND_FILE_NAMES` 특정 폴더 내에서 폴더를 제외한 파일들의 이름을 찾습니다. [예제보기](../EXAMPLES/NODE/FILE/FIND_FILE_NAMES.js)
     * `FIND_FILE_NAMES(path, callbackOrHandlers)`
     * `FIND_FILE_NAMES({path:, isSync:})`

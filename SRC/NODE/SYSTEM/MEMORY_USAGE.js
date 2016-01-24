@@ -1,5 +1,5 @@
 /**
- * get MEMORY_USAGE.
+ * get memory usage.
  */
 global.MEMORY_USAGE = METHOD(function(m) {
 	
