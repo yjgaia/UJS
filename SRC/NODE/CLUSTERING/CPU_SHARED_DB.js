@@ -10,6 +10,9 @@ global.CPU_SHARED_DB = CLASS(function(cls) {
 
 	// remove delay map
 	removeDelayMap = {},
+	
+	// is inited
+	isInited = false,
 
 	// save.
 	save,
@@ -24,7 +27,13 @@ global.CPU_SHARED_DB = CLASS(function(cls) {
 	list,
 
 	// remove.
-	remove;
+	remove,
+	
+	// check sync.
+	checkSync,
+	
+	// sync.
+	sync;
 
 	cls.save = save = function(params, remove) {
 		//REQUIRED: params
@@ -287,6 +296,32 @@ global.CPU_SHARED_DB = CLASS(function(cls) {
 			delete removeDelays[id];
 		}
 	};
+	
+	cls.checkSync = checkSync = function(countData) {
+		//REQUIRED: countData
+		
+		if (CPU_CLUSTERING.broadcast !== undefined) {
+			
+			EACH(storages, function(storage, storageName) {
+				
+				if (countData[storageName] !== COUNT_PROPERTIES(storage)) {
+					
+					CPU_CLUSTERING.broadcast({
+						methodName : '__CPU_SHARED_DB_SYNC',
+						data : storages
+					});
+					
+					return false;
+				}
+			});
+		}
+	};
+	
+	cls.sync = sync = function(syncStorage) {
+		//REQUIRED: syncStorage
+		
+		storages = syncStorage;
+	};
 
 	return {
 
@@ -418,6 +453,29 @@ global.CPU_SHARED_DB = CLASS(function(cls) {
 					});
 				}
 			};
+			
+			if (isInited !== true) {
+				isInited = true;
+				
+				INTERVAL(1, function() {
+					
+					var
+					// count data
+					countData = {};
+					
+					EACH(storages, function(storage, storageName) {
+						countData[storageName] = COUNT_PROPERTIES(storage);
+					});
+					
+					if (CPU_CLUSTERING.broadcast !== undefined) {
+				
+						CPU_CLUSTERING.broadcast({
+							methodName : '__CPU_SHARED_DB_CHECK_SYNC',
+							data : countData
+						});
+					}
+				});
+			}
 		}
 	};
 });
