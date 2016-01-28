@@ -224,34 +224,6 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 				}
 			});
 
-			// shared db check sync.
-			on('__SHARED_DB_CHECK_SYNC', function(countData) {
-
-				SHARED_DB.checkSync(countData);
-
-				if (CPU_CLUSTERING.broadcast !== undefined) {
-
-					CPU_CLUSTERING.broadcast({
-						methodName : '__SHARED_DB_CHECK_SYNC',
-						data : countData
-					});
-				}
-			});
-
-			// shared db sync.
-			on('__SHARED_DB_SYNC', function(storages) {
-
-				SHARED_DB.sync(storages);
-
-				if (CPU_CLUSTERING.broadcast !== undefined) {
-
-					CPU_CLUSTERING.broadcast({
-						methodName : '__SHARED_DB_SYNC',
-						data : storages
-					});
-				}
-			});
-
 			m.off = off = function(methodName) {
 				delete methodMap[methodName];
 			};

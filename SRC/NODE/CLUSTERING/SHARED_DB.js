@@ -10,9 +10,6 @@ global.SHARED_DB = CLASS(function(cls) {
 
 	// remove delay map
 	removeDelayMap = {},
-	
-	// is inited
-	isInited = false,
 
 	// save.
 	save,
@@ -27,13 +24,7 @@ global.SHARED_DB = CLASS(function(cls) {
 	list,
 
 	// remove.
-	remove,
-	
-	// check sync.
-	checkSync,
-	
-	// sync.
-	sync;
+	remove;
 
 	cls.save = save = function(params, remove) {
 		//REQUIRED: params
@@ -296,48 +287,6 @@ global.SHARED_DB = CLASS(function(cls) {
 			delete removeDelays[id];
 		}
 	};
-	
-	cls.checkSync = checkSync = function(countData) {
-		//REQUIRED: countData
-		
-		if (CPU_CLUSTERING.broadcast !== undefined) {
-			
-			EACH(storages, function(storage, storageName) {
-				
-				if (countData[storageName] !== COUNT_PROPERTIES(storage)) {
-					
-					CPU_CLUSTERING.broadcast({
-						methodName : '__SHARED_DB_SYNC',
-						data : storages
-					});
-					
-					return false;
-				}
-			});
-		}
-		
-		if (SERVER_CLUSTERING.broadcast !== undefined) {
-			
-			EACH(storages, function(storage, storageName) {
-				
-				if (countData[storageName] !== COUNT_PROPERTIES(storage)) {
-					
-					SERVER_CLUSTERING.broadcast({
-						methodName : '__SHARED_DB_SYNC',
-						data : storages
-					});
-					
-					return false;
-				}
-			});
-		}
-	};
-	
-	cls.sync = sync = function(syncStorage) {
-		//REQUIRED: syncStorage
-		
-		storages = syncStorage;
-	};
 
 	return {
 
@@ -507,48 +456,6 @@ global.SHARED_DB = CLASS(function(cls) {
 					});
 				}
 			};
-			
-			if (isInited !== true) {
-				isInited = true;
-				
-				INTERVAL(1, function() {
-					
-					var
-					// count data
-					countData = {};
-					
-					EACH(storages, function(storage, storageName) {
-						countData[storageName] = COUNT_PROPERTIES(storage);
-					});
-					
-					if (CPU_CLUSTERING.broadcast !== undefined) {
-				
-						CPU_CLUSTERING.broadcast({
-							methodName : '__SHARED_DB_CHECK_SYNC',
-							data : countData
-						});
-					}
-				});
-				
-				INTERVAL(5, function() {
-					
-					var
-					// count data
-					countData = {};
-					
-					EACH(storages, function(storage, storageName) {
-						countData[storageName] = COUNT_PROPERTIES(storage);
-					});
-					
-					if (SERVER_CLUSTERING.broadcast !== undefined) {
-			
-						SERVER_CLUSTERING.broadcast({
-							methodName : '__SHARED_DB_CHECK_SYNC',
-							data : countData
-						});
-					}
-				});
-			}
 		}
 	};
 });

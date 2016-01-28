@@ -151,18 +151,6 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 
 					// remove cpu shared data.
 					on('__CPU_SHARED_DB_REMOVE', CPU_SHARED_DB.remove);
-					
-					// shared db check sync.
-					on('__SHARED_DB_CHECK_SYNC', SHARED_DB.checkSync);
-					
-					// shared db sync.
-					on('__SHARED_DB_SYNC', SHARED_DB.sync);
-					
-					// cpu shared db check sync.
-					on('__CPU_SHARED_DB_CHECK_SYNC', CPU_SHARED_DB.checkSync);
-					
-					// cpu shared db sync.
-					on('__CPU_SHARED_DB_SYNC', CPU_SHARED_DB.sync);
 
 					m.off = off = function(methodName) {
 						delete methodMap[methodName];
