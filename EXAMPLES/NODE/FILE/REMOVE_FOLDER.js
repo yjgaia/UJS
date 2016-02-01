@@ -1,13 +1,13 @@
 // load UJS
 require('../../../UJS-NODE.js');
 
-TEST('REMOVE_FILE', function(ok) {
+TEST('REMOVE_FOLDER', function(ok) {
 	'use strict';
 
 	INIT_OBJECTS();
 
-	REMOVE_FILE({
-		path : 'testFolder/test2.txt',
+	REMOVE_FOLDER({
+		path : 'testFolder',
 		isSync : true
 	}, {
 
@@ -20,7 +20,7 @@ TEST('REMOVE_FILE', function(ok) {
 		}
 	});
 
-	REMOVE_FILE('testFolder/test3.txt', {
+	REMOVE_FOLDER('testFolder2', {
 
 		error : function(errorMsg) {
 			console.log('ERROR!', errorMsg);
