@@ -515,7 +515,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 
 * `CPU_SHARED_STORE(name)` CPU들이 공유하는 저장소입니다. 사용법은 `SHARED_STORE`와 같습니다. [예제보기](../EXAMPLES/NODE/CLUSTERING/CPU_SHARED_STORE.js)
 
-* `SHARED_DB(name)` 클러스터링 된 CPU들과 서버들이 공유하는 데이터베이스입니다. [예제보기](../EXAMPLES/NODE/CLUSTERING/SHARED_DB.js)
+* `SHARED_DB(name)` 클러스터링 된 CPU들과 서버들이 공유하는 데이터베이스입니다. *동시에 데이터가 수정되는 경우에는 서버 간 데이터의 싱크가 맞지 않을 수 있으므로, 이를 염두해 두고 로직을 작성하시기 바랍니다.* [예제보기](../EXAMPLES/NODE/CLUSTERING/SHARED_DB.js)
 	* `save({id:, data:, removeAfterSeconds:})` 특정 `id`에 `data`를 저장합니다. `removeAfterSeconds` 파라미터를 지정하면 특정 시간 이후 데이터가 자동으로 지워집니다.
 	* `update({id:, data:, removeAfterSeconds:})` 특정 `id`의 `data`를 수정합니다. `removeAfterSeconds` 파라미터를 지정하면 특정 시간 이후 데이터가 자동으로 지워집니다.
 	* `get(id)` `id`의 데이터를 가져옵니다.
@@ -556,7 +556,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 	});
     ```
     
-    `update` 명령의 `data`에 다음과 같은 특수기호를 사용하여 데이터를 가공할 수 있습니다. 이를 통해 분산 프로세스 간 *데이터 동시성*을 유지할 수 있습니다.
+    `update` 명령의 `data`에 다음과 같은 특수기호를 사용하여 데이터를 가공할 수 있습니다. 이를 통해 분산 프로세스 간 *데이터 동시성*을 유지할 수 있습니다. 그러나, *동시에 데이터가 수정되는 경우에는 서버 간 데이터의 싱크가 맞지 않을 수 있으므로, 이를 염두해 두고 로직을 작성하시기 바랍니다.*
     * `$inc`
     ```javascript
     // num이 2 증가합니다.
@@ -631,7 +631,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
     })
     ```
     
-* `CPU_SHARED_DB(name)` CPU들이 공유하는 데이터베이스입니다. 사용법은 `SHARED_DB`와 같습니다. [예제보기](../EXAMPLES/NODE/CLUSTERING/CPU_SHARED_DB.js)
+* `CPU_SHARED_DB(name)` CPU들이 공유하는 데이터베이스입니다. 사용법은 `SHARED_DB`와 같습니다. *동시에 데이터가 수정되는 경우에는 각 CPU별 프로세스 간에 데이터의 싱크가 맞지 않을 수 있으므로, 이를 염두해 두고 로직을 작성하시기 바랍니다.* [예제보기](../EXAMPLES/NODE/CLUSTERING/CPU_SHARED_DB.js)
 
 ### 주의사항
 클러스터링 된 CPU와 서버들 간에 데이터를 동기화 하는데 시간이 걸릴 수 있습니다. 예를들어, A 서버와 B 서버에서 각각 `sample`이라는 값을 동시에 변경하였을때 A 서버에서 제공하는 값이 될지 B 서버에서 제공하는 값이 될지 확실하지 않습니다. 주의하시기 바랍니다.
