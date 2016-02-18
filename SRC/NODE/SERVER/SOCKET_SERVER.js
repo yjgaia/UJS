@@ -24,6 +24,9 @@ global.SOCKET_SERVER = METHOD({
 
 			// received string
 			receivedStr = '',
+			
+			// client info
+			clientInfo,
 
 			// on.
 			on,
@@ -126,8 +129,11 @@ global.SOCKET_SERVER = METHOD({
 			connectionListener(
 
 			// client info
-			{
-				ip : conn.remoteAddress
+			clientInfo = {
+				
+				ip : conn.remoteAddress,
+				
+				connectTime : new Date()
 			},
 
 			// on.
@@ -203,6 +209,8 @@ global.SOCKET_SERVER = METHOD({
 				}
 
 				sendKey += 1;
+				
+				clientInfo.lastSendTime = new Date();
 			},
 
 			// disconnect.
