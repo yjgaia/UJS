@@ -386,17 +386,36 @@ global.CPU_SHARED_DB = CLASS(function(cls) {
 				}
 			};
 
-			self.get = get = function(id) {
+			self.get = get = function(id, callback) {
 				//REQUIRED: id
-
-				return cls.get({
+				//OPTIONAL: callback
+				
+				var
+				// data
+				data = cls.get({
 					dbName : dbName,
 					id : id
 				});
+				
+				if (callback !== undefined) {
+					callback(data);
+				}
+
+				return data;
 			};
 			
-			self.list = list = function() {
-				return cls.list(dbName);
+			self.list = list = function(callback) {
+				//OPTIONAL: callback
+				
+				var
+				// data set
+				dataSet = cls.list(dbName);
+				
+				if (callback !== undefined) {
+					callback(dataSet);
+				}
+				
+				return dataSet;
 			};
 
 			self.remove = remove = function(id) {

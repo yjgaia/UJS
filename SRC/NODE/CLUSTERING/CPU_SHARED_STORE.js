@@ -184,17 +184,36 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 				}
 			};
 
-			self.get = get = function(name) {
+			self.get = get = function(name, callback) {
 				//REQUIRED: name
-
-				return cls.get({
+				//OPTIONAL: callback
+				
+				var
+				// data
+				data = cls.get({
 					storeName : storeName,
 					name : name
 				});
+				
+				if (callback !== undefined) {
+					callback(data);
+				}
+
+				return data;
 			};
 			
-			self.list = list = function() {
-				return cls.list(storeName);
+			self.list = list = function(callback) {
+				//OPTIONAL: callback
+				
+				var
+				// data set
+				dataSet = cls.list(storeName);
+				
+				if (callback !== undefined) {
+					callback(dataSet);
+				}
+				
+				return dataSet;
 			};
 
 			self.remove = remove = function(name) {
