@@ -210,7 +210,7 @@ global.SOCKET_SERVER = METHOD({
 
 				sendKey += 1;
 				
-				clientInfo.lastSendTime = new Date();
+				clientInfo.lastReceiveTime = new Date();
 			},
 
 			// disconnect.
