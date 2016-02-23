@@ -201,31 +201,31 @@ global.SHARED_STORE = CLASS(function(cls) {
 				//OPTIONAL: callback
 				
 				var
-				// data
-				data = cls.get({
+				// value
+				value = cls.get({
 					storeName : storeName,
 					name : name
 				});
 				
 				if (callback !== undefined) {
-					callback(data);
+					callback(value);
 				}
 
-				return data;
+				return value;
 			};
 			
 			self.list = list = function(callback) {
 				//OPTIONAL: callback
 				
 				var
-				// data set
-				dataSet = cls.list(storeName);
+				// values
+				values = cls.list(storeName);
 				
 				if (callback !== undefined) {
-					callback(dataSet);
+					callback(values);
 				}
 				
-				return dataSet;
+				return values;
 			};
 
 			self.remove = remove = function(name) {
