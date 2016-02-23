@@ -208,22 +208,13 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 				}
 			};
 
-			self.get = get = function(name, callback) {
+			self.get = get = function(name) {
 				//REQUIRED: name
-				//OPTIONAL: callback
 				
-				var
-				// value
-				value = cls.get({
+				return cls.get({
 					storeName : storeName,
 					name : name
 				});
-				
-				if (callback !== undefined) {
-					callback(value);
-				}
-
-				return value;
 			};
 
 			self.remove = remove = function(name) {
@@ -246,32 +237,12 @@ global.CPU_SHARED_STORE = CLASS(function(cls) {
 				}
 			};
 			
-			self.list = list = function(callback) {
-				//OPTIONAL: callback
-				
-				var
-				// values
-				values = cls.list(storeName);
-				
-				if (callback !== undefined) {
-					callback(values);
-				}
-				
-				return values;
+			self.list = list = function() {
+				return cls.list(storeName);
 			};
 			
-			self.count = count = function(callback) {
-				//OPTIONAL: callback
-				
-				var
-				// count
-				count = cls.count(storeName);
-				
-				if (callback !== undefined) {
-					callback(count);
-				}
-				
-				return count;
+			self.count = count = function() {
+				return cls.count(storeName);
 			};
 
 			self.clear = clear = function() {
