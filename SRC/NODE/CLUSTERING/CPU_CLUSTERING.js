@@ -128,11 +128,17 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 					// remove shared value.
 					on('__SHARED_STORE_REMOVE', SHARED_STORE.remove);
 
+					// clear shared store.
+					on('__SHARED_STORE_CLEAR', SHARED_STORE.clear);
+
 					// save cpu shared value.
 					on('__CPU_SHARED_STORE_SAVE', CPU_SHARED_STORE.save);
 
 					// remove cpu shared value.
 					on('__CPU_SHARED_STORE_REMOVE', CPU_SHARED_STORE.remove);
+
+					// clear cpu shared store.
+					on('__CPU_SHARED_STORE_CLEAR', CPU_SHARED_STORE.clear);
 
 					// save shared data.
 					on('__SHARED_DB_SAVE', SHARED_DB.save);
@@ -143,6 +149,9 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 					// remove shared data.
 					on('__SHARED_DB_REMOVE', SHARED_DB.remove);
 
+					// clear shared db.
+					on('__SHARED_DB_CLEAR', SHARED_DB.clear);
+
 					// save cpu shared data.
 					on('__CPU_SHARED_DB_SAVE', CPU_SHARED_DB.save);
 					
@@ -151,6 +160,9 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 
 					// remove cpu shared data.
 					on('__CPU_SHARED_DB_REMOVE', CPU_SHARED_DB.remove);
+
+					// clear cpu shared db.
+					on('__CPU_SHARED_DB_CLEAR', CPU_SHARED_DB.clear);
 
 					m.off = off = function(methodName) {
 						delete methodMap[methodName];

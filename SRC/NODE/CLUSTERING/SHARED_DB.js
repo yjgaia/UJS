@@ -19,12 +19,18 @@ global.SHARED_DB = CLASS(function(cls) {
 
 	// get.
 	get,
+
+	// remove.
+	remove,
 	
 	// list.
 	list,
-
-	// remove.
-	remove;
+	
+	// count.
+	count,
+	
+	// clear.
+	clear;
 
 	cls.save = save = function(params, remove) {
 		//REQUIRED: params
@@ -249,16 +255,6 @@ global.SHARED_DB = CLASS(function(cls) {
 			return storage[id];
 		}
 	};
-	
-	cls.list = list = function(dbName) {
-		//REQUIRED: dbName
-		
-		var
-		// storage
-		storage = storages[dbName];
-		
-		return storage === undefined ? {} : storage;
-	};
 
 	cls.remove = remove = function(params) {
 		//REQUIRED: params
@@ -287,6 +283,28 @@ global.SHARED_DB = CLASS(function(cls) {
 			delete removeDelays[id];
 		}
 	};
+	
+	cls.list = list = function(dbName) {
+		//REQUIRED: dbName
+		
+		var
+		// storage
+		storage = storages[dbName];
+		
+		return storage === undefined ? {} : storage;
+	};
+	
+	cls.count = count = function(dbName) {
+		//REQUIRED: dbName
+		
+		return COUNT_PROPERTIES(list(dbName));
+	};
+	
+	cls.clear = clear = function(dbName) {
+		//REQUIRED: dbName
+		
+		delete storages[dbName];
+	};
 
 	return {
 
@@ -302,12 +320,18 @@ global.SHARED_DB = CLASS(function(cls) {
 
 			// get.
 			get,
+
+			// remove.
+			remove,
 			
 			// list.
 			list,
-
-			// remove.
-			remove;
+			
+			// count.
+			count,
+			
+			// clear.
+			clear;
 
 			self.save = save = function(params) {
 				//REQUIRED: params
@@ -430,20 +454,6 @@ global.SHARED_DB = CLASS(function(cls) {
 
 				return data;
 			};
-			
-			self.list = list = function(callback) {
-				//OPTIONAL: callback
-				
-				var
-				// data set
-				dataSet = cls.list(dbName);
-				
-				if (callback !== undefined) {
-					callback(dataSet);
-				}
-				
-				return dataSet;
-			};
 
 			self.remove = remove = function(id) {
 				//REQUIRED: id
@@ -475,6 +485,55 @@ global.SHARED_DB = CLASS(function(cls) {
 					});
 				}
 			};
+			
+			self.list = list = function(callback) {
+				//OPTIONAL: callback
+				
+				var
+				// data set
+				dataSet = cls.list(dbName);
+				
+				if (callback !== undefined) {
+					callback(dataSet);
+				}
+				
+				return dataSet;
+			};
+			
+			self.count = count = function(callback) {
+				//OPTIONAL: callback
+				
+				var
+				// count
+				count = cls.count(dbName);
+				
+				if (callback !== undefined) {
+					callback(count);
+				}
+				
+				return count;
+			};
+			
+			self.clear = clear = function() {
+				
+				cls.clear(dbName);
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__SHARED_DB_CLEAR',
+						data : dbName
+					});
+				}
+
+				if (SERVER_CLUSTERING.broadcast !== undefined) {
+
+					SERVER_CLUSTERING.broadcast({
+						methodName : '__SHARED_DB_CLEAR',
+						data : dbName
+					});
+				}
+			};
 		}
 	};
 });
@@ -499,22 +558,32 @@ FOR_BOX(function(box) {
 
 			// get.
 			get,
+
+			// remove.
+			remove,
 			
 			// list.
 			list,
-
-			// remove.
-			remove;
+			
+			// count.
+			count,
+			
+			// clear.
+			clear;
 
 			self.save = save = sharedDB.save;
 
 			self.update = update = sharedDB.update;
 
 			self.get = get = sharedDB.get;
+
+			self.remove = remove = sharedDB.remove;
 			
 			self.list = list = sharedDB.list;
 
-			self.remove = remove = sharedDB.remove;
+			self.count = count = sharedDB.count;
+
+			self.clear = clear = sharedDB.clear;
 		}
 	});
 });
