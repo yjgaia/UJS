@@ -123,12 +123,26 @@ INFO.getBrowserInfo()
 
 ## 기타 기능
 
-* `STORE(name)` `Box.STORE(name)` 저장소를 생성하여 데이터를 저장할 수 있는 클래스 입니다. 이를 이용해서 브라우저가 종료되더라도 특정 데이터를 저장할 수 있습니다. 저장할 때 `isToSession` 파라미터를 `true`로 지정하면 브라우저가 종료 될 때 데이터를 자동으로 지울수도 있습니다. [예제보기](../EXAMPLES/BROWSER/STORE.js)
+* `STORE(storeName)` `Box.STORE(storeName)` 저장소를 생성하여 데이터를 저장할 수 있는 클래스 입니다. 이를 이용해서 브라우저가 종료되더라도 특정 데이터를 저장할 수 있습니다. 저장할 때 `isToSession` 파라미터를 `true`로 지정하면 브라우저가 종료 될 때 데이터를 자동으로 지울수도 있습니다. [예제보기](../EXAMPLES/BROWSER/STORE.js)
 
     ```javascript
     var
     // store
     store = STORE('testStore');
+
+    store.save({ name:, value:, isToSession: })
+
+    store.get(name)
+
+    store.remove(name)
+    ```
+
+* `COOKIE_STORE(storeName)` `COOKIE_STORE({ storeName:, domain: })` `Box.COOKIE_STORE(storeName)` 쿠키에 데이터를 저장할 수 있는 클래스 입니다. 저장할 때 `isToSession` 파라미터를 `true`로 지정하면 브라우저가 종료 될 때 데이터를 자동으로 지울수도 있습니다. `domain`을 지정할 수 있습니다. [예제보기](../EXAMPLES/BROWSER/STORE.js)
+
+    ```javascript
+    var
+    // store
+    store = COOKIE_STORE('testStore');
 
     store.save({ name:, value:, isToSession: })
 

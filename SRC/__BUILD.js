@@ -90,7 +90,7 @@ RUN(function() {
 	
 			WRITE_FILE({
 				path : '../' + path + '.MIN.js',
-				content : minifyResult.code,
+				content : (path === 'UJS-BROWSER' ? 'global=window;' : '') + minifyResult.code,
 				isSync : true
 			});
 		}

@@ -182,6 +182,20 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 				}
 			});
 
+			// clear shared store.
+			on('__SHARED_STORE_CLEAR', function(storeName) {
+
+				SHARED_STORE.clear(storeName);
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__SHARED_STORE_CLEAR',
+						data : storeName
+					});
+				}
+			});
+
 			// save shared data.
 			on('__SHARED_DB_SAVE', function(params) {
 
@@ -220,6 +234,20 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 					CPU_CLUSTERING.broadcast({
 						methodName : '__SHARED_DB_REMOVE',
 						data : params
+					});
+				}
+			});
+
+			// clear shared db.
+			on('__SHARED_DB_CLEAR', function(dbName) {
+
+				SHARED_DB.clear(dbName);
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__SHARED_DB_CLEAR',
+						data : dbName
 					});
 				}
 			});

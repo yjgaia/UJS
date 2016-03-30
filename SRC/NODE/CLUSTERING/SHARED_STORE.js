@@ -16,12 +16,18 @@ global.SHARED_STORE = CLASS(function(cls) {
 
 	// get.
 	get,
+
+	// remove.
+	remove,
 	
 	// list.
 	list,
-
-	// remove.
-	remove;
+	
+	// count.
+	count,
+	
+	// clear.
+	clear;
 
 	cls.save = save = function(params, remove) {
 		//REQUIRED: params
@@ -89,16 +95,6 @@ global.SHARED_STORE = CLASS(function(cls) {
 			return storage[name];
 		}
 	};
-	
-	cls.list = list = function(storeName) {
-		//REQUIRED: storeName
-		
-		var
-		// storage
-		storage = storages[storeName];
-		
-		return storage === undefined ? {} : storage;
-	};
 
 	cls.remove = remove = function(params) {
 		//REQUIRED: params
@@ -127,6 +123,28 @@ global.SHARED_STORE = CLASS(function(cls) {
 			delete removeDelays[name];
 		}
 	};
+	
+	cls.list = list = function(storeName) {
+		//REQUIRED: storeName
+		
+		var
+		// storage
+		storage = storages[storeName];
+		
+		return storage === undefined ? {} : storage;
+	};
+	
+	cls.count = count = function(dbName) {
+		//REQUIRED: dbName
+		
+		return COUNT_PROPERTIES(list(dbName));
+	};
+	
+	cls.clear = clear = function(storeName) {
+		//REQUIRED: storeName
+		
+		delete storages[storeName];
+	};
 
 	return {
 
@@ -139,12 +157,18 @@ global.SHARED_STORE = CLASS(function(cls) {
 
 			// get.
 			get,
+
+			// remove.
+			remove,
 			
 			// list.
 			list,
-
-			// remove.
-			remove;
+			
+			// count.
+			count,
+			
+			// clear.
+			clear;
 
 			self.save = save = function(params) {
 				//REQUIRED: params
@@ -195,18 +219,14 @@ global.SHARED_STORE = CLASS(function(cls) {
 					});
 				}
 			};
-
+			
 			self.get = get = function(name) {
 				//REQUIRED: name
-
+				
 				return cls.get({
 					storeName : storeName,
 					name : name
 				});
-			};
-			
-			self.list = list = function() {
-				return cls.list(storeName);
 			};
 
 			self.remove = remove = function(name) {
@@ -239,6 +259,35 @@ global.SHARED_STORE = CLASS(function(cls) {
 					});
 				}
 			};
+			
+			self.list = list = function() {
+				return cls.list(storeName);
+			};
+			
+			self.count = count = function() {
+				return cls.count(storeName);
+			};
+
+			self.clear = clear = function() {
+				
+				cls.clear(storeName);
+
+				if (CPU_CLUSTERING.broadcast !== undefined) {
+
+					CPU_CLUSTERING.broadcast({
+						methodName : '__SHARED_STORE_CLEAR',
+						data : storeName
+					});
+				}
+
+				if (SERVER_CLUSTERING.broadcast !== undefined) {
+
+					SERVER_CLUSTERING.broadcast({
+						methodName : '__SHARED_STORE_CLEAR',
+						data : storeName
+					});
+				}
+			};
 		}
 	};
 });
@@ -260,20 +309,30 @@ FOR_BOX(function(box) {
 
 			// get.
 			get,
+
+			// remove.
+			remove,
 			
 			// list.
 			list,
-
-			// remove.
-			remove;
+			
+			// count.
+			count,
+			
+			// clear.
+			clear;
 
 			self.save = save = sharedStore.save;
 
 			self.get = get = sharedStore.get;
-			
-			self.list = list = sharedStore.list;
 
 			self.remove = remove = sharedStore.remove;
+			
+			self.list = list = sharedStore.list;
+			
+			self.count = count = sharedStore.count;
+			
+			self.clear = clear = sharedStore.clear;
 		}
 	});
 });

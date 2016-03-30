@@ -88,6 +88,7 @@ sharedDB.save({
 ```
 
 `SHARED_DB`로 만들어진 저장소에서 데이터를 수정 할 때에는 `$inc`, `$push`, `$addToSet`, `$pull`등 [MongoDB](http://www.mongodb.org)에서 사용되는 Operator를 사용할 수 있습니다. 이를 통해 모든 프로세스의 데이터 일관성을 유지할 수 있습니다.
+*그러나 동시에 데이터가 수정되는 경우에는 서버 간 데이터의 싱크가 맞지 않을 수 있으므로, 이를 염두해 두고 로직을 작성하시기 바랍니다.*
 
 ```javascript
 sharedDB.update({
