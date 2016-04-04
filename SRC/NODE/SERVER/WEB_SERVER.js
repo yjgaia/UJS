@@ -7,6 +7,12 @@ global.WEB_SERVER = CLASS(function(cls) {
 	var
 	//IMPORT: http
 	http = require('http'),
+	
+	//IMPORT: https
+	https = require('https'),
+	
+	//IMPORT: fs
+	fs = require('fs'),
 
 	//IMPORT: querystring
 	querystring = require('querystring'),

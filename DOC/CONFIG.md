@@ -44,7 +44,7 @@ NODE_CONFIG.something = 'sample';
 * `BROWSER_CONFIG.host` 이 설정의 기본값은 현재 웹 브라우저에서 접속한 호스트와 같습니다. 그러나 하이브리드 앱 등을 만들 경우 변경될 수 있습니다.
 * `BROWSER_CONFIG.port` 이 설정의 기본값은 현재 웹 브라우저에서 접속한 포트와 같습니다. 그러나 하이브리드 앱 등을 만들 경우 변경될 수 있습니다.
 * `BROWSER_CONFIG.isSupportingX2` 도트 아트를 사용하는 프로젝트의 경우, 레티나 디스플레이와 같은 고사양 화면에서는 픽셀을 강제로 늘이기 때문에 이미지가 흐릿하게 보입니다. 이를 대응하기 위해서, HTML5 Cavnas 기능을 사용하여 이미지 픽셀을 2배씩 늘려주어 흐릿하게 보이지 않도록 하는 기능이 UJS에 포함되어 있습니다. 이  설정을 사용할 경우 `true`로 지정합니다. 자세한 내용은 [도트 아트를 사용하는 프로젝트 만들기](DOT_ART.md) 문서를 참고하시기 바랍니다.
-* `BROWSER_CONFIG.isUsingFlashCanvasPro` HTML5 Canvas를 지원하지 않는 구형 브라우저에서 `CANVAS` 기능을 사용하는 경우 UJS-BROWSER-FIX가 내부적으로 [FlashCanvas](http://flashcanvas.net)를 사용합니다. 기본적으로는 Free edition을 사용하나, Pro 버전을 사용하여 성능을 향상시킬 수 있습니다. Pro 버전을 사용하기 위해서는 FlashCanvas Pro의 라이센스를 구매해야 하므로, 필요한 경우 이하 경로에서 라이센스를 구매한 후 이 설정을 `true`로 지정합니다.
+* `BROWSER_CONFIG.isUsingFlashCanvasPro` HTML5 Canvas를 지원하지 않는 구형 브라우저에서 `CANVAS` 기능을 사용하는 경우 UJS-BROWSER-FIX가 내부적으로 [FlashCanvas](http://flashcanvas.net)를 사용합니다. 기본적으로는 Free edition을 사용하나, Pro 버전을 사용하여 성능을 향상시킬 수 있습니다. 상업용 프로젝트에서 Pro 버전을 사용하기 위해서는 FlashCanvas Pro의 라이센스를 구매해야 하므로, 필요한 경우 이하 경로에서 라이센스를 구매한 후 이 설정을 `true`로 지정합니다.
     * http://flashcanvas.net/purchase
 
 # NODE_CONFIG

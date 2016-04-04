@@ -3,4 +3,6 @@ TEST('TITLE', function(ok) {
 
 	// change browser's title.
 	TITLE('Title Changed.');
+	
+	ok(TITLE() === 'Title Changed.');
 });
