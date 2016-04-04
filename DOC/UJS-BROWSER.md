@@ -30,7 +30,7 @@ INFO.getBrowserInfo()
 ```
 
 ## 윈도우 관련 기능
-* `TITLE(title)` 윈도우의 제목을 변경합니다. [예제보기](../EXAMPLES/BROWSER/WINDOW.js)
+* `TITLE()`, `TITLE(title)` 윈도우의 제목을 가져오거나, 변경합니다. [예제보기](../EXAMPLES/BROWSER/WINDOW.js)
 * `WIN_WIDTH()` 윈도우의 가로 길이를 픽셀 단위로 반환합니다. [예제보기](../EXAMPLES/BROWSER/WIN_WIDTH.js)
 * `WIN_HEIGHT()` 윈도우의 세로 길이를 픽셀 단위로 반환합니다. [예제보기](../EXAMPLES/BROWSER/WIN_HEIGHT.js)
 * `SCROLL_LEFT()` 가로 스크롤 위치를 픽셀 단위로 반환합니다. [예제보기](../EXAMPLES/BROWSER/SCROLL_LEFT.js)
