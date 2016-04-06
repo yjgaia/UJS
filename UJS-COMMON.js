@@ -2759,7 +2759,7 @@ global.LOOP = CLASS(function(cls) {
 							// run interval.
 							interval = loopInfo.interval;
 							for ( j = 0; j < count; j += 1) {
-								interval();
+								interval(loopInfo.fps);
 							}
 
 							// end.

@@ -31,8 +31,10 @@ UJS는 풀스택 JavaScript 라이브러리입니다.
 - [USOCIAL](https://github.com/Hanul/USOCIAL)
 
 ## 파생 프로젝트
-- [EXTREME.js](https://github.com/Hanul/EXTREME.js)
-- [UPPERCASE.GML](https://github.com/Hanul/UPPERCASE.GML)
+* [UMongoBackup](https://github.com/Hanul/UMongoBackup) 매일 데이터베이스를 백업하는 애플리케이션입니다.
+* [ProxyServer](https://github.com/Hanul/ProxyServer)
+* [UGML](https://github.com/Hanul/UGML) GameMaker: Studio용 유틸리티 익스텐션입니다.
+* [EXTREME.js](https://github.com/Hanul/EXTREME.js) JavaScript 스펙의 한계를 뛰어넘기 위해 만들어진 UPPERCASE.JS기반 프로젝트입니다.
 
 ## 기타
 * [UJS 빌드](DOC/BUILD.md)
