@@ -97,7 +97,7 @@ INFO.getBrowserInfo()
     * `GET({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)`
 
     ```javascript
-    REQUEST({
+    GET({
 		host : 'localhost',
 		port : 8810,
 		uri : 'AJAX_TEST'
@@ -597,7 +597,9 @@ div.getEl().addAttribute('class', 'sample');
     evt = EVENT({
         node : div,
         name : 'tap'
-    }, function() {
+    }, function(e) {
+    	e.getLeft();
+    	e.getTop();
         ...
     });
     
@@ -616,7 +618,9 @@ div.getEl().addAttribute('class', 'sample');
     EVENT_ONCE({
         node : div,
         name : 'tap'
-    }, function() {
+    }, function(e) {
+    	e.getLeft();
+    	e.getTop();
         ...
     })
     ```

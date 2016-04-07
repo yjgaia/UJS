@@ -36,6 +36,9 @@ global.E = CLASS({
 
 		// get key code.
 		getKeyCode,
+
+		// get key name.
+		getKeyName,
 		
 		// get state.
 		getState;
@@ -179,6 +182,10 @@ global.E = CLASS({
 
 		self.getKeyCode = getKeyCode = function() {
 			return e.keyCode;
+		};
+
+		self.getKeyName = getKeyName = function() {
+			return e.keyName;
 		};
 		
 		self.getState = getState = function() {
