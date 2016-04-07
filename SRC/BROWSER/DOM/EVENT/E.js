@@ -41,7 +41,10 @@ global.E = CLASS({
 		getKeyName,
 		
 		// get state.
-		getState;
+		getState,
+		
+		// get detail.
+		getDetail;
 
 		checkIsDescendant = function(parent, child) {
 
@@ -190,6 +193,10 @@ global.E = CLASS({
 		
 		self.getState = getState = function() {
 			return e.state;
+		};
+		
+		self.getDetail = getDetail = function() {
+			return e.detail;
 		};
 	}
 });
