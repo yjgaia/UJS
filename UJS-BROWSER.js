@@ -3554,6 +3554,9 @@ global.INFO = OBJECT({
 		// is touch mode
 		isTouchMode = global.ontouchstart !== undefined,
 		
+		// is touching
+		isTouching,
+		
 		// browser info
 		browserInfo,
 
@@ -3627,11 +3630,18 @@ global.INFO = OBJECT({
 		};
 		
 		EVENT_LOW('mousemove', function() {
-			isTouchMode = false;
+			if (isTouching !== true) {
+				isTouchMode = false;
+			}
 		});
 		
 		EVENT_LOW('touchstart', function() {
 			isTouchMode = true;
+			isTouching = true;
+		});
+		
+		EVENT_LOW('touchend', function() {
+			isTouching = false;
 		});
 	}
 });
@@ -5913,10 +5923,6 @@ global.EVENT = CLASS(function(cls) {
 								if (nodeId !== 'body') {
 									e.stopDefault();
 								}
-								
-								// clear.
-								startLeft = -999999;
-								startTop = -999999;
 								
 								return eventHandler(e, node);
 							}
