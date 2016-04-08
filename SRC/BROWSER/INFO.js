@@ -10,6 +10,9 @@ global.INFO = OBJECT({
 		// is touch mode
 		isTouchMode = global.ontouchstart !== undefined,
 		
+		// is touching
+		isTouching,
+		
 		// browser info
 		browserInfo,
 
@@ -83,11 +86,20 @@ global.INFO = OBJECT({
 		};
 		
 		EVENT_LOW('mousemove', function() {
-			isTouchMode = false;
+			if (isTouching !== true) {
+				isTouchMode = false;
+			}
 		});
 		
 		EVENT_LOW('touchstart', function() {
 			isTouchMode = true;
+			isTouching = true;
+		});
+		
+		EVENT_LOW('touchend', function() {
+			DELAY(function() {
+				isTouching = false;
+			});
 		});
 	}
 });
