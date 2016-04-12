@@ -5,8 +5,8 @@ global.ADD_STYLE = METHOD(function(m) {
 	'use strict';
 
 	var
-	// venders
-	venders = ['Webkit', 'Moz', 'O', 'Ms'],
+	// vendors
+	vendors = ['Webkit', 'Moz', 'O', 'Ms'],
 	
 	// cross browser style names
 	crossBrowserStyleNames = ['transform', 'transformOrigin', 'animation', 'touchCallout', 'userSelect', 'backgroundSize', 'backgroundPosition'],
@@ -297,7 +297,7 @@ global.ADD_STYLE = METHOD(function(m) {
 									value : name
 								}) === true) {
 								
-									EACH(venders, function(vender) {
+									EACH(vendors, function(vender) {
 										el.style[vender + name.charAt(0).toUpperCase() + name.slice(1)] = value;
 									});
 								}

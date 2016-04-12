@@ -97,7 +97,7 @@ INFO.getBrowserInfo()
     * `GET({host:, port:, isSecure:, uri:, data:}, responseListenerOrListeners)`
 
     ```javascript
-    REQUEST({
+    GET({
 		host : 'localhost',
 		port : 8810,
 		uri : 'AJAX_TEST'
@@ -597,7 +597,9 @@ div.getEl().addAttribute('class', 'sample');
     evt = EVENT({
         node : div,
         name : 'tap'
-    }, function() {
+    }, function(e) {
+    	e.getLeft();
+    	e.getTop();
         ...
     });
     
@@ -616,7 +618,9 @@ div.getEl().addAttribute('class', 'sample');
     EVENT_ONCE({
         node : div,
         name : 'tap'
-    }, function() {
+    }, function(e) {
+    	e.getLeft();
+    	e.getTop();
         ...
     })
     ```
@@ -714,7 +718,7 @@ HTML5의 Push State기능을 이용해 Single Page Web Application을 구현할 
 ### 구버젼 브라우저에서 작동하지 않는 기능들
 아래 기능들은 구버젼 브라우저에서는 작동하지 않는 기능들입니다. 다만, 호환성을 중요시하는 UJS 특성상 오류를 발생시키지는 않습니다.
 
-* AUDIO
+* SOUND
 * VIDEO
 
 ### 기타 주의사항

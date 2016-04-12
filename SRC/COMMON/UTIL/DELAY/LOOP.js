@@ -69,7 +69,7 @@ global.LOOP = CLASS(function(cls) {
 							// run interval.
 							interval = loopInfo.interval;
 							for ( j = 0; j < count; j += 1) {
-								interval();
+								interval(loopInfo.fps);
 							}
 
 							// end.
@@ -131,6 +131,12 @@ global.LOOP = CLASS(function(cls) {
 
 			// info
 			info,
+			
+			// resume.
+			resume,
+			
+			// pause.
+			pause,
 
 			// change fps.
 			changeFPS,
@@ -149,21 +155,20 @@ global.LOOP = CLASS(function(cls) {
 					interval = intervalOrFuncs.interval;
 					end = intervalOrFuncs.end;
 				}
-
-				loopInfos.push( info = {
-					fps : fps,
-					start : start,
-					interval : interval,
-					end : end
+			
+				self.resume = resume = RAR(function() {
+					
+					loopInfos.push( info = {
+						fps : fps,
+						start : start,
+						interval : interval,
+						end : end
+					});
+					
+					fire();
 				});
 
-				self.changeFPS = changeFPS = function(fps) {
-					//REQUIRED: fps
-
-					info.fps = fps;
-				};
-
-				self.remove = remove = function() {
+				self.pause = pause = function() {
 
 					REMOVE({
 						array : loopInfos,
@@ -172,14 +177,29 @@ global.LOOP = CLASS(function(cls) {
 
 					stop();
 				};
+
+				self.changeFPS = changeFPS = function(fps) {
+					//REQUIRED: fps
+
+					info.fps = fps;
+				};
+
+				self.remove = remove = function() {
+					pause();
+				};
 			}
 
 			// when fps is run
 			else {
+				
+				self.resume = resume = RAR(function() {
+					
+					runs.push( run = fps);
+					
+					fire();
+				});
 
-				runs.push( run = fps);
-
-				self.remove = remove = function() {
+				self.pause = pause = function() {
 
 					REMOVE({
 						array : runs,
@@ -188,9 +208,11 @@ global.LOOP = CLASS(function(cls) {
 
 					stop();
 				};
-			}
 
-			fire();
+				self.remove = remove = function() {
+					pause();
+				};
+			}
 		}
 	};
 });

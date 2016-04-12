@@ -7,6 +7,12 @@ global.EVENT = CLASS(function(cls) {
 	var
 	// event map
 	eventMaps = {},
+	
+	// vendors
+	vendors = ['webkit', 'moz', 'o', 'ms'],
+	
+	// visibility change event name
+	visibilityChangeEventName = 'visibilitychange',
 
 	// fire all.
 	fireAll,
@@ -16,6 +22,19 @@ global.EVENT = CLASS(function(cls) {
 
 	// remove.
 	remove;
+	
+	if (document['hidden'] === undefined) {
+		
+		EACH(vendors, function(vendor) {
+			
+			if (document[vendor + 'Hidden'] !== undefined) {
+				
+				visibilityChangeEventName = vendor + 'visibilitychange';
+				
+				return false;
+			}
+		});
+	}
 
 	cls.fireAll = fireAll = function(nameOrParams) {
 		//REQUIRED: nameOrParams

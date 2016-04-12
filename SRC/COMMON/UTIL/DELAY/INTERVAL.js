@@ -9,8 +9,23 @@ global.INTERVAL = CLASS({
 		//OPTIONAL: func
 
 		var
+		// milliseconds
+		milliseconds,
+		
+		// start time
+		startTime = Date.now(),
+		
+		// remaining
+		remaining,
+		
 		// interval
 		interval,
+		
+		// resume.
+		resume,
+		
+		// pause.
+		pause,
 
 		// remove.
 		remove;
@@ -19,15 +34,35 @@ global.INTERVAL = CLASS({
 			func = seconds;
 			seconds = 0;
 		}
-
-		interval = setInterval(function() {
-			if (func(self) === false) {
-				remove();
+		
+		remaining = milliseconds = seconds === 0 ? 1 : seconds * 1000;
+		
+		self.resume = resume = RAR(function() {
+			
+			if (interval === undefined) {
+				
+				interval = setInterval(function() {
+					
+					if (func(self) === false) {
+						remove();
+					}
+					
+					startTime = Date.now();
+					
+				}, remaining);
 			}
-		}, seconds === 0 ? 1 : seconds * 1000);
-
-		self.remove = remove = function() {
+		});
+		
+		self.pause = pause = function() {
+			
+			remaining = milliseconds - (Date.now() - startTime);
+			
 			clearInterval(interval);
+			interval = undefined;
+		};
+		
+		self.remove = remove = function() {
+			pause();
 		};
 	}
 });
