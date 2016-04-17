@@ -130,9 +130,12 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 
 			// web server
 			webServer,
-
+			
 			// get native http server.
-			getNativeHTTPServer;
+			getNativeHTTPServer,
+			
+			// get native https server.
+			getNativeHTTPSServer;
 
 			// init params.
 			if (CHECK_IS_DATA(portOrParams) !== true) {
@@ -368,6 +371,10 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 
 			self.getNativeHTTPServer = getNativeHTTPServer = function() {
 				return webServer.getNativeHTTPServer();
+			};
+			
+			self.getNativeHTTPSServer = getNativeHTTSPServer = function() {
+				return webServer.getNativeHTTPSServer();
 			};
 		}
 	};
