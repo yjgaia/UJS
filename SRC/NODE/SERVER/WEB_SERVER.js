@@ -130,7 +130,7 @@ global.WEB_SERVER = CLASS(function(cls) {
 				noParsingParamsURI = portOrParams.noParsingParamsURI;
 			}
 
-			serve = function(nativeReq, nativeRes) {
+			serve = function(nativeReq, nativeRes, isSecure) {
 
 				var
 				// headers
@@ -217,6 +217,8 @@ global.WEB_SERVER = CLASS(function(cls) {
 						requestListener( requestInfo = {
 
 							headers : headers,
+							
+							isSecure : isSecure,
 
 							uri : uri,
 
@@ -357,7 +359,9 @@ global.WEB_SERVER = CLASS(function(cls) {
 
 			// init sever.
 			if (port !== undefined) {
-				nativeHTTPServer = http.createServer(serve).listen(port);
+				nativeHTTPServer = http.createServer(function(nativeReq, nativeRes) {
+					serve(nativeReq, nativeRes, false)
+				}).listen(port);
 			}
 
 			// init secured sever.
@@ -366,7 +370,9 @@ global.WEB_SERVER = CLASS(function(cls) {
 				nativeHTTPSServer = https.createServer({
 					key : fs.readFileSync(securedKeyFilePath),
 					cert : fs.readFileSync(securedCertFilePath)
-				}, serve).listen(securedPort);
+				}, function(nativeReq, nativeRes) {
+					serve(nativeReq, nativeRes, true)
+				}).listen(securedPort);
 			}
 
 			console.log('[UJS-WEB_SERVER] RUNNING WEB SERVER...' + (port === undefined ? '' : (' (PORT:' + port + ')')) + (securedPort === undefined ? '' : (' (SECURED PORT:' + securedPort + ')')));
