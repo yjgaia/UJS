@@ -416,6 +416,8 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
     ```
 
 ## 암호화
+암호화는 `HMAC-SHA` 알고리즘 중 `HMAC-SHA1`, `HMAC-SHA256`, `HMAC-SHA512` 세가지를 지원합니다. 현재까지 취약점이 발견되지 않은 `HMAC-SHA256` 사용을 추천합니다.
+
 * `SHA1({password:, key:})` HMAC-SHA1 암호화 알고리즘을 거친 문자열을 생성합니다. 암호화에는 암호화 될 대상이 되는 `password`와, 암호화에 필요한 `key`가 필요합니다. [예제보기](../EXAMPLES/NODE/ENCRYPTION/SHA1.js)
 
     ```javascript

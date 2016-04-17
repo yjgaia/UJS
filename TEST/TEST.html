@@ -25,6 +25,9 @@
 		<div id="container">
 			<div>
 				<h3>COMMON</h3>
+				<button onclick="test('COMMON/TO_DELETE');">
+					TO_DELETE TEST
+				</button>
 				<button onclick="test('COMMON/UTIL/DATE/CALENDAR');">
 					CALENDAR TEST
 				</button>
@@ -184,10 +187,10 @@
 		</div>
 		<footer>
 			<div>
-				UJS TEST CASE by <a href="http://hanul.me" target="_blank">YOUNG JAE SIM</a> @ <a href="http://www.btncafe.com" target="_blank">BTNcafe Co</a>.
+				UJS TEST CASE by <a href="http://hanul.me" target="_blank">YOUNG JAE SIM
 			</div>
 			<div>
-				<a href="https://github.com/UPPERCASE-Series/UJS" target="_blank">UJS @ GitHub</a>
+				<a href="https://github.com/Hanul/UJS" target="_blank">UJS @ GitHub</a>
 			</div>
 		</footer>
 		<!-- JS WORLD -->
@@ -210,6 +213,8 @@
 				global.test = test = function(path) {
 					LOAD('/EXAMPLES/' + path + '.js');
 				};
+				
+				return
 
 				console.log('[UJS TEST START] BROWSER: ' + INFO.getBrowserInfo().name + ' ' + INFO.getBrowserInfo().version);
 
@@ -267,6 +272,10 @@
 				
 				EVENT('beforeunload', function() {
 					return 'beforeunload event!';
+				});
+				
+				EVENT('mousewheel', function(e) {
+					console.log(e.getWheelDelta());
 				});
 			});
 		</script>

@@ -493,6 +493,24 @@ global.EVENT = CLASS(function(cls) {
 					}
 				}));
 			}
+			
+			// mouse wheel event (FireFox, using 'DOMMouseScroll')
+			else if (name === 'mousewheel') {
+				
+				if (document.onmousewheel !== undefined) {
+					eventLows.push(EVENT_LOW(nameOrParams, eventHandler));
+				}
+				
+				// FireFox
+				else {
+					
+					eventLows.push(EVENT_LOW({
+						node : node,
+						lowNode : lowNode,
+						name : 'DOMMouseScroll'
+					}, eventHandler));
+				}
+			}
 
 			// other events
 			else if (name !== 'attach' && name !== 'show' && name !== 'remove') {

@@ -188,6 +188,16 @@ var SomeClass = CLASS(...
 var someObject = SomeClass();
 ```
 
+## METHOD로 생성한 메소드의 이름은 대문자로, 클래스로 내부 함수의 이름은 소문자로 시작합니다.
+
+```javascript
+// 대문자로 시작합니다.
+var SomeMethod = METHOD(...
+
+// 소문자로 시작합니다.
+var someFunc = function() {...
+```
+
 ## METHOD, CLASS, OBJECT는 한 파일에 하나씩 생성합니다. 이 때, 파일명도 동일하게 작성합니다.
 
 ```javascript

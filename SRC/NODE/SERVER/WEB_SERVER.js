@@ -179,6 +179,8 @@ global.WEB_SERVER = CLASS(function(cls) {
 						nativeReq.on('data', function(data) {
 							if (paramStr === undefined) {
 								paramStr = '';
+							} else {
+								paramStr += '&';
 							}
 							paramStr += data;
 						});

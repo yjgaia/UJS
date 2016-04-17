@@ -139,7 +139,6 @@ global.SOUND = CLASS(function(cls) {
 							}
 						}
 					};
-	
 				}
 	
 				// if not exists audio context
