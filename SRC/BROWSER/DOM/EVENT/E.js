@@ -44,7 +44,10 @@ global.E = CLASS({
 		getState,
 		
 		// get detail.
-		getDetail;
+		getDetail,
+		
+		// get wheel delta
+		getWheelDelta;
 
 		checkIsDescendant = function(parent, child) {
 
@@ -197,6 +200,18 @@ global.E = CLASS({
 		
 		self.getDetail = getDetail = function() {
 			return e.detail;
+		};
+		
+		self.getWheelDelta = getWheelDelta = function() {
+			
+			if (document.onmousewheel !== undefined) {
+				return e.wheelDelta;
+			}
+			
+			// FireFox
+			else {
+				return e.detail * -40;
+			}
 		};
 	}
 });

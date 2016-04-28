@@ -81,6 +81,16 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 			return 'audio/mpeg';
 		}
 
+		// ogg
+		if (extname === '.ogg') {
+			return 'audio/ogg';
+		}
+
+		// mp4
+		if (extname === '.mp4') {
+			return 'video/mp4';
+		}
+
 		return 'application/octet-stream';
 	};
 
@@ -130,9 +140,12 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 
 			// web server
 			webServer,
-
+			
 			// get native http server.
-			getNativeHTTPServer;
+			getNativeHTTPServer,
+			
+			// get native https server.
+			getNativeHTTPSServer;
 
 			// init params.
 			if (CHECK_IS_DATA(portOrParams) !== true) {
@@ -368,6 +381,10 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 
 			self.getNativeHTTPServer = getNativeHTTPServer = function() {
 				return webServer.getNativeHTTPServer();
+			};
+			
+			self.getNativeHTTPSServer = getNativeHTTPSServer = function() {
+				return webServer.getNativeHTTPSServer();
 			};
 		}
 	};

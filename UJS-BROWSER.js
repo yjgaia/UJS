@@ -4060,7 +4060,6 @@ global.SOUND = CLASS(function(cls) {
 							}
 						}
 					};
-	
 				}
 	
 				// if not exists audio context
@@ -4513,7 +4512,19 @@ global.NODE = CLASS({
 		getData,
 		
 		// scroll to.
-		scrollTo;
+		scrollTo,
+		
+		// get scroll left.
+		getScrollLeft,
+		
+		// get scroll top.
+		getScrollTop,
+		
+		// get scroll width.
+		getScrollWidth,
+		
+		// get scroll height.
+		getScrollHeight;
 
 		inner.setWrapperDom = setWrapperDom = function(dom) {
 			//REQUIRED: dom
@@ -5130,6 +5141,62 @@ global.NODE = CLASS({
 				}
 			}
 		};
+		
+		self.scrollTo = scrollTo = function(params) {
+			//REQUIRED: params
+			//OPTIONAL: params.left
+			//OPTIONAL: params.top
+			
+			var
+			// left
+			left = params.left,
+			
+			// top
+			top = params.top;
+			
+			if (contentEl !== undefined) {
+			
+				if (left !== undefined) {
+					contentEl.scrollLeft = left;
+				}
+				
+				if (top !== undefined) {
+					contentEl.scrollTop = top;
+				}
+			}
+		};
+		
+		self.getScrollLeft = getScrollLeft = function() {
+			if (contentEl !== undefined) {
+				return contentEl.scrollLeft;
+			} else {
+				return 0;
+			}
+		};
+		
+		self.getScrollTop = getScrollTop = function() {
+			if (contentEl !== undefined) {
+				return contentEl.scrollTop;
+			} else {
+				return 0;
+			}
+		};
+		
+		self.getScrollWidth = getScrollWidth = function() {
+			if (contentEl !== undefined) {
+				return contentEl.scrollWidth;
+			} else {
+				return 0;
+			}
+		};
+		
+		self.getScrollHeight = getScrollHeight = function() {
+			if (contentEl !== undefined) {
+				return contentEl.scrollHeight;
+			} else {
+				return 0;
+			}
+		};
 	},
 
 	afterInit : function(inner, self, params) {
@@ -5378,7 +5445,10 @@ global.E = CLASS({
 		getState,
 		
 		// get detail.
-		getDetail;
+		getDetail,
+		
+		// get wheel delta
+		getWheelDelta;
 
 		checkIsDescendant = function(parent, child) {
 
@@ -5531,6 +5601,18 @@ global.E = CLASS({
 		
 		self.getDetail = getDetail = function() {
 			return e.detail;
+		};
+		
+		self.getWheelDelta = getWheelDelta = function() {
+			
+			if (document.onmousewheel !== undefined) {
+				return e.wheelDelta;
+			}
+			
+			// FireFox
+			else {
+				return e.detail * -40;
+			}
 		};
 	}
 });
@@ -6095,6 +6177,24 @@ global.EVENT = CLASS(function(cls) {
 						eventHandler(e, node);
 					}
 				}));
+			}
+			
+			// mouse wheel event (FireFox, using 'DOMMouseScroll')
+			else if (name === 'mousewheel') {
+				
+				if (document.onmousewheel !== undefined) {
+					eventLows.push(EVENT_LOW(nameOrParams, eventHandler));
+				}
+				
+				// FireFox
+				else {
+					
+					eventLows.push(EVENT_LOW({
+						node : node,
+						lowNode : lowNode,
+						name : 'DOMMouseScroll'
+					}, eventHandler));
+				}
 			}
 
 			// other events
@@ -10845,7 +10945,7 @@ global.REQUEST = METHOD({
 		port = params.port === undefined ? (params.host === undefined ? BROWSER_CONFIG.port : 80) : params.port,
 
 		// is secure
-		isSecure = params.isSecure,
+		isSecure = params.isSecure === undefined ? BROWSER_CONFIG.isSecure : params.isSecure,
 
 		// method
 		method = params.method,
