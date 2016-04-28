@@ -205,6 +205,15 @@ global.WEB_SERVER = CLASS(function(cls) {
 						params = querystring.parse(paramStr),
 						
 						// data
+						data;
+						
+						EACH(params, function(param, name) {
+							
+							if (CHECK_IS_ARRAY(param) === true) {
+								params[name] = param[0];
+							}
+						});
+						
 						data = params.__DATA;
 						
 						if (data !== undefined) {
