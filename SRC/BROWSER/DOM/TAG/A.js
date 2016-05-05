@@ -64,19 +64,7 @@ global.A = CLASS({
 				value : target
 			});
 		}
-
-		if (style === undefined || style.cursor === undefined) {
-			self.addStyle({
-				cursor : 'pointer'
-			});
-		}
-
-		if (style === undefined || style.textDecoration === undefined) {
-			self.addStyle({
-				textDecoration : 'underline'
-			});
-		}
-
+		
 		self.tap = tap = function() {
 
 			EVENT.fireAll({

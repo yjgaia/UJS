@@ -30,11 +30,5 @@ global.TABLE = CLASS({
 		if (params !== undefined) {
 			style = params.style;
 		}
-
-		if (style === undefined || style.width === undefined) {
-			self.addStyle({
-				width : '100%'
-			});
-		}
 	}
 });
