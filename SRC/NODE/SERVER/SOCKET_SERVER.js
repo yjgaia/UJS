@@ -220,10 +220,10 @@ global.SOCKET_SERVER = METHOD({
 
 			// disconnect.
 			function() {
-				
-				conn.end();
-				
-				conn = undefined;
+				if (conn !== undefined) {
+					conn.end();
+					conn = undefined;
+				}
 			});
 		});
 
