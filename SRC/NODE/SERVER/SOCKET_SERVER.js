@@ -112,8 +112,6 @@ global.SOCKET_SERVER = METHOD({
 				
 				// free method map.
 				methodMap = undefined;
-				
-				conn = undefined;
 			});
 
 			// when error
@@ -123,7 +121,7 @@ global.SOCKET_SERVER = METHOD({
 				// error msg
 				errorMsg;
 				
-				if (error.code !== 'ECONNRESET' && error.code !== 'EPIPE') {
+				if (error.code !== 'ECONNRESET' && error.code !== 'EPIPE' && error.code !== 'ETIMEOUT') {
 					
 					errorMsg = error.toString();
 					
@@ -194,7 +192,7 @@ global.SOCKET_SERVER = METHOD({
 				// callback name
 				callbackName;
 				
-				if (conn !== undefined) {
+				if (conn.writable === true) {
 					
 					conn.write(STRINGIFY({
 						methodName : params.methodName,
@@ -225,10 +223,7 @@ global.SOCKET_SERVER = METHOD({
 
 			// disconnect.
 			function() {
-				if (conn !== undefined) {
-					conn.end();
-					conn = undefined;
-				}
+				conn.end();
 			});
 		});
 
