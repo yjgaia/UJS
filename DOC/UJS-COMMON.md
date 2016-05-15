@@ -3,7 +3,7 @@
 
 우선 UJS의 가장 기본적인 기능인 `METHOD`를 살펴보도록 하겠습니다.
 
-# METHOD
+## METHOD
 메소드를 생성합니다. 메소드에 static 함수를 지정할 수 있습니다. [예제보기](../EXAMPLES/COMMON/METHOD.js)
 
 ```javascript
@@ -165,7 +165,7 @@ SomeClass.getString();
 
 ### OBJECT
 
-CLASS를 만들지 않고 객체를 바로 선언합니다. 설정 및 내용은 CLASS와 동일하지만, 만들어진 결과는 클래스가 아니라 객체입니다. 모든 객체가 선언된 이후에는 `INIT_OBJECTS()`로 초기화합니다. [예제보기](../EXAMPLES/COMMON/OOP/OBJECT.js)
+클래스를 만들지 않고 객체를 바로 선언합니다. 설정 및 내용은 CLASS와 동일하지만, 만들어진 결과는 클래스가 아니라 객체입니다. 모든 객체가 선언된 이후에는 `INIT_OBJECTS()`로 초기화합니다. [예제보기](../EXAMPLES/COMMON/OOP/OBJECT.js)
 
 * `INIT_OBJECTS`는 애플리케이션 전체에서 한번만 실행합니다. 이후에 선언한 OBJECT는 선언 즉시 초기화 됩니다.
 
