@@ -192,41 +192,35 @@ global.SOCKET_SERVER = METHOD({
 				// callback name
 				callbackName;
 				
-				if (conn !== undefined && conn.writable === true) {
+				conn.write(STRINGIFY({
+					methodName : params.methodName,
+					data : params.data,
+					sendKey : sendKey
+				}) + '\r\n');
+
+				if (callback !== undefined) {
 					
-					conn.write(STRINGIFY({
-						methodName : params.methodName,
-						data : params.data,
-						sendKey : sendKey
-					}) + '\r\n');
-	
-					if (callback !== undefined) {
-						
-						callbackName = '__CALLBACK_' + sendKey;
-	
-						// on callback.
-						on(callbackName, function(data) {
-	
-							// run callback.
-							callback(data);
-	
-							// off callback.
-							off(callbackName);
-						});
-					}
-	
-					sendKey += 1;
-					
-					clientInfo.lastReceiveTime = new Date();
+					callbackName = '__CALLBACK_' + sendKey;
+
+					// on callback.
+					on(callbackName, function(data) {
+
+						// run callback.
+						callback(data);
+
+						// off callback.
+						off(callbackName);
+					});
 				}
+
+				sendKey += 1;
+				
+				clientInfo.lastReceiveTime = new Date();
 			},
 
 			// disconnect.
 			function() {
-				if (conn !== undefined) {
-					conn.end();
-					conn = undefined;
-				}
+				conn.end();
 			});
 		});
 
