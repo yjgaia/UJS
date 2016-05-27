@@ -149,7 +149,7 @@ global.REQUEST = METHOD(function() {
 				if (errorListener !== undefined) {
 					errorListener(errorMsg);
 				} else {
-					console.log(CONSOLE_RED('[UJS-NODE] REQUEST FAILED: ' + errorMsg), params);
+					SHOW_ERROR('[UJS-NODE] REQUEST FAILED: ' + errorMsg, params);
 				}
 			});
 		}

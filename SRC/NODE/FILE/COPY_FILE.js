@@ -85,7 +85,7 @@ global.COPY_FILE = METHOD(function() {
 									if (errorHandler !== undefined) {
 										errorHandler(errorMsg);
 									} else {
-										console.log(CONSOLE_RED('[UJS-COPY_FILE] ERROR:' + errorMsg));
+										SHOW_ERROR('[UJS-COPY_FILE] ERROR:' + errorMsg);
 									}
 								});
 
@@ -145,7 +145,7 @@ global.COPY_FILE = METHOD(function() {
 									if (errorHandler !== undefined) {
 										errorHandler(errorMsg);
 									} else {
-										console.log(CONSOLE_RED('[UJS-COPY_FILE] ERROR: ' + errorMsg));
+										SHOW_ERROR('[UJS-COPY_FILE] ERROR: ' + errorMsg);
 									}
 								}
 							}

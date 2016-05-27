@@ -73,7 +73,7 @@ global.GET_FILE_INFO = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UJS-GET_FILE_INFO] ERROR: ' + errorMsg));
+									SHOW_ERROR('[UJS-GET_FILE_INFO] ERROR: ' + errorMsg);
 								}
 
 							} else if (stat.isDirectory() === true) {
@@ -168,7 +168,7 @@ global.GET_FILE_INFO = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UJS-GET_FILE_INFO] ERROR: ' + errorMsg));
+								SHOW_ERROR('[UJS-GET_FILE_INFO] ERROR: ' + errorMsg);
 							}
 						}
 					}

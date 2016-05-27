@@ -54,7 +54,7 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 					});
 
 					cluster.on('exit', function(worker, code, signal) {
-						console.log(CONSOLE_RED('[UJS-CPU_CLUSTERING] WORKER #' + worker.id + ' died. (' + (signal !== undefined ? signal : code) + '). restarting...'));
+						SHOW_ERROR('[UJS-CPU_CLUSTERING] WORKER #' + worker.id + ' died. (' + (signal !== undefined ? signal : code) + '). restarting...');
 						fork();
 					});
 				});

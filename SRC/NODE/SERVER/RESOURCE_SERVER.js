@@ -366,7 +366,7 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 								if (errorHandler !== undefined) {
 									isGoingOn = errorHandler(errorMsg, requestInfo, response);
 								} else {
-									console.log(CONSOLE_RED('[UJS-RESOURCE_SERVER] ERROR: ' + errorMsg));
+									SHOW_ERROR('[UJS-RESOURCE_SERVER] ERROR: ' + errorMsg);
 								}
 
 								if (isGoingOn !== false && requestInfo.isResponsed !== true) {

@@ -107,7 +107,7 @@ global.REMOVE_FOLDER = METHOD(function() {
 										if (errorHandler !== undefined) {
 											errorHandler(errorMsg);
 										} else {
-											console.log(CONSOLE_RED('[UJS-REMOVE_FOLDER] ERROR: ' + errorMsg));
+											SHOW_ERROR('[UJS-REMOVE_FOLDER] ERROR: ' + errorMsg);
 										}
 		
 									} else {
@@ -192,7 +192,7 @@ global.REMOVE_FOLDER = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UJS-REMOVE_FOLDER] ERROR: ' + errorMsg));
+								SHOW_ERROR('[UJS-REMOVE_FOLDER] ERROR: ' + errorMsg);
 							}
 						}
 					}
