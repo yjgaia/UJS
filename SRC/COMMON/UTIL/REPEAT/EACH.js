@@ -27,7 +27,7 @@ global.EACH = METHOD({
 		else if (CHECK_IS_DATA(dataOrArrayOrString) === true) {
 
 			for (name in dataOrArrayOrString) {
-				if (dataOrArrayOrString.hasOwnProperty(name) === true) {
+				if (dataOrArrayOrString.hasOwnProperty === undefined || dataOrArrayOrString.hasOwnProperty(name) === true) {
 					if (func(dataOrArrayOrString[name], name) === false) {
 						return false;
 					}

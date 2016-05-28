@@ -7,12 +7,17 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 	var
 	//IMPORT: cluster
 	cluster = require('cluster'),
+	
+	// cpu count
+	cpuCount = require('os').cpus().length,
 
 	// worker id
 	workerId = 1,
 
 	// get worker id.
 	getWorkerId;
+	
+	cluster.schedulingPolicy = cluster.SCHED_RR;
 
 	m.getWorkerId = getWorkerId = function() {
 		return workerId;
@@ -29,27 +34,41 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 				RUN(function() {
 
 					var
+					// pids
+					pids = {},
+					
 					// fork.
 					fork = function() {
 
 						var
 						// new worker
 						newWorker = cluster.fork();
+						
+						pids[newWorker.id] = newWorker.process.pid;
 
 						// receive data from new worker.
 						newWorker.on('message', function(data) {
-
-							// send data to all workers except new worker.
-							EACH(cluster.workers, function(worker) {
-								if (worker !== newWorker) {
-									worker.send(data);
-								}
-							});
+							
+							if (data === '__GET_PIDS') {
+								newWorker.send(STRINGIFY({
+									methodName : '__GET_PIDS',
+									data : pids
+								}));
+							}
+							
+							else {
+								// send data to all workers except new worker.
+								EACH(cluster.workers, function(worker) {
+									if (worker !== newWorker) {
+										worker.send(data);
+									}
+								});
+							}
 						});
 					};
 
 					// fork workers.
-					REPEAT(require('os').cpus().length, function() {
+					REPEAT(cpuCount, function() {
 						fork();
 					});
 
@@ -93,7 +112,16 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 					off,
 
 					// broadcast.
-					broadcast;
+					broadcast,
+					
+					// get all shared store storages.
+					getAllSharedStoreStorages,
+					
+					// get all shared db storages.
+					getAllSharedDBStorages,
+					
+					// get pids.
+					getPids;
 
 					workerId = cluster.worker.id;
 
@@ -174,6 +202,103 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 						//REQUIRED: params.data
 
 						process.send(STRINGIFY(params));
+					};
+					
+					on('__GET_SHARED_STORE_STORAGES', function(requestWorkerId) {
+						broadcast({
+							methodName : '__SEND_SHARED_STORE_STORAGES',
+							data : {
+								requestWorkerId : requestWorkerId,
+								storages : SHARED_STORE.getStorages(),
+								workerId : getWorkerId()
+							}
+						});
+					});
+					
+					on('__SEND_SHARED_STORE_STORAGES', function(data) {
+						if (data.requestWorkerId === getWorkerId()) {
+							if (m.__GET_SHARED_STORE_STORAGES_CALLBACK !== undefined) {
+								m.__GET_SHARED_STORE_STORAGES_CALLBACK(data);
+							}
+						}
+					});
+					
+					m.getAllSharedStoreStorages = getAllSharedStoreStorages = function(callback) {
+						
+						var
+						// all shared store storages
+						allSharedStoreStorages = {};
+						
+						allSharedStoreStorages[getWorkerId()] = SHARED_STORE.getStorages();
+						
+						broadcast({
+							methodName : '__GET_SHARED_STORE_STORAGES',
+							data : getWorkerId()
+						});
+						
+						m.__GET_SHARED_STORE_STORAGES_CALLBACK = function(data) {
+							
+							allSharedStoreStorages[data.workerId] = data.storages;
+							
+							if (COUNT_PROPERTIES(allSharedStoreStorages) === cpuCount) {
+								callback(allSharedStoreStorages);
+							}
+						};
+					};
+					
+					on('__GET_SHARED_DB_STORAGES', function(requestWorkerId) {
+						broadcast({
+							methodName : '__SEND_SHARED_DB_STORAGES',
+							data : {
+								requestWorkerId : requestWorkerId,
+								storages : SHARED_DB.getStorages(),
+								workerId : getWorkerId()
+							}
+						});
+					});
+					
+					on('__SEND_SHARED_DB_STORAGES', function(data) {
+						if (data.requestWorkerId === getWorkerId()) {
+							if (m.__GET_SHARED_DB_STORAGES_CALLBACK !== undefined) {
+								m.__GET_SHARED_DB_STORAGES_CALLBACK(data);
+							}
+						}
+					});
+					
+					m.getAllSharedDBStorages = getAllSharedDBStorages = function(callback) {
+						
+						var
+						// all shared db storages
+						allSharedDBStorages = {};
+						
+						allSharedDBStorages[getWorkerId()] = SHARED_DB.getStorages();
+						
+						broadcast({
+							methodName : '__GET_SHARED_DB_STORAGES',
+							data : getWorkerId()
+						});
+						
+						m.__GET_SHARED_DB_STORAGES_CALLBACK = function(data) {
+							
+							allSharedDBStorages[data.workerId] = data.storages;
+							
+							if (COUNT_PROPERTIES(allSharedDBStorages) === cpuCount) {
+								callback(allSharedDBStorages);
+							}
+						};
+					};
+					
+					on('__GET_PIDS', function(data) {
+						if (m.__GET_PIDS_CALLBACK !== undefined) {
+							m.__GET_PIDS_CALLBACK(data);
+						}
+					});
+					
+					m.getPids = getPids = function(callback) {
+						
+						process.send('__GET_PIDS');
+						
+						m.__GET_PIDS_CALLBACK = callback;
 					};
 
 					work();

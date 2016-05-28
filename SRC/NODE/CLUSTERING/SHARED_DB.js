@@ -10,6 +10,9 @@ global.SHARED_DB = CLASS(function(cls) {
 
 	// remove delay map
 	removeDelayMap = {},
+	
+	// get storages.
+	getStorages,
 
 	// save.
 	save,
@@ -31,6 +34,10 @@ global.SHARED_DB = CLASS(function(cls) {
 	
 	// clear.
 	clear;
+	
+	cls.getStorages = getStorages = function() {
+		return storages;
+	};
 
 	cls.save = save = function(params, remove) {
 		//REQUIRED: params
