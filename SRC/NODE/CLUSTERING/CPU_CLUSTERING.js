@@ -34,9 +34,6 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 				RUN(function() {
 
 					var
-					// pids
-					pids = {},
-					
 					// fork.
 					fork = function() {
 
@@ -44,26 +41,15 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 						// new worker
 						newWorker = cluster.fork();
 						
-						pids[newWorker.id] = newWorker.process.pid;
-
 						// receive data from new worker.
 						newWorker.on('message', function(data) {
 							
-							if (data === '__GET_PIDS') {
-								newWorker.send(STRINGIFY({
-									methodName : '__GET_PIDS',
-									data : pids
-								}));
-							}
-							
-							else {
-								// send data to all workers except new worker.
-								EACH(cluster.workers, function(worker) {
-									if (worker !== newWorker) {
-										worker.send(data);
-									}
-								});
-							}
+							// send data to all workers except new worker.
+							EACH(cluster.workers, function(worker) {
+								if (worker !== newWorker) {
+									worker.send(data);
+								}
+							});
 						});
 					};
 
@@ -112,10 +98,7 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 					off,
 
 					// broadcast.
-					broadcast,
-					
-					// get pids.
-					getPids;
+					broadcast;
 
 					workerId = cluster.worker.id;
 
@@ -198,19 +181,6 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 						process.send(STRINGIFY(params));
 					};
 					
-					on('__GET_PIDS', function(data) {
-						if (m.__GET_PIDS_CALLBACK !== undefined) {
-							m.__GET_PIDS_CALLBACK(data);
-						}
-					});
-					
-					m.getPids = getPids = function(callback) {
-						
-						process.send('__GET_PIDS');
-						
-						m.__GET_PIDS_CALLBACK = callback;
-					};
-
 					work();
 
 					console.log(CONSOLE_GREEN('[UJS-CPU_CLUSTERING] RUNNING WORKER... (ID:' + workerId + ')'));
