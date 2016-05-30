@@ -406,7 +406,7 @@ global.WEB_SERVER = CLASS(function(cls) {
 			// init sever.
 			if (port !== undefined) {
 				nativeHTTPServer = http.createServer(function(nativeReq, nativeRes) {
-					serve(nativeReq, nativeRes, false)
+					serve(nativeReq, nativeRes, false);
 				}).listen(port);
 			}
 
@@ -417,7 +417,7 @@ global.WEB_SERVER = CLASS(function(cls) {
 					key : fs.readFileSync(securedKeyFilePath),
 					cert : fs.readFileSync(securedCertFilePath)
 				}, function(nativeReq, nativeRes) {
-					serve(nativeReq, nativeRes, true)
+					serve(nativeReq, nativeRes, true);
 				}).listen(securedPort);
 			}
 
