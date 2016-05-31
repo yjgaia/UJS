@@ -79,7 +79,7 @@ global.FIND_FILE_NAMES = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UJS-FIND_FILE_NAMES] ERROR:' + errorMsg));
+									SHOW_ERROR('[UJS-FIND_FILE_NAMES] ERROR:' + errorMsg);
 								}
 
 							} else if (callback !== undefined) {
@@ -102,7 +102,7 @@ global.FIND_FILE_NAMES = METHOD(function() {
 												if (errorHandler !== undefined) {
 													errorHandler(errorMsg);
 												} else {
-													console.log(CONSOLE_RED('[UJS-FIND_FILE_NAMES] ERROR:' + errorMsg));
+													SHOW_ERROR('[UJS-FIND_FILE_NAMES] ERROR:' + errorMsg);
 												}
 
 											} else {
@@ -187,7 +187,7 @@ global.FIND_FILE_NAMES = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UJS-FIND_FILE_NAMES] ERROR: ' + errorMsg));
+								SHOW_ERROR('[UJS-FIND_FILE_NAMES] ERROR: ' + errorMsg);
 							}
 						}
 					}

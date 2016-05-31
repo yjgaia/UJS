@@ -86,7 +86,7 @@ global.CREATE_FOLDER = METHOD(function() {
 										if (errorHandler !== undefined) {
 											errorHandler(errorMsg);
 										} else {
-											console.log(CONSOLE_RED('[UJS-CREATE_FOLDER] ERROR: ' + errorMsg));
+											SHOW_ERROR('[UJS-CREATE_FOLDER] ERROR: ' + errorMsg);
 										}
 
 									} else {
@@ -154,7 +154,7 @@ global.CREATE_FOLDER = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UJS-CREATE_FOLDER] ERROR: ' + errorMsg));
+								SHOW_ERROR('[UJS-CREATE_FOLDER] ERROR: ' + errorMsg);
 							}
 						}
 					}

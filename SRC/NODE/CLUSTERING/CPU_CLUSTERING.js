@@ -7,12 +7,17 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 	var
 	//IMPORT: cluster
 	cluster = require('cluster'),
+	
+	// cpu count
+	cpuCount = require('os').cpus().length,
 
 	// worker id
 	workerId = 1,
 
 	// get worker id.
 	getWorkerId;
+	
+	cluster.schedulingPolicy = cluster.SCHED_RR;
 
 	m.getWorkerId = getWorkerId = function() {
 		return workerId;
@@ -35,10 +40,10 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 						var
 						// new worker
 						newWorker = cluster.fork();
-
+						
 						// receive data from new worker.
 						newWorker.on('message', function(data) {
-
+							
 							// send data to all workers except new worker.
 							EACH(cluster.workers, function(worker) {
 								if (worker !== newWorker) {
@@ -49,12 +54,12 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 					};
 
 					// fork workers.
-					REPEAT(require('os').cpus().length, function() {
+					REPEAT(cpuCount, function() {
 						fork();
 					});
 
 					cluster.on('exit', function(worker, code, signal) {
-						console.log(CONSOLE_RED('[UJS-CPU_CLUSTERING] WORKER #' + worker.id + ' died. (' + (signal !== undefined ? signal : code) + '). restarting...'));
+						SHOW_ERROR('[UJS-CPU_CLUSTERING] WORKER #' + worker.id + ' died. (' + (signal !== undefined ? signal : code) + '). restarting...');
 						fork();
 					});
 				});
@@ -175,7 +180,7 @@ global.CPU_CLUSTERING = METHOD(function(m) {
 
 						process.send(STRINGIFY(params));
 					};
-
+					
 					work();
 
 					console.log(CONSOLE_GREEN('[UJS-CPU_CLUSTERING] RUNNING WORKER... (ID:' + workerId + ')'));

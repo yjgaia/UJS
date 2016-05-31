@@ -88,6 +88,8 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 							on('__DISCONNECTED', function() {
 								delete serverSends[serverName];
 								delete isConnectings[serverName];
+								
+								SHOW_ERROR('[UJS-SERVER_CLUSTERING] DISCONNECTED CLUSTERING SERVER. (SERVER NAME:' + serverName + ')');
 							});
 
 							console.log('[UJS-SERVER_CLUSTERING] CONNECTED CLUSTERING SERVER. (SERVER NAME:' + serverName + ')');
@@ -130,10 +132,13 @@ global.SERVER_CLUSTERING = METHOD(function(m) {
 				});
 
 				socketServeOn('__DISCONNECTED', function() {
+					
 					REMOVE({
 						array : socketServeOns,
 						value : socketServeOn
 					});
+					
+					SHOW_ERROR('[UJS-SERVER_CLUSTERING] DISCONNECTED CLUSTERING SERVER.');
 				});
 			});
 

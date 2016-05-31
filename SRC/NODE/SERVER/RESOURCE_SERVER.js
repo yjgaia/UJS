@@ -5,6 +5,9 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 	'use strict';
 
 	var
+	//IMPORT: fs
+	fs = require('fs'),
+	
 	//IMPORT: path
 	path = require('path'),
 
@@ -252,9 +255,60 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 
 				function() {
 					return function() {
+						
+						// stream video.
+						if (headers.range !== undefined) {
+							
+							GET_FILE_INFO(rootPath + '/' + uri, function(fileInfo) {
 
+								var
+								// positions
+								positions = headers.range.replace(/bytes=/, '').split('-'),
+								
+								// total size
+								totalSize = fileInfo.size,
+								
+								// start position
+								startPosition = INTEGER(positions[0]),
+								
+								// end position
+								endPosition = positions[1] === undefined || positions[1] === '' ? totalSize - 1 : INTEGER(positions[1]),
+								
+								// stream
+								stream = fs.createReadStream(rootPath + '/' + uri, {
+									start : startPosition,
+									end : endPosition
+								}).on('open', function() {
+									
+									response(EXTEND({
+										origin : {
+											contentType : getContentTypeFromExtension(path.extname(uri).substring(1)),
+											totalSize : totalSize,
+											startPosition : startPosition,
+											endPosition : endPosition,
+											stream : stream
+										},
+										extend : overrideResponseInfo
+									}));
+									
+								}).on('error', function(error) {
+									
+									response(EXTEND({
+										origin : {
+											contentType : getContentTypeFromExtension(path.extname(uri).substring(1)),
+											totalSize : totalSize,
+											startPosition : startPosition,
+											endPosition : endPosition,
+											content : error.toString()
+										},
+										extend : overrideResponseInfo
+									}));
+								});
+							});
+						}
+						
 						// check ETag.
-						if (CONFIG.isDevMode !== true && (overrideResponseInfo.isFinal !== true ?
+						else if (CONFIG.isDevMode !== true && (overrideResponseInfo.isFinal !== true ?
 
 						// check version.
 						(version !== undefined && headers['if-none-match'] === version) :
@@ -312,7 +366,7 @@ global.RESOURCE_SERVER = CLASS(function(cls) {
 								if (errorHandler !== undefined) {
 									isGoingOn = errorHandler(errorMsg, requestInfo, response);
 								} else {
-									console.log(CONSOLE_RED('[UJS-RESOURCE_SERVER] ERROR: ' + errorMsg));
+									SHOW_ERROR('[UJS-RESOURCE_SERVER] ERROR: ' + errorMsg);
 								}
 
 								if (isGoingOn !== false && requestInfo.isResponsed !== true) {

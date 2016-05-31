@@ -72,7 +72,7 @@ global.SOCKET_SERVER = METHOD({
 				
 				// if catch error
 				catch(error) {
-					console.log(CONSOLE_RED('[UJS-SOCEKT_SERVER] ERROR:'), error.toString());
+					SHOW_ERROR('[UJS-SOCEKT_SERVER] ERROR:', methodName, data, error.toString());
 				}
 			};
 
@@ -119,11 +119,16 @@ global.SOCKET_SERVER = METHOD({
 
 				var
 				// error msg
-				errorMsg = error.toString();
-
-				console.log(CONSOLE_RED('[UJS-SOCEKT_SERVER] ERROR:'), errorMsg);
-
-				runMethods('__ERROR', errorMsg);
+				errorMsg;
+				
+				if (error.code !== 'ECONNRESET' && error.code !== 'EPIPE' && error.code !== 'ETIMEDOUT' && error.code !== 'ENETUNREACH' && error.code !== 'EHOSTUNREACH' && error.code !== 'ECONNREFUSED' && error.code !== 'EINVAL') {
+					
+					errorMsg = error.toString();
+					
+					SHOW_ERROR('[UJS-SOCEKT_SERVER] ERROR:', errorMsg);
+					
+					runMethods('__ERROR', errorMsg);
+				}
 			});
 
 			connectionListener(
@@ -187,35 +192,41 @@ global.SOCKET_SERVER = METHOD({
 				// callback name
 				callbackName;
 				
-				conn.write(STRINGIFY({
-					methodName : params.methodName,
-					data : params.data,
-					sendKey : sendKey
-				}) + '\r\n');
-
-				if (callback !== undefined) {
+				if (conn !== undefined && conn.writable === true) {
 					
-					callbackName = '__CALLBACK_' + sendKey;
-
-					// on callback.
-					on(callbackName, function(data) {
-
-						// run callback.
-						callback(data);
-
-						// off callback.
-						off(callbackName);
-					});
+					conn.write(STRINGIFY({
+						methodName : params.methodName,
+						data : params.data,
+						sendKey : sendKey
+					}) + '\r\n');
+	
+					if (callback !== undefined) {
+						
+						callbackName = '__CALLBACK_' + sendKey;
+	
+						// on callback.
+						on(callbackName, function(data) {
+	
+							// run callback.
+							callback(data);
+	
+							// off callback.
+							off(callbackName);
+						});
+					}
+	
+					sendKey += 1;
+					
+					clientInfo.lastReceiveTime = new Date();
 				}
-
-				sendKey += 1;
-				
-				clientInfo.lastReceiveTime = new Date();
 			},
 
 			// disconnect.
 			function() {
-				conn.end();
+				if (conn !== undefined) {
+					conn.end();
+					conn = undefined;
+				}
 			});
 		});
 

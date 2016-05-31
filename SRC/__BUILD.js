@@ -14,7 +14,7 @@ RUN(function() {
 	//IMPORT: path
 	path = require('path'),
 
-	//IMPORT: uglify
+	//IMPORT: uglifyJS
 	uglifyJS = require('uglify-js'),
 
 	// log.

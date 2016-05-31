@@ -64,7 +64,7 @@ global.CHECK_IS_FOLDER = METHOD(function() {
 						if (errorHandler !== undefined) {
 							errorHandler(errorMsg);
 						} else {
-							console.log(CONSOLE_RED('[UJS-CHECK_IS_FOLDER] ERROR: ' + errorMsg));
+							SHOW_ERROR('[UJS-CHECK_IS_FOLDER] ERROR: ' + errorMsg);
 						}
 
 					} else if (callback !== undefined) {

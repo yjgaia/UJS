@@ -17,7 +17,7 @@ TEST('CLASS', function(ok) {
 		// Singleton
 		Singleton,
 
-		//sam
+		// sam
 		sam,
 
 		// tom
@@ -57,7 +57,7 @@ TEST('CLASS', function(ok) {
 					eat;
 
 					self.move = move = function(meters) {
-						console.log(name + (' moved ' + meters + 'm.'));
+						console.log(name + ' moved ' + meters + 'm.');
 					};
 
 					inner.eat = eat = function() {

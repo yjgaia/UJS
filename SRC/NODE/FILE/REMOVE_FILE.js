@@ -71,7 +71,7 @@ global.REMOVE_FILE = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UJS-REMOVE_FILE] ERROR: ' + errorMsg));
+									SHOW_ERROR('[UJS-REMOVE_FILE] ERROR: ' + errorMsg);
 								}
 
 							} else {
@@ -132,7 +132,7 @@ global.REMOVE_FILE = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UJS-REMOVE_FILE] ERROR: ' + errorMsg));
+								SHOW_ERROR('[UJS-REMOVE_FILE] ERROR: ' + errorMsg);
 							}
 						}
 					}

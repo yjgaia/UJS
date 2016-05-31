@@ -74,10 +74,12 @@ global.REQUEST = METHOD({
 		if (global.fetch !== undefined) {
 			
 			(method === 'GET' ? fetch(url + '?' + paramStr, {
-				method : method
+				method : method,
+				credentials : host === BROWSER_CONFIG.host && port === BROWSER_CONFIG.port ? 'include' : undefined
 			}) : fetch(url, {
 				method : method,
-				body : paramStr
+				body : paramStr,
+				credentials : host === BROWSER_CONFIG.host && port === BROWSER_CONFIG.port ? 'include' : undefined
 			})).then(function(response) {
 				return response.text();
 			}).then(function(responseText) {

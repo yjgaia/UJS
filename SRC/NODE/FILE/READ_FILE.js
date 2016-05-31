@@ -73,7 +73,7 @@ global.READ_FILE = METHOD(function() {
 								if (errorHandler !== undefined) {
 									errorHandler(errorMsg);
 								} else {
-									console.log(CONSOLE_RED('[UJS-READ_FILE] ERROR: ' + errorMsg));
+									SHOW_ERROR('[UJS-READ_FILE] ERROR: ' + errorMsg);
 								}
 
 							} else if (stat.isDirectory() === true) {
@@ -99,7 +99,7 @@ global.READ_FILE = METHOD(function() {
 										if (errorHandler !== undefined) {
 											errorHandler(errorMsg);
 										} else {
-											console.log(CONSOLE_RED('[UJS-READ_FILE] ERROR: ' + errorMsg));
+											SHOW_ERROR('[UJS-READ_FILE] ERROR: ' + errorMsg);
 										}
 
 									} else if (callback !== undefined) {
@@ -176,7 +176,7 @@ global.READ_FILE = METHOD(function() {
 							if (errorHandler !== undefined) {
 								errorHandler(errorMsg);
 							} else {
-								console.log(CONSOLE_RED('[UJS-READ_FILE] ERROR: ' + errorMsg));
+								SHOW_ERROR('[UJS-READ_FILE] ERROR: ' + errorMsg);
 							}
 						}
 					}

@@ -6,7 +6,7 @@ TEST('INTERVAL', function(ok) {
 	count = 0,
 
 	// interval
-	interval = INTERVAL(3, function(delay) {
+	interval = INTERVAL(3, function(interval) {
 
 		count += 1;
 
