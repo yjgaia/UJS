@@ -36,6 +36,7 @@ global.INPUT = CLASS(function(cls) {
 			//OPTIONAL: params.capture
 			//OPTIONAL: params.accept
 			//OPTIONAL: params.isMultiple
+			//OPTIONAL: params.isOffAutocomplete
 
 			var
 			// name
@@ -55,6 +56,9 @@ global.INPUT = CLASS(function(cls) {
 
 			// is multiple
 			isMultiple,
+			
+			// is off autocomplete
+			isOffAutocomplete,
 
 			// get name.
 			getName,
@@ -88,6 +92,7 @@ global.INPUT = CLASS(function(cls) {
 				capture = params.capture;
 				accept = params.accept;
 				isMultiple = params.isMultiple;
+				isOffAutocomplete = params.isOffAutocomplete;
 			}
 
 			if (type !== undefined) {
@@ -134,6 +139,13 @@ global.INPUT = CLASS(function(cls) {
 					});
 				}
 
+				if (isOffAutocomplete === true) {
+					inner.setAttr({
+						name : 'autocomplete',
+						value : 'off'
+					});
+				}
+				
 				self.getName = getName = function() {
 					return name;
 				};
