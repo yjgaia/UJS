@@ -1,7 +1,7 @@
 /**
  * parse cookie str.
  */
-global.PARSE_COOKIE_STR = PARSE_COOKIE_STR = METHOD({
+global.PARSE_COOKIE_STR = METHOD({
 
 	run : function(str) {
 		'use strict';
