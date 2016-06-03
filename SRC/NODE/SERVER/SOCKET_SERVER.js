@@ -186,6 +186,7 @@ global.SOCKET_SERVER = METHOD({
 				//REQUIRED: params
 				//REQUIRED: params.methodName
 				//OPTIONAL: params.data
+				//OPTIONAL: params.str
 				//OPTIONAL: callback
 
 				var
@@ -194,11 +195,23 @@ global.SOCKET_SERVER = METHOD({
 				
 				if (conn !== undefined && conn.writable === true) {
 					
-					conn.write(STRINGIFY({
-						methodName : params.methodName,
-						data : params.data,
-						sendKey : sendKey
-					}) + '\r\n');
+					if (params.str !== undefined) {
+						
+						conn.write(STRINGIFY({
+							methodName : params.methodName,
+							str : params.str,
+							sendKey : sendKey
+						}) + '\r\n');
+					}
+					
+					else {
+						
+						conn.write(STRINGIFY({
+							methodName : params.methodName,
+							data : params.data,
+							sendKey : sendKey
+						}) + '\r\n');
+					}
 	
 					if (callback !== undefined) {
 						
