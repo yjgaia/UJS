@@ -1,7 +1,12 @@
 # UJS-BROWSER
 웹 브라우저 환경에서 사용할 수 있는 유틸리티 라이브러리 및 DOM(Document Object Model) 템플릿 엔진입니다.
 
-* `UPPERCSE.JS-BROWSER`는 최신 웹 브라우저에서 돌아가도록 구현되어 있습니다.
+## 설계 철학
+`UJS-BROWSER`는 UJS의 설계자이자 개발자인 [Hanul](https://github.com/Hanul)의 주관적인 철학에 의해 작성되었습니다.
+* HTML의 내용 중 그다지 필요하지 않다 싶은 기능은 과감히 빼버렸습니다. (예를들어 span 태그의 title 등) - 만약 필요한 기능인데도 지원하지 않는다고 생각하시면, [GitHub Issues](https://github.com/Hanul/UJS/issues)에 남겨주시면 감사하겠습니다.
+* 브라우저 호환성을 대단히 중요하게 생각합니다. - 국제사회와는 거리가 먼 대한민국의 웹 브라우저 사용 현황에 큰 영향을 받았습니다.
+
+* `UJS-BROWSER`는 기본적으로는 최신 웹 브라우저에서 돌아가도록 구현되어 있습니다.
 구버젼 웹 브라우저들을 지원하기 위해서는 `UJS-BROWSER-FIX`를 함께 구동시키시기 바랍니다. 관련 내용은 [하단에 수록](#uppercasejs-browser-fix)되어 있습니다.
 
 ## INFO

@@ -45,11 +45,11 @@ global.EXPORT_IMG_TYPE = METHOD(function(m) {
 
 				loadingCallbacks = loadingCallbackMap[uri] = [callback];
 
-				ImageInfo.loadInfo(uri, function() {
+				new ImageInfo(uri, function(imageInfo) {
 
 					var
 					// img type
-					imgType = ImageInfo.getAllFields(uri).format.toLowerCase();
+					imgType = imageInfo.getAllFields(uri).format.toLowerCase();
 
 					// cache.
 					loadedImgTypes[uri] = imgType;
@@ -61,7 +61,8 @@ global.EXPORT_IMG_TYPE = METHOD(function(m) {
 
 					// clear loading callbacks.
 					delete loadingCallbackMap[uri];
-				});
+					
+				}).readFileData();
 			}
 		}
 	};
