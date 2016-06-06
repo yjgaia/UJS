@@ -182,24 +182,41 @@ global.SOCKET_SERVER = METHOD({
 			},
 
 			// send to client.
-			send = function(params, callback) {
-				//REQUIRED: params
-				//REQUIRED: params.methodName
-				//OPTIONAL: params.data
-				//OPTIONAL: params.str
+			send = function(methodNameOrParams, callback) {
+				//REQUIRED: methodNameOrParams
+				//REQUIRED: methodNameOrParams.methodName
+				//OPTIONAL: methodNameOrParams.data
+				//OPTIONAL: methodNameOrParams.str
 				//OPTIONAL: callback
 
 				var
+				// method name
+				methodName,
+				
+				// data
+				data,
+				
+				// str
+				str,
+				
 				// callback name
 				callbackName;
 				
+				if (CHECK_IS_DATA(methodNameOrParams) !== true) {
+					methodName = methodNameOrParams;
+				} else {
+					methodName = methodNameOrParams.methodName;
+					data = methodNameOrParams.data;
+					str = methodNameOrParams.str;
+				}
+				
 				if (conn !== undefined && conn.writable === true) {
 					
-					if (params.str !== undefined) {
+					if (str !== undefined) {
 						
 						conn.write(STRINGIFY({
-							methodName : params.methodName,
-							str : params.str,
+							methodName : methodName,
+							str : str,
 							sendKey : sendKey
 						}) + '\r\n');
 					}
@@ -207,8 +224,8 @@ global.SOCKET_SERVER = METHOD({
 					else {
 						
 						conn.write(STRINGIFY({
-							methodName : params.methodName,
-							data : params.data,
+							methodName : methodName,
+							data : data,
 							sendKey : sendKey
 						}) + '\r\n');
 					}
