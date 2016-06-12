@@ -42,7 +42,7 @@ UJS는 풀스택 JavaScript 라이브러리입니다.
 * [SkyProxy](https://github.com/Hanul/SkyProxy) 한 서버에서 여러 도메인을 사용하고자 할때 필요한 프록시 서버입니다.
 * [SkyRelay](https://github.com/Hanul/SkyRelay) 실시간 멀티플레이 게임을 구현하고자 할 때 홀펀칭에 사용되는 릴레이 서버입니다.
 * [UGML](https://github.com/Hanul/UGML) GameMaker: Studio용 유틸리티 익스텐션입니다.
-* [EXTREME.js](https://github.com/Hanul/EXTREME.js) JavaScript 스펙의 한계를 뛰어넘기 위해 만들어진 UPPERCASE.JS기반 프로젝트입니다.
+* [EXTREME.js](https://github.com/Hanul/EXTREME.js) JavaScript 스펙의 한계를 뛰어넘기 위해 만들어진 UJS기반 프로젝트입니다.
 
 ## 기타
 * [UJS 빌드](DOC/BUILD.md)
