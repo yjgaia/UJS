@@ -213,7 +213,7 @@ global.SOCKET_SERVER = METHOD({
 				if (conn !== undefined && conn.writable === true) {
 					
 					if (str !== undefined) {
-						conn.write(params.str + '\r\n');
+						conn.write(str + '\r\n');
 					}
 					
 					else {
