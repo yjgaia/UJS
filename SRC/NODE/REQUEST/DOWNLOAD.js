@@ -26,6 +26,7 @@ global.DOWNLOAD = METHOD(function() {
 			//OPTIONAL: params.data
 			//OPTIONAL: params.url
 			//REQUIRED: params.path
+			//OPTIONAL: params.headers
 			//OPTIONAL: callbackOrHandlers
 			//OPTIONAL: callbackOrHandlers.success
 			//OPTIONAL: callbackOrHandlers.error
@@ -54,6 +55,9 @@ global.DOWNLOAD = METHOD(function() {
 			
 			// path
 			path = params.path,
+			
+			// headers
+			headers = params.headers,
 			
 			// url data
 			urlData,
@@ -103,7 +107,8 @@ global.DOWNLOAD = METHOD(function() {
 			req = (isSecure !== true ? http : https).get({
 				hostname : host,
 				port : port,
-				path : '/' + (uri === undefined ? '' : uri) + '?' + paramStr
+				path : '/' + (uri === undefined ? '' : uri) + '?' + paramStr,
+				headers : headers
 			}, function(httpResponse) {
 				
 				var

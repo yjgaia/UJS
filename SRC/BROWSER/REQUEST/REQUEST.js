@@ -13,6 +13,7 @@ global.REQUEST = METHOD({
 		//OPTIONAL: params.uri
 		//OPTIONAL: params.paramStr
 		//OPTIONAL: params.data
+		//OPTIONAL: params.headers
 		//REQUIRED: responseListenerOrListeners
 
 		var
@@ -36,6 +37,9 @@ global.REQUEST = METHOD({
 
 		// data
 		data = params.data,
+		
+		// headers
+		headers = params.headers,
 
 		// response listener
 		responseListener,
@@ -75,11 +79,13 @@ global.REQUEST = METHOD({
 			
 			(method === 'GET' ? fetch(url + '?' + paramStr, {
 				method : method,
-				credentials : host === BROWSER_CONFIG.host && port === BROWSER_CONFIG.port ? 'include' : undefined
+				credentials : host === BROWSER_CONFIG.host && port === BROWSER_CONFIG.port ? 'include' : undefined,
+				headers : headers === undefined ? undefined : new Headers(headers)
 			}) : fetch(url, {
 				method : method,
 				body : paramStr,
-				credentials : host === BROWSER_CONFIG.host && port === BROWSER_CONFIG.port ? 'include' : undefined
+				credentials : host === BROWSER_CONFIG.host && port === BROWSER_CONFIG.port ? 'include' : undefined,
+				headers : headers === undefined ? undefined : new Headers(headers)
 			})).then(function(response) {
 				return response.text();
 			}).then(function(responseText) {
@@ -126,14 +132,30 @@ global.REQUEST = METHOD({
 	
 			// GET request.
 			if (method === 'GET') {
+				
 				req.open(method, url + '?' + paramStr);
+				
+				if (headers !== undefined) {
+					EACH(headers, function(value, name) {
+						req.setRequestHeader(name, value);
+					});
+				}
+				
 				req.send();
 			}
 	
 			// other request.
 			else {
+				
 				req.open(method, url);
 				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				
+				if (headers !== undefined) {
+					EACH(headers, function(value, name) {
+						req.setRequestHeader(name, value);
+					});
+				}
+				
 				req.send(paramStr);
 			}
 		}
@@ -154,6 +176,7 @@ FOR_BOX(function(box) {
 			//REQUIRED: params.uri
 			//OPTIONAL: params.paramStr
 			//OPTIONAL: params.data
+			//OPTIONAL: params.headers
 			//REQUIRED: responseListenerOrListeners
 
 			REQUEST(COMBINE([params, {

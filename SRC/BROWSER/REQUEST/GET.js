@@ -12,6 +12,7 @@ global.GET = METHOD({
 		//REQUIRED: uriOrParams.uri
 		//OPTIONAL: uriOrParams.paramStr
 		//OPTIONAL: uriOrParams.data
+		//OPTIONAL: uriOrParams.headers
 		//REQUIRED: responseListenerOrListeners
 
 		REQUEST(COMBINE([CHECK_IS_DATA(uriOrParams) === true ? uriOrParams : {
@@ -35,6 +36,7 @@ FOR_BOX(function(box) {
 			//REQUIRED: uriOrParams.uri
 			//OPTIONAL: uriOrParams.paramStr
 			//OPTIONAL: uriOrParams.data
+			//OPTIONAL: uriOrParams.headers
 			//REQUIRED: responseListenerOrListeners
 
 			box.REQUEST(COMBINE([params, {

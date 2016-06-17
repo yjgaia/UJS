@@ -5,11 +5,11 @@ global.REQUEST = METHOD(function() {
 	'use strict';
 
 	var
-	//IMPORT: http
-	http = require('http'),
+	//IMPORT: HTTP
+	HTTP = require('http'),
 
-	//IMPORT: https
-	https = require('https');
+	//IMPORT: HTTPS
+	HTTPS = require('https');
 
 	return {
 
@@ -22,6 +22,7 @@ global.REQUEST = METHOD(function() {
 			//OPTIONAL: params.uri
 			//OPTIONAL: params.paramStr
 			//OPTIONAL: params.data
+			//OPTIONAL: params.headers
 			//REQUIRED: responseListenerOrListeners
 
 			var
@@ -45,6 +46,9 @@ global.REQUEST = METHOD(function() {
 
 			// data
 			data = params.data,
+			
+			// headers
+			headers = params.headers,
 
 			// response listener
 			responseListener,
@@ -78,10 +82,11 @@ global.REQUEST = METHOD(function() {
 			// GET request.
 			if (method === 'GET') {
 
-				req = (isSecure !== true ? http : https).get({
+				req = (isSecure !== true ? HTTP : HTTPS).get({
 					hostname : host,
 					port : port,
-					path : '/' + (uri === undefined ? '' : uri) + '?' + paramStr
+					path : '/' + (uri === undefined ? '' : uri) + '?' + paramStr,
+					headers : headers
 				}, function(httpResponse) {
 
 					var
@@ -116,11 +121,12 @@ global.REQUEST = METHOD(function() {
 			// other request.
 			else {
 
-				req = (isSecure !== true ? http : https).request({
+				req = (isSecure !== true ? HTTP : HTTPS).request({
 					hostname : host,
 					port : port,
 					path : '/' + (uri === undefined ? '' : uri),
-					method : method
+					method : method,
+					headers : headers
 				}, function(httpResponse) {
 
 					var

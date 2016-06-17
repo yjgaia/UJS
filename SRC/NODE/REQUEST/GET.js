@@ -5,8 +5,8 @@ global.GET = METHOD(function(m) {
 	'use strict';
 	
 	var
-	//IMPORT: url
-	url = require('url');
+	//IMPORT: URL
+	URL = require('url');
 	
 	return {
 
@@ -18,6 +18,7 @@ global.GET = METHOD(function(m) {
 			//REQUIRED: urlOrParams.uri
 			//OPTIONAL: urlOrParams.paramStr
 			//OPTIONAL: urlOrParams.data
+			//OPTIONAL: urlOrParams.headers
 			//REQUIRED: responseListenerOrListeners
 			
 			var
@@ -29,7 +30,7 @@ global.GET = METHOD(function(m) {
 			
 			if (CHECK_IS_DATA(urlOrParams) !== true) {
 				
-				urlData = url.parse(urlOrParams);
+				urlData = URL.parse(urlOrParams);
 				
 				params = {
 					host : urlData.hostname === TO_DELETE ? undefined : urlData.hostname,
