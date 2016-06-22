@@ -1,7 +1,7 @@
 /**
- * run schedule deamon.
+ * run schedule daemon.
  */
-global.RUN_SCHEDULE_DEAMON = METHOD(function(m) {
+global.RUN_SCHEDULE_DAEMON = METHOD(function(m) {
 	'use strict';
 	
 	var
@@ -26,7 +26,7 @@ global.RUN_SCHEDULE_DEAMON = METHOD(function(m) {
 							
 							exec(command, function(error) {
 								if (error !== TO_DELETE) {
-									SHOW_ERROR('[UJS-NODE] RUN_SCHEDULE_DEAMON ERROR: ' + error.toString());
+									SHOW_ERROR('[UJS-NODE] RUN_SCHEDULE_DAEMON ERROR: ' + error.toString());
 								}
 							});
 						});
