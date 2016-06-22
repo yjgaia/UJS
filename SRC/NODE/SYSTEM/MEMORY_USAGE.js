@@ -2,6 +2,7 @@
  * get memory usage.
  */
 global.MEMORY_USAGE = METHOD(function(m) {
+	'use strict';
 	
 	var
 	//IMPORT: os
@@ -13,7 +14,6 @@ global.MEMORY_USAGE = METHOD(function(m) {
 	return {
 		
 		run : function() {
-			'use strict';
 			
 			var
 			// free memory

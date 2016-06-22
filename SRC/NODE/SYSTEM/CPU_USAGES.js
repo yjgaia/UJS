@@ -2,6 +2,7 @@
  * get cpu usages.
  */
 global.CPU_USAGES = METHOD(function(m) {
+	'use strict';
 	
 	var
 	//IMPORT: os
@@ -10,7 +11,6 @@ global.CPU_USAGES = METHOD(function(m) {
 	return {
 		
 		run : function() {
-			'use strict';
 			
 			var
 			// cpu infos
