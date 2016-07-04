@@ -69,9 +69,7 @@ global.REQUEST = METHOD(function() {
 			if (data !== undefined) {
 				paramStr = (paramStr === undefined ? '' : paramStr + '&') + '__DATA=' + encodeURIComponent(STRINGIFY(data));
 			}
-
-			paramStr = (paramStr === undefined ? '' : paramStr + '&') + Date.now();
-
+			
 			if (CHECK_IS_DATA(responseListenerOrListeners) !== true) {
 				responseListener = responseListenerOrListeners;
 			} else {
