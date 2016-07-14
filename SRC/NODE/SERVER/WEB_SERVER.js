@@ -174,6 +174,10 @@ global.WEB_SERVER = CLASS(function(cls) {
 
 				NEXT([
 				function(next) {
+					
+					var
+					// is appended param string
+					isAppendedParamStr;
 
 					if (method === 'GET' || noParsingParamsURI === uri || CHECK_IS_IN({
 						array : noParsingParamsURI,
@@ -183,11 +187,16 @@ global.WEB_SERVER = CLASS(function(cls) {
 					} else {
 
 						nativeReq.on('data', function(data) {
-							if (paramStr === undefined) {
-								paramStr = '';
-							} else {
-								paramStr += '&';
+							
+							if (isAppendedParamStr != true) {
+								if (paramStr === undefined) {
+									paramStr = '';
+								} else {
+									paramStr += '&';
+								}
+								isAppendedParamStr = true;
 							}
+							
 							paramStr += data;
 						});
 
