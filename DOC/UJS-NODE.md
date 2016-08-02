@@ -522,7 +522,7 @@ Node.js 환경에서 사용할 수 있는 유틸리티 라이브러리입니다.
 * `SHARED_DB(name)` 클러스터링 된 CPU들과 서버들이 공유하는 데이터베이스입니다. *동시에 데이터가 수정되는 경우에는 서버 간 데이터의 싱크가 맞지 않을 수 있으므로, 이를 염두해 두고 로직을 작성하시기 바랍니다.* [예제보기](../EXAMPLES/NODE/CLUSTERING/SHARED_DB.js)
 	* `save({id:, data:, removeAfterSeconds:})` 특정 `id`에 `data`를 저장합니다. `removeAfterSeconds` 파라미터를 지정하면 특정 시간 이후 데이터가 자동으로 지워집니다.
 	* `update({id:, data:, removeAfterSeconds:})` 특정 `id`의 `data`를 수정합니다. `removeAfterSeconds` 파라미터를 지정하면 특정 시간 이후 데이터가 자동으로 지워집니다.
-	* `get(id)` `id`의 데이터를 가져옵니다.
+	* `get(id)` `id`의 데이터를 가져옵니다. 값이 없는 경우 `undefined`가 반환됩니다.
 	* `remove(id)` `id`의 데이터를 지웁니다.
 	* `list()` 저장소의 모든 값을 가져옵니다.
 	* `count()` 저장소의 값들의 개수를 가져옵니다.
