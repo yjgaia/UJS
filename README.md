@@ -1,3 +1,5 @@
+***UJS가 UPPERCASE 2.0의 [UPPERCASE-CORE](https://github.com/Hanul/UPPERCASE/blob/master/DOC/GUIDE/UPPERCASE-CORE.md)로 통합되었습니다.***
+
 # Uppercase JavaScript Library
 UJS는 풀스택 JavaScript 라이브러리입니다.
 * 대문자 API
